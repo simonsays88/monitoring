@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
+ * @ORM\Entity(repositoryClass="AppBundle\Entity\PackRepository")
  * @ORM\Table(name="pack")
  */
 class Pack
