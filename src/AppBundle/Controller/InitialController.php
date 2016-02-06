@@ -6,16 +6,16 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
-class MonitoringController extends Controller
+class InitialController extends Controller
 {
     /**
-     * @Route("/suivi-pack/{id}", name="monitoring", requirements={"id"="\d+"})
+     * @Route("/suivi-initial/{user_id}", name="initial", requirements={"user_id"="\d+"})
      */
-    public function indexAction(Request $request, $id)
+    public function editAction(Request $request,$user_id)
     {
         // replace this example code with whatever you need
-        return $this->render('AppBundle:Monitoring:index.html.twig', [
-            'id'=> $id
+        return $this->render('AppBundle:Initial:edit.html.twig', [
+            'user_id'=> $user_id
         ]);
     }
 }

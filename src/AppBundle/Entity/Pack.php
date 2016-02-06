@@ -1,5 +1,7 @@
 <?php
+
 // src/AppBundle/Entity/Pack.php
+
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -9,8 +11,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity(repositoryClass="AppBundle\Entity\PackRepository")
  * @ORM\Table(name="pack")
  */
-class Pack
-{
+class Pack {
+
     /**
      * @ORM\Column(type="integer")
      * @ORM\Id
@@ -19,42 +21,42 @@ class Pack
     protected $id;
 
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Monitoring")
+     * @ORM\JoinColumn(nullable=false)
      */
-    protected $name;
-
+    private $monitoring;
 
     /**
      * Get id
      *
      * @return integer
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
+
     /**
-     * Set name
+     * Set monitoring
      *
-     * @param string $name
+     * @param \AppBundle\Entity\Monitoring $monitoring
      *
      * @return Pack
      */
-    public function setName($name)
+    public function setMonitoring(\AppBundle\Entity\Monitoring $monitoring)
     {
-        $this->name = $name;
+        $this->monitoring = $monitoring;
 
         return $this;
     }
 
     /**
-     * Get name
+     * Get monitoring
      *
-     * @return string
+     * @return \AppBundle\Entity\Monitoring
      */
-    public function getName()
+    public function getMonitoring()
     {
-        return $this->name;
+        return $this->monitoring;
     }
 }
