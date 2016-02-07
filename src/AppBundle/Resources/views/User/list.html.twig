@@ -1,4 +1,25 @@
 {% extends 'base.html.twig' %}
 
+{% block pageTitle %}CostaFitness : Listing des utilisateurs{% endblock %}
+{% block headingTitle %}Listing des athlètes{% endblock %}
+{% block pageClass %}userList{% endblock %}
+
 {% block body %}
+<table border="1" style="width:100%">
+    <tr>
+        <td>Nom</td>
+        <td>Prénom</td> 
+        <td>Mail</td>
+        <td>Pack en cours</td> 
+        <td>Bilans</td>
+    </tr>
+  <tr>
+    <td>Jill</td>
+    <td>Smith</td> 
+    <td><a href="mailto:mail@mail.com">mail@mail.com</a></td>
+    <td>Pack sur mesure</td>
+    <td><a href="<?php echo url_for('');?>" class="btn">Suivi bilans</a></td>
+  </tr>
+ 
+</table>
 {% endblock %}

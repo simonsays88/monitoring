@@ -1,5 +1,62 @@
 {% extends 'base.html.twig' %}
 
+{% block pageTitle %}CostaFitness : Bilan trimestriel{% endblock %}
+{% block headingTitle %}Bilan trimestriel{% endblock %}
+{% block pageClass %}resultsPage{% endblock %}
+
 {% block body %}
 
+    <form method="post" action="">
+       <div class="initFormSection halfElement">
+            <h2>Vos mensurations</h2>
+            <div class="content">
+                
+                    <div class="halfElement">
+                    <label for="poids">Poids en Kg</label>
+                    <input type="text" id="poids" required>
+
+                    <label for="masse">Masse grasse en %</label>
+                    <input type="text" id="masse" required>
+                    </div>
+                    
+                    <div class="halfElement">
+                        <label for="epaules">Epaules en cm</label>
+                    <input type="text" id="epaules" required>
+
+                    <label for="pec">Pectoraux en cm</label>
+                    <input type="text" id="pec" required>
+                    
+                    <label for="taille">Taille en cm</label>
+                    <input type="text" id="poids" required>
+
+                    <label for="bras">Bras contracté en cm</label>
+                    <input type="text" id="bras" required>
+                    
+                    <label for="cuisse">Cuisse en cm</label>
+                    <input type="text" id="cuisse" required>
+
+
+                    </div>
+           </div> 
+        </div>
+       <div class="initFormSection halfElement">
+            <h2>Vos photos</h2>
+            <div class="content photoUpload">
+                <div class="thirdElement">
+                    <h3>Photo bilan face</h3>
+                    <input type="file" class="custom-input" required>
+                </div>
+                 <div class="thirdElement">
+                    <h3>Photo bilan coté</h3>
+                    <input type="file" class="custom-input" required>
+                </div>
+                 <div class="thirdElement">
+                    <h3>Photo bilan dos</h3>
+                    <input type="file" class="custom-input" required>
+                </div>
+                
+           </div> 
+        </div>
+        <div class="submitContainer"><input type="submit" value="Envoyez votre bilan trimestriel" class="btn bigBtn"></div>
+        </form>
 {% endblock %}
