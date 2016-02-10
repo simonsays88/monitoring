@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use AppBundle\Entity\Pack;
 
 /**
  * Monitoring
@@ -29,201 +30,240 @@ class Monitoring
     private $userId;
 
     /**
+     * @ORM\OneToMany(targetEntity="Pack", mappedBy="monitoring")
+     */
+    private $packs;
+    
+    /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255)
+     * @ORM\Column(name="name", type="string", length=255, nullable=true)
      */
     private $name;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="job", type="string", length=255)
+     * @ORM\Column(name="job", type="string", length=255, nullable=true)
      */
     private $job;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="address", type="string", length=255)
+     * @ORM\Column(name="address", type="string", length=255, nullable=true)
      */
     private $address;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="zip_code", type="string", length=255)
+     * @ORM\Column(name="zip_code", type="string", length=255, nullable=true)
      */
     private $zipCode;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="phone", type="string", length=255)
+     * @ORM\Column(name="phone", type="string", length=255, nullable=true)
      */
     private $phone;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="phone_mobile", type="string", length=255)
+     * @ORM\Column(name="phone_mobile", type="string", length=255, nullable=true)
      */
     private $phoneMobile;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="email", type="string", length=255)
+     * @ORM\Column(name="email", type="string", length=255, nullable=true)
      */
     private $email;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="birthday", type="datetime")
+     * @ORM\Column(name="birthday", type="datetime", nullable=true)
      */
     private $birthday;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="exercises", type="text")
+     * @ORM\Column(name="exercises", type="text", nullable=true)
      */
     private $exercises;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="health", type="text")
+     * @ORM\Column(name="health", type="text", nullable=true)
      */
     private $health;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="treatment", type="text")
+     * @ORM\Column(name="treatment", type="text", nullable=true)
      */
     private $treatment;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="smoker", type="string", length=255)
+     * @ORM\Column(name="smoker", type="string", length=255, nullable=true)
      */
     private $smoker;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="height", type="string", length=255)
+     * @ORM\Column(name="height", type="string", length=255, nullable=true)
      */
     private $height;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="weight", type="string", length=255)
+     * @ORM\Column(name="fat", type="string", length=255, nullable=true)
+     */
+    private $fat;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="weight", type="string", length=255, nullable=true)
      */
     private $weight;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="shoulders", type="string", length=255)
+     * @ORM\Column(name="shoulders", type="string", length=255, nullable=true)
      */
     private $shoulders;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="arms", type="string", length=255)
+     * @ORM\Column(name="pectorals", type="string", length=255, nullable=true)
+     */
+    private $pectorals;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="arms", type="string", length=255, nullable=true)
      */
     private $arms;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="hip_size", type="string", length=255)
+     * @ORM\Column(name="hip_size", type="string", length=255, nullable=true)
      */
     private $hipSize;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="thighs", type="string", length=255)
+     * @ORM\Column(name="thighs", type="string", length=255, nullable=true)
      */
     private $thighs;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="source", type="text")
+     * @ORM\Column(name="source", type="text", nullable=true)
      */
     private $source;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="attention", type="text")
+     * @ORM\Column(name="attention", type="text", nullable=true)
      */
     private $attention;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="preferences", type="text")
+     * @ORM\Column(name="preferences", type="text", nullable=true)
      */
     private $preferences;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="drinking", type="text")
+     * @ORM\Column(name="drinking", type="text", nullable=true)
      */
     private $drinking;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="dietary_supplement", type="text")
+     * @ORM\Column(name="dietary_supplement", type="text", nullable=true)
      */
     private $dietarySupplement;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="training_time", type="time")
+     * @ORM\Column(name="training_time", type="time", nullable=true)
      */
     private $trainingTime;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="diet", type="text")
+     * @ORM\Column(name="diet", type="text", nullable=true)
      */
     private $diet;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="note", type="text")
+     * @ORM\Column(name="note", type="text", nullable=true)
      */
     private $note;
 
     /**
      * @var bool
      *
-     * @ORM\Column(name="homemade_food", type="boolean")
+     * @ORM\Column(name="homemade_food", type="boolean", nullable=true)
      */
     private $homemadeFood;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="restaurant", type="integer")
+     * @ORM\Column(name="restaurant", type="integer", nullable=true)
      */
     private $restaurant;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="photo_front", type="string", length=255, nullable=true)
+     */
+    private $photoFront;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="photo_side", type="string", length=255, nullable=true)
+     */
+    private $photoSide;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="photo_back", type="string", length=255, nullable=true)
+     */
+    private $photoBack;
 
     /**
      * Get id
@@ -929,5 +969,166 @@ class Monitoring
     public function getRestaurant()
     {
         return $this->restaurant;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->packs = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add pack
+     *
+     * @param \AppBundle\Entity\Pack $pack
+     *
+     * @return Monitoring
+     */
+    public function addPack(\AppBundle\Entity\Pack $pack)
+    {
+        $this->packs[] = $pack;
+
+        return $this;
+    }
+
+    /**
+     * Remove pack
+     *
+     * @param \AppBundle\Entity\Pack $pack
+     */
+    public function removePack(\AppBundle\Entity\Pack $pack)
+    {
+        $this->packs->removeElement($pack);
+    }
+
+    /**
+     * Get packs
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPacks()
+    {
+        return $this->packs;
+    }
+
+    /**
+     * Set fat
+     *
+     * @param string $fat
+     *
+     * @return Monitoring
+     */
+    public function setFat($fat)
+    {
+        $this->fat = $fat;
+
+        return $this;
+    }
+
+    /**
+     * Get fat
+     *
+     * @return string
+     */
+    public function getFat()
+    {
+        return $this->fat;
+    }
+
+    /**
+     * Set pectorals
+     *
+     * @param string $pectorals
+     *
+     * @return Monitoring
+     */
+    public function setPectorals($pectorals)
+    {
+        $this->pectorals = $pectorals;
+
+        return $this;
+    }
+
+    /**
+     * Get pectorals
+     *
+     * @return string
+     */
+    public function getPectorals()
+    {
+        return $this->pectorals;
+    }
+
+    /**
+     * Set photoFront
+     *
+     * @param string $photoFront
+     *
+     * @return Monitoring
+     */
+    public function setPhotoFront($photoFront)
+    {
+        $this->photoFront = $photoFront;
+
+        return $this;
+    }
+
+    /**
+     * Get photoFront
+     *
+     * @return string
+     */
+    public function getPhotoFront()
+    {
+        return $this->photoFront;
+    }
+
+    /**
+     * Set photoSide
+     *
+     * @param string $photoSide
+     *
+     * @return Monitoring
+     */
+    public function setPhotoSide($photoSide)
+    {
+        $this->photoSide = $photoSide;
+
+        return $this;
+    }
+
+    /**
+     * Get photoSide
+     *
+     * @return string
+     */
+    public function getPhotoSide()
+    {
+        return $this->photoSide;
+    }
+
+    /**
+     * Set photoBack
+     *
+     * @param string $photoBack
+     *
+     * @return Monitoring
+     */
+    public function setPhotoBack($photoBack)
+    {
+        $this->photoBack = $photoBack;
+
+        return $this;
+    }
+
+    /**
+     * Get photoBack
+     *
+     * @return string
+     */
+    public function getPhotoBack()
+    {
+        return $this->photoBack;
     }
 }
