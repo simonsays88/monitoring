@@ -9,7 +9,7 @@ use AppBundle\Entity\Monitoring;
 
 /**
  * @ORM\Entity
- * @ORM\Entity(repositoryClass="AppBundle\Entity\PackRepository")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\PackRepository")
  * @ORM\Table(name="pack")
  */
 class Pack {
@@ -28,11 +28,30 @@ class Pack {
     private $monitoring;
 
     /**
+     * @ORM\OneToMany(targetEntity="Result", mappedBy="pack")
+     */
+    private $results;
+
+    /**
      * @var int
      *
      * @ORM\Column(name="user_id", type="integer", nullable=true)
      */
     private $userId;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="pack_type_id", type="integer", nullable=true)
+     */
+    private $pack_type_id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="pack_name", type="string", nullable=true)
+     */
+    private $pack_name;
 
     /**
      * @var int
@@ -213,5 +232,94 @@ class Pack {
     public function getStep()
     {
         return $this->step;
+    }
+
+    /**
+     * Set packTypeId
+     *
+     * @param integer $packTypeId
+     *
+     * @return Pack
+     */
+    public function setPackTypeId($packTypeId)
+    {
+        $this->pack_type_id = $packTypeId;
+
+        return $this;
+    }
+
+    /**
+     * Get packTypeId
+     *
+     * @return integer
+     */
+    public function getPackTypeId()
+    {
+        return $this->pack_type_id;
+    }
+
+    /**
+     * Set packName
+     *
+     * @param string $packName
+     *
+     * @return Pack
+     */
+    public function setPackName($packName)
+    {
+        $this->pack_name = $packName;
+
+        return $this;
+    }
+
+    /**
+     * Get packName
+     *
+     * @return string
+     */
+    public function getPackName()
+    {
+        return $this->pack_name;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->results = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add result
+     *
+     * @param \AppBundle\Entity\Result $result
+     *
+     * @return Pack
+     */
+    public function addResult(\AppBundle\Entity\Result $result)
+    {
+        $this->results[] = $result;
+
+        return $this;
+    }
+
+    /**
+     * Remove result
+     *
+     * @param \AppBundle\Entity\Result $result
+     */
+    public function removeResult(\AppBundle\Entity\Result $result)
+    {
+        $this->results->removeElement($result);
+    }
+
+    /**
+     * Get results
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getResults()
+    {
+        return $this->results;
     }
 }

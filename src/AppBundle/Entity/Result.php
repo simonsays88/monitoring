@@ -22,6 +22,12 @@ class Result
     private $id;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Pack", inversedBy="results")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $pack;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="weight", type="string", length=255, nullable=true)
@@ -340,5 +346,29 @@ class Result
     public function getPhotoBack()
     {
         return $this->photoBack;
+    }
+
+    /**
+     * Set pack
+     *
+     * @param \AppBundle\Entity\Pack $pack
+     *
+     * @return Result
+     */
+    public function setPack(\AppBundle\Entity\Pack $pack)
+    {
+        $this->pack = $pack;
+
+        return $this;
+    }
+
+    /**
+     * Get pack
+     *
+     * @return \AppBundle\Entity\Pack
+     */
+    public function getPack()
+    {
+        return $this->pack;
     }
 }
