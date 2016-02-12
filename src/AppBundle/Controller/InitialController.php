@@ -20,12 +20,15 @@ class InitialController extends Controller
             ->findOneBy(array('userId' => $userId));
         if ($monitoring) {
 
-            
+
             return $this->render('AppBundle:Initial:edit.html.twig',
-                    ['user_id' => $user_id]);
+                    ['user_id' => $userId]);
         } else {
-            return new Response('Wrong method', 500,
-                array('Content-Type' => 'text/xml'));
+            return $this->render('AppBundle:Initial:edit.html.twig',
+                    ['user_id' => $userId]);
+            //TODO
+//            return new Response('Wrong method', 500,
+//                array('Content-Type' => 'text/xml'));
         }
     }
 }
