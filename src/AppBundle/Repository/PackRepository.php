@@ -10,4 +10,6 @@ namespace AppBundle\Entity;
  */
 class PackRepository extends \Doctrine\ORM\EntityRepository
 {
+
+
 }

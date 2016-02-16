@@ -66,6 +66,13 @@ class Pack {
      * @ORM\Column(name="step", type="integer", nullable=true)
      */
     private $step;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="nb_days", type="integer", nullable=true)
+     */
+    private $nbDays = 0;
     
     /**
      * @var \DateTime
@@ -81,6 +88,10 @@ class Pack {
      */
     private $startedAt;
 
+    /**
+     * @ORM\Column(type="string", columnDefinition="ENUM('new', 'ongoing', 'finished', 'pause')", nullable=false)
+     */
+    protected $status;
     /**
      * Get id
      *
@@ -321,5 +332,53 @@ class Pack {
     public function getResults()
     {
         return $this->results;
+    }
+
+    /**
+     * Set nbDays
+     *
+     * @param integer $nbDays
+     *
+     * @return Pack
+     */
+    public function setNbDays($nbDays)
+    {
+        $this->nbDays = $nbDays;
+
+        return $this;
+    }
+
+    /**
+     * Get nbDays
+     *
+     * @return integer
+     */
+    public function getNbDays()
+    {
+        return $this->nbDays;
+    }
+
+    /**
+     * Set status
+     *
+     * @param string $status
+     *
+     * @return Pack
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return string
+     */
+    public function getStatus()
+    {
+        return $this->status;
     }
 }
