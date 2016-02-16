@@ -97,6 +97,13 @@ class Result
      */
     private $photoBack;
 
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="completed", type="boolean")
+     */
+    private $completed = 0;
+
 
     /**
      * Get id
@@ -370,5 +377,29 @@ class Result
     public function getPack()
     {
         return $this->pack;
+    }
+
+    /**
+     * Set completed
+     *
+     * @param boolean $completed
+     *
+     * @return Result
+     */
+    public function setCompleted($completed)
+    {
+        $this->completed = $completed;
+
+        return $this;
+    }
+
+    /**
+     * Get completed
+     *
+     * @return boolean
+     */
+    public function getCompleted()
+    {
+        return $this->completed;
     }
 }
