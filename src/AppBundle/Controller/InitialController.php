@@ -11,7 +11,7 @@ class InitialController extends Controller
 {
 
     /**
-     * @Route("/suivi-initial/{user_id}", name="initial", requirements={"user_id"="\d+"})
+     * @Route("/suivi-initial/{userId}", name="initial", requirements={"user_id"="\d+"})
      */
     public function editAction(Request $request, $userId)
     {
