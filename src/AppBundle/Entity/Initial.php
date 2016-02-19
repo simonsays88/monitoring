@@ -86,7 +86,7 @@ class Initial
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="birthday", type="datetime", nullable=true)
+     * @ORM\Column(name="birthday", type="date", nullable=true)
      */
     private $birthday;
 

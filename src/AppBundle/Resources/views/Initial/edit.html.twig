@@ -14,55 +14,53 @@
             <div class="formSection">
                 <h3>Coordonnées</h3>
                 <div class="halfElement">
-                    <label for="nom">Nom</label>
-                    <input type="text" id="nom" required>
-
-                    <label for="prenom">Prénom</label>
-                    <input type="text" id="prenom" required>
+                    <label for="nom">Nom et Prénom</label>
+                    {{ form_widget(form.name) }}
 
                     <label for="adresse">Adresse</label>
-                    <input type="text" id="adresse" required>
+                    {{ form_widget(form.address) }}
 
                     <label for="cp">Code postal</label>
-                    <input type="text" id="cp" required>
+                    {{ form_widget(form.zipCode) }}
 
-                    <label for="ville">Ville</label>
-                    <input type="text" id="vlle" required>
                 </div>
 
                 <div class="halfElement">
                     <label for="tel">Téléphone</label>
-                    <input type="text" id="tel" required>
+                    {{ form_widget(form.phoneMobile) }}
 
                     <label for="mail">Email</label>
-                    <input type="mail" id="mail" required>
+                    {{ form_widget(form.email) }}
 
-                    <label for="taille">Date de naissance</label>
-                    <input type="date" id="poids" required>
+                    <label for="naissance">Date de naissance</label>
+                    {{ form_widget(form.birthday) }}
+
+                    <label for="metier">Métier</label>
+                    {{ form_widget(form.job) }}
                 </div>
             </div>
             
              <div class="formSection">
                 <h3>Le sport et vous</h3>
                 <div class="questionContainer">
-                    <label for="sportRoutine">Quels types d'entraînement faites vous, combien de fois par semaine et depuis quand ?</label>
-                    <textarea id="sportRoutine" required></textarea>
+                    <label for="exercises">Quels types d'entraînement faites vous, combien de fois par semaine et depuis quand ?</label>
+                    {{ form_widget(form.exercises) }}
                 </div>    
                 
                 <div class="questionContainer">
-                    <label for="healthState">Avez-vous des problèmes de santé actuellement?
+                    <label for="health">Avez-vous des problèmes de santé actuellement?
                                              Avez-vous des antécédents traumatologiques?
                     </label>
-                    <textarea id="healthState" required></textarea>
+                    {{ form_widget(form.health) }}
                 </div>
                 
                 <div class="questionContainer">
-                    <label for="cure">Suivez-vous un traitement médical actuellement?</label>
-                    <textarea id="cure" required></textarea>
+                    <label for="treatment">Suivez-vous un traitement médical actuellement?</label>
+                    {{ form_widget(form.treatment) }}
                 </div> 
                     <div class="questionContainer">
-                    <label for="smoking">Est-ce que vous fumez? Si oui, combien de cigarettes par jour?</label>
-                    <textarea id="smoking" required></textarea>
+                    <label for="smoker">Est-ce que vous fumez? Si oui, combien de cigarettes par jour?</label>
+                    {{ form_widget(form.smoker) }}
                 </div> 
             </div>
             
