@@ -6,12 +6,12 @@ use Doctrine\ORM\Mapping as ORM;
 use AppBundle\Entity\Pack;
 
 /**
- * Monitoring
+ * Initial
  *
- * @ORM\Table(name="monitoring")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\MonitoringRepository")
+ * @ORM\Table(name="initial")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\InitialRepository")
  */
-class Monitoring
+class Initial
 {
     /**
      * @var int
@@ -30,7 +30,7 @@ class Monitoring
     private $userId;
 
     /**
-     * @ORM\OneToMany(targetEntity="Pack", mappedBy="monitoring")
+     * @ORM\OneToMany(targetEntity="Pack", mappedBy="initial")
      */
     private $packs;
     
@@ -280,7 +280,7 @@ class Monitoring
      *
      * @param integer $userId
      *
-     * @return Monitoring
+     * @return Initial
      */
     public function setUserId($userId)
     {
@@ -304,7 +304,7 @@ class Monitoring
      *
      * @param string $name
      *
-     * @return Monitoring
+     * @return Initial
      */
     public function setName($name)
     {
@@ -328,7 +328,7 @@ class Monitoring
      *
      * @param string $job
      *
-     * @return Monitoring
+     * @return Initial
      */
     public function setJob($job)
     {
@@ -352,7 +352,7 @@ class Monitoring
      *
      * @param string $address
      *
-     * @return Monitoring
+     * @return Initial
      */
     public function setAddress($address)
     {
@@ -376,7 +376,7 @@ class Monitoring
      *
      * @param string $zipCode
      *
-     * @return Monitoring
+     * @return Initial
      */
     public function setZipCode($zipCode)
     {
@@ -400,7 +400,7 @@ class Monitoring
      *
      * @param string $phone
      *
-     * @return Monitoring
+     * @return Initial
      */
     public function setPhone($phone)
     {
@@ -424,7 +424,7 @@ class Monitoring
      *
      * @param string $phoneMobile
      *
-     * @return Monitoring
+     * @return Initial
      */
     public function setPhoneMobile($phoneMobile)
     {
@@ -448,7 +448,7 @@ class Monitoring
      *
      * @param string $email
      *
-     * @return Monitoring
+     * @return Initial
      */
     public function setEmail($email)
     {
@@ -472,7 +472,7 @@ class Monitoring
      *
      * @param \DateTime $birthday
      *
-     * @return Monitoring
+     * @return Initial
      */
     public function setBirthday($birthday)
     {
@@ -496,7 +496,7 @@ class Monitoring
      *
      * @param string $exercises
      *
-     * @return Monitoring
+     * @return Initial
      */
     public function setExercises($exercises)
     {
@@ -520,7 +520,7 @@ class Monitoring
      *
      * @param string $health
      *
-     * @return Monitoring
+     * @return Initial
      */
     public function setHealth($health)
     {
@@ -544,7 +544,7 @@ class Monitoring
      *
      * @param string $treatment
      *
-     * @return Monitoring
+     * @return Initial
      */
     public function setTreatment($treatment)
     {
@@ -568,7 +568,7 @@ class Monitoring
      *
      * @param string $smoker
      *
-     * @return Monitoring
+     * @return Initial
      */
     public function setSmoker($smoker)
     {
@@ -592,7 +592,7 @@ class Monitoring
      *
      * @param string $height
      *
-     * @return Monitoring
+     * @return Initial
      */
     public function setHeight($height)
     {
@@ -616,7 +616,7 @@ class Monitoring
      *
      * @param string $weight
      *
-     * @return Monitoring
+     * @return Initial
      */
     public function setWeight($weight)
     {
@@ -640,7 +640,7 @@ class Monitoring
      *
      * @param string $shoulders
      *
-     * @return Monitoring
+     * @return Initial
      */
     public function setShoulders($shoulders)
     {
@@ -664,7 +664,7 @@ class Monitoring
      *
      * @param string $arms
      *
-     * @return Monitoring
+     * @return Initial
      */
     public function setArms($arms)
     {
@@ -688,7 +688,7 @@ class Monitoring
      *
      * @param string $hipSize
      *
-     * @return Monitoring
+     * @return Initial
      */
     public function setHipSize($hipSize)
     {
@@ -712,7 +712,7 @@ class Monitoring
      *
      * @param string $thighs
      *
-     * @return Monitoring
+     * @return Initial
      */
     public function setThighs($thighs)
     {
@@ -736,7 +736,7 @@ class Monitoring
      *
      * @param string $source
      *
-     * @return Monitoring
+     * @return Initial
      */
     public function setSource($source)
     {
@@ -760,7 +760,7 @@ class Monitoring
      *
      * @param string $attention
      *
-     * @return Monitoring
+     * @return Initial
      */
     public function setAttention($attention)
     {
@@ -784,7 +784,7 @@ class Monitoring
      *
      * @param string $preferences
      *
-     * @return Monitoring
+     * @return Initial
      */
     public function setPreferences($preferences)
     {
@@ -808,7 +808,7 @@ class Monitoring
      *
      * @param string $drinking
      *
-     * @return Monitoring
+     * @return Initial
      */
     public function setDrinking($drinking)
     {
@@ -832,7 +832,7 @@ class Monitoring
      *
      * @param string $dietarySupplement
      *
-     * @return Monitoring
+     * @return Initial
      */
     public function setDietarySupplement($dietarySupplement)
     {
@@ -856,7 +856,7 @@ class Monitoring
      *
      * @param \DateTime $trainingTime
      *
-     * @return Monitoring
+     * @return Initial
      */
     public function setTrainingTime($trainingTime)
     {
@@ -880,7 +880,7 @@ class Monitoring
      *
      * @param string $diet
      *
-     * @return Monitoring
+     * @return Initial
      */
     public function setDiet($diet)
     {
@@ -904,7 +904,7 @@ class Monitoring
      *
      * @param string $note
      *
-     * @return Monitoring
+     * @return Initial
      */
     public function setNote($note)
     {
@@ -928,7 +928,7 @@ class Monitoring
      *
      * @param boolean $homemadeFood
      *
-     * @return Monitoring
+     * @return Initial
      */
     public function setHomemadeFood($homemadeFood)
     {
@@ -952,7 +952,7 @@ class Monitoring
      *
      * @param integer $restaurant
      *
-     * @return Monitoring
+     * @return Initial
      */
     public function setRestaurant($restaurant)
     {
@@ -983,7 +983,7 @@ class Monitoring
      *
      * @param \AppBundle\Entity\Pack $pack
      *
-     * @return Monitoring
+     * @return Initial
      */
     public function addPack(\AppBundle\Entity\Pack $pack)
     {
@@ -1017,7 +1017,7 @@ class Monitoring
      *
      * @param string $fat
      *
-     * @return Monitoring
+     * @return Initial
      */
     public function setFat($fat)
     {
@@ -1041,7 +1041,7 @@ class Monitoring
      *
      * @param string $pectorals
      *
-     * @return Monitoring
+     * @return Initial
      */
     public function setPectorals($pectorals)
     {
@@ -1065,7 +1065,7 @@ class Monitoring
      *
      * @param string $photoFront
      *
-     * @return Monitoring
+     * @return Initial
      */
     public function setPhotoFront($photoFront)
     {
@@ -1089,7 +1089,7 @@ class Monitoring
      *
      * @param string $photoSide
      *
-     * @return Monitoring
+     * @return Initial
      */
     public function setPhotoSide($photoSide)
     {
@@ -1113,7 +1113,7 @@ class Monitoring
      *
      * @param string $photoBack
      *
-     * @return Monitoring
+     * @return Initial
      */
     public function setPhotoBack($photoBack)
     {

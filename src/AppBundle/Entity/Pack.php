@@ -5,7 +5,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use AppBundle\Entity\Monitoring;
+use AppBundle\Entity\Initial;
 
 /**
  * @ORM\Entity
@@ -22,10 +22,10 @@ class Pack {
     protected $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Monitoring", inversedBy="packs")
+     * @ORM\ManyToOne(targetEntity="Initial", inversedBy="packs")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $monitoring;
+    private $initial;
 
     /**
      * @ORM\OneToMany(targetEntity="Result", mappedBy="pack")
@@ -102,25 +102,25 @@ class Pack {
     }
 
     /**
-     * Set monitoring
+     * Set initial
      *
-     * @param \AppBundle\Entity\Monitoring $monitoring
+     * @param \AppBundle\Entity\Initial $initial
      *
      * @return Pack
      */
-    public function setMonitoring(\AppBundle\Entity\Monitoring $monitoring) {
-        $this->monitoring = $monitoring;
+    public function setInitial(\AppBundle\Entity\Initial $initial) {
+        $this->initial = $initial;
 
         return $this;
     }
 
     /**
-     * Get monitoring
+     * Get initial
      *
-     * @return \AppBundle\Entity\Monitoring
+     * @return \AppBundle\Entity\Initial
      */
-    public function getMonitoring() {
-        return $this->monitoring;
+    public function getInitial() {
+        return $this->initial;
     }
 
 

@@ -7,7 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use AppBundle\Entity\Pack;
-use AppBundle\Entity\Monitoring;
+use AppBundle\Entity\Initial;
 
 class OrderController extends Controller
 {
@@ -27,13 +27,13 @@ class OrderController extends Controller
             try {
                 $em = $this->getDoctrine()->getManager();
 
-                $monitoring = $this->getDoctrine()
-                    ->getRepository('AppBundle:Monitoring')
+                $initial = $this->getDoctrine()
+                    ->getRepository('AppBundle:Initial')
                     ->findOneBy(array('userId' => $userId));
-                if (!$monitoring) {
-                    $monitoring = new Monitoring();
-                    $monitoring->setUserId($userId);
-                    $em->persist($monitoring);
+                if (!$initial) {
+                    $initial = new Initial();
+                    $initial->setUserId($userId);
+                    $em->persist($initial);
                     $em->flush();
                 }
 
@@ -42,7 +42,7 @@ class OrderController extends Controller
                 $pack->setNbStep($nbStep);
                 $pack->setPackTypeId($packTypeId);
                 $pack->setPackName($packName);
-                $pack->setMonitoring($monitoring);
+                $pack->setInitial($initial);
                 $pack->setCreatedAt(new \DateTime('now'));
                 $weekDay = date('w');
                 if($weekDay < 5){

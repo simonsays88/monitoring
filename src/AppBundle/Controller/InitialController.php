@@ -5,7 +5,9 @@ namespace AppBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use AppBundle\Entity\Monitoring;
+use AppBundle\Entity\Initial;
+use AppBundle\Form\Type\InitialType;
+use Symfony\Component\HttpFoundation\Response;
 
 class InitialController extends Controller
 {
@@ -15,20 +17,28 @@ class InitialController extends Controller
      */
     public function editAction(Request $request, $userId)
     {
-        $monitoring = $this->getDoctrine()
-            ->getRepository('AppBundle:Monitoring')
+        $initial = $this->getDoctrine()
+            ->getRepository('AppBundle:Initial')
             ->findOneBy(array('userId' => $userId));
-        if ($monitoring) {
 
+        $form = $this->createForm(InitialType::class, $initial);
+        $form->handleRequest($request);
+        
+        if ($form->isSubmitted() && $form->isValid()) {
+            $initial = $form->getData();
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($initial);
+            $em->flush();
+        }
 
+        if ($initial) {
             return $this->render('AppBundle:Initial:edit.html.twig',
-                    ['user_id' => $userId]);
+                    array(
+                    'user_id' => $userId,
+                    'form' => $form->createView()
+            ));
         } else {
-            return $this->render('AppBundle:Initial:edit.html.twig',
-                    ['user_id' => $userId]);
-            //TODO
-//            return new Response('Wrong method', 500,
-//                array('Content-Type' => 'text/xml'));
+            return new Response('Wrong method', 500);
         }
     }
 }
