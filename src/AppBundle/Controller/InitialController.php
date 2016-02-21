@@ -29,6 +29,7 @@ class InitialController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($initial);
             $em->flush();
+            return $this->render('AppBundle:Initial:success.html.twig');
         }
 
         if ($initial) {
