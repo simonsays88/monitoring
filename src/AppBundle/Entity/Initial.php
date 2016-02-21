@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use AppBundle\Entity\Pack;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Initial
@@ -11,8 +12,8 @@ use AppBundle\Entity\Pack;
  * @ORM\Table(name="initial")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\InitialRepository")
  */
-class Initial
-{
+class Initial {
+
     /**
      * @var int
      *
@@ -33,7 +34,7 @@ class Initial
      * @ORM\OneToMany(targetEntity="Pack", mappedBy="initial")
      */
     private $packs;
-    
+
     /**
      * @var string
      *
@@ -121,6 +122,20 @@ class Initial
     /**
      * @var string
      *
+     * @ORM\Column(name="objectives", type="string", length=255, nullable=true)
+     */
+    private $objectives;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="objectives_detail", type="text", length=255, nullable=true)
+     */
+    private $objectivesDetail;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="height", type="string", length=255, nullable=true)
      */
     private $height;
@@ -128,10 +143,10 @@ class Initial
     /**
      * @var string
      *
-     * @ORM\Column(name="fat", type="string", length=255, nullable=true)
+     * @ORM\Column(name="imc", type="string", length=255, nullable=true)
      */
-    private $fat;
-    
+    private $imc;
+
     /**
      * @var string
      *
@@ -152,7 +167,7 @@ class Initial
      * @ORM\Column(name="pectorals", type="string", length=255, nullable=true)
      */
     private $pectorals;
-    
+
     /**
      * @var string
      *
@@ -246,7 +261,7 @@ class Initial
 
     /**
      * @var string
-     *
+     * @Assert\File
      * @ORM\Column(name="photo_front", type="string", length=255, nullable=true)
      */
     private $photoFront;
@@ -270,8 +285,7 @@ class Initial
      *
      * @return int
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -282,8 +296,7 @@ class Initial
      *
      * @return Initial
      */
-    public function setUserId($userId)
-    {
+    public function setUserId($userId) {
         $this->userId = $userId;
 
         return $this;
@@ -294,8 +307,7 @@ class Initial
      *
      * @return int
      */
-    public function getUserId()
-    {
+    public function getUserId() {
         return $this->userId;
     }
 
@@ -306,8 +318,7 @@ class Initial
      *
      * @return Initial
      */
-    public function setName($name)
-    {
+    public function setName($name) {
         $this->name = $name;
 
         return $this;
@@ -318,8 +329,7 @@ class Initial
      *
      * @return string
      */
-    public function getName()
-    {
+    public function getName() {
         return $this->name;
     }
 
@@ -330,8 +340,7 @@ class Initial
      *
      * @return Initial
      */
-    public function setJob($job)
-    {
+    public function setJob($job) {
         $this->job = $job;
 
         return $this;
@@ -342,8 +351,7 @@ class Initial
      *
      * @return string
      */
-    public function getJob()
-    {
+    public function getJob() {
         return $this->job;
     }
 
@@ -354,8 +362,7 @@ class Initial
      *
      * @return Initial
      */
-    public function setAddress($address)
-    {
+    public function setAddress($address) {
         $this->address = $address;
 
         return $this;
@@ -366,8 +373,7 @@ class Initial
      *
      * @return string
      */
-    public function getAddress()
-    {
+    public function getAddress() {
         return $this->address;
     }
 
@@ -378,8 +384,7 @@ class Initial
      *
      * @return Initial
      */
-    public function setZipCode($zipCode)
-    {
+    public function setZipCode($zipCode) {
         $this->zipCode = $zipCode;
 
         return $this;
@@ -390,8 +395,7 @@ class Initial
      *
      * @return string
      */
-    public function getZipCode()
-    {
+    public function getZipCode() {
         return $this->zipCode;
     }
 
@@ -402,8 +406,7 @@ class Initial
      *
      * @return Initial
      */
-    public function setPhone($phone)
-    {
+    public function setPhone($phone) {
         $this->phone = $phone;
 
         return $this;
@@ -414,8 +417,7 @@ class Initial
      *
      * @return string
      */
-    public function getPhone()
-    {
+    public function getPhone() {
         return $this->phone;
     }
 
@@ -426,8 +428,7 @@ class Initial
      *
      * @return Initial
      */
-    public function setPhoneMobile($phoneMobile)
-    {
+    public function setPhoneMobile($phoneMobile) {
         $this->phoneMobile = $phoneMobile;
 
         return $this;
@@ -438,8 +439,7 @@ class Initial
      *
      * @return string
      */
-    public function getPhoneMobile()
-    {
+    public function getPhoneMobile() {
         return $this->phoneMobile;
     }
 
@@ -450,8 +450,7 @@ class Initial
      *
      * @return Initial
      */
-    public function setEmail($email)
-    {
+    public function setEmail($email) {
         $this->email = $email;
 
         return $this;
@@ -462,8 +461,7 @@ class Initial
      *
      * @return string
      */
-    public function getEmail()
-    {
+    public function getEmail() {
         return $this->email;
     }
 
@@ -474,8 +472,7 @@ class Initial
      *
      * @return Initial
      */
-    public function setBirthday($birthday)
-    {
+    public function setBirthday($birthday) {
         $this->birthday = $birthday;
 
         return $this;
@@ -486,8 +483,7 @@ class Initial
      *
      * @return \DateTime
      */
-    public function getBirthday()
-    {
+    public function getBirthday() {
         return $this->birthday;
     }
 
@@ -498,8 +494,7 @@ class Initial
      *
      * @return Initial
      */
-    public function setExercises($exercises)
-    {
+    public function setExercises($exercises) {
         $this->exercises = $exercises;
 
         return $this;
@@ -510,8 +505,7 @@ class Initial
      *
      * @return string
      */
-    public function getExercises()
-    {
+    public function getExercises() {
         return $this->exercises;
     }
 
@@ -522,8 +516,7 @@ class Initial
      *
      * @return Initial
      */
-    public function setHealth($health)
-    {
+    public function setHealth($health) {
         $this->health = $health;
 
         return $this;
@@ -534,8 +527,7 @@ class Initial
      *
      * @return string
      */
-    public function getHealth()
-    {
+    public function getHealth() {
         return $this->health;
     }
 
@@ -546,8 +538,7 @@ class Initial
      *
      * @return Initial
      */
-    public function setTreatment($treatment)
-    {
+    public function setTreatment($treatment) {
         $this->treatment = $treatment;
 
         return $this;
@@ -558,8 +549,7 @@ class Initial
      *
      * @return string
      */
-    public function getTreatment()
-    {
+    public function getTreatment() {
         return $this->treatment;
     }
 
@@ -570,8 +560,7 @@ class Initial
      *
      * @return Initial
      */
-    public function setSmoker($smoker)
-    {
+    public function setSmoker($smoker) {
         $this->smoker = $smoker;
 
         return $this;
@@ -582,8 +571,7 @@ class Initial
      *
      * @return string
      */
-    public function getSmoker()
-    {
+    public function getSmoker() {
         return $this->smoker;
     }
 
@@ -594,8 +582,7 @@ class Initial
      *
      * @return Initial
      */
-    public function setHeight($height)
-    {
+    public function setHeight($height) {
         $this->height = $height;
 
         return $this;
@@ -606,8 +593,7 @@ class Initial
      *
      * @return string
      */
-    public function getHeight()
-    {
+    public function getHeight() {
         return $this->height;
     }
 
@@ -618,8 +604,7 @@ class Initial
      *
      * @return Initial
      */
-    public function setWeight($weight)
-    {
+    public function setWeight($weight) {
         $this->weight = $weight;
 
         return $this;
@@ -630,8 +615,7 @@ class Initial
      *
      * @return string
      */
-    public function getWeight()
-    {
+    public function getWeight() {
         return $this->weight;
     }
 
@@ -642,8 +626,7 @@ class Initial
      *
      * @return Initial
      */
-    public function setShoulders($shoulders)
-    {
+    public function setShoulders($shoulders) {
         $this->shoulders = $shoulders;
 
         return $this;
@@ -654,8 +637,7 @@ class Initial
      *
      * @return string
      */
-    public function getShoulders()
-    {
+    public function getShoulders() {
         return $this->shoulders;
     }
 
@@ -666,8 +648,7 @@ class Initial
      *
      * @return Initial
      */
-    public function setArms($arms)
-    {
+    public function setArms($arms) {
         $this->arms = $arms;
 
         return $this;
@@ -678,8 +659,7 @@ class Initial
      *
      * @return string
      */
-    public function getArms()
-    {
+    public function getArms() {
         return $this->arms;
     }
 
@@ -690,8 +670,7 @@ class Initial
      *
      * @return Initial
      */
-    public function setHipSize($hipSize)
-    {
+    public function setHipSize($hipSize) {
         $this->hipSize = $hipSize;
 
         return $this;
@@ -702,8 +681,7 @@ class Initial
      *
      * @return string
      */
-    public function getHipSize()
-    {
+    public function getHipSize() {
         return $this->hipSize;
     }
 
@@ -714,8 +692,7 @@ class Initial
      *
      * @return Initial
      */
-    public function setThighs($thighs)
-    {
+    public function setThighs($thighs) {
         $this->thighs = $thighs;
 
         return $this;
@@ -726,8 +703,7 @@ class Initial
      *
      * @return string
      */
-    public function getThighs()
-    {
+    public function getThighs() {
         return $this->thighs;
     }
 
@@ -738,8 +714,7 @@ class Initial
      *
      * @return Initial
      */
-    public function setSource($source)
-    {
+    public function setSource($source) {
         $this->source = $source;
 
         return $this;
@@ -750,8 +725,7 @@ class Initial
      *
      * @return string
      */
-    public function getSource()
-    {
+    public function getSource() {
         return $this->source;
     }
 
@@ -762,8 +736,7 @@ class Initial
      *
      * @return Initial
      */
-    public function setAttention($attention)
-    {
+    public function setAttention($attention) {
         $this->attention = $attention;
 
         return $this;
@@ -774,8 +747,7 @@ class Initial
      *
      * @return string
      */
-    public function getAttention()
-    {
+    public function getAttention() {
         return $this->attention;
     }
 
@@ -786,8 +758,7 @@ class Initial
      *
      * @return Initial
      */
-    public function setPreferences($preferences)
-    {
+    public function setPreferences($preferences) {
         $this->preferences = $preferences;
 
         return $this;
@@ -798,8 +769,7 @@ class Initial
      *
      * @return string
      */
-    public function getPreferences()
-    {
+    public function getPreferences() {
         return $this->preferences;
     }
 
@@ -810,8 +780,7 @@ class Initial
      *
      * @return Initial
      */
-    public function setDrinking($drinking)
-    {
+    public function setDrinking($drinking) {
         $this->drinking = $drinking;
 
         return $this;
@@ -822,8 +791,7 @@ class Initial
      *
      * @return string
      */
-    public function getDrinking()
-    {
+    public function getDrinking() {
         return $this->drinking;
     }
 
@@ -834,8 +802,7 @@ class Initial
      *
      * @return Initial
      */
-    public function setDietarySupplement($dietarySupplement)
-    {
+    public function setDietarySupplement($dietarySupplement) {
         $this->dietarySupplement = $dietarySupplement;
 
         return $this;
@@ -846,8 +813,7 @@ class Initial
      *
      * @return string
      */
-    public function getDietarySupplement()
-    {
+    public function getDietarySupplement() {
         return $this->dietarySupplement;
     }
 
@@ -858,8 +824,7 @@ class Initial
      *
      * @return Initial
      */
-    public function setTrainingTime($trainingTime)
-    {
+    public function setTrainingTime($trainingTime) {
         $this->trainingTime = $trainingTime;
 
         return $this;
@@ -870,8 +835,7 @@ class Initial
      *
      * @return \DateTime
      */
-    public function getTrainingTime()
-    {
+    public function getTrainingTime() {
         return $this->trainingTime;
     }
 
@@ -882,8 +846,7 @@ class Initial
      *
      * @return Initial
      */
-    public function setDiet($diet)
-    {
+    public function setDiet($diet) {
         $this->diet = $diet;
 
         return $this;
@@ -894,8 +857,7 @@ class Initial
      *
      * @return string
      */
-    public function getDiet()
-    {
+    public function getDiet() {
         return $this->diet;
     }
 
@@ -906,8 +868,7 @@ class Initial
      *
      * @return Initial
      */
-    public function setNote($note)
-    {
+    public function setNote($note) {
         $this->note = $note;
 
         return $this;
@@ -918,8 +879,7 @@ class Initial
      *
      * @return string
      */
-    public function getNote()
-    {
+    public function getNote() {
         return $this->note;
     }
 
@@ -930,8 +890,7 @@ class Initial
      *
      * @return Initial
      */
-    public function setHomemadeFood($homemadeFood)
-    {
+    public function setHomemadeFood($homemadeFood) {
         $this->homemadeFood = $homemadeFood;
 
         return $this;
@@ -942,8 +901,7 @@ class Initial
      *
      * @return bool
      */
-    public function getHomemadeFood()
-    {
+    public function getHomemadeFood() {
         return $this->homemadeFood;
     }
 
@@ -954,8 +912,7 @@ class Initial
      *
      * @return Initial
      */
-    public function setRestaurant($restaurant)
-    {
+    public function setRestaurant($restaurant) {
         $this->restaurant = $restaurant;
 
         return $this;
@@ -966,15 +923,14 @@ class Initial
      *
      * @return int
      */
-    public function getRestaurant()
-    {
+    public function getRestaurant() {
         return $this->restaurant;
     }
+
     /**
      * Constructor
      */
-    public function __construct()
-    {
+    public function __construct() {
         $this->packs = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
@@ -985,8 +941,7 @@ class Initial
      *
      * @return Initial
      */
-    public function addPack(\AppBundle\Entity\Pack $pack)
-    {
+    public function addPack(\AppBundle\Entity\Pack $pack) {
         $this->packs[] = $pack;
 
         return $this;
@@ -997,8 +952,7 @@ class Initial
      *
      * @param \AppBundle\Entity\Pack $pack
      */
-    public function removePack(\AppBundle\Entity\Pack $pack)
-    {
+    public function removePack(\AppBundle\Entity\Pack $pack) {
         $this->packs->removeElement($pack);
     }
 
@@ -1007,33 +961,8 @@ class Initial
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getPacks()
-    {
+    public function getPacks() {
         return $this->packs;
-    }
-
-    /**
-     * Set fat
-     *
-     * @param string $fat
-     *
-     * @return Initial
-     */
-    public function setFat($fat)
-    {
-        $this->fat = $fat;
-
-        return $this;
-    }
-
-    /**
-     * Get fat
-     *
-     * @return string
-     */
-    public function getFat()
-    {
-        return $this->fat;
     }
 
     /**
@@ -1043,8 +972,7 @@ class Initial
      *
      * @return Initial
      */
-    public function setPectorals($pectorals)
-    {
+    public function setPectorals($pectorals) {
         $this->pectorals = $pectorals;
 
         return $this;
@@ -1055,8 +983,7 @@ class Initial
      *
      * @return string
      */
-    public function getPectorals()
-    {
+    public function getPectorals() {
         return $this->pectorals;
     }
 
@@ -1067,8 +994,7 @@ class Initial
      *
      * @return Initial
      */
-    public function setPhotoFront($photoFront)
-    {
+    public function setPhotoFront($photoFront) {
         $this->photoFront = $photoFront;
 
         return $this;
@@ -1079,8 +1005,7 @@ class Initial
      *
      * @return string
      */
-    public function getPhotoFront()
-    {
+    public function getPhotoFront() {
         return $this->photoFront;
     }
 
@@ -1091,8 +1016,7 @@ class Initial
      *
      * @return Initial
      */
-    public function setPhotoSide($photoSide)
-    {
+    public function setPhotoSide($photoSide) {
         $this->photoSide = $photoSide;
 
         return $this;
@@ -1103,8 +1027,7 @@ class Initial
      *
      * @return string
      */
-    public function getPhotoSide()
-    {
+    public function getPhotoSide() {
         return $this->photoSide;
     }
 
@@ -1115,8 +1038,7 @@ class Initial
      *
      * @return Initial
      */
-    public function setPhotoBack($photoBack)
-    {
+    public function setPhotoBack($photoBack) {
         $this->photoBack = $photoBack;
 
         return $this;
@@ -1127,8 +1049,74 @@ class Initial
      *
      * @return string
      */
-    public function getPhotoBack()
-    {
+    public function getPhotoBack() {
         return $this->photoBack;
     }
+
+    /**
+     * Set objectives
+     *
+     * @param string $objectives
+     *
+     * @return Initial
+     */
+    public function setObjectives($objectives) {
+        $this->objectives = $objectives;
+
+        return $this;
+    }
+
+    /**
+     * Get objectives
+     *
+     * @return string
+     */
+    public function getObjectives() {
+        return $this->objectives;
+    }
+
+    /**
+     * Set objectivesDetail
+     *
+     * @param string $objectivesDetail
+     *
+     * @return Initial
+     */
+    public function setObjectivesDetail($objectivesDetail) {
+        $this->objectivesDetail = $objectivesDetail;
+
+        return $this;
+    }
+
+    /**
+     * Get objectivesDetail
+     *
+     * @return string
+     */
+    public function getObjectivesDetail() {
+        return $this->objectivesDetail;
+    }
+
+    /**
+     * Set imc
+     *
+     * @param string $imc
+     *
+     * @return Initial
+     */
+    public function setImc($imc) {
+        $this->imc = $imc;
+
+        return $this;
+    }
+
+    /**
+     * Get imc
+     *
+     * @return string
+     */
+    public function getImc() {
+        return $this->imc;
+    }
+
 }

@@ -6,7 +6,7 @@
 
 {% block body %}
 
-    <form>
+    {{ form_start(form) }}
     <div class="initFormSection halfElement">
         <h2>Informations générales</h2>
         <div class="content">
@@ -67,71 +67,56 @@
              <div class="formSection">
                 <h3>Vos objectifs - vos disponibilités</h3>
                 <div class="questionContainer">
-                    <label for="objectif">Quels types d'entraînement faites vous, combien de fois par semaine et depuis quand ?</label>
-                    <select id="objectif">
-                        <option value="masse">prise de masse musculaire</option>
-                        <option value="seche">Sèche / perte de poids</option>
-                        <option value="alimentaire">Ré-équilibrage alimentaire</option>
-                        <option value="forme">Remise en forme</option>
-                    </select>
+                    <label for="objectives">Quels types d'entraînement faites vous, combien de fois par semaine et depuis quand ?</label>
+                    {{ form_widget(form.objectives) }}
                 </div>    
                 
                 <div class="questionContainer">
-                    <label for="objectifDetail">Précisez si vous le désirez :
+                    <label for="objectivesDetail">Précisez si vous le désirez :
                     </label>
-                    <textarea id="objectifDetail" required></textarea>
+                    {{ form_widget(form.objectivesDetail) }}
                 </div>
                 
-                <div class="questionContainer">
-                    <label for="cure">Suivez-vous un traitement médical actuellement?</label>
-                    <textarea id="cure" required></textarea>
-                </div> 
-                    <div class="questionContainer">
-                    <label for="smoking">Est-ce que vous fumez? Si oui, combien de cigarettes par jour?</label>
-                    <textarea id="smoking" required></textarea>
-                </div> 
             </div>
 
             <div class="formSection">
                 <h3>Mensurations</h3>
                 <div class="halfElement">
                     <label for="height">Taille (en cm)</label>
-                    <input type="text" id="height" required>
+                    {{ form_widget(form.height) }}
                 </div>
 
                 <div class="halfElement">
                     <label for="weight">Poids (en Kg)</label>
-                    <input type="text" id="weight" required>
+                    {{ form_widget(form.weight) }}
                 </div>
                 
                 <div class="questionContainer">
                     <label for="imc">Votre IMC est de :</label>
-                    <input id="imc" disabled>
+                    {{ form_widget(form.imc) }}
                 </div> 
             </div>
             
              <div class="formSection">
                 <h3>Compléments d'informations (uniquement pour suivi à distance)</h3>
                 <div class="halfElement">
-                    <label for="epaule">Epaules</label>
-                    <input type="text" id="epaule" required>
+                    <label for="shoulders">Epaules</label>
+                    {{ form_widget(form.shoulders) }}
                     
-                    <label for="pec">Pectoraux / poitrine</label>
-                    <input type="text" id="pec" required>
+                    <label for="pectorals">Pectoraux / poitrine</label>
+                    {{ form_widget(form.pectorals) }}
                     
-                    <label for="bras">Bras contracté</label>
-                    <input type="text" id="height" required>
+                    <label for="arms">Bras contracté</label>
+                    {{ form_widget(form.arms) }}
                 </div>
 
                 <div class="halfElement">
-                    <label for="taille">Taille</label>
-                    <input type="text" id="taille" required>
                     
-                    <label for="cuisse">Cuisse</label>
-                    <input type="text" id="cuisse" required>
+                    <label for="thighs">Cuisse</label>
+                    {{ form_widget(form.thighs) }}
                     
-                    <label for="hanches">Hanches</label>
-                    <input type="text" id="hanches" required>
+                    <label for="hipSize">Hanches</label>
+                    {{ form_widget(form.hipSize) }}
                 </div>
                 
                  <div class="questionContainer">
@@ -143,13 +128,13 @@
              <div class="formSection">
                 <h3>Divers</h3>
                 <div class="questionContainer">
-                    <label for="reference">Comment avez-vous connu le site de David?</label>
-                    <textarea id="reference" required></textarea>
+                    <label for="source">Comment avez-vous connu le site de David?</label>
+                    {{ form_widget(form.source) }}
                 </div>    
                 
                 <div class="questionContainer">
-                    <label for="credential">Qu'est ce qui a retenu votre attention sur le site?</label>
-                    <textarea id="credential" required></textarea>
+                    <label for="attention">Qu'est ce qui a retenu votre attention sur le site?</label>
+                    {{ form_widget(form.attention) }}
                 </div>
                 </div>
 
@@ -166,46 +151,46 @@
              <div class="formSection">
                 <h3>Connaitre votre comportement alimentaire</h3>
                 <div class="questionContainer">
-                    <label for="foodPreferences">Précisez moi vos préférences, faiblesses et pulsions alimentaires.</label>
-                    <textarea id="foodPreferences" required></textarea>
+                    <label for="preferences">Précisez moi vos préférences, faiblesses et pulsions alimentaires.</label>
+                    {{ form_widget(form.preferences) }}
                 </div>    
                 
                 <div class="questionContainer">
-                    <label for="drinks"> Indiquez moi tout ce que vous buvez tout au long de la journée.</label>
-                    <textarea id="drinks" required></textarea>
+                    <label for="drinking"> Indiquez moi tout ce que vous buvez tout au long de la journée.</label>
+                    {{ form_widget(form.drinking) }}
                 </div>
                 
                 <div class="questionContainer">
-                    <label for="complements">Utilisez-vous déjà des complèments alimentaires? Si non, souhaitez-vous en utiliser ?</label>
-                    <textarea id="complements" required></textarea>
+                    <label for="dietarySupplement">Utilisez-vous déjà des complèments alimentaires? Si non, souhaitez-vous en utiliser ?</label>
+                    {{ form_widget(form.dietarySupplement) }}
                 </div>    
                 
                 <div class="questionContainer">
-                    <label for="drinks">Indiquez moi l'heure de votre entrainement:</label>
-                    <textarea id="drinks" required></textarea>
+                    <label for="trainingTime">Indiquez moi l'heure de votre entrainement:</label>
+                    {{ form_widget(form.trainingTime) }}
                 </div>
                 </div>
             
             <div class="formSection">
                 <h3>Votre alimentation actuelle</h3>
                 <div class="questionContainer">
-                    <label for="foodRythm"> Indiquez moi les horaires de vos repas et collations sur une journée et tout ce que vous mangez (Petit déjeuner - Collation matin - déjeuner - Collation soir - dîner)</label>
-                    <textarea id="foodRythm" required placeholder="Repas | Heure | Aliments"></textarea>
+                    <label for="diet"> Indiquez moi les horaires de vos repas et collations sur une journée et tout ce que vous mangez (Petit déjeuner - Collation matin - déjeuner - Collation soir - dîner)</label>
+                    {{ form_widget(form.diet) }}
                 </div>    
                 
                 <div class="questionContainer">
-                    <label for="foodQuotes"> Précisez moi si besoin des remarques sur votre alimentation et votre rythme journalier.</label>
-                    <textarea id="foodQuotes" required></textarea>
+                    <label for="note"> Précisez moi si besoin des remarques sur votre alimentation et votre rythme journalier.</label>
+                    {{ form_widget(form.note) }}
                 </div>
                 
                 <div class="questionContainer">
-                    <label for="foodWork">Pouvez-vous transporter avec vous de la nourriture sur votre lieu de travail?</label>
-                    <textarea id="foodWork" required></textarea>
+                    <label for="homemadeFood">Pouvez-vous transporter avec vous de la nourriture sur votre lieu de travail?</label>
+                    {{ form_widget(form.homemadeFood) }}
                 </div>    
                 
                 <div class="questionContainer">
-                    <label for="foodRestaurant">Combien de fois par semaine allez vous au restaurant?</label>
-                    <textarea id="foodRestaurant" required></textarea>
+                    <label for="restaurant">Combien de fois par semaine allez vous au restaurant?</label>
+                    {{ form_widget(form.restaurant) }}
                 </div>
                 </div>
             
@@ -217,21 +202,21 @@
             <div class="content photoUpload">
                 <div class="thirdElement">
                     <h3>Photo bilan face</h3>
-                    <input type="file" class="custom-input" required>
+                    {{ form_widget(form.photoFront) }}
                 </div>
                 <div class="thirdElement">
                     <h3>Photo bilan coté</h3>
-                    <input type="file" class="custom-input" required>
+                    {{ form_widget(form.photoSide) }}
                 </div>
                 <div class="thirdElement">
                     <h3>Photo bilan dos</h3>
-                    <input type="file" class="custom-input" required>
+                    {{ form_widget(form.photoBack) }}
                 </div>
 
             </div>
         </div>
 
     <div class="submitContainer"><input type="submit" value="Envoyez votre bilan initial" class="btn bigBtn"></div>
-</form>
+{{ form_end(form) }}
 
 {% endblock %}
