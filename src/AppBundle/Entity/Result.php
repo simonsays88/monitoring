@@ -37,9 +37,9 @@ class Result
     /**
      * @var string
      *
-     * @ORM\Column(name="fat", type="string", length=255, nullable=true)
+     * @ORM\Column(name="imc", type="string", length=255, nullable=true)
      */
-    private $fat;
+    private $imc;
 
     /**
      * @var string
@@ -137,30 +137,6 @@ class Result
     public function getWeight()
     {
         return $this->weight;
-    }
-
-    /**
-     * Set fat
-     *
-     * @param string $fat
-     *
-     * @return Result
-     */
-    public function setFat($fat)
-    {
-        $this->fat = $fat;
-
-        return $this;
-    }
-
-    /**
-     * Get fat
-     *
-     * @return string
-     */
-    public function getFat()
-    {
-        return $this->fat;
     }
 
     /**
@@ -401,5 +377,29 @@ class Result
     public function getCompleted()
     {
         return $this->completed;
+    }
+
+    /**
+     * Set imc
+     *
+     * @param string $imc
+     *
+     * @return Result
+     */
+    public function setImc($imc)
+    {
+        $this->imc = $imc;
+
+        return $this;
+    }
+
+    /**
+     * Get imc
+     *
+     * @return string
+     */
+    public function getImc()
+    {
+        return $this->imc;
     }
 }
