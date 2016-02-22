@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 class InitialController extends Controller {
 
     /**
-     * @Route("/suivi-initial/{userId}", name="initial", requirements={"user_id"="\d+"})
+     * @Route("/suivi-initial/{userId}", name="initial", requirements={"userId"="\d+"})
      */
     public function editAction(Request $request, $userId) {
         $initial = $this->getDoctrine()
