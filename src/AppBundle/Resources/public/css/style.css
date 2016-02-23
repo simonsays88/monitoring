@@ -94,6 +94,8 @@ footer .links {
 
 .initFormSection .content {
     border:1px solid #333;
+    overflow: auto;
+    zoom: 1;
 }
 .initFormSection h3 {
     font-weight: 400;
@@ -228,6 +230,9 @@ img {
     max-width:100%;
 }
 
+.confirmationMessage {
+    text-align: center;
+}
 
 @media screen and (max-width : 900px) {
     .halfElement {

@@ -1,4 +1,47 @@
 {% extends 'base.html.twig' %}
 
+{% block pageTitle %}CostaFitness : Évolution athlète - USERNAME{% endblock %}
+{% block headingTitle %}Évolution athlète - {{ name }}{% endblock %}
+{% block pageClass %}userEvolution{% endblock %}
+
 {% block body %}
+
+    <h2>PACK : NOM DU PACK</h2>
+    <table border="1" style="width:100%">
+        <tr>
+            <td>Bilan</td>
+            <td>Poids</td>
+            <td>Masse grasse</td>
+            <td>Épaules</td>
+            <td>Pectoraux</td>
+            <td>Taille</td>
+            <td>Bras contracté</td>
+            <td>Cuisse</td>
+        </tr>
+        <tr>
+            <td>Initial</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+
+    </table>
+
+    <table border="1" style="width:100%">
+        <tr>
+            <td>Bilan</td>
+            <td>Photo Face</td>
+            <td>Photo Coté</td>
+            <td>Photo Dos</td>
+        </tr>
+        <tr>
+            <td>Initial</td>
+            <td><img src=""></td>
+            <td><img src=""></td>
+            <td><img src=""></td>
+        </tr>
+
+    </table>
 {% endblock %}
