@@ -9,51 +9,56 @@ use AppBundle\Entity\Initial;
 use AppBundle\Form\Type\InitialType;
 use Symfony\Component\HttpFoundation\Response;
 
-class InitialController extends Controller {
+class InitialController extends Controller
+{
 
     /**
      * @Route("/suivi-initial/{userId}", name="initial", requirements={"userId"="\d+"})
      */
-    public function editAction(Request $request, $userId) {
+    public function editAction(Request $request, $userId)
+    {
         $initial = $this->getDoctrine()
-                ->getRepository('AppBundle:Initial')
-                ->findOneBy(array('userId' => $userId));
-
-        $form = $this->createForm(InitialType::class, $initial);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $initial = $form->getData();
-            $photoFront = $initial->getPhotoFront();
-            $photoSide = $initial->getPhotoSide();
-            $photoBack = $initial->getPhotoBack();
-
-            $photoFrontName = md5(uniqid()) . '.' . $photoFront->guessExtension();
-            $photoSideName = md5(uniqid()) . '.' . $photoSide->guessExtension();
-            $photoBackName = md5(uniqid()) . '.' . $photoBack->guessExtension();
-
-            $dir = $this->container->getParameter('kernel.root_dir') . '/../web/uploads/photos';
-            $photoFront->move($dir, $photoFrontName);
-            $photoSide->move($dir, $photoSideName);
-            $photoBack->move($dir, $photoBackName);
-
-            $initial->setPhotoFront($photoFrontName);
-            $initial->setPhotoSide($photoSideName);
-            $initial->setPhotoBack($photoBackName);
-
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($initial);
-            $em->flush();
-        }
-
+            ->getRepository('AppBundle:Initial')
+            ->findOneBy(array('userId' => $userId));
+        
         if ($initial) {
-            return $this->render('AppBundle:Initial:edit.html.twig', array(
-                        'user_id' => $userId,
-                        'form' => $form->createView()
+            $form = $this->createForm(InitialType::class, $initial);
+            $form->handleRequest($request);
+
+            if ($form->isSubmitted() && $form->isValid()) {
+                $initial    = $form->getData();
+                $photoFront = $initial->getPhotoFront();
+                $photoSide  = $initial->getPhotoSide();
+                $photoBack  = $initial->getPhotoBack();
+
+                $photoFrontName = md5(uniqid()).'.'.$photoFront->guessExtension();
+                $photoSideName  = md5(uniqid()).'.'.$photoSide->guessExtension();
+                $photoBackName  = md5(uniqid()).'.'.$photoBack->guessExtension();
+
+                $dir = $this->container->getParameter('kernel.root_dir').'/../web/uploads/photos';
+                $photoFront->move($dir, $photoFrontName);
+                $photoSide->move($dir, $photoSideName);
+                $photoBack->move($dir, $photoBackName);
+
+                $initial->setPhotoFront($photoFrontName);
+                $initial->setPhotoSide($photoSideName);
+                $initial->setPhotoBack($photoBackName);
+
+                $initial->setCompleted(true);
+
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($initial);
+                $em->flush();
+            }
+
+
+            return $this->render('AppBundle:Initial:edit.html.twig',
+                    array(
+                    'user_id' => $userId,
+                    'form' => $form->createView()
             ));
         } else {
-            return new Response('Wrong method', 500);
+            return new Response('Bilan introuvable', 500);
         }
     }
-
 }

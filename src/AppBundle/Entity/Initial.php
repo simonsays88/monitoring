@@ -281,6 +281,13 @@ class Initial {
     private $photoBack;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="completed", type="boolean")
+     */
+    private $completed = 0;
+    
+    /**
      * Get id
      *
      * @return int
@@ -1119,4 +1126,28 @@ class Initial {
         return $this->imc;
     }
 
+
+    /**
+     * Set completed
+     *
+     * @param boolean $completed
+     *
+     * @return Initial
+     */
+    public function setCompleted($completed)
+    {
+        $this->completed = $completed;
+
+        return $this;
+    }
+
+    /**
+     * Get completed
+     *
+     * @return boolean
+     */
+    public function getCompleted()
+    {
+        return $this->completed;
+    }
 }
