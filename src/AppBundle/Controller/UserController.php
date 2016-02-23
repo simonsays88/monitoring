@@ -6,24 +6,41 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
-class UserController extends Controller {
+class UserController extends Controller
+{
 
     /**
      * @Route("/utilisateurs", name="user_list")
      */
-    public function listAction(Request $request) {
-        // replace this example code with whatever you need
-        return $this->render('AppBundle:User:list.html.twig');
+    public function listAction(Request $request)
+    {
+
+        $users = $this->getDoctrine()
+            ->getRepository('AppBundle:Initial')
+            ->findAll();
+
+        return $this->render('AppBundle:User:list.html.twig',
+                [
+                'users' => $users,
+        ]);
     }
 
     /**
      * @Route("/utilisateurs/{user_id}", name="user", requirements={"user_id"="\d+"})
      */
-    public function showAction(Request $request, $user_id) {
-        // replace this example code with whatever you need
-        return $this->render('AppBundle:User:show.html.twig', [
-                    'user_id' => $user_id,
-        ]);
+    public function showAction(Request $request, $user_id)
+    {
+        $user = $this->getDoctrine()
+            ->getRepository('AppBundle:Initial')
+            ->findOneById($user_id);
+        if ($user) {
+            // replace this example code with whatever you need
+            return $this->render('AppBundle:User:show.html.twig',
+                    [
+                    'user' => $user,
+            ]);
+        } else {
+            return new Response('Utilisateur introuvable', 500);
+        }
     }
-
 }

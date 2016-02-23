@@ -20,7 +20,7 @@ class InitialController extends Controller
         $initial = $this->getDoctrine()
             ->getRepository('AppBundle:Initial')
             ->findOneBy(array('userId' => $userId));
-        
+
         if ($initial) {
             $form = $this->createForm(InitialType::class, $initial);
             $form->handleRequest($request);
@@ -44,8 +44,9 @@ class InitialController extends Controller
                 $initial->setPhotoSide($photoSideName);
                 $initial->setPhotoBack($photoBackName);
 
-                $initial->setCompleted(true);
-
+                if ($initial->getCompleted() == false) {
+                    $initial->setCompleted(true);
+                }
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($initial);
                 $em->flush();

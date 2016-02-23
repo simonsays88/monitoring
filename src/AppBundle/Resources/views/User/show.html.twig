@@ -1,12 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block pageTitle %}CostaFitness : Évolution athlète - USERNAME{% endblock %}
-{% block headingTitle %}Évolution athlète - {{ name }}{% endblock %}
+{% block headingTitle %}Évolution athlète {% endblock %}
 {% block pageClass %}userEvolution{% endblock %}
 
 {% block body %}
 
-    <h2>PACK : NOM DU PACK</h2>
     <table border="1" style="width:100%">
         <tr>
             <td>Bilan</td>
@@ -20,12 +19,15 @@
         </tr>
         <tr>
             <td>Initial</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>{{ user.weight}}</td>
+            <td>{{ user.imc}}</td>
+            <td>{{ user.shoulders}}</td>
+            <td>{{ user.pectorals}}</td>
+            <td>{{ user.hipSize}}</td>
+            <td>{{ user.arms}}</td>
+            <td>{{ user.thighs}}</td>
         </tr>
+        
 
     </table>
 
@@ -33,7 +35,7 @@
         <tr>
             <td>Bilan</td>
             <td>Photo Face</td>
-            <td>Photo Coté</td>
+            <td>Photo Côté</td>
             <td>Photo Dos</td>
         </tr>
         <tr>
