@@ -18,7 +18,10 @@ class IncrementNbDaysCommand extends ContainerAwareCommand {
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-
-        var_dump('test');
+        $packs = $this->getContainer()->get('doctrine')
+                    ->getRepository("AppBundle:Pack")
+                     ->getAllPacksOnGoing();
+        
+        var_dump(count($packs));
     }
 }

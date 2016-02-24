@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="result")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ResultRepository")
+ * @ORM\HasLifecycleCallbacks() 
  */
 class Result
 {
@@ -104,7 +105,11 @@ class Result
      */
     private $completed = 0;
 
-
+   /**
+     * @ORM\Column(name="created_at", type="date", nullable=true)
+     */
+    protected $createdAt;
+    
     /**
      * Get id
      *
@@ -401,5 +406,30 @@ class Result
     public function getImc()
     {
         return $this->imc;
+    }
+
+
+    /**
+     * Set createdAt
+     *
+     * @param \DateTime $createdAt
+     *
+     * @return Result
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
     }
 }

@@ -11,6 +11,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ORM\Table(name="initial")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\InitialRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Initial {
 
@@ -286,7 +287,13 @@ class Initial {
      * @ORM\Column(name="completed", type="boolean")
      */
     private $completed = 0;
-    
+
+   /**
+     * @ORM\Column(name="created_at", type="date", nullable=true)
+     */
+    protected $createdAt;
+
+
     /**
      * Get id
      *
@@ -1149,5 +1156,30 @@ class Initial {
     public function getCompleted()
     {
         return $this->completed;
+    }
+
+
+    /**
+     * Set createdAt
+     *
+     * @param \DateTime $createdAt
+     *
+     * @return Initial
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
     }
 }

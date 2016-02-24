@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Entity;
+namespace AppBundle\Repository;
 
 /**
  * PackRepository
@@ -11,5 +11,12 @@ namespace AppBundle\Entity;
 class PackRepository extends \Doctrine\ORM\EntityRepository
 {
 
-
+    public function getAllPacksOnGoing()
+    {
+        return $this->createQueryBuilder('c')
+            ->where('c.status = :status')
+            ->setParameter('status', 'ongoing')
+            ->getQuery()
+            ->getResult();
+    }
 }

@@ -27,7 +27,20 @@
             <td>{{ user.arms}}</td>
             <td>{{ user.thighs}}</td>
         </tr>
-        
+        <tr>
+            {% for pack in user.packs %}
+                {% for result in pack.results %}
+                    <td>{{ result.createdAt|date('d/m/Y') }}</td>
+                    <td>{{ result.weight}}</td>
+                    <td>{{ result.imc}}</td>
+                    <td>{{ result.shoulders}}</td>
+                    <td>{{ result.pectorals}}</td>
+                    <td>{{ result.hipSize}}</td>
+                    <td>{{ result.arms}}</td>
+                    <td>{{ result.thighs}}</td>
+                </tr>
+            {% endfor %}
+        {% endfor %}
 
     </table>
 
@@ -40,9 +53,21 @@
         </tr>
         <tr>
             <td>Initial</td>
-            <td><img src=""></td>
-            <td><img src=""></td>
-            <td><img src=""></td>
+            <td>
+                {% if user.photoFront is not null %}
+                    <img width = "100px" src="{{ asset('uploads/photos/' ~ user.photoFront) }}" />
+                {% endif %}            
+            </td>
+            <td>
+                {% if user.photoSide is not null %}
+                    <img width = "100px" src="{{ asset('uploads/photos/' ~ user.photoSide) }}" />
+                {% endif %}                
+            </td>
+            <td>
+                {% if user.photoBack is not null %}
+                    <img width = "100px" src="{{ asset('uploads/photos/' ~ user.photoBack) }}" />
+                {% endif %}                
+            </td>
         </tr>
 
     </table>
