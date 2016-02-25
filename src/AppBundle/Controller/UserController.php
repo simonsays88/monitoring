@@ -5,6 +5,9 @@ namespace AppBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+
+
 
 class UserController extends Controller
 {
@@ -32,7 +35,7 @@ class UserController extends Controller
     {
         $user = $this->getDoctrine()
             ->getRepository('AppBundle:Initial')
-            ->findOneById($user_id);
+            ->findOneBy(array('userId' => $user_id));
         if ($user) {
             // replace this example code with whatever you need
             return $this->render('AppBundle:User:show.html.twig',

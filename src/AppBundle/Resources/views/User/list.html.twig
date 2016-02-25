@@ -25,14 +25,14 @@
                     {% endfor %}
                 </td>
                 <td>
-                    <p><a href="{{ path('initial', {'userId':user.id}) }}" class="link">Bilan Initial</a><p>
+                    <p><a href="{{ path('initial', {'userId':user.userId}) }}" class="link">Bilan Initial</a><p>
                     {% for pack in user.packs %}
                         {% for result in pack.results %}
                             <p><a href="{{ path('results', {'resultId': result.id}) }}" class="link">Bilan {{ result.createdAt|date('d/m/Y') }}</a><p>
                         {% endfor %}
                     {% endfor %}
                 </td>
-                <td><a href="{{ path('user', {'user_id' : user.id}) }}" class="btn">Page évolution</a></td>
+                <td><a href="{{ path('user', {'user_id' : user.userId}) }}" class="btn">Page évolution</a></td>
             </tr>
         {% endfor %}
 
