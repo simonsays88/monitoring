@@ -23,6 +23,14 @@ class InitialController extends Controller
         $initialPhotoFront = $initialEntity->getPhotoFront();
         $initialPhotoSide = $initialEntity->getPhotoSide();
         $initialPhotoBack = $initialEntity->getPhotoBack();
+        
+//            $message = \Swift_Message::newInstance()
+//                ->setSubject('test')
+//                ->setFrom('arnaud.wbc@gmail.com')
+//                ->setTo('arnaudsimon921@yahoo.fr')
+//                ->setBody(
+//                $this->renderView('AppBundle:Emails:packPreparation.html.twig'), 'text/html');
+//        $this->get('mailer')->send($message);
 
         if ($initialEntity) {
             $form = $this->createForm(InitialType::class, $initialEntity);
