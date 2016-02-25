@@ -45,7 +45,19 @@ class InitialController extends Controller
                 $initial->setPhotoBack($photoBackName);
 
                 if ($initial->getCompleted() == false) {
+                    $weekDay = date('w');
+                    $date = new \DateTime();
+                    if ($weekDay < 5) {
+                        $ndDaysUntilNextMonday = 8 - $weekDay;
+                        $startAt = $date->add(new \DateInterval('P'.$ndDaysUntilNextMonday.'D'));
+                    } else {
+                        $ndDaysUntilNextNextMonday = 15 - $weekDay;
+                        $startAt = $date->add(new \DateInterval('P'.$ndDaysUntilNextMonday.'D'));
+                    }
                     $initial->setCompleted(true);
+                    foreach ($initial->getPacks() as $pack) {
+                        $pack->setStartedAt($startAt);
+                    }
                 }
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($initial);
