@@ -53,10 +53,11 @@ class InitialType extends AbstractType {
                 ->add('note', null, array('required' => true))
                 ->add('homemadeFood', null, array('required' => true))
                 ->add('restaurant', null, array('required' => true))
-                ->add('photoFront', FileType::class, array('data_class' => null))
-                ->add('photoSide', FileType::class, array('data_class' => null))
-                ->add('photoBack', FileType::class, array('data_class' => null))
+                ->add('photoFront', FileType::class, array('data_class' => null, 'required' => is_null($builder->getData()->getPhotoFront())))
+                ->add('photoSide', FileType::class, array('data_class' => null, 'required' => is_null($builder->getData()->getPhotoSide())))
+                ->add('photoBack', FileType::class, array('data_class' => null, 'required' => is_null($builder->getData()->getPhotoBack())))
         ;
+
     }
 
     public function configureOptions(OptionsResolver $resolver) {
