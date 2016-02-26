@@ -11,12 +11,21 @@ namespace AppBundle\Repository;
 class PackRepository extends \Doctrine\ORM\EntityRepository
 {
 
-    public function getAllPacksOnGoing()
-    {
-        return $this->createQueryBuilder('c')
-            ->where('c.status = :status')
-            ->setParameter('status', 'ongoing')
-            ->getQuery()
-            ->getResult();
-    }
+//    public function getAllNewPacks()
+//    {
+//        return $this->createQueryBuilder('c')
+//            ->where('c.status = :ongoing')
+//            ->setParameter('status', 'ongoing')
+//            ->getQuery()
+//            ->getResult();
+//    }
+//
+//    public function getAllOngoingPacks()
+//    {
+//        return $this->createQueryBuilder('c')
+//            ->where('c.status = :ongoing')
+//            ->setParameter('status', 'new')
+//            ->getQuery()
+//            ->getResult();
+//    }
 }

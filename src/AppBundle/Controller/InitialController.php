@@ -46,6 +46,7 @@ class InitialController extends Controller
 
                 if ($initial->getCompleted() == false) {
                     $initial->setCompleted(true);
+                    // TODO add strartAt to first pack
                 }
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($initial);
