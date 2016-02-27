@@ -5,58 +5,57 @@
 {% block pageClass %}resultsPage{% endblock %}
 
 {% block body %}
-
-    <form method="post" action="">
-       <div class="initFormSection halfElement">
+    {{ form_start(form) }}
+        <div class="initFormSection halfElement">
             <h2>Vos mensurations</h2>
             <div class="content">
-                
-                    <div class="halfElement">
-                    <label for="poids">Poids en Kg</label>
-                    <input type="text" id="poids" required>
 
-                    <label for="masse">Masse grasse en %</label>
-                    <input type="text" id="masse" required>
-                    </div>
-                    
-                    <div class="halfElement">
-                        <label for="epaules">Epaules en cm</label>
-                    <input type="text" id="epaules" required>
+                <div class="halfElement">
+                    <label for="weight">Poids en Kg</label>
+                    {{ form_widget(form.weight) }}
 
-                    <label for="pec">Pectoraux en cm</label>
-                    <input type="text" id="pec" required>
-                    
-                    <label for="taille">Taille en cm</label>
-                    <input type="text" id="poids" required>
+                    <label for="imc">Masse grasse en %</label>
+                    {{ form_widget(form.imc) }}
+                </div>
 
-                    <label for="bras">Bras contracté en cm</label>
-                    <input type="text" id="bras" required>
-                    
-                    <label for="cuisse">Cuisse en cm</label>
-                    <input type="text" id="cuisse" required>
+                <div class="halfElement">
+                    <label for="shoulders">Epaules en cm</label>
+                    {{ form_widget(form.shoulders) }}
+
+                    <label for="pectorals">Pectoraux en cm</label>
+                    {{ form_widget(form.pectorals) }}
+
+                    <label for="hipSize">Taille en cm</label>
+                    {{ form_widget(form.hipSize) }}
+
+                    <label for="arms">Bras contracté en cm</label>
+                    {{ form_widget(form.arms) }}
+
+                    <label for="thighs">Cuisse en cm</label>
+                    {{ form_widget(form.thighs) }}
 
 
-                    </div>
-           </div> 
+                </div>
+            </div> 
         </div>
-       <div class="initFormSection halfElement">
+        <div class="initFormSection halfElement">
             <h2>Vos photos</h2>
             <div class="content photoUpload">
                 <div class="thirdElement">
                     <h3>Photo bilan face</h3>
-                    <input type="file" class="custom-input" required>
+                    {{ form_widget(form.photoFront) }}
                 </div>
-                 <div class="thirdElement">
+                <div class="thirdElement">
                     <h3>Photo bilan coté</h3>
-                    <input type="file" class="custom-input" required>
+                    {{ form_widget(form.photoSide) }}
                 </div>
-                 <div class="thirdElement">
+                <div class="thirdElement">
                     <h3>Photo bilan dos</h3>
-                    <input type="file" class="custom-input" required>
+                    {{ form_widget(form.photoBack) }}
                 </div>
-                
-           </div> 
+
+            </div> 
         </div>
         <div class="submitContainer"><input type="submit" value="Envoyez votre bilan trimestriel" class="btn bigBtn"></div>
-        </form>
+    {{ form_end(form) }}
 {% endblock %}

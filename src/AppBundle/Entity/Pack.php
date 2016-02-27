@@ -14,6 +14,10 @@ use AppBundle\Entity\Initial;
  */
 class Pack {
 
+    const STATUS_NEW = 'new';
+    const STATUS_ONGOING = 'ongoing';
+    const STATUS_FINISHED = 'finished';
+    const NB_DAYS = 90;
     /**
      * @ORM\Column(type="integer")
      * @ORM\Id

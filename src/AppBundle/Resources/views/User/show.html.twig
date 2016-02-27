@@ -1,12 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block pageTitle %}CostaFitness : Évolution athlète - USERNAME{% endblock %}
-{% block headingTitle %}Évolution athlète{% endblock %}
+{% block headingTitle %}Évolution athlète {% endblock %}
 {% block pageClass %}userEvolution{% endblock %}
 
 {% block body %}
 
-    <h2>PACK : NOM DU PACK</h2>
     <table border="1" style="width:100%">
         <tr>
             <td>Bilan</td>
@@ -20,12 +19,28 @@
         </tr>
         <tr>
             <td>Initial</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>{{ user.weight}}</td>
+            <td>{{ user.imc}}</td>
+            <td>{{ user.shoulders}}</td>
+            <td>{{ user.pectorals}}</td>
+            <td>{{ user.hipSize}}</td>
+            <td>{{ user.arms}}</td>
+            <td>{{ user.thighs}}</td>
         </tr>
+        <tr>
+            {% for pack in user.packs %}
+                {% for result in pack.results %}
+                    <td>{{ result.createdAt|date('d/m/Y') }}</td>
+                    <td>{{ result.weight}}</td>
+                    <td>{{ result.imc}}</td>
+                    <td>{{ result.shoulders}}</td>
+                    <td>{{ result.pectorals}}</td>
+                    <td>{{ result.hipSize}}</td>
+                    <td>{{ result.arms}}</td>
+                    <td>{{ result.thighs}}</td>
+                </tr>
+            {% endfor %}
+        {% endfor %}
 
     </table>
 
@@ -33,14 +48,26 @@
         <tr>
             <td>Bilan</td>
             <td>Photo Face</td>
-            <td>Photo Coté</td>
+            <td>Photo Côté</td>
             <td>Photo Dos</td>
         </tr>
         <tr>
             <td>Initial</td>
-            <td><img src=""></td>
-            <td><img src=""></td>
-            <td><img src=""></td>
+            <td>
+                {% if user.photoFront is not null %}
+                    <img width = "100px" src="{{ asset('uploads/photos/' ~ user.photoFront) }}" />
+                {% endif %}            
+            </td>
+            <td>
+                {% if user.photoSide is not null %}
+                    <img width = "100px" src="{{ asset('uploads/photos/' ~ user.photoSide) }}" />
+                {% endif %}                
+            </td>
+            <td>
+                {% if user.photoBack is not null %}
+                    <img width = "100px" src="{{ asset('uploads/photos/' ~ user.photoBack) }}" />
+                {% endif %}                
+            </td>
         </tr>
 
     </table>

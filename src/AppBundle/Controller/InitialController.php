@@ -9,52 +9,91 @@ use AppBundle\Entity\Initial;
 use AppBundle\Form\Type\InitialType;
 use Symfony\Component\HttpFoundation\Response;
 
-class InitialController extends Controller {
+class InitialController extends Controller
+{
 
     /**
      * @Route("/suivi-initial/{userId}", name="initial", requirements={"userId"="\d+"})
      */
-    public function editAction(Request $request, $userId) {
-        $initial = $this->getDoctrine()
-                ->getRepository('AppBundle:Initial')
-                ->findOneBy(array('userId' => $userId));
+    public function editAction(Request $request, $userId)
+    {
+        $initialEntity = $this->getDoctrine()
+            ->getRepository('AppBundle:Initial')
+            ->findOneBy(array('userId' => $userId));
+        $initialPhotoFront = $initialEntity->getPhotoFront();
+        $initialPhotoSide = $initialEntity->getPhotoSide();
+        $initialPhotoBack = $initialEntity->getPhotoBack();
+        
+//            $message = \Swift_Message::newInstance()
+//                ->setSubject('test')
+//                ->setFrom('arnaud.wbc@gmail.com')
+//                ->setTo('arnaudsimon921@yahoo.fr')
+//                ->setBody(
+//                $this->renderView('AppBundle:Emails:packPreparation.html.twig'), 'text/html');
+//        $this->get('mailer')->send($message);
 
-        $form = $this->createForm(InitialType::class, $initial);
-        $form->handleRequest($request);
+        if ($initialEntity) {
+            $form = $this->createForm(InitialType::class, $initialEntity);
+            $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $initial = $form->getData();
-            $photoFront = $initial->getPhotoFront();
-            $photoSide = $initial->getPhotoSide();
-            $photoBack = $initial->getPhotoBack();
+            if ($form->isSubmitted() && $form->isValid()) {
+                $initial = $form->getData();
 
-            $photoFrontName = md5(uniqid()) . '.' . $photoFront->guessExtension();
-            $photoSideName = md5(uniqid()) . '.' . $photoSide->guessExtension();
-            $photoBackName = md5(uniqid()) . '.' . $photoBack->guessExtension();
+                $dir = $this->container->getParameter('kernel.root_dir') . '/../web/uploads/photos';
 
-            $dir = $this->container->getParameter('kernel.root_dir') . '/../web/uploads/photos';
-            $photoFront->move($dir, $photoFrontName);
-            $photoSide->move($dir, $photoSideName);
-            $photoBack->move($dir, $photoBackName);
+                if ($photoFront = $initial->getPhotoFront()) {
+                    $photoFrontName = md5(uniqid()) . '.' . $photoFront->guessExtension();
+                    $photoFront->move($dir, $photoFrontName);
+                    $initial->setPhotoFront($photoFrontName);
+                } else {
+                    $initial->setPhotoFront($initialPhotoFront);
+                }
+                if ($photoSide = $initial->getPhotoSide()) {
+                    $photoSideName = md5(uniqid()) . '.' . $photoSide->guessExtension();
+                    $photoSide->move($dir, $photoSideName);
+                    $initial->setPhotoSide($photoSideName);
+                } else {
+                    $initial->setPhotoSide($initialPhotoSide);
+                }
+                if ($photoBack = $initial->getPhotoBack()) {
+                    $photoBackName = md5(uniqid()) . '.' . $photoBack->guessExtension();
+                    $photoBack->move($dir, $photoBackName);
+                    $initial->setPhotoBack($photoBackName);
+                } else {
+                    $initial->setPhotoBack($initialPhotoBack);
+                }
+                if ($initial->getCompleted() == false) {
+                    $weekDay = date('w');
+                    $date = new \DateTime();
+                    if ($weekDay < 5) {
+                        $ndDaysUntilNextMonday = 8 - $weekDay;
+                        $startAt = $date->add(new \DateInterval('P'.$ndDaysUntilNextMonday.'D'));
+                    } else {
+                        $ndDaysUntilNextNextMonday = 15 - $weekDay;
+                        $startAt = $date->add(new \DateInterval('P'.$ndDaysUntilNextMonday.'D'));
+                    }
+                    $initial->setCompleted(true);
 
-            $initial->setPhotoFront($photoFrontName);
-            $initial->setPhotoSide($photoSideName);
-            $initial->setPhotoBack($photoBackName);
+                    foreach ($initial->getPacks() as $pack) {
+                        $pack->setStartedAt($startAt);
+                    }
+                }
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($initial);
+                $em->flush();
 
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($initial);
-            $em->flush();
-            return $this->render('AppBundle:Initial:success.html.twig');
-        }
 
-        if ($initial) {
-            return $this->render('AppBundle:Initial:edit.html.twig', array(
-                        'user_id' => $userId,
-                        'form' => $form->createView()
+                return $this->render('AppBundle:Initial:success.html.twig');
+            }
+
+
+            return $this->render('AppBundle:Initial:edit.html.twig',
+                    array(
+                    'user_id' => $userId,
+                    'form' => $form->createView()
             ));
         } else {
-            return new Response('Wrong method', 500);
+            return new Response('Bilan introuvable', 500);
         }
     }
-
 }

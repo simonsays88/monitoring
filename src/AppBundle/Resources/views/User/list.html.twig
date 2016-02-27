@@ -5,23 +5,36 @@
 {% block pageClass %}userList{% endblock %}
 
 {% block body %}
-<table border="1" style="width:100%">
-    <tr>
-        <td>Nom</td>
-        <td>Prénom</td> 
-        <td>Mail</td>
-        <td>Pack en cours</td> 
-        <td>Bilans</td>
-        <td>Evolution</td>
-    </tr>
-  <tr>
-    <td>Jill</td>
-    <td>Smith</td> 
-    <td><a href="mailto:mail@mail.com">mail@mail.com</a></td>
-    <td>Pack sur mesure</td>
-    <td><a href="<?php echo url_for('');?>" class="link">Bilan 1</a></td>
-      <td><a href="/app_dev.php/utilisateurs/1" class="btn">Page évolution</a></td>
-  </tr>
- 
-</table>
+    <table border="1" style="width:100%">
+        <tr>
+            <td>Nom & Prénom</td>
+            <td>Mail</td>
+            <td>Pack en cours</td> 
+            <td>Bilans</td>
+            <td>Evolution</td>
+        </tr>
+        {% for user in users %}    
+            <tr>
+                <td>{{ user.name }}</td>
+                <td><a href="mailto:{{ user.email }}">{{ user.email }}</a></td>
+                <td>
+                    {% for pack in user.packs %}
+                        {% if pack.status == 'ongoing' %}
+                            {{ pack.packName }}
+                        {% endif %}
+                    {% endfor %}
+                </td>
+                <td>
+                    <p><a href="{{ path('initial', {'userId':user.userId}) }}" class="link">Bilan Initial</a><p>
+                    {% for pack in user.packs %}
+                        {% for result in pack.results %}
+                            <p><a href="{{ path('results', {'resultId': result.id}) }}" class="link">Bilan {{ result.createdAt|date('d/m/Y') }}</a><p>
+                        {% endfor %}
+                    {% endfor %}
+                </td>
+                <td><a href="{{ path('user', {'user_id' : user.userId}) }}" class="btn">Page évolution</a></td>
+            </tr>
+        {% endfor %}
+
+    </table>
 {% endblock %}
