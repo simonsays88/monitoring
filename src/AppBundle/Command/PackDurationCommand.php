@@ -30,7 +30,13 @@ class PackDurationCommand extends ContainerAwareCommand
                 $newPack->setStatus(Pack::STATUS_ONGOING);
                 $em->flush();
             } elseif ($newPack->getStartedAt()->format('Y-m-d') == date('Y-m-d', strtotime('+ 2 DAY'))) {
-                //RELANCE
+                $message = \Swift_Message::newInstance()
+                        ->setSubject('Costa Fitness : Bilan initial')
+                        ->setFrom('arnaud.wbc@gmail.com')
+                        ->setTo('arnaudsimon921@yahoo.fr')
+                        ->setBody(
+                        $this->renderView('AppBundle:Emails:reminderInitialForm.html.twig'), 'text/html');
+                $this->get('mailer')->send($message);
             }
         }
 
@@ -46,6 +52,7 @@ class PackDurationCommand extends ContainerAwareCommand
                 $ongoingPack->setStep($ongoingPack->getStep()+1);
                 if($ongoingPack->getNbStep() == $ongoingPack->getStep()){
                     $ongoingPack->setStatus(Pack::STATUS_FINISHED);
+                    
                 } elseif($ongoingPack->getNbStep() > $ongoingPack->getStep()) {
                     $ongoingPack->setNbDays(Pack::NB_DAYS);
                 }
