@@ -1,1 +1,5 @@
-test
+<p>Préparation du pack</p>
+<p>Nom : {{ pack.initial.name }}</p>
+<p>Pack : {{ pack.packName }} </p>
+<p>Début du pack : {{ pack.startedAt|date("d/m/Y") }} </p>
+<p><a href="{{ url('initial', {'userId':pack.initial.userId}) }}" class="link">Bilan Initial</a></p>

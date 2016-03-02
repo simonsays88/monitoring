@@ -20,11 +20,12 @@ class InitialController extends Controller
         $initialEntity = $this->getDoctrine()
             ->getRepository('AppBundle:Initial')
             ->findOneBy(array('userId' => $userId));
-        $initialPhotoFront = $initialEntity->getPhotoFront();
-        $initialPhotoSide = $initialEntity->getPhotoSide();
-        $initialPhotoBack = $initialEntity->getPhotoBack();
 
         if ($initialEntity) {
+
+            $initialPhotoFront = $initialEntity->getPhotoFront();
+            $initialPhotoSide = $initialEntity->getPhotoSide();
+            $initialPhotoBack = $initialEntity->getPhotoBack();
             $form = $this->createForm(InitialType::class, $initialEntity);
             $form->handleRequest($request);
 
@@ -68,15 +69,15 @@ class InitialController extends Controller
 
                     foreach ($initial->getPacks() as $pack) {
                         $pack->setStartedAt($startAt);
-                    }
-                    $message = \Swift_Message::newInstance()
-                        ->setSubject('Préparation du pack')
-                        ->setFrom('arnaud.wbc@gmail.com')
-                        ->setTo('arnaudsimon921@yahoo.fr')
-                        ->setBody(
-                        $this->renderView('AppBundle:Emails:reminderInitialForm.html.twig'), 'text/html');
+                        $message = \Swift_Message::newInstance()
+                            ->setSubject('Préparation du pack')
+                            ->setFrom('arnaud.wbc@gmail.com')
+                            ->setTo('arnaudsimon921@yahoo.fr')
+                            ->setBody(
+                            $this->renderView('AppBundle:Emails:packPreparation.html.twig', array('pack' => $pack)),
+                            'text/html');
                         $this->get('mailer')->send($message);
-                    
+                    }                    
                 }
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($initial);

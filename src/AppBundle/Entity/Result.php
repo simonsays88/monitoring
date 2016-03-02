@@ -13,6 +13,13 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Result
 {
+
+    const TWO_WEEKS_FOOD_BODY = 'two_weeks_food_body';
+    const FOUR_WEEKS_FOOD_BODY = 'four_weeks_food_body';
+    const TWO_WEEKS_FOOD = 'two_weeks_food';
+    const FOUR_WEEKS_FOOD = 'four_weeks_food';
+    const ESTHETIC = 'esthetic';
+
     /**
      * @var int
      *
@@ -105,10 +112,15 @@ class Result
      */
     private $completed = 0;
 
-   /**
+    /**
      * @ORM\Column(name="created_at", type="date", nullable=true)
      */
     protected $createdAt;
+
+    /**
+     * @ORM\Column(name="result_type", type="string", columnDefinition="ENUM('two_weeks_food_body', 'four_weeks_food_body', 'two_weeks_food', 'four_weeks_food', 'esthetic')", nullable=false)
+     */
+    protected $resultType;
     
     /**
      * Get id
@@ -431,5 +443,29 @@ class Result
     public function getCreatedAt()
     {
         return $this->createdAt;
+    }
+
+    /**
+     * Set resultType
+     *
+     * @param string $resultType
+     *
+     * @return Result
+     */
+    public function setResultType($resultType)
+    {
+        $this->resultType = $resultType;
+
+        return $this;
+    }
+
+    /**
+     * Get resultType
+     *
+     * @return string
+     */
+    public function getResultType()
+    {
+        return $this->resultType;
     }
 }

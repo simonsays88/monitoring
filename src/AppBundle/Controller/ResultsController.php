@@ -20,11 +20,12 @@ class ResultsController extends Controller
         $result = $this->getDoctrine()
             ->getRepository('AppBundle:Result')
             ->findOneById($resultId);
-        $initialPhotoFront = $initialEntity->getPhotoFront();
-        $initialPhotoSide = $initialEntity->getPhotoSide();
-        $initialPhotoBack = $initialEntity->getPhotoBack();
         
         if ($result) {
+            
+            $initialPhotoFront = $result->getPhotoFront();
+            $initialPhotoSide = $result->getPhotoSide();
+            $initialPhotoBack = $result->getPhotoBack();
             $form = $this->createForm(ResultType::class, $result);
             $form->handleRequest($request);
             if ($form->isSubmitted() && $form->isValid()) {
@@ -32,26 +33,26 @@ class ResultsController extends Controller
                 
                 $dir = $this->container->getParameter('kernel.root_dir') . '/../web/uploads/photos';
 
-                if ($photoFront = $initial->getPhotoFront()) {
+                if ($photoFront = $result->getPhotoFront()) {
                     $photoFrontName = md5(uniqid()) . '.' . $photoFront->guessExtension();
                     $photoFront->move($dir, $photoFrontName);
-                    $initial->setPhotoFront($photoFrontName);
+                    $result->setPhotoFront($photoFrontName);
                 } else {
-                    $initial->setPhotoFront($initialPhotoFront);
+                    $result->setPhotoFront($initialPhotoFront);
                 }
-                if ($photoSide = $initial->getPhotoSide()) {
+                if ($photoSide = $result->getPhotoSide()) {
                     $photoSideName = md5(uniqid()) . '.' . $photoSide->guessExtension();
                     $photoSide->move($dir, $photoSideName);
-                    $initial->setPhotoSide($photoSideName);
+                    $result->setPhotoSide($photoSideName);
                 } else {
-                    $initial->setPhotoSide($initialPhotoSide);
+                    $result->setPhotoSide($initialPhotoSide);
                 }
-                if ($photoBack = $initial->getPhotoBack()) {
+                if ($photoBack = $result->getPhotoBack()) {
                     $photoBackName = md5(uniqid()) . '.' . $photoBack->guessExtension();
                     $photoBack->move($dir, $photoBackName);
-                    $initial->setPhotoBack($photoBackName);
+                    $result->setPhotoBack($photoBackName);
                 } else {
-                    $initial->setPhotoBack($initialPhotoBack);
+                    $result->setPhotoBack($initialPhotoBack);
                 }
 
                 $result->setCompleted(true);

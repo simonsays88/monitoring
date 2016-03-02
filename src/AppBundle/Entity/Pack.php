@@ -18,6 +18,9 @@ class Pack {
     const STATUS_ONGOING = 'ongoing';
     const STATUS_FINISHED = 'finished';
     const NB_DAYS = 90;
+    const THEMES = 'themes';
+    const FOOD = 'food';
+    const FOOD_BODY = 'food_body';
     /**
      * @ORM\Column(type="integer")
      * @ORM\Id
@@ -58,18 +61,11 @@ class Pack {
     private $pack_name;
 
     /**
-     * @var int
+     * @var string
      *
-     * @ORM\Column(name="nb_step", type="integer", nullable=true)
+     * @ORM\Column(name="pack_type", type="string", columnDefinition="ENUM('themes', 'food', 'food_body')", nullable=false)
      */
-    private $nbStep;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="step", type="integer", nullable=true)
-     */
-    private $step;
+    private $pack_type;
 
     /**
      * @var int
@@ -96,6 +92,14 @@ class Pack {
      * @ORM\Column(type="string", columnDefinition="ENUM('new', 'ongoing', 'finished', 'pause')", nullable=false)
      */
     protected $status;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="days_left", type="integer", nullable=true)
+     */
+    private $daysLeft = 0;
+
     /**
      * Get id
      *
@@ -153,30 +157,6 @@ class Pack {
     }
 
     /**
-     * Set nbStep
-     *
-     * @param integer $nbStep
-     *
-     * @return Pack
-     */
-    public function setNbStep($nbStep)
-    {
-        $this->nbStep = $nbStep;
-
-        return $this;
-    }
-
-    /**
-     * Get nbStep
-     *
-     * @return integer
-     */
-    public function getNbStep()
-    {
-        return $this->nbStep;
-    }
-
-    /**
      * Set createdAt
      *
      * @param \DateTime $createdAt
@@ -222,31 +202,6 @@ class Pack {
     public function getStartedAt()
     {
         return $this->startedAt;
-    }
-
-
-    /**
-     * Set step
-     *
-     * @param integer $step
-     *
-     * @return Pack
-     */
-    public function setStep($step)
-    {
-        $this->step = $step;
-
-        return $this;
-    }
-
-    /**
-     * Get step
-     *
-     * @return integer
-     */
-    public function getStep()
-    {
-        return $this->step;
     }
 
     /**
@@ -384,5 +339,53 @@ class Pack {
     public function getStatus()
     {
         return $this->status;
+    }
+
+    /**
+     * Set daysLeft
+     *
+     * @param integer $daysLeft
+     *
+     * @return Pack
+     */
+    public function setDaysLeft($daysLeft)
+    {
+        $this->daysLeft = $daysLeft;
+
+        return $this;
+    }
+
+    /**
+     * Get daysLeft
+     *
+     * @return integer
+     */
+    public function getDaysLeft()
+    {
+        return $this->daysLeft;
+    }
+
+    /**
+     * Set packType
+     *
+     * @param string $packType
+     *
+     * @return Pack
+     */
+    public function setPackType($packType)
+    {
+        $this->pack_type = $packType;
+
+        return $this;
+    }
+
+    /**
+     * Get packType
+     *
+     * @return string
+     */
+    public function getPackType()
+    {
+        return $this->pack_type;
     }
 }
