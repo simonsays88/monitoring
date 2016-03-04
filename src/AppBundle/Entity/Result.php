@@ -121,7 +121,77 @@ class Result
      * @ORM\Column(name="result_type", type="string", columnDefinition="ENUM('two_weeks_food_body', 'four_weeks_food_body', 'two_weeks_food', 'four_weeks_food', 'esthetic')", nullable=false)
      */
     protected $resultType;
-    
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="feedback", type="text", nullable=true)
+     */
+    private $feedback;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="method", type="text", nullable=true)
+     */
+    private $method;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="recovery", type="text", nullable=true)
+     */
+    private $recovery;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="performance", type="text", nullable=true)
+     */
+    private $performance;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="feeling", type="text", nullable=true)
+     */
+    private $feeling;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="evaluation", type="integer", nullable=true)
+     */
+    private $evaluation;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="fail", type="text", nullable=true)
+     */
+    private $fail;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="tips", type="text", nullable=true)
+     */
+    private $tips;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="physical_change", type="text", nullable=true)
+     */
+    private $physicalChange;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="questions", type="text", nullable=true)
+     */
+    private $questions;
+
     /**
      * Get id
      *
@@ -467,5 +537,245 @@ class Result
     public function getResultType()
     {
         return $this->resultType;
+    }
+
+    /**
+     * Set feedback
+     *
+     * @param string $feedback
+     *
+     * @return Result
+     */
+    public function setFeedback($feedback)
+    {
+        $this->feedback = $feedback;
+
+        return $this;
+    }
+
+    /**
+     * Get feedback
+     *
+     * @return string
+     */
+    public function getFeedback()
+    {
+        return $this->feedback;
+    }
+
+    /**
+     * Set method
+     *
+     * @param string $method
+     *
+     * @return Result
+     */
+    public function setMethod($method)
+    {
+        $this->method = $method;
+
+        return $this;
+    }
+
+    /**
+     * Get method
+     *
+     * @return string
+     */
+    public function getMethod()
+    {
+        return $this->method;
+    }
+
+    /**
+     * Set recovery
+     *
+     * @param string $recovery
+     *
+     * @return Result
+     */
+    public function setRecovery($recovery)
+    {
+        $this->recovery = $recovery;
+
+        return $this;
+    }
+
+    /**
+     * Get recovery
+     *
+     * @return string
+     */
+    public function getRecovery()
+    {
+        return $this->recovery;
+    }
+
+    /**
+     * Set performance
+     *
+     * @param string $performance
+     *
+     * @return Result
+     */
+    public function setPerformance($performance)
+    {
+        $this->performance = $performance;
+
+        return $this;
+    }
+
+    /**
+     * Get performance
+     *
+     * @return string
+     */
+    public function getPerformance()
+    {
+        return $this->performance;
+    }
+
+    /**
+     * Set feeling
+     *
+     * @param string $feeling
+     *
+     * @return Result
+     */
+    public function setFeeling($feeling)
+    {
+        $this->feeling = $feeling;
+
+        return $this;
+    }
+
+    /**
+     * Get feeling
+     *
+     * @return string
+     */
+    public function getFeeling()
+    {
+        return $this->feeling;
+    }
+
+    /**
+     * Set evaluation
+     *
+     * @param integer $evaluation
+     *
+     * @return Result
+     */
+    public function setEvaluation($evaluation)
+    {
+        $this->evaluation = $evaluation;
+
+        return $this;
+    }
+
+    /**
+     * Get evaluation
+     *
+     * @return integer
+     */
+    public function getEvaluation()
+    {
+        return $this->evaluation;
+    }
+
+    /**
+     * Set fail
+     *
+     * @param string $fail
+     *
+     * @return Result
+     */
+    public function setFail($fail)
+    {
+        $this->fail = $fail;
+
+        return $this;
+    }
+
+    /**
+     * Get fail
+     *
+     * @return string
+     */
+    public function getFail()
+    {
+        return $this->fail;
+    }
+
+    /**
+     * Set tips
+     *
+     * @param string $tips
+     *
+     * @return Result
+     */
+    public function setTips($tips)
+    {
+        $this->tips = $tips;
+
+        return $this;
+    }
+
+    /**
+     * Get tips
+     *
+     * @return string
+     */
+    public function getTips()
+    {
+        return $this->tips;
+    }
+
+    /**
+     * Set physicalChange
+     *
+     * @param string $physicalChange
+     *
+     * @return Result
+     */
+    public function setPhysicalChange($physicalChange)
+    {
+        $this->physicalChange = $physicalChange;
+
+        return $this;
+    }
+
+    /**
+     * Get physicalChange
+     *
+     * @return string
+     */
+    public function getPhysicalChange()
+    {
+        return $this->physicalChange;
+    }
+
+    /**
+     * Set questions
+     *
+     * @param string $questions
+     *
+     * @return Result
+     */
+    public function setQuestions($questions)
+    {
+        $this->questions = $questions;
+
+        return $this;
+    }
+
+    /**
+     * Get questions
+     *
+     * @return string
+     */
+    public function getQuestions()
+    {
+        return $this->questions;
     }
 }

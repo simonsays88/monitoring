@@ -7,11 +7,39 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\Result;
 use AppBundle\Form\Type\ResultType;
+use AppBundle\Form\Type\twoWeeksFoodType;
 use Symfony\Component\HttpFoundation\Response;
 
 class ResultsController extends Controller
 {
+    /**
+     * @Route("/bilan/alimentaire/semaines/{resultId}", name="week_food", requirements={"resultId"="\d+"})
+     */
+    public function weekFoodAction(Request $request, $resultId)
+    {
+        $result = $this->getDoctrine()
+            ->getRepository('AppBundle:Result')
+            ->findOneById($resultId);
+        if($result){
 
+            $form = $this->createForm(twoWeeksFoodType::class, $result);
+            $form->handleRequest($request);
+            if ($form->isSubmitted() && $form->isValid()) {
+                $result = $form->getData();
+                $result->setCompleted(true);
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($result);
+                $em->flush();
+            }
+            return $this->render('AppBundle:Results:weekFood.html.twig',
+                    array(
+                    'form' => $form->createView()
+            ));
+
+        } else {
+            return new Response('Bilan introuvable', 500);
+        }
+    }
     /**
      * @Route("/bilan/{resultId}", name="results", requirements={"resultId"="\d+"})
      */
@@ -29,7 +57,7 @@ class ResultsController extends Controller
             $form = $this->createForm(ResultType::class, $result);
             $form->handleRequest($request);
             if ($form->isSubmitted() && $form->isValid()) {
-                $result     = $form->getData();
+                $result = $form->getData();
                 
                 $dir = $this->container->getParameter('kernel.root_dir') . '/../web/uploads/photos';
 
