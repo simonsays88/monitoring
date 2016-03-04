@@ -5,6 +5,7 @@ namespace AppBundle\Command;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use AppBundle\Entity\Pack;
 
 class MailAtTwoWeeksCommand extends ContainerAwareCommand {
 
@@ -19,6 +20,8 @@ class MailAtTwoWeeksCommand extends ContainerAwareCommand {
     protected function execute(InputInterface $input, OutputInterface $output)
     {
 
-        var_dump('test');
+        $ongoingPacks = $this->getContainer()->get('doctrine')
+            ->getRepository("AppBundle:Pack")
+            ->findBy(array('status' => Pack::STATUS_ONGOING));
     }
 }
