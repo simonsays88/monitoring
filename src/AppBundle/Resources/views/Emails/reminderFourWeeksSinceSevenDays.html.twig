@@ -1,0 +1,11 @@
+<p>Salut {{ result.pack.initial.name }} !</p>
+<p>Comment vas-tu ?</p>
+<p>
+    Je n’ai pas reçu de réponse au formulaire bilan de ton programme. Je compte sur toi pour répondre 
+    cette semaine avant jeudi midi s’il te plait.
+    Voici le lien : <a href="{{ url('results', {'resultId':result.id}) }}" class="link">Lien</a>
+
+</p>
+<p>Le cas contraire, je serai contraint de retirer 1 mois de ton pack de coaching.</p>
+<p>Merci pour ta compréhension et à bientôt</p>
+<p>David</p>

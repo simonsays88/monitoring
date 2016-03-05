@@ -1,0 +1,13 @@
+<p>Salut {{ result.pack.initial.name }} !</p>
+<p>Comment vas-tu ?</p>
+<p>
+    Je compte sur toi pour répondre au formulaire de bilan final de ton programme stp avant aujourd’hui midi 
+    afin que je puisse dès demain réaliser ton nouveau programme.
+    Voici le lien : <a href="{{ url('results', {'resultId':result.id}) }}" class="link">Lien</a>
+    {% if result.pack.nbDays == 30 %}
+    Même si tu ne souhaites pas prolonger ton suivi, je tiens à réaliser ton suivi jusqu’au bout avec ce dernier bilan.
+    {% endif %}
+</p>
+
+<p>Merci d’avance et à bientôt !</p>
+<p>David</p>

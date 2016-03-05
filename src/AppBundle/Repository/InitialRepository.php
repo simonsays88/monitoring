@@ -17,7 +17,7 @@ class InitialRepository extends \Doctrine\ORM\EntityRepository
                 ->where('i.completed = :completed')
                 ->andWhere('i.createdAt = :date')
                 ->setParameter('completed', false)
-                ->setParameter('date', date('Y-m-d',strtotime('+ 7 DAY')))
+                ->setParameter('date', date('Y-m-d',strtotime('- 7 DAY')))
                 ->getQuery()
                 ->getResult();
     }

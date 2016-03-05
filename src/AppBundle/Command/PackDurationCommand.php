@@ -47,7 +47,24 @@ class PackDurationCommand extends ContainerAwareCommand
 
             // Fin du pack (dernier bilan)
             if ($ongoingPack->getDaysLeft() == 0) {
-
+                if ($ongoingPack->getNbDays() == 30){
+                    
+                        $result = new Result();
+                        $result->setPack($ongoingPack);
+                        $result->setCreatedAt(new \DateTime('now'));
+                        $result->setResultType(Result::FOUR_WEEKS_FOOD_BODY);
+                        $em->persist($result);
+                        $em->flush();
+                        
+                        $message = \Swift_Message::newInstance()
+                                ->setSubject('David costa : Bilan à 4 semaines')
+                                ->setFrom($this->getContainer()->getParameter('sender'))
+                                ->setTo($ongoingPack->getInitial()->getEmail())
+                                ->setBody(
+                                $this->getContainer()->get('templating')->render('AppBundle:Emails:mailAtFourWeeks.html.twig', array('result' => $result)), 'text/html');
+                        $this->getContainer()->get('mailer')->send($message);
+                        
+                } else {
                 $result = new Result();
                 $result->setPack($ongoingPack);
                 $result->setCreatedAt(new \DateTime('now'));
@@ -58,12 +75,13 @@ class PackDurationCommand extends ContainerAwareCommand
                 $ongoingPack->setStatus(Pack::STATUS_FINISHED);
                     $message = \Swift_Message::newInstance()
                         ->setSubject('David costa : Bilan esthétique')
-                        ->setFrom('arnaud.wbc@gmail.com')
+                        ->setFrom($this->getContainer()->getParameter('sender'))
                         ->setTo($ongoingPack->getInitial()->getEmail())
                         ->setBody(
                     $this->getContainer()->get('templating')->render('AppBundle:Emails:mailAtThreeMonths.html.twig', array('result' => $result)),
                     'text/html');
                     $this->getContainer()->get('mailer')->send($message);
+                }
             }
             
             //Bilan à 3 mois
@@ -78,7 +96,7 @@ class PackDurationCommand extends ContainerAwareCommand
 
                 $message = \Swift_Message::newInstance()
                     ->setSubject('David costa : Bilan esthétique')
-                    ->setFrom('arnaud.wbc@gmail.com')
+                    ->setFrom($this->getContainer()->getParameter('sender'))
                     ->setTo($ongoingPack->getInitial()->getEmail())
                     ->setBody(
                 $this->getContainer()->get('templating')->render('AppBundle:Emails:mailAtThreeMonths.html.twig', array('result' => $result)),
@@ -90,20 +108,74 @@ class PackDurationCommand extends ContainerAwareCommand
 
                 //Bilan à 2 semaines
                 if(($nbDaysPassed/14 % 2 == 1)){
-                    if($ongoingPack->getPackType() == Pack::FOOD){
-
-                    } else if($ongoingPack->getPackType() == Pack::FOOD_BODY){
+                    if ($ongoingPack->getPackType() == Pack::FOOD) {
+                        $result = new Result();
+                        $result->setPack($ongoingPack);
+                        $result->setCreatedAt(new \DateTime('now'));
+                        $result->setResultType(Result::TWO_WEEKS_FOOD);
+                        $em->persist($result);
+                        $em->flush();
                         
+                        $message = \Swift_Message::newInstance()
+                                ->setSubject('David costa : Bilan à 2 semaines')
+                                ->setFrom($this->getContainer()->getParameter('sender'))
+                                ->setTo($ongoingPack->getInitial()->getEmail())
+                                ->setBody(
+                                $this->getContainer()->get('templating')->render('AppBundle:Emails:mailAtTwoWeeks.html.twig', array('result' => $result)), 'text/html');
+                        $this->getContainer()->get('mailer')->send($message);
+                        
+                    } else if($ongoingPack->getPackType() == Pack::FOOD_BODY){
+                        $result = new Result();
+                        $result->setPack($ongoingPack);
+                        $result->setCreatedAt(new \DateTime('now'));
+                        $result->setResultType(Result::TWO_WEEKS_FOOD_BODY);
+                        $em->persist($result);
+                        $em->flush();
+                        
+                        $message = \Swift_Message::newInstance()
+                                ->setSubject('David costa : Bilan à 2 semaines')
+                                ->setFrom($this->getContainer()->getParameter('sender'))
+                                ->setTo($ongoingPack->getInitial()->getEmail())
+                                ->setBody(
+                                $this->getContainer()->get('templating')->render('AppBundle:Emails:mailAtTwoWeeks.html.twig', array('result' => $result)), 'text/html');
+                        $this->getContainer()->get('mailer')->send($message);                        
                     }
                 }
                 //Bilan à 4 semaines
                 else {
-                    if($ongoingPack->getPackType() == Pack::THEMES){
+                    if($ongoingPack->getPackType() == Pack::FOOD){
                         
-                    } else if($ongoingPack->getPackType() == Pack::FOOD){
+                        $result = new Result();
+                        $result->setPack($ongoingPack);
+                        $result->setCreatedAt(new \DateTime('now'));
+                        $result->setResultType(Result::FOUR_WEEKS_FOOD);
+                        $em->persist($result);
+                        $em->flush();
+                        
+                        $message = \Swift_Message::newInstance()
+                                ->setSubject('David costa : Bilan à 4 semaines')
+                                ->setFrom($this->getContainer()->getParameter('sender'))
+                                ->setTo($ongoingPack->getInitial()->getEmail())
+                                ->setBody(
+                                $this->getContainer()->get('templating')->render('AppBundle:Emails:mailAtFourWeeks.html.twig', array('result' => $result)), 'text/html');
+                        $this->getContainer()->get('mailer')->send($message);                        
 
-                    } else if($ongoingPack->getPackType() == Pack::FOOD_BODY){
+                    } else if($ongoingPack->getPackType() == Pack::FOOD_BODY || $ongoingPack->getPackType() == Pack::THEMES){
                         
+                        $result = new Result();
+                        $result->setPack($ongoingPack);
+                        $result->setCreatedAt(new \DateTime('now'));
+                        $result->setResultType(Result::FOUR_WEEKS_FOOD_BODY);
+                        $em->persist($result);
+                        $em->flush();
+                        
+                        $message = \Swift_Message::newInstance()
+                                ->setSubject('David costa : Bilan à 4 semaines')
+                                ->setFrom($this->getContainer()->getParameter('sender'))
+                                ->setTo($ongoingPack->getInitial()->getEmail())
+                                ->setBody(
+                                $this->getContainer()->get('templating')->render('AppBundle:Emails:mailAtFourWeeks.html.twig', array('result' => $result)), 'text/html');
+                        $this->getContainer()->get('mailer')->send($message);                         
                     }
                 }
 
@@ -112,6 +184,5 @@ class PackDurationCommand extends ContainerAwareCommand
             
         }
         $em->flush();
-
     }
 }

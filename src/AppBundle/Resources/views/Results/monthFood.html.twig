@@ -1,22 +1,32 @@
 {% extends 'base.html.twig' %}
 
 {% block pageTitle %}CostaFitness : Bilan alimentaire{% endblock %}
-{% block headingTitle %}Bilan alimentaire{% endblock %}
+{% block headingTitle %}Bilan alimentaire à 4 semaines{% endblock %}
 {% block pageClass %}initForm{% endblock %}
 
 {% block body %}
 
     {{ form_start(form) }}
     <div class="initFormSection halfElement">
-        <h2>Bilan alimentaire à 2 semaines</h2>
+        <h2>Bilan alimentaire</h2>
         <div class="content">
 
             <div class="formSection">
                 <div class="questionContainer">
+                    <label for="questions">Tes questions et tes sensations :
+                    </label>
+                    {{ form_widget(form.questions) }}
+                </div>                
+                <div class="questionContainer">
                     <label for="evaluation">Sur une échelle de 1 à 10, à combien évalues tu le suivi du plan alimentaire en termes
-de quantités et de qualités des aliments ?</label>
-                    {{ form_widget(form.evaluation) }}
+                        de quantités et de qualités des aliments ?</label>
+                        {{ form_widget(form.evaluation) }}
                 </div>    
+                <div class="questionContainer">
+                    <label for="physicalChange">Des éventuels changements physiques que tu as pu constater : 
+                    </label>
+                    {{ form_widget(form.physicalChange) }}
+                </div>
             </div> 
         </div>
 

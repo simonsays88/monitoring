@@ -63,7 +63,7 @@ class InitialController extends Controller
                         $startAt = $date->add(new \DateInterval('P'.$ndDaysUntilNextMonday.'D'));
                     } else {
                         $ndDaysUntilNextNextMonday = 15 - $weekDay;
-                        $startAt = $date->add(new \DateInterval('P'.$ndDaysUntilNextMonday.'D'));
+                        $startAt = $date->add(new \DateInterval('P'.$ndDaysUntilNextNextMonday.'D'));
                     }
                     $initial->setCompleted(true);
 
@@ -71,7 +71,7 @@ class InitialController extends Controller
                         $pack->setStartedAt($startAt);
                         $message = \Swift_Message::newInstance()
                             ->setSubject('Préparation du pack')
-                            ->setFrom('arnaud.wbc@gmail.com')
+                            ->setFrom($this->container->getParameter('sender'))
                             ->setTo('arnaudsimon921@yahoo.fr')
                             ->setBody(
                             $this->renderView('AppBundle:Emails:packPreparation.html.twig', array('pack' => $pack)),
