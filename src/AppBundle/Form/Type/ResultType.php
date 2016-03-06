@@ -23,9 +23,9 @@ class ResultType extends AbstractType {
                 ->add('arms', null, array('required' => true))
                 ->add('hipSize', null, array('required' => true))
                 ->add('thighs', null, array('required' => true))
-                ->add('photoFront', FileType::class, array('data_class' => null))
-                ->add('photoSide', FileType::class, array('data_class' => null))
-                ->add('photoBack', FileType::class, array('data_class' => null))
+                ->add('photoFront', FileType::class, array('data_class' => null, 'required' => is_null($builder->getData()->getPhotoFront())))
+                ->add('photoSide', FileType::class, array('data_class' => null, 'required' => is_null($builder->getData()->getPhotoSide())))
+                ->add('photoBack', FileType::class, array('data_class' => null, 'required' => is_null($builder->getData()->getPhotoBack())))
         ;
     }
 

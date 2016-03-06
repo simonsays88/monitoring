@@ -20,19 +20,12 @@ class InitialController extends Controller
         $initialEntity = $this->getDoctrine()
             ->getRepository('AppBundle:Initial')
             ->findOneBy(array('userId' => $userId));
-        $initialPhotoFront = $initialEntity->getPhotoFront();
-        $initialPhotoSide = $initialEntity->getPhotoSide();
-        $initialPhotoBack = $initialEntity->getPhotoBack();
-        
-//            $message = \Swift_Message::newInstance()
-//                ->setSubject('test')
-//                ->setFrom('arnaud.wbc@gmail.com')
-//                ->setTo('arnaudsimon921@yahoo.fr')
-//                ->setBody(
-//                $this->renderView('AppBundle:Emails:packPreparation.html.twig'), 'text/html');
-//        $this->get('mailer')->send($message);
 
         if ($initialEntity) {
+
+            $initialPhotoFront = $initialEntity->getPhotoFront();
+            $initialPhotoSide = $initialEntity->getPhotoSide();
+            $initialPhotoBack = $initialEntity->getPhotoBack();
             $form = $this->createForm(InitialType::class, $initialEntity);
             $form->handleRequest($request);
 
@@ -70,13 +63,21 @@ class InitialController extends Controller
                         $startAt = $date->add(new \DateInterval('P'.$ndDaysUntilNextMonday.'D'));
                     } else {
                         $ndDaysUntilNextNextMonday = 15 - $weekDay;
-                        $startAt = $date->add(new \DateInterval('P'.$ndDaysUntilNextMonday.'D'));
+                        $startAt = $date->add(new \DateInterval('P'.$ndDaysUntilNextNextMonday.'D'));
                     }
                     $initial->setCompleted(true);
 
                     foreach ($initial->getPacks() as $pack) {
                         $pack->setStartedAt($startAt);
-                    }
+                        $message = \Swift_Message::newInstance()
+                            ->setSubject('Préparation du pack')
+                            ->setFrom($this->container->getParameter('sender'))
+                            ->setTo('arnaudsimon921@yahoo.fr')
+                            ->setBody(
+                            $this->renderView('AppBundle:Emails:packPreparation.html.twig', array('pack' => $pack)),
+                            'text/html');
+                        $this->get('mailer')->send($message);
+                    }                    
                 }
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($initial);

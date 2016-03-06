@@ -51,7 +51,7 @@ class InitialType extends AbstractType {
                 ->add('trainingTime', null, array('required' => true))
                 ->add('diet', null, array('required' => true))
                 ->add('note', null, array('required' => true))
-                ->add('homemadeFood', null, array('required' => true))
+                ->add('homemadeFood', null, array('required' => false))
                 ->add('restaurant', null, array('required' => true))
                 ->add('photoFront', FileType::class, array('data_class' => null, 'required' => is_null($builder->getData()->getPhotoFront())))
                 ->add('photoSide', FileType::class, array('data_class' => null, 'required' => is_null($builder->getData()->getPhotoSide())))

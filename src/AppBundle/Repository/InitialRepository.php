@@ -10,4 +10,15 @@ namespace AppBundle\Repository;
  */
 class InitialRepository extends \Doctrine\ORM\EntityRepository
 {
+
+    public function getUncompletedInitialForm()
+    {
+        return $this->createQueryBuilder('i')
+                ->where('i.completed = :completed')
+                ->andWhere('i.createdAt = :date')
+                ->setParameter('completed', false)
+                ->setParameter('date', date('Y-m-d',strtotime('- 7 DAY')))
+                ->getQuery()
+                ->getResult();
+    }
 }

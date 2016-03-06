@@ -25,7 +25,7 @@
                     <label for="pectorals">Pectoraux en cm</label>
                     {{ form_widget(form.pectorals) }}
 
-                    <label for="hipSize">Taille en cm</label>
+                    <label for="hipSize">Taille de hanche en cm</label>
                     {{ form_widget(form.hipSize) }}
 
                     <label for="arms">Bras contracté en cm</label>
@@ -44,14 +44,23 @@
                 <div class="thirdElement">
                     <h3>Photo bilan face</h3>
                     {{ form_widget(form.photoFront) }}
+                    {% if form.vars.value.photoFront is not null %}
+                        <img width = "100px" src="{{ asset('uploads/photos/' ~ form.vars.value.photoFront) }}" />
+                    {% endif %}                    
                 </div>
                 <div class="thirdElement">
                     <h3>Photo bilan coté</h3>
                     {{ form_widget(form.photoSide) }}
+                    {% if form.vars.value.photoSide is not null %}
+                        <img width = "100px" src="{{ asset('uploads/photos/' ~ form.vars.value.photoSide) }}" />
+                    {% endif %}
                 </div>
                 <div class="thirdElement">
                     <h3>Photo bilan dos</h3>
                     {{ form_widget(form.photoBack) }}
+                    {% if form.vars.value.photoBack is not null %}
+                        <img width = "100px" src="{{ asset('uploads/photos/' ~ form.vars.value.photoBack) }}" />
+                    {% endif %}                      
                 </div>
 
             </div> 
