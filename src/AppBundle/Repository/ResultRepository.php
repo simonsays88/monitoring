@@ -17,10 +17,9 @@ class ResultRepository extends \Doctrine\ORM\EntityRepository
     {
         return $this->createQueryBuilder('r')
                 ->where('r.completed = :completed')
-                ->andWhere('r.resultType = :resulType')
+                ->andWhere("r.resultType LIKE '%four_weeks%'")
                 ->andWhere('r.createdAt = :date')
                 ->setParameter('completed', false)
-                ->setParameter('resulType', Result::FOUR_WEEKS_FOOD_BODY)
                 ->setParameter('date', date('Y-m-d',strtotime('- '.$nbDays.' DAY')))
                 ->getQuery()
                 ->getResult();

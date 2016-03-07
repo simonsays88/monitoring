@@ -86,7 +86,7 @@ class PackDurationCommand extends ContainerAwareCommand
             
             //Bilan à 3 mois
             else if ($nbDaysPassed % 90 == 0 ) {
-                
+                var_dump('test');
                 $result = new Result();
                 $result->setPack($ongoingPack);
                 $result->setCreatedAt(new \DateTime('now'));
