@@ -26,14 +26,14 @@ class ReminderCommand extends ContainerAwareCommand
 
         //Reminder initial result
         foreach ($users as $user) {
-            $message = \Swift_Message::newInstance()
-                ->setSubject('David costa : Bilan initial')
-                ->setFrom($this->getContainer()->getParameter('sender'))
-                ->setTo($user->getEmail())
-                ->setBody(
-                $this->getContainer()->get('templating')->render('AppBundle:Emails:reminderInitialForm.html.twig', array('user' => $user)),
-                'text/html');
-            $this->getContainer()->get('mailer')->send($message);
+
+            $sujet = 'David costa : Rappel bilan initial';
+            $message = $this->getContainer()->get('templating')->render('AppBundle:Emails:reminderInitialForm.html.twig', array('user' => $user));
+            $destinataire = $user->getEmail();
+            $headers = "From: \"".$this->getContainer()->getParameter('sender')."\"<".$this->getContainer()->getParameter('sender').">\n";
+            $headers .= "Reply-To: ".$this->getContainer()->getParameter('sender')."\n";
+            $headers .= "Content-Type: text/html; charset=\"iso-8859-1\"";
+            mail($destinataire,$sujet,$message,$headers);
         }
         
         $results = $this->getContainer()->get('doctrine')->getRepository("AppBundle:Result")->getUncompletedFourWeeks(3);
