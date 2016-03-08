@@ -664,7 +664,7 @@
                                                             <td valign="top" class="mcnTextContent" style="padding-top:9px; padding-right: 18px; padding-bottom: 9px; padding-left: 18px;">
 
                                                                 <h1 style="text-align: justify;"><br>
-                                                                    <span style="color:#333333"><span class="s1">Hello {{ result.pack.initial.name }} !</span></span></h1>
+                                                                    <span style="color:#333333"><span class="s1">Hello {{ user.name }} !</span></span></h1>
 
                                                                 <p class="p1" style="text-align: justify;"><span style="color:#333333"><span class="s1"> Afin de pouvoir réaliser ton pack de coaching,
     j’ai besoin que tu complètes tes informations (renseignements, photos et mensurations) dans ton interface :
@@ -711,7 +711,7 @@
                                                                         <td align="center" valign="middle" class="mcnButtonContent" style="font-family: Arial; font-size: 12px; padding: 18px;">
 
 
-                                                                            <a class="mcnButton" href="{{ url('results', {'resultId':result.id}) }}" target="_blank" style="font-weight: normal;letter-spacing: normal;line-height: 100%;text-align: center;text-decoration: none;color: #FFFFFF;">Bilan esthétique initial</a>
+                                                                            <a class="mcnButton" href="{{ url('initial', {'userId':user.userId}) }}" target="_blank" style="font-weight: normal;letter-spacing: normal;line-height: 100%;text-align: center;text-decoration: none;color: #FFFFFF;">Bilan esthétique initial</a>
                                                                         </td>
                                                                     </tr>
                                                                     </tbody>
