@@ -95,14 +95,13 @@ class PackDurationCommand extends ContainerAwareCommand
                 $em->persist($result);
                 $em->flush();
 
-                $message = \Swift_Message::newInstance()
-                    ->setSubject('David costa : Bilan esthétique')
-                    ->setFrom($this->getContainer()->getParameter('sender'))
-                    ->setTo($ongoingPack->getInitial()->getEmail())
-                    ->setBody(
-                $this->getContainer()->get('templating')->render('AppBundle:Emails:mailAtThreeMonths.html.twig', array('result' => $result)),
-                'text/html');
-                $this->getContainer()->get('mailer')->send($message);
+                $sujet = 'David costa : Bilan esthétique';
+                $message = $this->getContainer()->get('templating')->render('AppBundle:Emails:mailAtThreeMonths.html.twig', array('result' => $result));
+                $destinataire = $ongoingPack->getInitial()->getEmail();
+                $headers = "From: \"".$this->getContainer()->getParameter('sender')."\"<".$this->getContainer()->getParameter('sender').">\n";
+                $headers .= "Reply-To: ".$this->getContainer()->getParameter('sender')."\n";
+                $headers .= "Content-Type: text/html; charset=\"iso-8859-1\"";
+                mail($destinataire,$sujet,$message,$headers);
             }
 
             else if ($nbDaysPassed % 14 == 0){
