@@ -87,7 +87,7 @@ class ReminderCommand extends ContainerAwareCommand
         foreach ($results as $result) {
             $message = \Swift_Message::newInstance()
                     ->setSubject('David costa : Bilan à 3 mois')
-                    ->setFrom($this->getContainer()->getParameter('sender'))
+                    ->setFrom('contact@davidcosta.fr')
                     ->setTo($result->getPack()->getInitial()->getEmail())
                     ->setBody(
                     $this->getContainer()->get('templating')->render('AppBundle:Emails:reminderEstheticSinceSevenDays.html.twig', array('result' => $result)), 'text/html');

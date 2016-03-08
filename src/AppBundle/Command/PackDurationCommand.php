@@ -42,12 +42,12 @@ class PackDurationCommand extends ContainerAwareCommand
         foreach ($ongoingPacks as $ongoingPack) {
             $daysLeft = $ongoingPack->getDaysLeft() - 1;
             $ongoingPack->setDaysLeft($daysLeft);
-
-            $nbDaysPassed = $ongoingPack->getNbDays() - $daysLeft;
+            // one week before
+            $nbDaysPassed = $ongoingPack->getNbDays() - $daysLeft + 7;
 
             // Fin du pack (dernier bilan)
-            if ($ongoingPack->getDaysLeft() == 0) {
-                if ($ongoingPack->getNbDays() == 30){
+            if ($ongoingPack->getDaysLeft() == 7) {
+                if ($ongoingPack->getNbDays() == 28){
                     
                         $result = new Result();
                         $result->setPack($ongoingPack);
@@ -85,8 +85,7 @@ class PackDurationCommand extends ContainerAwareCommand
             }
             
             //Bilan à 3 mois
-            else if ($nbDaysPassed % 90 == 0 ) {
-                
+            else if ($nbDaysPassed % 84 == 0 ) {
                 $result = new Result();
                 $result->setPack($ongoingPack);
                 $result->setCreatedAt(new \DateTime('now'));
