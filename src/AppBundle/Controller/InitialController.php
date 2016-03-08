@@ -72,7 +72,7 @@ class InitialController extends Controller
                         $sujet = 'Préparation du pack';
                         $message = $this->renderView('AppBundle:Emails:packPreparation.html.twig', array('pack' => $pack));
                         $destinataire = $this->container->getParameter('sender');
-                        $headers = "From: \"".$this->container->getParameter('sender')."\"<moi@domaine.com>\n";
+                        $headers = "From: \"".$this->container->getParameter('sender')."\"<".$this->container->getParameter('sender').">\n";
                         $headers .= "Reply-To: ".$this->container->getParameter('sender')."\n";
                         $headers .= "Content-Type: text/html; charset=\"iso-8859-1\"";
                         mail($destinataire,$sujet,$message,$headers);

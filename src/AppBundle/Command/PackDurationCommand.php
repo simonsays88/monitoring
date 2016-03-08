@@ -55,14 +55,14 @@ class PackDurationCommand extends ContainerAwareCommand
                         $result->setResultType(Result::FOUR_WEEKS_FOOD_BODY);
                         $em->persist($result);
                         $em->flush();
-                        
-                        $message = \Swift_Message::newInstance()
-                                ->setSubject('David costa : Bilan à 4 semaines')
-                                ->setFrom($this->getContainer()->getParameter('sender'))
-                                ->setTo($ongoingPack->getInitial()->getEmail())
-                                ->setBody(
-                                $this->getContainer()->get('templating')->render('AppBundle:Emails:mailAtFourWeeks.html.twig', array('result' => $result)), 'text/html');
-                        $this->getContainer()->get('mailer')->send($message);
+
+                        $sujet = 'David costa : Bilan à 4 semaines';
+                        $message = $this->getContainer()->get('templating')->render('AppBundle:Emails:mailAtFourWeeks.html.twig', array('result' => $result));
+                        $destinataire = $ongoingPack->getInitial()->getEmail();
+                        $headers = "From: \"".$this->container->getParameter('sender')."\"<".$this->container->getParameter('sender').">\n";
+                        $headers .= "Reply-To: ".$this->container->getParameter('sender')."\n";
+                        $headers .= "Content-Type: text/html; charset=\"iso-8859-1\"";
+                        mail($destinataire,$sujet,$message,$headers);
                         
                 } else {
                 $result = new Result();
