@@ -17,7 +17,7 @@ class Pack {
     const STATUS_NEW = 'new';
     const STATUS_ONGOING = 'ongoing';
     const STATUS_FINISHED = 'finished';
-    const NB_DAYS = 90;
+    const NB_DAYS = 84;
     const THEMES = 'themes';
     const FOOD = 'food';
     const FOOD_BODY = 'food_body';
