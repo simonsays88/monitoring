@@ -68,15 +68,14 @@ class InitialController extends Controller
                     $initial->setCompleted(true);
 
                     foreach ($initial->getPacks() as $pack) {
-                        $pack->setStartedAt($startAt);
-                        $message = \Swift_Message::newInstance()
-                            ->setSubject('Préparation du pack')
-                            ->setFrom($this->container->getParameter('sender'))
-                            ->setTo('arnaudsimon921@yahoo.fr')
-                            ->setBody(
-                            $this->renderView('AppBundle:Emails:packPreparation.html.twig', array('pack' => $pack)),
-                            'text/html');
-                        $this->get('mailer')->send($message);
+
+                        $sujet = 'Préparation du pack';
+                        $message = $this->renderView('AppBundle:Emails:packPreparation.html.twig', array('pack' => $pack));
+                        $destinataire = $this->container->getParameter('sender');
+                        $headers = "From: \"".$this->container->getParameter('sender')."\"<moi@domaine.com>\n";
+                        $headers .= "Reply-To: "..$this->container->getParameter('sender')"\n";
+                        $headers .= "Content-Type: text/html; charset=\"iso-8859-1\"";
+                        mail($destinataire,$sujet,$message,$headers);
                     }                    
                 }
                 $em = $this->getDoctrine()->getManager();
