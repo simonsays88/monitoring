@@ -62,7 +62,7 @@ class PackDurationCommand extends ContainerAwareCommand
                         $headers = "From: \"".$this->getContainer()->getParameter('sender')."\"<".$this->getContainer()->getParameter('sender').">\n";
                         $headers .= "Reply-To: ".$this->getContainer()->getParameter('sender')."\n";
                         $headers .= "Content-Type: text/html; charset=\"iso-8859-1\"";
-                        mail($destinataire,$sujet,$message,$headers);
+                        var_dump(mail($destinataire,$sujet,$message,$headers));
                         
                 } else {
                 $result = new Result();
