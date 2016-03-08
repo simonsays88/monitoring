@@ -40,14 +40,15 @@ class ReminderCommand extends ContainerAwareCommand
         
         //Reminder four weeks result with 3 days late
         foreach ($results as $result) {
-            $message = \Swift_Message::newInstance()
-                ->setSubject('David costa : Bilan à 4 semaines')
-                ->setFrom($this->getContainer()->getParameter('sender'))
-                ->setTo($result->getPack()->getInitial()->getEmail())
-                ->setBody(
-                $this->getContainer()->get('templating')->render('AppBundle:Emails:reminderFourWeeksSinceThreeDays.html.twig', array('result' => $result)),
-                'text/html');
-            $this->getContainer()->get('mailer')->send($message);
+
+            $sujet = 'David costa : Rappel bilan à 4 semaines';
+            $message = $this->getContainer()->get('templating')->render('AppBundle:Emails:reminderFourWeeksSinceThreeDays.html.twig', array('result' => $result));
+            $destinataire = $user->getEmail();
+            $headers = "From: \"".$this->getContainer()->getParameter('sender')."\"<".$this->getContainer()->getParameter('sender').">\n";
+            $headers .= "Reply-To: ".$this->getContainer()->getParameter('sender')."\n";
+            $headers .= "Content-Type: text/html; charset=\"iso-8859-1\"";
+            mail($destinataire,$sujet,$message,$headers);
+
         }
         
         $results = $this->getContainer()->get('doctrine')->getRepository("AppBundle:Result")->getUncompletedFourWeeks(7);
@@ -56,13 +57,15 @@ class ReminderCommand extends ContainerAwareCommand
         
             foreach ($results as $result) {
             if ($result->getPack()->getDaysLeft() > 24) {
-                $message = \Swift_Message::newInstance()
-                        ->setSubject('David costa : Bilan à 4 semaines')
-                        ->setFrom($this->getContainer()->getParameter('sender'))
-                        ->setTo($result->getPack()->getInitial()->getEmail())
-                        ->setBody(
-                        $this->getContainer()->get('templating')->render('AppBundle:Emails:reminderFourWeeksSinceSevenDays.html.twig', array('result' => $result)), 'text/html');
-                $this->getContainer()->get('mailer')->send($message);
+
+            $sujet = 'David costa : Rappel bilan à 4 semaines';
+            $message = $this->getContainer()->get('templating')->render('AppBundle:Emails:reminderFourWeeksSinceSevenDays.html.twig', array('result' => $result));
+            $destinataire = $user->getEmail();
+            $headers = "From: \"".$this->getContainer()->getParameter('sender')."\"<".$this->getContainer()->getParameter('sender').">\n";
+            $headers .= "Reply-To: ".$this->getContainer()->getParameter('sender')."\n";
+            $headers .= "Content-Type: text/html; charset=\"iso-8859-1\"";
+            mail($destinataire,$sujet,$message,$headers);
+            
             }
         }
 
@@ -71,13 +74,15 @@ class ReminderCommand extends ContainerAwareCommand
         //Reminder four weeks result with 14 days late
         foreach ($results as $result) {
             if ($result->getPack()->getDaysLeft() > 24) {
-                $message = \Swift_Message::newInstance()
-                        ->setSubject('David costa : Bilan à 4 semaines')
-                        ->setFrom($this->getContainer()->getParameter('sender'))
-                        ->setTo($result->getPack()->getInitial()->getEmail())
-                        ->setBody(
-                        $this->getContainer()->get('templating')->render('AppBundle:Emails:reminderFourWeeksSinceTwoWeeks.html.twig', array('result' => $result)), 'text/html');
-                $this->getContainer()->get('mailer')->send($message);
+
+            $sujet = 'David costa : Rappel bilan à 4 semaines';
+            $message = $this->getContainer()->get('templating')->render('AppBundle:Emails:reminderFourWeeksSinceTwoWeeks.html.twig', array('result' => $result));
+            $destinataire = $user->getEmail();
+            $headers = "From: \"".$this->getContainer()->getParameter('sender')."\"<".$this->getContainer()->getParameter('sender').">\n";
+            $headers .= "Reply-To: ".$this->getContainer()->getParameter('sender')."\n";
+            $headers .= "Content-Type: text/html; charset=\"iso-8859-1\"";
+            mail($destinataire,$sujet,$message,$headers);
+
             }
         }
 
@@ -85,13 +90,15 @@ class ReminderCommand extends ContainerAwareCommand
 
         //Reminder esthetic result with 7 days late
         foreach ($results as $result) {
-            $message = \Swift_Message::newInstance()
-                    ->setSubject('David costa : Bilan à 3 mois')
-                    ->setFrom('contact@davidcosta.fr')
-                    ->setTo($result->getPack()->getInitial()->getEmail())
-                    ->setBody(
-                    $this->getContainer()->get('templating')->render('AppBundle:Emails:reminderEstheticSinceSevenDays.html.twig', array('result' => $result)), 'text/html');
-            $this->getContainer()->get('mailer')->send($message);
+
+            $sujet = 'David costa : Rappel bilan à 3 mois';
+            $message = $this->getContainer()->get('templating')->render('AppBundle:Emails:reminderEstheticSinceSevenDays.html.twig', array('result' => $result));
+            $destinataire = $user->getEmail();
+            $headers = "From: \"".$this->getContainer()->getParameter('sender')."\"<".$this->getContainer()->getParameter('sender').">\n";
+            $headers .= "Reply-To: ".$this->getContainer()->getParameter('sender')."\n";
+            $headers .= "Content-Type: text/html; charset=\"iso-8859-1\"";
+            mail($destinataire,$sujet,$message,$headers);
+
         }
     }
 }
