@@ -108,7 +108,7 @@ class PackDurationCommand extends ContainerAwareCommand
 
                 //Bilan à 2 semaines
                 if(($nbDaysPassed/14 % 2 == 1)){
-                    if ($ongoingPack->getPackType() == Pack::FOOD) {
+
                         $result = new Result();
                         $result->setPack($ongoingPack);
                         $result->setCreatedAt(new \DateTime('now'));
@@ -116,30 +116,14 @@ class PackDurationCommand extends ContainerAwareCommand
                         $em->persist($result);
                         $em->flush();
                         
-                        $message = \Swift_Message::newInstance()
-                                ->setSubject('David costa : Bilan à 2 semaines')
-                                ->setFrom($this->getContainer()->getParameter('sender'))
-                                ->setTo($ongoingPack->getInitial()->getEmail())
-                                ->setBody(
-                                $this->getContainer()->get('templating')->render('AppBundle:Emails:mailAtTwoWeeks.html.twig', array('result' => $result)), 'text/html');
-                        $this->getContainer()->get('mailer')->send($message);
+                        $sujet = 'David costa : Bilan à 2 semaines';
+                        $message = $this->getContainer()->get('templating')->render('AppBundle:Emails:mailAtTwoWeeks.html.twig', array('result' => $result));
+                        $destinataire = $ongoingPack->getInitial()->getEmail();
+                        $headers = "From: \"".$this->getContainer()->getParameter('sender')."\"<".$this->getContainer()->getParameter('sender').">\n";
+                        $headers .= "Reply-To: ".$this->getContainer()->getParameter('sender')."\n";
+                        $headers .= "Content-Type: text/html; charset=\"iso-8859-1\"";
+                        mail($destinataire,$sujet,$message,$headers);
                         
-                    } else if($ongoingPack->getPackType() == Pack::FOOD_BODY){
-                        $result = new Result();
-                        $result->setPack($ongoingPack);
-                        $result->setCreatedAt(new \DateTime('now'));
-                        $result->setResultType(Result::TWO_WEEKS_FOOD_BODY);
-                        $em->persist($result);
-                        $em->flush();
-                        
-                        $message = \Swift_Message::newInstance()
-                                ->setSubject('David costa : Bilan à 2 semaines')
-                                ->setFrom($this->getContainer()->getParameter('sender'))
-                                ->setTo($ongoingPack->getInitial()->getEmail())
-                                ->setBody(
-                                $this->getContainer()->get('templating')->render('AppBundle:Emails:mailAtTwoWeeks.html.twig', array('result' => $result)), 'text/html');
-                        $this->getContainer()->get('mailer')->send($message);                        
-                    }
                 }
                 //Bilan à 4 semaines
                 else {
