@@ -59,8 +59,8 @@ class PackDurationCommand extends ContainerAwareCommand
                         $sujet = 'David costa : Bilan à 4 semaines';
                         $message = $this->getContainer()->get('templating')->render('AppBundle:Emails:mailAtFourWeeks.html.twig', array('result' => $result));
                         $destinataire = $ongoingPack->getInitial()->getEmail();
-                        $headers = "From: \"".$this->container->getParameter('sender')."\"<".$this->container->getParameter('sender').">\n";
-                        $headers .= "Reply-To: ".$this->container->getParameter('sender')."\n";
+                        $headers = "From: \"".$this->getContainer()->getParameter('sender')."\"<".$this->getContainer()->getParameter('sender').">\n";
+                        $headers .= "Reply-To: ".$this->getContainer()->getParameter('sender')."\n";
                         $headers .= "Content-Type: text/html; charset=\"iso-8859-1\"";
                         mail($destinataire,$sujet,$message,$headers);
                         
