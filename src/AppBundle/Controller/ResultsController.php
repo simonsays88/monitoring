@@ -69,52 +69,36 @@ class ResultsController extends Controller
                 ));
             } elseif ($result->getResultType() == Result::TWO_WEEKS_FOOD) {
                 $form = $this->createForm(TwoWeeksFoodType::class, $result);
-                $form->handleRequest($request);
-                if ($form->isSubmitted() && $form->isValid()) {
-                    $result = $form->getData();
-                    $result->setCompleted(true);
-                    $em = $this->getDoctrine()->getManager();
-                    $em->persist($result);
-                    $em->flush();
+                $handleForm = $this->container->get('app.handle_form')->process($request, $form);
+                if ($handleForm) {
+                    return $this->render('AppBundle:Results:success.html.twig');
                 }
                 return $this->render('AppBundle:Results:weekFood.html.twig', array(
                             'form' => $form->createView()
                 ));
             } elseif ($result->getResultType() == Result::FOUR_WEEKS_FOOD) {
                 $form = $this->createForm(FourWeeksFoodType::class, $result);
-                $form->handleRequest($request);
-                if ($form->isSubmitted() && $form->isValid()) {
-                    $result = $form->getData();
-                    $result->setCompleted(true);
-                    $em = $this->getDoctrine()->getManager();
-                    $em->persist($result);
-                    $em->flush();
+                $handleForm = $this->container->get('app.handle_form')->process($request, $form);
+                if ($handleForm) {
+                    return $this->render('AppBundle:Results:success.html.twig');
                 }
                 return $this->render('AppBundle:Results:monthFood.html.twig', array(
                             'form' => $form->createView()
                 ));
             } elseif ($result->getResultType() == Result::TWO_WEEKS_FOOD_BODY) {
                 $form = $this->createForm(TwoWeeksFoodBodyType::class, $result);
-                $form->handleRequest($request);
-                if ($form->isSubmitted() && $form->isValid()) {
-                    $result = $form->getData();
-                    $result->setCompleted(true);
-                    $em = $this->getDoctrine()->getManager();
-                    $em->persist($result);
-                    $em->flush();
+                $handleForm = $this->container->get('app.handle_form')->process($request, $form);
+                if ($handleForm) {
+                    return $this->render('AppBundle:Results:success.html.twig');
                 }
                 return $this->render('AppBundle:Results:weekFoodBody.html.twig', array(
                             'form' => $form->createView()
                 ));                
             } elseif ($result->getResultType() == Result::FOUR_WEEKS_FOOD_BODY) {
                 $form = $this->createForm(FourWeeksFoodBodyType::class, $result);
-                $form->handleRequest($request);
-                if ($form->isSubmitted() && $form->isValid()) {
-                    $result = $form->getData();
-                    $result->setCompleted(true);
-                    $em = $this->getDoctrine()->getManager();
-                    $em->persist($result);
-                    $em->flush();
+                $handleForm = $this->container->get('app.handle_form')->process($request, $form);
+                if ($handleForm) {
+                    return $this->render('AppBundle:Results:success.html.twig');
                 }
                 return $this->render('AppBundle:Results:monthFoodBody.html.twig', array(
                             'form' => $form->createView()
