@@ -15,7 +15,9 @@ parameters:
     mailer_user:       ~
     mailer_password:   ~
     host: monitoring.local
-    sender: arnaud.wbc@gmail.com
+    sender_themes: suivi@davidcosta.fr
+    sender_cutom: contact@davidcosta.fr
+    sender_app: appli@davidcosta.fr
 
 
     # A secret key that's used to generate certain security-related tokens

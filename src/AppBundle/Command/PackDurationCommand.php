@@ -44,6 +44,7 @@ class PackDurationCommand extends ContainerAwareCommand
             $ongoingPack->setDaysLeft($daysLeft);
             // one week before
             $nbDaysPassed = $ongoingPack->getNbDays() - $daysLeft + 7;
+            $email = ($ongoingPack->getPackType() == Pack::THEMES ) ? $this->getContainer()->getParameter('sender_themes') : $this->getContainer()->getParameter('sender_custom');
 
             // Fin du pack (dernier bilan)
             if ($ongoingPack->getDaysLeft() == 7) {
@@ -60,8 +61,8 @@ class PackDurationCommand extends ContainerAwareCommand
                         $sujet = 'David costa : Bilan à 4 semaines';
                         $message = $this->getContainer()->get('templating')->render('AppBundle:Emails:mailAtFourWeeks.html.twig', array('result' => $result));
                         $destinataire = $ongoingPack->getInitial()->getEmail();
-                        $headers = "From: \"".$this->getContainer()->getParameter('sender')."\"<".$this->getContainer()->getParameter('sender').">\n";
-                        $headers .= "Reply-To: ".$this->getContainer()->getParameter('sender')."\n";
+                        $headers = "From: \"".$email."\"<".$email.">\n";
+                        $headers .= "Reply-To: ".$email."\n";
                         $headers .= "Content-Type: text/html; charset=\"iso-8859-1\"";
                         mail($destinataire,$sujet,$message,$headers);
                         
@@ -78,8 +79,8 @@ class PackDurationCommand extends ContainerAwareCommand
                     $sujet = 'David costa : Bilan esthétique';
                     $message = $this->getContainer()->get('templating')->render('AppBundle:Emails:mailAtThreeMonths.html.twig', array('result' => $result));
                     $destinataire = $ongoingPack->getInitial()->getEmail();
-                    $headers = "From: \"".$this->getContainer()->getParameter('sender')."\"<".$this->getContainer()->getParameter('sender').">\n";
-                    $headers .= "Reply-To: ".$this->getContainer()->getParameter('sender')."\n";
+                    $headers = "From: \"".$email."\"<".$email.">\n";
+                    $headers .= "Reply-To: ".$email."\n";
                     $headers .= "Content-Type: text/html; charset=\"iso-8859-1\"";
                     mail($destinataire,$sujet,$message,$headers);
                     
@@ -98,8 +99,8 @@ class PackDurationCommand extends ContainerAwareCommand
                 $sujet = 'David costa : Bilan esthétique';
                 $message = $this->getContainer()->get('templating')->render('AppBundle:Emails:mailAtThreeMonths.html.twig', array('result' => $result));
                 $destinataire = $ongoingPack->getInitial()->getEmail();
-                $headers = "From: \"".$this->getContainer()->getParameter('sender')."\"<".$this->getContainer()->getParameter('sender').">\n";
-                $headers .= "Reply-To: ".$this->getContainer()->getParameter('sender')."\n";
+                $headers = "From: \"".$email."\"<".$email.">\n";
+                $headers .= "Reply-To: ".$email."\n";
                 $headers .= "Content-Type: text/html; charset=\"iso-8859-1\"";
                 mail($destinataire,$sujet,$message,$headers);
             }
@@ -119,8 +120,8 @@ class PackDurationCommand extends ContainerAwareCommand
                         $sujet = 'David costa : Bilan à 2 semaines';
                         $message = $this->getContainer()->get('templating')->render('AppBundle:Emails:mailAtTwoWeeks.html.twig', array('result' => $result));
                         $destinataire = $ongoingPack->getInitial()->getEmail();
-                        $headers = "From: \"".$this->getContainer()->getParameter('sender')."\"<".$this->getContainer()->getParameter('sender').">\n";
-                        $headers .= "Reply-To: ".$this->getContainer()->getParameter('sender')."\n";
+                        $headers = "From: \"".$email."\"<".$email.">\n";
+                        $headers .= "Reply-To: ".$email."\n";
                         $headers .= "Content-Type: text/html; charset=\"iso-8859-1\"";
                         mail($destinataire,$sujet,$message,$headers);
                         
@@ -135,8 +136,8 @@ class PackDurationCommand extends ContainerAwareCommand
                         $sujet = 'David costa : Bilan à 2 semaines';
                         $message = $this->getContainer()->get('templating')->render('AppBundle:Emails:mailAtTwoWeeks.html.twig', array('result' => $result));
                         $destinataire = $ongoingPack->getInitial()->getEmail();
-                        $headers = "From: \"".$this->getContainer()->getParameter('sender')."\"<".$this->getContainer()->getParameter('sender').">\n";
-                        $headers .= "Reply-To: ".$this->getContainer()->getParameter('sender')."\n";
+                        $headers = "From: \"".$email."\"<".$email.">\n";
+                        $headers .= "Reply-To: ".$email."\n";
                         $headers .= "Content-Type: text/html; charset=\"iso-8859-1\"";
                         mail($destinataire,$sujet,$message,$headers);    
                     }
@@ -155,13 +156,13 @@ class PackDurationCommand extends ContainerAwareCommand
                         $sujet = 'David costa : Bilan à 4 semaines';
                         $message = $this->getContainer()->get('templating')->render('AppBundle:Emails:mailAtFourWeeks.html.twig', array('result' => $result));
                         $destinataire = $ongoingPack->getInitial()->getEmail();
-                        $headers = "From: \"".$this->getContainer()->getParameter('sender')."\"<".$this->getContainer()->getParameter('sender').">\n";
-                        $headers .= "Reply-To: ".$this->getContainer()->getParameter('sender')."\n";
+                        $headers = "From: \"".$email."\"<".$email.">\n";
+                        $headers .= "Reply-To: ".$email."\n";
                         $headers .= "Content-Type: text/html; charset=\"iso-8859-1\"";
                         mail($destinataire,$sujet,$message,$headers); 
 
                     } else if($ongoingPack->getPackType() == Pack::FOOD_BODY || $ongoingPack->getPackType() == Pack::THEMES){
-                        
+
                         $result = new Result();
                         $result->setPack($ongoingPack);
                         $result->setCreatedAt(new \DateTime('now'));
@@ -172,8 +173,8 @@ class PackDurationCommand extends ContainerAwareCommand
                         $sujet = 'David costa : Bilan à 4 semaines';
                         $message = $this->getContainer()->get('templating')->render('AppBundle:Emails:mailAtFourWeeks.html.twig', array('result' => $result));
                         $destinataire = $ongoingPack->getInitial()->getEmail();
-                        $headers = "From: \"".$this->getContainer()->getParameter('sender')."\"<".$this->getContainer()->getParameter('sender').">\n";
-                        $headers .= "Reply-To: ".$this->getContainer()->getParameter('sender')."\n";
+                        $headers = "From: \"".$email."\"<".$email.">\n";
+                        $headers .= "Reply-To: ".$email."\n";
                         $headers .= "Content-Type: text/html; charset=\"iso-8859-1\"";
                         mail($destinataire,$sujet,$message,$headers);
                     }
