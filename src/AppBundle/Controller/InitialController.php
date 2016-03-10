@@ -77,6 +77,8 @@ class InitialController extends Controller
                         $headers .= "Reply-To: ".$this->container->getParameter('sender_app')."\n";
                         $headers .= "Content-Type: text/html; charset=\"iso-8859-1\"";
                         mail($destinataire,$sujet,$message,$headers);
+
+                        $pack->setStartedAt($startAt);
                     }                    
                 }
                 $em = $this->getDoctrine()->getManager();
