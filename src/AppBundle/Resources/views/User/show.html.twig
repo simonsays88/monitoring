@@ -70,24 +70,26 @@
         </tr>
             {% for pack in user.packs %}
                 {% for result in pack.results %}
-                    <tr>
-                        <td>{{ result.createdAt|date('d/m/Y') }}</td>
-                        <td>
-                            {% if result.photoFront is not null %}
-                                <img width = "100px" src="{{ asset('uploads/photos/' ~ result.photoFront) }}" />
-                            {% endif %}            
-                        </td>
-                        <td>
-                            {% if result.photoSide is not null %}
-                                <img width = "100px" src="{{ asset('uploads/photos/' ~ result.photoSide) }}" />
-                            {% endif %}                
-                        </td>
-                        <td>
-                            {% if result.photoBack is not null %}
-                                <img width = "100px" src="{{ asset('uploads/photos/' ~ result.photoBack) }}" />
-                            {% endif %}                
-                        </td>
-                    </tr>
+                    {% if resul.resultType == constant('AppBundle\Entity\\Result::ESTHETIC') %}
+                        <tr>
+                            <td>{{ result.createdAt|date('d/m/Y') }}</td>
+                            <td>
+                                {% if result.photoFront is not null %}
+                                    <img width = "100px" src="{{ asset('uploads/photos/' ~ result.photoFront) }}" />
+                                {% endif %}            
+                            </td>
+                            <td>
+                                {% if result.photoSide is not null %}
+                                    <img width = "100px" src="{{ asset('uploads/photos/' ~ result.photoSide) }}" />
+                                {% endif %}                
+                            </td>
+                            <td>
+                                {% if result.photoBack is not null %}
+                                    <img width = "100px" src="{{ asset('uploads/photos/' ~ result.photoBack) }}" />
+                                {% endif %}                
+                            </td>
+                        </tr>
+                    {% endif %}
             {% endfor %}
         {% endfor %}
 
