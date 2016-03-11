@@ -44,7 +44,8 @@ class PackDurationCommand extends ContainerAwareCommand
             $ongoingPack->setDaysLeft($daysLeft);
             // one week before
             $nbDaysPassed = $ongoingPack->getNbDays() - $daysLeft + 7;
-            $email = ($ongoingPack->getPackType() == Pack::THEMES ) ? $this->getContainer()->getParameter('sender_themes') : $this->getContainer()->getParameter('sender_custom');
+
+            $email = ($ongoingPack->getPackType() == Pack::THEME) ? $this->getContainer()->getParameter('sender_themes') : $this->getContainer()->getParameter('sender_custom');
 
             // Fin du pack (dernier bilan)
             if ($ongoingPack->getDaysLeft() == 7) {
@@ -161,7 +162,7 @@ class PackDurationCommand extends ContainerAwareCommand
                         $headers .= "Content-Type: text/html; charset=\"iso-8859-1\"";
                         mail($destinataire,$sujet,$message,$headers); 
 
-                    } else if($ongoingPack->getPackType() == Pack::FOOD_BODY || $ongoingPack->getPackType() == Pack::THEMES){
+                    } else if($ongoingPack->getPackType() == Pack::FOOD_BODY || $ongoingPack->getPackType() == Pack::THEME){
 
                         $result = new Result();
                         $result->setPack($ongoingPack);

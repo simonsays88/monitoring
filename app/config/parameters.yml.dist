@@ -16,7 +16,7 @@ parameters:
     mailer_password:   ~
     host: monitoring.local
     sender_themes: suivi@davidcosta.fr
-    sender_cutom: contact@davidcosta.fr
+    sender_custom: contact@davidcosta.fr
     sender_app: appli@davidcosta.fr
 
 

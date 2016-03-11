@@ -42,7 +42,7 @@ class ReminderCommand extends ContainerAwareCommand
         //Reminder four weeks result with 3 days late
         foreach ($results as $result) {
 
-            $email = ($result->getPack()->getPackType() == Pack::THEMES ) ? $this->getContainer()->getParameter('sender_themes') : $this->getContainer()->getParameter('sender_custom');
+            $email = ($result->getPack()->getPackType() == Pack::THEME ) ? $this->getContainer()->getParameter('sender_themes') : $this->getContainer()->getParameter('sender_custom');
             $sujet = 'David costa : Rappel bilan à 4 semaines';
             $message = $this->getContainer()->get('templating')->render('AppBundle:Emails:reminderFourWeeksSinceThreeDays.html.twig', array('result' => $result));
             $destinataire = $result->getPack()->getInitial()->getEmail();
@@ -60,7 +60,7 @@ class ReminderCommand extends ContainerAwareCommand
             foreach ($results as $result) {
             if ($result->getPack()->getDaysLeft() > 24) {
 
-            $email = ($result->getPack()->getPackType() == Pack::THEMES ) ? $this->getContainer()->getParameter('sender_themes') : $this->getContainer()->getParameter('sender_custom');
+            $email = ($result->getPack()->getPackType() == Pack::THEME ) ? $this->getContainer()->getParameter('sender_themes') : $this->getContainer()->getParameter('sender_custom');
             $sujet = 'David costa : Rappel bilan à 4 semaines';
             $message = $this->getContainer()->get('templating')->render('AppBundle:Emails:reminderFourWeeksSinceSevenDays.html.twig', array('result' => $result));
             $destinataire = $result->getPack()->getInitial()->getEmail();
@@ -78,7 +78,7 @@ class ReminderCommand extends ContainerAwareCommand
         foreach ($results as $result) {
             if ($result->getPack()->getDaysLeft() > 24) {
 
-            $email = ($result->getPack()->getPackType() == Pack::THEMES ) ? $this->getContainer()->getParameter('sender_themes') : $this->getContainer()->getParameter('sender_custom');
+            $email = ($result->getPack()->getPackType() == Pack::THEME) ? $this->getContainer()->getParameter('sender_themes') : $this->getContainer()->getParameter('sender_custom');
             $sujet = 'David costa : Rappel bilan à 4 semaines';
             $message = $this->getContainer()->get('templating')->render('AppBundle:Emails:reminderFourWeeksSinceTwoWeeks.html.twig', array('result' => $result));
             $destinataire = $result->getPack()->getInitial()->getEmail();
@@ -95,7 +95,7 @@ class ReminderCommand extends ContainerAwareCommand
         //Reminder esthetic result with 7 days late
         foreach ($results as $result) {
 
-            $email = ($result->getPack()->getPackType() == Pack::THEMES ) ? $this->getContainer()->getParameter('sender_themes') : $this->getContainer()->getParameter('sender_custom');
+            $email = ($result->getPack()->getPackType() == Pack::THEME ) ? $this->getContainer()->getParameter('sender_themes') : $this->getContainer()->getParameter('sender_custom');
             $sujet = 'David costa : Rappel bilan à 3 mois';
             $message = $this->getContainer()->get('templating')->render('AppBundle:Emails:reminderEstheticSinceSevenDays.html.twig', array('result' => $result));
             $destinataire = $result->getPack()->getInitial()->getEmail();
