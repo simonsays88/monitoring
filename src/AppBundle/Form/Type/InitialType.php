@@ -16,7 +16,8 @@ class InitialType extends AbstractType {
     public function buildForm(FormBuilderInterface $builder, array $options) {
 
         $builder
-                ->add('name', null, array('required' => true))
+                ->add('firstname', null, array('required' => true))
+                ->add('lastname', null, array('required' => true))
                 ->add('address', null, array('required' => true))
                 ->add('zipCode', null, array('required' => true))
                 ->add('phoneMobile', null, array('required' => true))

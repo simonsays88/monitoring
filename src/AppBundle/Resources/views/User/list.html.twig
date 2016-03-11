@@ -15,7 +15,7 @@
         </tr>
         {% for user in users %}    
             <tr>
-                <td>{{ user.name }}</td>
+                <td>{{ user.firstname }} {{ user.lastname }}</td>
                 <td><a href="mailto:{{ user.email }}">{{ user.email }}</a></td>
                 <td>
                     {% for pack in user.packs %}
