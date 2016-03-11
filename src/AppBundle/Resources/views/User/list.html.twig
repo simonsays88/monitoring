@@ -28,7 +28,9 @@
                     <p><a href="{{ path('initial', {'userId':user.userId}) }}" class="link">Bilan Initial</a><p>
                     {% for pack in user.packs %}
                         {% for result in pack.results %}
+                            {% if result.resultType == constant('AppBundle\Entity\\Result::ESTHETIC') %}
                             <p><a href="{{ path('results', {'resultId': result.id}) }}" class="link">Bilan {{ result.createdAt|date('d/m/Y') }}</a><p>
+                            {% endif %}
                         {% endfor %}
                     {% endfor %}
                 </td>
