@@ -27,21 +27,20 @@
             <td>{{ user.arms}}</td>
             <td>{{ user.thighs}}</td>
         </tr>
-        <tr>
             {% for pack in user.packs %}
                 {% for result in pack.results %}
-                    <td>{{ result.createdAt|date('d/m/Y') }}</td>
-                    <td>{{ result.weight}}</td>
-                    <td>{{ result.imc}}</td>
-                    <td>{{ result.shoulders}}</td>
-                    <td>{{ result.pectorals}}</td>
-                    <td>{{ result.hipSize}}</td>
-                    <td>{{ result.arms}}</td>
-                    <td>{{ result.thighs}}</td>
-                
+                    <tr>
+                        <td>{{ result.createdAt|date('d/m/Y') }}</td>
+                        <td>{{ result.weight}}</td>
+                        <td>{{ result.imc}}</td>
+                        <td>{{ result.shoulders}}</td>
+                        <td>{{ result.pectorals}}</td>
+                        <td>{{ result.hipSize}}</td>
+                        <td>{{ result.arms}}</td>
+                        <td>{{ result.thighs}}</td>
+                    </tr>
             {% endfor %}
         {% endfor %}
-        </tr>
     </table>
 
     <table border="1" style="width:100%">
@@ -69,29 +68,28 @@
                 {% endif %}                
             </td>
         </tr>
-        <tr>
             {% for pack in user.packs %}
                 {% for result in pack.results %}
-                    <td>{{ result.createdAt|date('d/m/Y') }}</td>
-                    <td>
-                        {% if result.photoFront is not null %}
-                            <img width = "100px" src="{{ asset('uploads/photos/' ~ result.photoFront) }}" />
-                        {% endif %}            
-                    </td>
-                    <td>
-                        {% if result.photoSide is not null %}
-                            <img width = "100px" src="{{ asset('uploads/photos/' ~ result.photoSide) }}" />
-                        {% endif %}                
-                    </td>
-                    <td>
-                        {% if result.photoBack is not null %}
-                            <img width = "100px" src="{{ asset('uploads/photos/' ~ result.photoBack) }}" />
-                        {% endif %}                
-                    </td>
-
+                    <tr>
+                        <td>{{ result.createdAt|date('d/m/Y') }}</td>
+                        <td>
+                            {% if result.photoFront is not null %}
+                                <img width = "100px" src="{{ asset('uploads/photos/' ~ result.photoFront) }}" />
+                            {% endif %}            
+                        </td>
+                        <td>
+                            {% if result.photoSide is not null %}
+                                <img width = "100px" src="{{ asset('uploads/photos/' ~ result.photoSide) }}" />
+                            {% endif %}                
+                        </td>
+                        <td>
+                            {% if result.photoBack is not null %}
+                                <img width = "100px" src="{{ asset('uploads/photos/' ~ result.photoBack) }}" />
+                            {% endif %}                
+                        </td>
+                    </tr>
             {% endfor %}
         {% endfor %}
-        </tr>
 
     </table>
 {% endblock %}
