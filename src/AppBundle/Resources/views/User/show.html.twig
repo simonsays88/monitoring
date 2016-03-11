@@ -70,7 +70,7 @@
         </tr>
             {% for pack in user.packs %}
                 {% for result in pack.results %}
-                    {% if resul.resultType == constant('AppBundle\Entity\\Result::ESTHETIC') %}
+                    {% if result.resultType == constant('AppBundle\Entity\\Result::ESTHETIC') %}
                         <tr>
                             <td>{{ result.createdAt|date('d/m/Y') }}</td>
                             <td>
