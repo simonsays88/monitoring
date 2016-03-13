@@ -63,6 +63,8 @@ class ResultsController extends Controller
                     $em = $this->getDoctrine()->getManager();
                     $em->persist($result);
                     $em->flush();
+                    
+                    return $this->render('AppBundle:Results:success.html.twig');
                 }
                 return $this->render('AppBundle:Results:edit.html.twig', array(
                             'form' => $form->createView()

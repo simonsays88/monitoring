@@ -18,7 +18,7 @@
             <td>Cuisse</td>
         </tr>
         <tr>
-            <td>Initial</td>
+            <td><a href="{{ path('initial', {'userId':user.userId}) }}" class="link">Initial</a></td>
             <td>{{ user.weight}}</td>
             <td>{{ user.imc}}</td>
             <td>{{ user.shoulders}}</td>
@@ -30,7 +30,7 @@
             {% for pack in user.packs %}
                 {% for result in pack.results %}
                     <tr>
-                        <td>{{ result.createdAt|date('d/m/Y') }}</td>
+                        <td><a href="{{ path('results', {'resultId': result.id}) }}">{{ result.createdAt|date('d/m/Y') }}</a></td>
                         <td>{{ result.weight}}</td>
                         <td>{{ result.imc}}</td>
                         <td>{{ result.shoulders}}</td>
@@ -51,7 +51,7 @@
             <td>Photo Dos</td>
         </tr>
         <tr>
-            <td>Initial</td>
+            <td><a href="{{ path('initial', {'userId':user.userId}) }}" class="link">Initial</a></td>
             <td>
                 {% if user.photoFront is not null %}
                     <img width = "100px" src="{{ asset('uploads/photos/' ~ user.photoFront) }}" />
@@ -70,9 +70,9 @@
         </tr>
             {% for pack in user.packs %}
                 {% for result in pack.results %}
-                    {% if result.resultType == constant('AppBundle\Entity\\Result::ESTHETIC') %}
+                    {% if result.resultType == constant('AppBundle\\Entity\\Result::ESTHETIC') %}
                         <tr>
-                            <td>{{ result.createdAt|date('d/m/Y') }}</td>
+                            <td><a href="{{ path('results', {'resultId': result.id}) }}">{{ result.createdAt|date('d/m/Y') }}</a></td>
                             <td>
                                 {% if result.photoFront is not null %}
                                     <img width = "100px" src="{{ asset('uploads/photos/' ~ result.photoFront) }}" />
