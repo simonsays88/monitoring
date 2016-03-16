@@ -68,9 +68,9 @@
             </div>
 
             <div class="formSection">
-                <h3>Vos objectifs - vos disponibilités</h3>
+                <h3>Vos objectifs</h3>
                 <div class="questionContainer">
-                    <label for="objectives">Quels types d'entraînement faites vous, combien de fois par semaine et depuis quand ?</label>
+                    <label for="objectives">Quels attentes avez-vous de ce coaching ?</label>
                     {{ form_widget(form.objectives) }}
                 </div>    
 
@@ -97,11 +97,7 @@
                 <div class="questionContainer">
                     <label for="imc">Votre IMC est de :</label>
                     {{ form_widget(form.imc) }}
-                </div> 
-            </div>
-
-            <div class="formSection">
-                <h3>Compléments d'informations (uniquement pour suivi à distance)</h3>
+                </div>
                 <div class="halfElement">
                     <label for="shoulders">Epaules</label>
                     {{ form_widget(form.shoulders) }}
