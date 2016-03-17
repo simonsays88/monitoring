@@ -30,8 +30,10 @@ class PackDurationCommand extends ContainerAwareCommand
             ->findBy(array('status' => Pack::STATUS_NEW));
 
         foreach ($newPacks as $newPack) {
-            if ($newPack->getStartedAt()->format('Y-m-d') == date('Y-m-d')) {
-                $newPack->setStatus(Pack::STATUS_ONGOING);
+            if($newPack->getStartedAt()){
+                if ($newPack->getStartedAt()->format('Y-m-d') == date('Y-m-d')) {
+                    $newPack->setStatus(Pack::STATUS_ONGOING);
+                }
             }
         }
 
