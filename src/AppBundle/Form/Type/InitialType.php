@@ -22,7 +22,7 @@ class InitialType extends AbstractType {
                 ->add('zipCode', null, array('required' => true))
                 ->add('phoneMobile', null, array('required' => true))
                 ->add('email', null, array('required' => true))
-                ->add('birthday', null, array('required' => true))
+                ->add('birthday', null, array('required' => true,'years' => range(1893, date('Y')),))
                 ->add('job', null, array('required' => true))
                 ->add('exercises', null, array('required' => true))
                 ->add('health', null, array('required' => true))
