@@ -71,7 +71,6 @@ class InitialController extends Controller
                     foreach ($initial->getPacks() as $pack) {
 
                         $email = ($pack->getPackType() == Pack::THEME) ? $this->container->getParameter('sender_themes') : $this->container->getParameter('sender_custom');
-                        var_dump($email);die();
                         $sujet = 'Préparation du pack';
                         $message = $this->renderView('AppBundle:Emails:packPreparation.html.twig', array('pack' => $pack));
                         $destinataire = $email;
