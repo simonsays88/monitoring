@@ -24,6 +24,11 @@ class PackStartCommand extends ContainerAwareCommand
                         new InputOption('pack_type_id', null, InputOption::VALUE_REQUIRED),
                         new InputOption('user_id', null, InputOption::VALUE_REQUIRED),
                         new InputOption('nb_days', null, InputOption::VALUE_REQUIRED),
+                        new InputOption('ebook', null, InputOption::VALUE_NONE),
+                        new InputOption('ebook_videos', null, InputOption::VALUE_NONE),
+                        new InputOption('ebook_double', null, InputOption::VALUE_NONE),
+                        new InputOption('ebook_tips', null, InputOption::VALUE_NONE),
+                        new InputOption('ebook_recipes', null, InputOption::VALUE_NONE),
                     )));
 
     }
