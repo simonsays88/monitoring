@@ -101,6 +101,41 @@ class Pack {
     private $daysLeft = 0;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="ebook_recipes", type="boolean")
+     */
+    private $ebookRecipes = 0;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="ebook_tips", type="boolean")
+     */
+    private $ebookTips = 0;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="ebook_double", type="boolean")
+     */
+    private $ebookBouble = 0;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="ebook", type="boolean")
+     */
+    private $ebook = 0;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="ebook_videos", type="boolean")
+     */
+    private $videos = 0;
+
+    /**
      * Get id
      *
      * @return integer
@@ -387,5 +422,125 @@ class Pack {
     public function getPackType()
     {
         return $this->pack_type;
+    }
+
+    /**
+     * Set ebookRecipes
+     *
+     * @param boolean $ebookRecipes
+     *
+     * @return Pack
+     */
+    public function setEbookRecipes($ebookRecipes)
+    {
+        $this->ebookRecipes = $ebookRecipes;
+
+        return $this;
+    }
+
+    /**
+     * Get ebookRecipes
+     *
+     * @return boolean
+     */
+    public function getEbookRecipes()
+    {
+        return $this->ebookRecipes;
+    }
+
+    /**
+     * Set ebookTips
+     *
+     * @param boolean $ebookTips
+     *
+     * @return Pack
+     */
+    public function setEbookTips($ebookTips)
+    {
+        $this->ebookTips = $ebookTips;
+
+        return $this;
+    }
+
+    /**
+     * Get ebookTips
+     *
+     * @return boolean
+     */
+    public function getEbookTips()
+    {
+        return $this->ebookTips;
+    }
+
+    /**
+     * Set ebookBouble
+     *
+     * @param boolean $ebookBouble
+     *
+     * @return Pack
+     */
+    public function setEbookBouble($ebookBouble)
+    {
+        $this->ebookBouble = $ebookBouble;
+
+        return $this;
+    }
+
+    /**
+     * Get ebookBouble
+     *
+     * @return boolean
+     */
+    public function getEbookBouble()
+    {
+        return $this->ebookBouble;
+    }
+
+    /**
+     * Set ebook
+     *
+     * @param boolean $ebook
+     *
+     * @return Pack
+     */
+    public function setEbook($ebook)
+    {
+        $this->ebook = $ebook;
+
+        return $this;
+    }
+
+    /**
+     * Get ebook
+     *
+     * @return boolean
+     */
+    public function getEbook()
+    {
+        return $this->ebook;
+    }
+
+    /**
+     * Set videos
+     *
+     * @param boolean $videos
+     *
+     * @return Pack
+     */
+    public function setVideos($videos)
+    {
+        $this->videos = $videos;
+
+        return $this;
+    }
+
+    /**
+     * Get videos
+     *
+     * @return boolean
+     */
+    public function getVideos()
+    {
+        return $this->videos;
     }
 }
