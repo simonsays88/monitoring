@@ -5,7 +5,6 @@
 {% block pageClass %}userEvolution{% endblock %}
 
 {% block body %}
-
     <table border="1" style="width:100%">
         <tr>
             <td>Bilan</td>
@@ -94,4 +93,6 @@
         {% endfor %}
 
     </table>
+    <div class="links"><a href="{{ path('user_list') }}" class="btn">Listing client</a></div>
+
 {% endblock %}
