@@ -119,7 +119,7 @@ class Pack {
      *
      * @ORM\Column(name="ebook_double", type="boolean")
      */
-    private $ebookBouble = 0;
+    private $ebookDouble = 0;
 
     /**
      * @var boolean
@@ -131,7 +131,7 @@ class Pack {
     /**
      * @var boolean
      *
-     * @ORM\Column(name="ebook_videos", type="boolean")
+     * @ORM\Column(name="videos", type="boolean")
      */
     private $videos = 0;
 
@@ -472,29 +472,6 @@ class Pack {
         return $this->ebookTips;
     }
 
-    /**
-     * Set ebookBouble
-     *
-     * @param boolean $ebookBouble
-     *
-     * @return Pack
-     */
-    public function setEbookBouble($ebookBouble)
-    {
-        $this->ebookBouble = $ebookBouble;
-
-        return $this;
-    }
-
-    /**
-     * Get ebookBouble
-     *
-     * @return boolean
-     */
-    public function getEbookBouble()
-    {
-        return $this->ebookBouble;
-    }
 
     /**
      * Set ebook
@@ -542,5 +519,29 @@ class Pack {
     public function getVideos()
     {
         return $this->videos;
+    }
+
+    /**
+     * Set ebookDouble
+     *
+     * @param boolean $ebookDouble
+     *
+     * @return Pack
+     */
+    public function setEbookDouble($ebookDouble)
+    {
+        $this->ebookDouble = $ebookDouble;
+
+        return $this;
+    }
+
+    /**
+     * Get ebookDouble
+     *
+     * @return boolean
+     */
+    public function getEbookDouble()
+    {
+        return $this->ebookDouble;
     }
 }

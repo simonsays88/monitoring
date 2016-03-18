@@ -25,7 +25,7 @@ class PackStartCommand extends ContainerAwareCommand
                         new InputOption('user_id', null, InputOption::VALUE_REQUIRED),
                         new InputOption('nb_days', null, InputOption::VALUE_REQUIRED),
                         new InputOption('ebook', null, InputOption::VALUE_NONE),
-                        new InputOption('ebook_videos', null, InputOption::VALUE_NONE),
+                        new InputOption('videos', null, InputOption::VALUE_NONE),
                         new InputOption('ebook_double', null, InputOption::VALUE_NONE),
                         new InputOption('ebook_tips', null, InputOption::VALUE_NONE),
                         new InputOption('ebook_recipes', null, InputOption::VALUE_NONE),
@@ -73,14 +73,14 @@ class PackStartCommand extends ContainerAwareCommand
                 $send = true;
                 $weekDay = date('w');
                 $date = new \DateTime();
-            if ($weekDay < 5) {
-                $ndDaysUntilNextMonday = 8 - $weekDay;
-                $startAt = $date->add(new \DateInterval('P' . $ndDaysUntilNextMonday . 'D'));
-            } else {
-                $ndDaysUntilNextNextMonday = 15 - $weekDay;
-                $startAt = $date->add(new \DateInterval('P' . $ndDaysUntilNextNextMonday . 'D'));
+                if ($weekDay < 5) {
+                    $ndDaysUntilNextMonday = 8 - $weekDay;
+                    $startAt = $date->add(new \DateInterval('P' . $ndDaysUntilNextMonday . 'D'));
+                } else {
+                    $ndDaysUntilNextNextMonday = 15 - $weekDay;
+                    $startAt = $date->add(new \DateInterval('P' . $ndDaysUntilNextNextMonday . 'D'));
+                }
             }
-        }
         $pack = new Pack();
         $pack->setUserId($input->getOption('user_id'));
         $pack->setPackTypeId($pack_type_id);
@@ -92,6 +92,21 @@ class PackStartCommand extends ContainerAwareCommand
         $pack->setStartedAt($startAt);
         $pack->setStatus('new');
         $pack->setPackType($pack_type);
+        if($input->getOption('ebook')){
+            $pack->setEbook(true);
+        }
+        if($input->getOption('videos')){
+            $pack->setVideos(true);
+        }
+        if($input->getOption('ebook_double')){
+            $pack->setEbookDouble(true);
+        }
+        if($input->getOption('ebook_tips')){
+            $pack->setEbookTips(true);
+        }
+        if($input->getOption('ebook_recipes')){
+            $pack->setEbookRecipes(true);
+        }
         $em->persist($pack);
         $em->flush();
 
