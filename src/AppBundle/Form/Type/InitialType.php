@@ -11,6 +11,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 
+
 class InitialType extends AbstractType {
 
     public function buildForm(FormBuilderInterface $builder, array $options) {
@@ -25,6 +26,7 @@ class InitialType extends AbstractType {
                 ->add('birthday', null, array('required' => true,'years' => range(1893, date('Y')),))
                 ->add('job', null, array('required' => true))
                 ->add('exercises', null, array('required' => true))
+                ->add('practiceLocation', null, array('required' => true))
                 ->add('health', null, array('required' => true))
                 ->add('treatment', null, array('required' => true))
                 ->add('smoker', null, array('required' => true))
@@ -52,13 +54,17 @@ class InitialType extends AbstractType {
                 ->add('trainingTime', null, array('required' => true))
                 ->add('diet', null, array('required' => true))
                 ->add('note', null, array('required' => true))
-                ->add('homemadeFood', null, array('required' => false))
+                ->add('homemadeFood', ChoiceType::class, array(
+                    'choices'  => array(
+                    'Yes' => true,
+                    'No' => false,
+                    ),'required' => true
+                ))
                 ->add('restaurant', null, array('required' => true))
                 ->add('photoFront', FileType::class, array('data_class' => null, 'required' => is_null($builder->getData()->getPhotoFront())))
                 ->add('photoSide', FileType::class, array('data_class' => null, 'required' => is_null($builder->getData()->getPhotoSide())))
                 ->add('photoBack', FileType::class, array('data_class' => null, 'required' => is_null($builder->getData()->getPhotoBack())))
         ;
-
     }
 
     public function configureOptions(OptionsResolver $resolver) {

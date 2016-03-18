@@ -4,14 +4,21 @@
 {% block headingTitle %}Bilan Initial{% endblock %}
 {% block pageClass %}initForm{% endblock %}
 
+{% set pack = initial.packs.first() %}
+
 {% block body %}
 
 <div class="confirmationMessage">
   <h2>MERCI !</h2>
+  {% if pack.packType == 'themes' %}
     <p>Ton bilan initial m'a bien été transmis. Je prépare ton pack et te transmet toutes les infos pour commencer ton entrainement rapidement.
         Bon courage !</p>
+  {% else %}
+    <p>Ton bilan initial m'a bien été transmis, je te remercie! Je prépare ton pack vendredi et te transmet toutes les infos pour commencer ton entrainement.
+        Bon courage !</p>
+  {% endif %}
 
-    <a href="http://www.davidcosta.fr" target="_blank" class="btn bigBtn">Retourner sur COSTAFITNESS.FR</a>
+    <a href="http://www.davidcosta.fr/blog/" target="_blank" class="btn bigBtn">Lire les conseils de David sur son blog</a>
 </div>
 
 {% endblock %}

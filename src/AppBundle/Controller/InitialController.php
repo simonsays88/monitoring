@@ -71,7 +71,7 @@ class InitialController extends Controller
                     foreach ($initial->getPacks() as $pack) {
 
                         $email = ($pack->getPackType() == Pack::THEME) ? $this->container->getParameter('sender_themes') : $this->container->getParameter('sender_custom');
-                        $sujet = 'Préparation du pack';
+                        $sujet = 'Bilan pack complété';
                         $message = $this->renderView('AppBundle:Emails:packPreparation.html.twig', array('pack' => $pack));
                         $destinataire = $email;
                         $headers = "From: \"".$this->container->getParameter('sender_app')."\"<".$this->container->getParameter('sender_app').">\n";
@@ -87,14 +87,15 @@ class InitialController extends Controller
                 $em->flush();
 
 
-                return $this->render('AppBundle:Initial:success.html.twig');
+                return $this->render('AppBundle:Initial:success.html.twig', array('initial' => $initial));
             }
 
 
             return $this->render('AppBundle:Initial:edit.html.twig',
                     array(
                     'user_id' => $userId,
-                    'form' => $form->createView()
+                    'form' => $form->createView(),
+                    'initial' => $initialEntity
             ));
         } else {
             return new Response('Bilan introuvable', 500);

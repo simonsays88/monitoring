@@ -92,7 +92,7 @@ class PackStartCommand extends ContainerAwareCommand
 
         if ($send) {
             $email = ($pack_type == Pack::THEME) ? $this->getContainer()->getParameter('sender_themes') : $this->getContainer()->getParameter('sender_custom');
-            $sujet = 'Préparation du pack';
+            $sujet = 'Bilan pack complété';
             $message = $this->getContainer()->get('templating')->render('AppBundle:Emails:packPreparation.html.twig', array('pack' => $pack));
             $destinataire = $email;
             $headers = "From: \"" . $this->getContainer()->getParameter('sender_app') . "\"<" . $this->getContainer()->getParameter('sender_app') . ">\n";

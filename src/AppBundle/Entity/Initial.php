@@ -254,6 +254,13 @@ class Initial {
     private $note;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="practice_location", type="text", nullable=true)
+     */
+    private $practiceLocation;
+
+    /**
      * @var bool
      *
      * @ORM\Column(name="homemade_food", type="boolean", nullable=true)
@@ -1214,5 +1221,29 @@ class Initial {
     public function getLastname()
     {
         return $this->lastname;
+    }
+
+    /**
+     * Set practiceLocation
+     *
+     * @param string $practiceLocation
+     *
+     * @return Initial
+     */
+    public function setPracticeLocation($practiceLocation)
+    {
+        $this->practiceLocation = $practiceLocation;
+
+        return $this;
+    }
+
+    /**
+     * Get practiceLocation
+     *
+     * @return string
+     */
+    public function getPracticeLocation()
+    {
+        return $this->practiceLocation;
     }
 }

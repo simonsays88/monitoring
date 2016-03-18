@@ -1,11 +1,12 @@
 {% extends 'base.html.twig' %}
+{% set pack = initial.packs.first() %}
 
 {% block pageTitle %}CostaFitness : Bilan initial pack musculation{% endblock %}
-{% block headingTitle %}Bilan Initial{% endblock %}
+{% block headingTitle %}Bilan Initial ({{pack.packName}}){% endblock %}
 {% block pageClass %}initForm{% endblock %}
 
-{% block body %}
 
+{% block body %}
     {{ form_start(form) }}
     <div class="initFormSection halfElement">
         <h2>Informations générales</h2>
@@ -48,6 +49,11 @@
                 <div class="questionContainer">
                     <label for="exercises">Quels types d'entraînement faites vous, combien de fois par semaine et depuis quand ?</label>
                     {{ form_widget(form.exercises) }}
+                </div>    
+
+                <div class="questionContainer">
+                    <label for="practiceLocation">Vous effecturez votre entrainement en salle ou à domicile ? Si à domicile merci de préciser le matériel dont vous disposez.</label>
+                    {{ form_widget(form.practiceLocation) }}
                 </div>    
 
                 <div class="questionContainer">
@@ -99,22 +105,22 @@
                     {{ form_widget(form.imc) }}
                 </div>
                 <div class="halfElement">
-                    <label for="shoulders">Epaules</label>
+                    <label for="shoulders">Epaules (en cm)</label>
                     {{ form_widget(form.shoulders) }}
 
-                    <label for="pectorals">Pectoraux / poitrine</label>
+                    <label for="pectorals">Pectoraux / poitrine (en cm)</label>
                     {{ form_widget(form.pectorals) }}
 
-                    <label for="arms">Bras contracté</label>
+                    <label for="arms">Bras contracté (en cm)</label>
                     {{ form_widget(form.arms) }}
                 </div>
 
                 <div class="halfElement">
 
-                    <label for="thighs">Cuisse</label>
+                    <label for="thighs">Cuisse (en cm)</label>
                     {{ form_widget(form.thighs) }}
 
-                    <label for="hipSize">Hanches</label>
+                    <label for="hipSize">Hanches (en cm)</label>
                     {{ form_widget(form.hipSize) }}
                 </div>
 
@@ -173,7 +179,7 @@
             <div class="formSection">
                 <h3>Votre alimentation actuelle</h3>
                 <div class="questionContainer">
-                    <label for="diet"> Indiquez moi les horaires de vos repas et collations sur une journée et tout ce que vous mangez (Petit déjeuner - Collation matin - déjeuner - Collation soir - dîner)</label>
+                    <label for="diet"> Indiquez moi les <b>horaires</b> de vos repas et collations sur une journée et <b>tout ce que vous mangez</b> (Petit déjeuner - Collation matin - déjeuner - Collation soir - dîner)</label>
                     {{ form_widget(form.diet) }}
                 </div>    
 

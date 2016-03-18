@@ -709,9 +709,8 @@
 
 
                                                                 <p class="p1" style="text-align: justify;"><span style="color:#333333"><span class="s1">
-																Nom du poulain :  <span style="font-weight:bold">{{ pack.initial.firstname}} {{ pack.initial.lastname}}</span><br>
+																Nom :  <span style="font-weight:bold">{{ pack.initial.firstname}} {{ pack.initial.lastname}}</span><br>
 																Pack choisi : <span style="font-weight:bold">{{ pack.packName }}</span><br>
-																Début du pack : <span style="font-weight:bold">{{ pack.startedAt|date("d/m/Y") }}</span><br>
 
 
 													 &nbsp;	</span></span></p>
@@ -755,7 +754,7 @@
                                                                         <td align="center" valign="middle" class="mcnButtonContent" style="font-family: Arial; font-size: 12px; padding: 18px;">
 
 
-                                                                            <a class="mcnButton" href="{{ url('initial', {'userId':pack.initial.userId}) }}" target="_blank" style="font-weight: normal;letter-spacing: normal;line-height: 100%;text-align: center;text-decoration: none;color: #FFFFFF;">Voir son bilan esthétique initial</a>
+                                                                            <a class="mcnButton" href="{{ url('initial', {'userId':pack.initial.userId}) }}" target="_blank" style="font-weight: normal;letter-spacing: normal;line-height: 100%;text-align: center;text-decoration: none;color: #FFFFFF;">Accèder à son bilan</a>
                                                                         </td>
                                                                     </tr>
                                                                     </tbody>
