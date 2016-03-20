@@ -19,7 +19,7 @@
                 <td><a href="mailto:{{ user.email }}">{{ user.email }}</a></td>
                 <td>
                     {% for pack in user.packs %}
-                        {% if pack.status == 'ongoing' %}
+                        {% if pack.status != 'ongoing' %}
                             {{ pack.packName }}
                         {% endif %}
                     {% endfor %}
