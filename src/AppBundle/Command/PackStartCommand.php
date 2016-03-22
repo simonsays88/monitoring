@@ -67,6 +67,7 @@ class PackStartCommand extends ContainerAwareCommand
             if (!$initial) {
                 $initial = new Initial();
                 $initial->setUserId($input->getOption('user_id'));
+                $initial->setCreatedAt(new \DateTime());
                 $em->persist($initial);
                 $em->flush();
             } else {
