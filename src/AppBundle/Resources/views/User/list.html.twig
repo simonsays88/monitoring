@@ -10,6 +10,7 @@
             <td>Nom & Prénom</td>
             <td>Mail</td>
             <td>Pack en cours</td> 
+            <td>Options</td> 
             <td>Bilans</td>
             <td>Evolution</td>
         </tr>
@@ -19,8 +20,17 @@
                 <td><a href="mailto:{{ user.email }}">{{ user.email }}</a></td>
                 <td>
                     {% for pack in user.packs %}
-                        {% if pack.status != 'new' %}
+                        {% if loop.last and pack.status != 'new' %}
                             {{ pack.packName }}
+                        {% endif %}
+                    {% endfor %}
+                </td>
+                <td>
+                    {% for pack in user.packs %}
+                        {% if loop.last and pack.status != 'new' %}
+                            {% for option in pack.options %}
+                                <p>{{option}}</p>
+                            {% endfor %}
                         {% endif %}
                     {% endfor %}
                 </td>

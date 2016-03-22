@@ -2,7 +2,7 @@
 {% set pack = initial.packs.first() %}
 
 {% block pageTitle %}CostaFitness : Bilan initial pack musculation{% endblock %}
-{% block headingTitle %}Bilan Initial ({{pack.packName}}){% endblock %}
+{% block headingTitle %}Bilan Initial{% endblock %}
 {% block pageClass %}initForm{% endblock %}
 
 
@@ -120,7 +120,7 @@
                     <label for="thighs">Cuisse (en cm)</label>
                     {{ form_widget(form.thighs) }}
 
-                    <label for="hipSize">Hanches (en cm)</label>
+                    <label for="hipSize">Tour de taille (en cm)</label>
                     {{ form_widget(form.hipSize) }}
                 </div>
 
@@ -179,7 +179,7 @@
             <div class="formSection">
                 <h3>Votre alimentation actuelle</h3>
                 <div class="questionContainer">
-                    <label for="diet"> Indiquez moi les <b>horaires</b> de vos repas et collations sur une journée et <b>tout ce que vous mangez</b> (Petit déjeuner - Collation matin - déjeuner - Collation soir - dîner)</label>
+                    <label for="diet"> Indiquez moi les <b>horaires</b> de vos repas et collations sur une journée et <b>tout ce que vous mangez</b> sur un journée (Petit déjeuner - Collation matin - déjeuner - Collation soir - dîner)</label>
                     {{ form_widget(form.diet) }}
                 </div>    
 
@@ -205,6 +205,7 @@
     <div class="initFormSection halfElement">
         <h2>Vos photos</h2>
         <div class="content photoUpload">
+            <label for="photos"> Bras relâchés le long du corps, attitude naturelle, éclairage facilement reproductible.</label>
             <div class="thirdElement">
                 <h3>Photo bilan face</h3>
                 {{ form_widget(form.photoFront) }}

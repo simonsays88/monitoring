@@ -37,10 +37,10 @@
         <div class="content">
 
             <div class="halfElement">
-                <label for="weight">Poids en Kg</label>
+                <label for="weight">Poids en Kg (mesure initial {{form.vars.value.pack.initial.weight}}kg )</label>
                 {{ form_widget(form.weight) }}
 
-                <label for="hipSize">Taille de hanche en cm</label>
+                <label for="hipSize">Tour de taille en cm (mesure initial {{form.vars.value.pack.initial.hipSize}}cm )</label>
                 {{ form_widget(form.hipSize) }}
 
             </div>

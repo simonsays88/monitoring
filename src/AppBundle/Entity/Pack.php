@@ -544,4 +544,26 @@ class Pack {
     {
         return $this->ebookDouble;
     }
+
+    public function getOptions(){
+        $options = array();
+
+        if($this->getEbookRecipes()){
+            $options[] = "Ebook de recettes";
+        }
+        if($this->getEbookTips()){
+            $options[] = "Ebook d'astuces et menus types";
+        }
+        if($this->getEbook()){
+            $options[] = "Ebook";
+        }
+        if($this->getVideos()){
+            $options[] = "Vidéos";
+        }
+        if($this->getEbookDouble()){
+            $options[] = "Double Ebook";
+        }
+
+        return $options;
+    }
 }
