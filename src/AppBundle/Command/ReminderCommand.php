@@ -59,7 +59,7 @@ class ReminderCommand extends ContainerAwareCommand
         
             foreach ($results as $result) {
             if ($result->getPack()->getDaysLeft() > 24) {
-                var_dump('test');die();
+
             $email = ($result->getPack()->getPackType() == Pack::THEME) ? $this->getContainer()->getParameter('sender_themes') : $this->getContainer()->getParameter('sender_custom');
             $sujet = 'David costa : Rappel bilan à 4 semaines';
             $message = $this->getContainer()->get('templating')->render('AppBundle:Emails:reminderFourWeeksSinceSevenDays.html.twig', array('result' => $result));
