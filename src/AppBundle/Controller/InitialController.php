@@ -57,15 +57,6 @@ class InitialController extends Controller
                     $initial->setPhotoBack($initialPhotoBack);
                 }
                 if ($initial->getCompleted() == false) {
-                    $weekDay = date('w');
-                    $date = new \DateTime();
-                    if ($weekDay < 5) {
-                        $ndDaysUntilNextMonday = 8 - $weekDay;
-                        $startAt = $date->add(new \DateInterval('P'.$ndDaysUntilNextMonday.'D'));
-                    } else {
-                        $ndDaysUntilNextNextMonday = 15 - $weekDay;
-                        $startAt = $date->add(new \DateInterval('P'.$ndDaysUntilNextNextMonday.'D'));
-                    }
                     $initial->setCompleted(true);
 
                     foreach ($initial->getPacks() as $pack) {
@@ -77,9 +68,19 @@ class InitialController extends Controller
                         $headers = "From: \"".$this->container->getParameter('sender_app')."\"<".$this->container->getParameter('sender_app').">\n";
                         $headers .= "Reply-To: ".$this->container->getParameter('sender_app')."\n";
                         $headers .= "Content-Type: text/html; charset=\"iso-8859-1\"";
-                        mail($destinataire,$sujet,$message,$headers);
-
-                        $pack->setStartedAt($startAt);
+                        mail($destinataire, $sujet, $message, $headers);
+                        if ($pack->getPackType() == Pack::FOOD) {
+                            $weekDay = date('w');
+                            $date = new \DateTime();
+                            if ($weekDay < 5) {
+                                $ndDaysUntilNextMonday = 8 - $weekDay;
+                                $startAt = $date->add(new \DateInterval('P'.$ndDaysUntilNextMonday.'D'));
+                            } else {
+                                $ndDaysUntilNextNextMonday = 15 - $weekDay;
+                                $startAt = $date->add(new \DateInterval('P'.$ndDaysUntilNextNextMonday.'D'));
+                            }
+                            $pack->setStartedAt($startAt);
+                        }
                     }                    
                 }
                 $em = $this->getDoctrine()->getManager();

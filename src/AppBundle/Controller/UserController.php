@@ -6,8 +6,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-
-
+use AppBundle\Entity\Pack;
 
 class UserController extends Controller
 {
@@ -45,5 +44,30 @@ class UserController extends Controller
         } else {
             return new Response('Utilisateur introuvable', 500);
         }
+    }
+
+    /**
+     * @Route("/start-pack/{pack_id}", name="start_pack", requirements={"pack_id"="\d+"})
+     */
+    public function startPackAction(Request $request, $pack_id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $pack = $this->getDoctrine()
+            ->getRepository('AppBundle:Pack')
+            ->findOneById($pack_id);
+        
+        $weekDay = date('w');
+        $date = new \DateTime();
+        if ($weekDay == 1) {
+            $startAt = $date;
+            $pack->setStatus(Pack::STATUS_ONGOING);
+        } else {
+            $ndDaysUntilNextMonday = 8 - $weekDay;
+            $startAt = $date->add(new \DateInterval('P'.$ndDaysUntilNextMonday.'D'));
+        }
+        $pack->setStartedAt($startAt);
+        $em->flush();
+
+        return $this->redirectToRoute('user_list');
     }
 }
