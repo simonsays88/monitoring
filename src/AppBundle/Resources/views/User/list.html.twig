@@ -20,10 +20,10 @@
                 <td><a href="mailto:{{ user.email }}">{{ user.email }}</a></td>
                 <td>
                     {% for pack in user.packs %}
-                        {% if loop.last and pack.status != 'new' %}
-                            {{ pack.packName }}
+                        {% if loop.last %}
+                            <p>{{ pack.packName }}</p>
                         {% elseif pack.packType != "food" and pack.startedAt is null%}
-                            <a href="{{ path('start_pack', {'pack_id' : pack.id}) }}" >Démarrer : {{ pack.packName }} </a>
+                            <p><a href="{{ path('start_pack', {'pack_id' : pack.id}) }}" >Démarrer : {{ pack.packName }} </a></p>
                         {% endif %}
                     {% endfor %}
                 </td>
