@@ -22,8 +22,9 @@
                     {% for pack in user.packs %}
                         {% if loop.last %}
                             <p>{{ pack.packName }}</p>
-                        {% elseif pack.packType != "food" and pack.startedAt is null%}
-                            <p><a href="{{ path('start_pack', {'pack_id' : pack.id}) }}" >Démarrer : {{ pack.packName }} </a></p>
+                            {% if pack.packType != "food" and pack.startedAt is null %}
+                                <p><a href="{{ path('start_pack', {'pack_id' : pack.id}) }}" >Démarrer : {{ pack.packName }} </a></p>
+                            {% endif %}
                         {% endif %}
                     {% endfor %}
                 </td>
