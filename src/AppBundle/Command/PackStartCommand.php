@@ -110,6 +110,14 @@ class PackStartCommand extends ContainerAwareCommand
         if($input->getOption('ebook_recipes')){
             $pack->setEbookRecipes(true);
         }
+        $exercises = $this->getContainer()->get('doctrine')
+        ->getRepository("AppBundle:Exercise")
+        ->findAll();
+
+        foreach($exercises as $exercise){
+            $pack->addExercise($exercise);
+        }
+
         $em->persist($pack);
         $em->flush();
 
