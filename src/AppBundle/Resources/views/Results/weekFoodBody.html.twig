@@ -65,7 +65,7 @@ par exemple développé couché 6 x 50 Kg</label>
                 {% for exercise in form.resultExercise %}
                     <label for="resultExercise">{{ exercise.vars.data }}</label>
                     <div class="questionContainer">
-                        {{ form_widget(exercise.repetition) }} X {{ form_widget(exercise.value) }} {{ exercise.vars.data.exercise.unit }}
+                        {{ form_widget(exercise.repetition, { 'attr': {'class': 'small_input'} }) }} X {{ form_widget(exercise.value, { 'attr': {'class': 'small_input'} }) }} {{ exercise.vars.data.exercise.unit }}
                     </div>
                 {% endfor %}
             </div>
