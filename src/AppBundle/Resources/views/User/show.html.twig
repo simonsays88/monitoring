@@ -93,6 +93,17 @@
         {% endfor %}
 
     </table>
+        {% if performances is not null %}
+        <h2>Performances :</h2>
+            {% for key,exercise in performances %}
+                {{ key }} : 
+                {% for result in exercise %}
+                    <p>{{ result[0] }} X {{ result[1] }} {{ result[2] }}</p> 
+                {% endfor %}
+            {% endfor %}
+        {% endif %}
+        
+        
     <div class="links"><a href="{{ path('user_list') }}" class="btn">Listing client</a></div>
 
 {% endblock %}

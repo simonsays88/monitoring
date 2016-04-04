@@ -35,11 +35,21 @@ class UserController extends Controller
         $user = $this->getDoctrine()
             ->getRepository('AppBundle:Initial')
             ->findOneBy(array('userId' => $user_id));
+        $resultExercises = $this->getDoctrine()
+            ->getRepository('AppBundle:ResultExercise')
+            ->getAllResultExercisesByUser($user);
+
+        $performances = array();
+        foreach($resultExercises as $re){
+            $performances[$re->getExercise()->getName()][$re->getId()] = array( $re->getRepetition(), $re->getValue(), $re->getExercise()->getUnit());
+        }
+
         if ($user) {
             // replace this example code with whatever you need
             return $this->render('AppBundle:User:show.html.twig',
                     [
                     'user' => $user,
+                    'performances' => $performances
             ]);
         } else {
             return new Response('Utilisateur introuvable', 500);

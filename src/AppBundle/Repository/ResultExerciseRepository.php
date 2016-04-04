@@ -10,4 +10,18 @@ namespace AppBundle\Repository;
  */
 class ResultExerciseRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getAllResultExercisesByUser($user)
+    {
+        return $this->createQueryBuilder('re')
+                ->leftJoin('re.result', 'r')
+                ->leftJoin('r.pack', 'p')
+                ->leftJoin('p.initial', 'i')
+                ->where('i.id = :id')
+                ->setParameter('id', $user->getId())
+                ->getQuery()
+                ->getResult()
+            ;
+    }
+
+
 }
