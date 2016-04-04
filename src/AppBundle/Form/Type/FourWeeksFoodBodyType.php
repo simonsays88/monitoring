@@ -7,6 +7,8 @@ namespace AppBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use AppBundle\Form\Type\ResultExerciseType;
 
 class FourWeeksFoodBodyType extends AbstractType {
 
@@ -22,6 +24,7 @@ class FourWeeksFoodBodyType extends AbstractType {
                 ->add('physicalChange', null, array('required' => true))
                 ->add('hipSize', null, array('required' => true))
                 ->add('weight', null, array('required' => true))
+                ->add('resultExercise', CollectionType::class, array('entry_type' => ResultExerciseType::class))
         ;
     }
 

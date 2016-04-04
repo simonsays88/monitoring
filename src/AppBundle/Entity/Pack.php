@@ -136,6 +136,15 @@ class Pack {
     private $videos = 0;
 
     /**
+     * @ORM\ManyToMany(targetEntity="Exercise")
+     * @ORM\JoinTable(name="pack_exercise",
+     *      joinColumns={@ORM\JoinColumn(name="pack_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="exercise_id", referencedColumnName="id")}
+     *      )
+     */
+    private $exercises;
+
+    /**
      * Get id
      *
      * @return integer
@@ -565,5 +574,39 @@ class Pack {
         }
 
         return $options;
+    }
+
+    /**
+     * Add exercise
+     *
+     * @param \AppBundle\Entity\Exercise $exercise
+     *
+     * @return Pack
+     */
+    public function addExercise(\AppBundle\Entity\Exercise $exercise)
+    {
+        $this->exercises[] = $exercise;
+
+        return $this;
+    }
+
+    /**
+     * Remove exercise
+     *
+     * @param \AppBundle\Entity\Exercise $exercise
+     */
+    public function removeExercise(\AppBundle\Entity\Exercise $exercise)
+    {
+        $this->exercises->removeElement($exercise);
+    }
+
+    /**
+     * Get exercises
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getExercises()
+    {
+        return $this->exercises;
     }
 }

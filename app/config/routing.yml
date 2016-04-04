@@ -6,5 +6,5 @@ root:
     path: /
     defaults:
         _controller: FrameworkBundle:Redirect:redirect
-        route: user_list
+        route: pack_index
         permanent: true

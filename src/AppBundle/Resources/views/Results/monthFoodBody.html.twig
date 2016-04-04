@@ -66,10 +66,18 @@ RM ou drop set ou 3 RM :</label>
             <div class="formSection">
                 <div class="questionContainer">
                     <label for="performance">Performances (1 exercice par muscle avec le nombre de répétitions et le poids total) : 
-par exemple développé couché 6 x 50 Kg</label>
-                    {{ form_widget(form.performance) }}
+                        par exemple développé couché 6 x 50 Kg</label>
+                        {{ form_widget(form.performance) }}
                 </div>    
             </div> 
+            <div class="formSection">
+                {% for exercise in form.resultExercise %}
+                    <label for="resultExercise">{{ exercise.vars.data }}</label>
+                    <div class="questionContainer">
+                        {{ form_widget(exercise.repetition) }} X {{ form_widget(exercise.value) }} {{ exercise.vars.data.exercise.unit }}
+                    </div>
+                {% endfor %}
+            </div>
             <div class="formSection">
                 <div class="questionContainer">
                     <label for="recovery">Récupération et courbatures :</label>
@@ -79,6 +87,7 @@ par exemple développé couché 6 x 50 Kg</label>
         </div> 
     </div>
     <div class="submitContainer"><input type="submit" value="Envoyez votre bilan alimentaire" class="btn bigBtn"></div>
+
         {{ form_end(form) }}
 
 {% endblock %}

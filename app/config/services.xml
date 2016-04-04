@@ -8,6 +8,10 @@
             <argument type="service" id="doctrine.orm.default_entity_manager" />
             <argument type="service" id="templating"/>
         </service>
+        
+        <service id="app.listener.result" class="AppBundle\EventListener\ResultListener">
+            <tag name="doctrine.event_listener" event="postPersist" />
+        </service>
     </services>
 
 </container>

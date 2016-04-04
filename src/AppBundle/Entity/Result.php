@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use AppBundle\Entity\ResultExercise;
 
 /**
  * Result
@@ -191,7 +192,19 @@ class Result
      * @ORM\Column(name="questions", type="text", nullable=true)
      */
     private $questions;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="ResultExercise", mappedBy="result", cascade={"all"})
+     * */
+    protected $resultExercise;
 
+    protected $exercises;
+
+    public function __construct()
+    {
+        $this->resultExercise = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->exercises = new \Doctrine\Common\Collections\ArrayCollection();
+    }
     /**
      * Get id
      *
@@ -777,5 +790,72 @@ class Result
     public function getQuestions()
     {
         return $this->questions;
+    }
+
+    public function __toString()
+    {
+        return $this->id;
+    }
+
+    public function getExercise()
+    {
+        $exercises = new \Doctrine\Common\Collections\ArrayCollection();
+
+        foreach($this->resultExercise as $r)
+        {
+            $exercises[] = $r->getExercise();
+        }
+
+        return $exercises;
+    }
+
+    public function setExercise($exercises)
+    {
+        foreach($exercises as $r)
+        {
+            $re = new ResultExercise();
+
+            $re->setResult($this);
+            $re->setExercise($r);
+
+            $this->addResultExercise($re);
+        }
+
+    }
+
+    public function getResult()
+    {
+        return $this;
+    }
+
+    public function addResultExercise($resultExercise)
+    {
+        $this->resultExercise[] = $resultExercise;
+    }
+
+    public function removePo($resultExercise)
+    {
+        return $this->resultExercise->removeElement($resultExercise);
+    }
+
+
+    /**
+     * Remove resultExercise
+     *
+     * @param \AppBundle\Entity\ResultExercise $resultExercise
+     */
+    public function removeResultExercise(\AppBundle\Entity\ResultExercise $resultExercise)
+    {
+        $this->resultExercise->removeElement($resultExercise);
+    }
+
+    /**
+     * Get resultExercise
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getResultExercise()
+    {
+        return $this->resultExercise;
     }
 }

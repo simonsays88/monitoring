@@ -56,8 +56,8 @@ class InitialType extends AbstractType {
                 ->add('note', null, array('required' => true))
                 ->add('homemadeFood', ChoiceType::class, array(
                     'choices'  => array(
-                    'Yes' => true,
-                    'No' => false,
+                    'Oui' => true,
+                    'NON' => false,
                     ),'required' => true
                 ))
                 ->add('restaurant', null, array('required' => true))

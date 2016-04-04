@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+{% block pageTitle %}CostaFitness : Listing des utilisateurs{% endblock %}
+{% block headingTitle %}Listing des athlètes{% endblock %}
+{% block pageClass %}userList{% endblock %}
+
+{% block body %}
+
+    <table border="1" style="width:100%">
+        <tr>
+            <td>Nom & Prénom</td>
+            <td>Mail</td>
+            <td>Pack</td> 
+            <td>Options</td> 
+            <td>Bilans</td>
+            <td>Evolution</td>
+            <td>Exercices</td>
+        </tr>
+        {% for pack in packs %}
+            <tr>
+                <td>{{ pack.initial.firstname }} {{ pack.initial.lastname }}</td>
+                <td><a href="mailto:{{ pack.initial.email }}">{{ pack.initial.email }}</a></td>
+                <td>
+
+                    <p>{{ pack.packName }}</p>
+                    {% if pack.packType != "food" and pack.startedAt is null %}
+                        <p><a href="{{ path('start_pack', {'pack_id' : pack.id}) }}" >Démarrer : {{ pack.packName }} </a></p>
+                    {% endif %}
+
+                </td>
+                <td>
+                    {% for option in pack.options %}
+                        <p>{{option}}</p>
+                    {% endfor %}
+
+                </td>
+                <td>
+                    <p><a href="{{ path('initial', {'userId':pack.initial.userId}) }}" class="link">Bilan Initial</a><p>
+                        {% for result in pack.results %}
+                            {% if result.resultType == constant('AppBundle\\Entity\\Result::ESTHETIC') %}
+                            <p><a href="{{ path('results', {'resultId': result.id}) }}" class="link">Bilan {{ result.createdAt|date('d/m/Y') }}</a><p>
+                            {% endif %}
+                        {% endfor %}
+                </td>
+                <td><a href="{{ path('user', {'user_id' : pack.initial.userId}) }}" class="btn">Page évolution</a></td>
+                <td><a href="{{ path('pack_edit', { 'id': pack.id }) }}">Modifier</a></td>
+
+            </tr>
+        {% endfor %}
+    </table>
+
+{% endblock %}
