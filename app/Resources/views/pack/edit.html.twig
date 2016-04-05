@@ -1,16 +1,16 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Pack edit</h1>
+    <h1>Lier des exercices</h1>
 
     {{ form_start(edit_form) }}
         {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
+        <input type="submit" value="Modifier" />
     {{ form_end(edit_form) }}
 
     <ul>
         <li>
-            <a href="{{ path('pack_index') }}">Liste des packs</a>
+            <a href="{{ path('pack_index') }}">Liste des utilisateurs</a>
         </li>
         <li>
             <a href="{{ path('exercise_index') }}">Liste des exercices</a>
