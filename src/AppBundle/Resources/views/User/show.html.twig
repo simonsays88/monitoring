@@ -4,6 +4,10 @@
 {% block headingTitle %}Évolution athlète ({{user.firstname}} {{user.lastname}}){% endblock %}
 {% block pageClass %}userEvolution{% endblock %}
 
+{% block head %}
+<script src="http://code.highcharts.com/highcharts.js"></script>
+{% endblock %}
+
 {% block body %}
     <table border="1" style="width:100%">
         <tr>
@@ -95,14 +99,66 @@
     </table>
         {% if performances is not null %}
             <h2>Performances :</h2>
-            {% for key,exercise in performances %}
-                {{ key }} : 
-                {% for result in exercise %}
-                    <p>{{ result[0] }} X {{ result[1] }} {{ result[2] }}</p> 
+            <script>
+                var data_repeat;
+                var data_unit;
+                var unit;
+                var date;
+                {% for key,exercise in performances %}
+
+                    </script>
+                    <div id="{{ key|replace(' ', '-') }}" class="higchart_line" style="width:50%; height:200px;"></div>
+                    <script>
+                        $(function () {
+                        data_repeat = new Array();
+                        data_unit = new Array();
+                        date = new Array();
+                        {% for result in exercise %}
+                            data_repeat.push({{ result[0] }});
+                            data_unit.push({{ result[1] }});
+                            date.push('{{ result[3]|date("d/m") }}');
+                            {% if loop.first %}
+                                unit = '{{ result[2] }}';
+                            {% endif %}
+                        {% endfor %}
+                        $('#{{ key|replace(' ', '-') }}').highcharts({
+                            title: {
+                                text: '{{ key }}',
+                                x: -20 //center
+                            },
+                            xAxis: {
+                                categories: date
+                            },
+                            yAxis: {
+                                title: {
+                                    text: 'Nb'
+                                },
+                                plotLines: [{
+                                    value: 0,
+                                    width: 1,
+                                    color: '#808080'
+                                }]
+                            },
+                            legend: {
+                                layout: 'vertical',
+                                align: 'right',
+                                verticalAlign: 'middle',
+                                borderWidth: 0
+                            },
+                            series: [{
+                                name: 'Répétition',
+                                data: data_repeat
+                            }, {
+                                name: unit,
+                                data: data_unit
+                            },]
+                        });
+                    });
+                    console.log(date);
                 {% endfor %}
-            {% endfor %}
+            </script>
+
         {% endif %}
-        
         
     <div class="links"><a href="{{ path('user_list') }}" class="btn">Listing client</a></div>
 

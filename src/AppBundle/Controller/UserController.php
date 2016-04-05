@@ -41,7 +41,7 @@ class UserController extends Controller
 
         $performances = array();
         foreach($resultExercises as $re){
-            $performances[$re->getExercise()->getName()][$re->getId()] = array( $re->getRepetition(), $re->getValue(), $re->getExercise()->getUnit());
+            $performances[$re->getExercise()->getName()][$re->getId()] = array( $re->getRepetition(), $re->getValue(), $re->getExercise()->getUnit(), $re->getResult()->getCreatedAt());
         }
 
         if ($user) {
