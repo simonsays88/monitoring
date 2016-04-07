@@ -29,7 +29,7 @@
                     {% endif %}
 
                 </td>
-                <td>{{ pack.startedAt|date('d/m/Y') }}</td>
+                <td>{% if pack.startedAt %} {{pack.startedAt|date('d/m/Y') }} {% endif %}</td>
                 <td>
                     {% for option in pack.options %}
                         <p>{{option}}</p>
