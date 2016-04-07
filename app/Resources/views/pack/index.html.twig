@@ -10,6 +10,7 @@
             <td>Nom & Prénom</td>
             <td>Mail</td>
             <td>Pack</td> 
+            <td>Date de début</td> 
             <td>Options</td> 
             <td>Bilans</td>
             <td>Evolution</td>
@@ -28,6 +29,7 @@
                     {% endif %}
 
                 </td>
+                <td>{{ pack.startedAt|date('d/m/Y') }}</td>
                 <td>
                     {% for option in pack.options %}
                         <p>{{option}}</p>
