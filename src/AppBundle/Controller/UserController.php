@@ -78,6 +78,6 @@ class UserController extends Controller
         $pack->setStartedAt($startAt);
         $em->flush();
 
-        return $this->redirectToRoute('user_list');
+        return $this->redirectToRoute('pack_index');
     }
 }
