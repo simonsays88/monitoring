@@ -9,6 +9,7 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputDefinition;
 use AppBundle\Entity\Pack;
 use AppBundle\Entity\Initial;
+use AppBundle\Entity\Category;
 
 class PackStartCommand extends ContainerAwareCommand
 {
@@ -94,7 +95,11 @@ class PackStartCommand extends ContainerAwareCommand
         $pack->setCreatedAt(new \DateTime());
         $pack->setStartedAt($startAt);
         $pack->setStatus('new');
+        $category = $this->getContainer()->get('doctrine')
+            ->getRepository("AppBundle:Category")
+            ->findOneBy(array('name' => $pack_type));
         $pack->setPackType($pack_type);
+        $pack->setCategory($category);
         if($input->getOption('ebook')){
             $pack->setEbook(true);
         }
@@ -110,9 +115,7 @@ class PackStartCommand extends ContainerAwareCommand
         if($input->getOption('ebook_recipes')){
             $pack->setEbookRecipes(true);
         }
-        $exercises = $this->getContainer()->get('doctrine')
-        ->getRepository("AppBundle:Exercise")
-        ->findAll();
+        $exercises = $category->getExercises();
 
         foreach($exercises as $exercise){
             $pack->addExercise($exercise);

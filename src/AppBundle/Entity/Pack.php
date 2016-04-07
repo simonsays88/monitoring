@@ -33,7 +33,13 @@ class Pack {
      * @ORM\JoinColumn(nullable=false)
      */
     private $initial;
-
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="Category", inversedBy="packs")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $category;
+    
     /**
      * @ORM\OneToMany(targetEntity="Result", mappedBy="pack")
      */
@@ -639,5 +645,29 @@ class Pack {
     public function getInfos()
     {
         return $this->infos;
+    }
+
+    /**
+     * Set category
+     *
+     * @param \AppBundle\Entity\Category $category
+     *
+     * @return Pack
+     */
+    public function setCategory(\AppBundle\Entity\Category $category)
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * Get category
+     *
+     * @return \AppBundle\Entity\Category
+     */
+    public function getCategory()
+    {
+        return $this->category;
     }
 }

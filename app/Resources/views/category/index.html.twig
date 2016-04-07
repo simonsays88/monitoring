@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Liste des catégories</h1>
+
+    <table>
+            <tr>
+                <th>Nom</th>
+                <th>Actions</th>
+            </tr>
+
+        {% for category in categories %}
+            <tr>
+                <td>{{ category.name }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('category_edit', { 'id': category.id }) }}">Lier des exercices</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    
+{% endblock %}
