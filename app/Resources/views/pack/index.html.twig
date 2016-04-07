@@ -14,6 +14,7 @@
             <td>Bilans</td>
             <td>Evolution</td>
             <td>Exercices</td>
+            <td>Infos</td>
         </tr>
         {% for pack in packs %}
             <tr>
@@ -21,7 +22,7 @@
                 <td><a href="mailto:{{ pack.initial.email }}">{{ pack.initial.email }}</a></td>
                 <td>
 
-                    <p>{{ pack.packName }}</p>
+                    <p>{{ pack.packName }} (mois {{ ((pack.nbDays - pack.daysLeft) / 28)|round(0, 'ceil') }} / {{ (pack.nbDays / 28)|round(0, 'ceil') }})</p>
                     {% if pack.packType != "food" and pack.startedAt is null %}
                         <p><a href="{{ path('start_pack', {'pack_id' : pack.id}) }}" >Démarrer : {{ pack.packName }} </a></p>
                     {% endif %}
@@ -43,6 +44,10 @@
                 </td>
                 <td><a href="{{ path('user', {'user_id' : pack.initial.userId}) }}" class="btn">Page évolution</a></td>
                 <td><a href="{{ path('pack_edit', { 'id': pack.id }) }}">Modifier</a></td>
+                <td>
+                    <p>{{ pack.infos }}</p>
+                    <p><a href="{{ path('infos', { 'id': pack.id }) }}">Editer</a></p>
+                </td>
 
             </tr>
         {% endfor %}

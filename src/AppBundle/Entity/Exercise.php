@@ -12,6 +12,16 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Exercise
 {
+    const PECTORALS = 'Pectoraux';
+    const BACK = 'Dos';
+    const SHOULDERS = 'Epaules';
+    const THIGHS = 'Cuisses';
+    const SPINAL = 'Spinaux';
+    const BICEPS = 'Biceps';
+    const TRICEPS = 'Triceps';
+    const SHEATING = 'Gainage';
+    const OTHER = 'Autre';
+
     /**
      * @var int
      *
@@ -27,6 +37,13 @@ class Exercise
      * @ORM\Column(name="name", type="string", length=255, nullable=true)
      */
     private $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="type", type="string", columnDefinition="ENUM('Pectoraux', 'Dos', 'Epaules','Cuisses', 'Spinaux', 'Biceps','Triceps', 'Gainage', 'Autre')", nullable=false)
+     */
+    private $type;
 
     /**
      * @var string
@@ -47,6 +64,12 @@ class Exercise
      * */
     protected $resultExercise;
 
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="reference", type="boolean")
+     */
+    private $reference = 0;
     /**
      * Get id
      *
@@ -173,5 +196,54 @@ class Exercise
     public function getResultExercise()
     {
         return $this->resultExercise;
+    }
+
+
+    /**
+     * Set type
+     *
+     * @param string $type
+     *
+     * @return Exercise
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * Set reference
+     *
+     * @param boolean $reference
+     *
+     * @return Exercise
+     */
+    public function setReference($reference)
+    {
+        $this->reference = $reference;
+
+        return $this;
+    }
+
+    /**
+     * Get reference
+     *
+     * @return boolean
+     */
+    public function getReference()
+    {
+        return $this->reference;
     }
 }

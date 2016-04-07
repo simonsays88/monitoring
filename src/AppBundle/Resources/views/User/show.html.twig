@@ -121,6 +121,7 @@
                                 unit = '{{ result[2] }}';
                             {% endif %}
                         {% endfor %}
+
                         $('#{{ key|replace(' ', '-') }}').highcharts({
                             title: {
                                 text: '{{ key }}',
@@ -154,7 +155,6 @@
                             },]
                         });
                     });
-                    console.log(date);
                 {% endfor %}
             </script>
 

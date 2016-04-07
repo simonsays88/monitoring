@@ -1,0 +1,3 @@
+Nom : {{ pack.initial.firstname }} {{ pack.initial.lastname }}<br>
+Objectif : {{ pack.initial.objectives }}<br>
+Mois : {{ ((pack.nbDays - pack.daysLeft) / 28)|round(0, 'ceil') }} / {{ (pack.nbDays / 28)|round(0, 'ceil') }}<br>

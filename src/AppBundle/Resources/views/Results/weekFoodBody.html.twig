@@ -6,6 +6,8 @@
 
 {% block body %}
 
+    {{ include('AppBundle:Results:identity.html.twig', { 'pack': form.vars.value.pack }) }}
+    
     {{ form_start(form) }}
     <div class="initFormSection halfElement">
         <h2>Bilan alimentaire</h2>
@@ -54,21 +56,23 @@ RM ou drop set ou 3 RM :</label>
                     {{ form_widget(form.feedback) }}
                 </div>    
             </div> 
+
+            <div class="formSection">
+                {% for exercise in form.resultExercise %}
+                    <span>
+                        <label for="resultExercise">{{ exercise.vars.value.exercise.type }} : {{ exercise.vars.data }}</label>
+                        <div class="questionContainer">
+                            {{ form_widget(exercise.repetition, { 'attr': {'class': 'small_input'} }) }} X {{ form_widget(exercise.value, { 'attr': {'class': 'small_input'} }) }} {{ exercise.vars.data.exercise.unit }}
+                        </div>
+                    </span>
+                {% endfor %}
+            </div>
             <div class="formSection">
                 <div class="questionContainer">
-                    <label for="performance">Performances (1 exercice par muscle avec le nombre de répétitions et le poids total) : 
-par exemple développé couché 6 x 50 Kg</label>
+                    <label for="performance">Autres exercices : </label>
                     {{ form_widget(form.performance) }}
                 </div>    
             </div> 
-            <div class="formSection">
-                {% for exercise in form.resultExercise %}
-                    <label for="resultExercise">{{ exercise.vars.data }}</label>
-                    <div class="questionContainer">
-                        {{ form_widget(exercise.repetition, { 'attr': {'class': 'small_input'} }) }} X {{ form_widget(exercise.value, { 'attr': {'class': 'small_input'} }) }} {{ exercise.vars.data.exercise.unit }}
-                    </div>
-                {% endfor %}
-            </div>
             <div class="formSection">
                 <div class="questionContainer">
                     <label for="recovery">Récupération et courbatures :</label>
@@ -80,7 +84,7 @@ par exemple développé couché 6 x 50 Kg</label>
                     <label for="questions">Questions :</label>
                     {{ form_widget(form.questions) }}
                 </div>    
-            </div> 
+            </div>              
         </div> 
     </div>
 

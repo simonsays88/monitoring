@@ -15,7 +15,7 @@ class PackType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('exercises')
+            ->add('exercises',null, array('class' => 'AppBundle\Entity\Exercise','multiple' => true ,'expanded' => true, 'required' => false))
         ;
     }
     

@@ -243,3 +243,11 @@ img {
 .small_input {
     width : 30% !important;
 }
+
+#exercise select{
+    width : 10%;
+}
+
+#pack_exercises input{
+    margin: 0px 0px 0px 20px;
+}

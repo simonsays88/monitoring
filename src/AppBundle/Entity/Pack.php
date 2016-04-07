@@ -145,6 +145,13 @@ class Pack {
     private $exercises;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="infos", type="text", nullable=true)
+     */
+    private $infos;
+
+    /**
      * Get id
      *
      * @return integer
@@ -608,5 +615,29 @@ class Pack {
     public function getExercises()
     {
         return $this->exercises;
+    }
+
+    /**
+     * Set infos
+     *
+     * @param string $infos
+     *
+     * @return Pack
+     */
+    public function setInfos($infos)
+    {
+        $this->infos = $infos;
+
+        return $this;
+    }
+
+    /**
+     * Get infos
+     *
+     * @return string
+     */
+    public function getInfos()
+    {
+        return $this->infos;
     }
 }

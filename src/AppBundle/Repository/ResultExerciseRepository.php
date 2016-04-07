@@ -16,12 +16,14 @@ class ResultExerciseRepository extends \Doctrine\ORM\EntityRepository
                 ->leftJoin('re.result', 'r')
                 ->leftJoin('r.pack', 'p')
                 ->leftJoin('p.initial', 'i')
+                ->leftJoin('re.exercise', 'e')
                 ->where('i.id = :id')
+                ->andWhere('e.reference = :reference')
+                ->andWhere('re.repetition IS NOT NULL')
                 ->setParameter('id', $user->getId())
+                ->setParameter('reference', true)
                 ->getQuery()
                 ->getResult()
             ;
     }
-
-
 }

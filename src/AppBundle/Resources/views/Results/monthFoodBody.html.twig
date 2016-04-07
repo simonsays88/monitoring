@@ -6,6 +6,7 @@
 
 {% block body %}
 
+    {{ include('AppBundle:Results:identity.html.twig', { 'pack': form.vars.value.pack }) }}
     {{ form_start(form) }}
     <div class="initFormSection halfElement">
         <h2>Bilan alimentaire</h2>
@@ -64,13 +65,6 @@ RM ou drop set ou 3 RM :</label>
                 </div>    
             </div> 
             <div class="formSection">
-                <div class="questionContainer">
-                    <label for="performance">Performances (1 exercice par muscle avec le nombre de répétitions et le poids total) : 
-                        par exemple développé couché 6 x 50 Kg</label>
-                        {{ form_widget(form.performance) }}
-                </div>    
-            </div> 
-            <div class="formSection">
                 {% for exercise in form.resultExercise %}
                     <label for="resultExercise">{{ exercise.vars.data }}</label>
                     <div class="questionContainer">
@@ -78,6 +72,12 @@ RM ou drop set ou 3 RM :</label>
                     </div>
                 {% endfor %}
             </div>
+            <div class="formSection">
+                <div class="questionContainer">
+                    <label for="performance">Autre exercices</label>
+                        {{ form_widget(form.performance) }}
+                </div>    
+            </div> 
             <div class="formSection">
                 <div class="questionContainer">
                     <label for="recovery">Récupération et courbatures :</label>

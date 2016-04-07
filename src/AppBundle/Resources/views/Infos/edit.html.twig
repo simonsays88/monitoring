@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block pageTitle %}CostaFitness : Infos{% endblock %}
+{% block headingTitle %}Infos{% endblock %}
+
+{% block body %}
+    {{ form_start(form) }}
+        {{ form_widget(form.infos) }}
+            <div class="submitContainer"><input type="submit" value="Enregistrer" class="btn bigBtn"></div>
+        {{ form_end(form) }}
+{% endblock %}
