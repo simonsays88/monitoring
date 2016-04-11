@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block pageTitle %}CostaFitness : Barême de performances{% endblock %}
+{% block headingTitle %}Barême de performances{% endblock %}
+
+{% block body %}
+    
+    Indice de force relative (IFR) :
+    <input type="number" placeholder="charge" id="charge"> 
+    <input type="number" placeholder="répétitions" id="rep"> 
+    <input type="number" placeholder="poids" id="weight"> 
+    <button class="button_ifr" >Calculer</button>    
+    <span id="result"></span>
+    
+    <script>
+        $(".button_ifr").click(function() {
+            var result_pectorals = ($("#charge").val() / (1.0278 - (0.0278 * $("#rep").val()))) / $("#weight").val();
+            $('#result').text(Math.round(result_pectorals * 100) / 100);
+        });
+    </script>
+    
+    <br>
+    
+    Performances en % du poids de corps sur 6 répétitions :
+    <input type="number" placeholder="poids" id="weight_arms"> 
+    <input type="number" placeholder="charge" id="charge_arms"> 
+    <button class="button_arms">Calculer</button>    
+    <span id="result_arms"></span>
+
+    <script>
+        $(".button_arms").click(function() {
+            var result_arms = $("#charge_arms").val() / $("#weight_arms").val() * 100;
+            $('#result_arms').text(Math.round(result_arms));
+        });
+    </script>
+{% endblock %}
