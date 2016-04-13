@@ -32,6 +32,13 @@ class Category {
      * @ORM\Column(name="name", type="string", nullable=true)
      */
     private $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="display", type="string", nullable=true)
+     */
+    private $display;
     
     /**
      * @ORM\ManyToMany(targetEntity="Exercise")
@@ -150,5 +157,29 @@ class Category {
     public function getExercises()
     {
         return $this->exercises;
+    }
+
+    /**
+     * Set display
+     *
+     * @param string $display
+     *
+     * @return Category
+     */
+    public function setDisplay($display)
+    {
+        $this->display = $display;
+
+        return $this;
+    }
+
+    /**
+     * Get display
+     *
+     * @return string
+     */
+    public function getDisplay()
+    {
+        return $this->display;
     }
 }
