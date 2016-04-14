@@ -2,30 +2,81 @@
 
 {% block pageTitle %}CostaFitness : Barême de performances{% endblock %}
 {% block headingTitle %}Barême de performances{% endblock %}
+{% block pageClass %}strenghtTable{% endblock %}
 
 {% block body %}
-    
-    Indice de force relative (IFR) :
-    <input type="number" placeholder="charge" id="charge"> 
-    <input type="number" placeholder="répétitions" id="rep"> 
-    <input type="number" placeholder="poids" id="weight"> 
-    <button class="button_ifr" >Calculer</button>    
-    <span id="result"></span>
-    
+
+    <section class="halfElement">
+        <article>
+        <header>Indice de force relative (IFR) :</header>
+    <input type="number" class="calcBlock" placeholder="charge" id="charge">
+    <input type="number" class="calcBlock" placeholder="reps" id="rep">
+    <input type="number" class="calcBlock" placeholder="poids" id="weight">
+    <span id="result" class="calcBlock"></span>
+    <button class="button_ifr btn" >Calculer</button>
+            <label for="exerciceSelection">Choisissez votre exercice :</label>
+            <select name="exerciceSelection" id="relativeForceIndice">
+                <option value="">développé couché</option>
+                <option value="">Soulevé de terre</option>
+                <option value="">Squat</option>
+                <option value="">développé devant debout</option>
+            </select>
+
+            <table>
+                <tr>
+                    <td>Débutant</td>
+                    <td>Intermédiaire</td>
+                    <td>Avancé</td>
+                    <td>Expert</td>
+                </tr>
+                <tr>
+                    <td>0 à 0,8</td>
+                    <td>0,8 à 1,2</td>
+                    <td>1,2 à 1,5</td>
+                    <td>> à 1,5</td>
+                </tr>
+            </table>
+
+        </article>
+
     <script>
         $(".button_ifr").click(function() {
             var result_pectorals = ($("#charge").val() / (1.0278 - (0.0278 * $("#rep").val()))) / $("#weight").val();
             $('#result').text(Math.round(result_pectorals * 100) / 100);
         });
     </script>
-    
-    <br>
-    
-    Performances en % du poids de corps sur 6 répétitions :
-    <input type="number" placeholder="poids" id="weight_arms"> 
-    <input type="number" placeholder="charge" id="charge_arms"> 
-    <button class="button_arms">Calculer</button>    
-    <span id="result_arms"></span>
+    </section>
+
+        <section class="halfElement">
+    <article>
+    <header>Performances en % du poids de corps sur 6 répétitions :</header>
+    <input type="number" class="calcBlock" placeholder="poids" id="weight_arms">
+    <input type="number"  class="calcBlock" placeholder="charge" id="charge_arms">
+    <span id="result_arms" class="calcBlock"></span>
+    <button class="button_arms btn">Calculer</button>
+        <label for="exerciceSelection">Choisissez votre exercice :</label>
+        <select name="exerciceSelection" id="performances">
+            <option value="">Curl barre (poids pour 6 répétitions)</option>
+            <option value="">Tirage menton (poids pour 6 répétitions)</option>
+        </select>
+
+        <table>
+            <tr>
+                <td>Débutant</td>
+                <td>Intermédiaire</td>
+                <td>Avancé</td>
+                <td>Expert</td>
+            </tr>
+            <tr>
+                <td>0 à 0,8</td>
+                <td>0,8 à 1,2</td>
+                <td>1,2 à 1,5</td>
+                <td>> à 1,5</td>
+            </tr>
+        </table>
+
+
+    </article>
 
     <script>
         $(".button_arms").click(function() {
@@ -33,4 +84,65 @@
             $('#result_arms').text(Math.round(result_arms));
         });
     </script>
+    </section>
+
+    <section class="halfElement">
+        <article>
+            <header>Nombre de répétitions au poids du corps :</header>
+
+            <label for="exerciceSelection">Choisissez votre exercice :</label>
+            <select name="exerciceSelection" id="repsAmount">
+                <option value="">Tractions</option>
+                <option value="">Dips</option>
+                <option value="">Tractions supination</option>
+                <option value="">Pompes</option>
+            </select>
+
+            <table>
+                <tr>
+                    <td>Débutant</td>
+                    <td>Intermédiaire</td>
+                    <td>Avancé</td>
+                    <td>Expert</td>
+                </tr>
+                <tr>
+                    <td>0 à 0,8</td>
+                    <td>0,8 à 1,2</td>
+                    <td>1,2 à 1,5</td>
+                    <td>> à 1,5</td>
+                </tr>
+            </table>
+
+        </article>
+    </section>
+
+    <section class="halfElement">
+        <article>
+            <header>Temps maximal de maintien de la position :</header>
+
+            <label for="exerciceSelection">Choisissez votre exercice :</label>
+            <select name="exerciceSelection" id="maxTimePosition">
+                <option value="">Gainage facial coudes</option>
+                <option value="">Gainage lombaire statique</option>
+            </select>
+
+            <table>
+                <tr>
+                    <td>Débutant</td>
+                    <td>Intermédiaire</td>
+                    <td>Avancé</td>
+                    <td>Expert</td>
+                </tr>
+                <tr>
+                    <td>0 à 0,8</td>
+                    <td>0,8 à 1,2</td>
+                    <td>1,2 à 1,5</td>
+                    <td>> à 1,5</td>
+                </tr>
+            </table>
+
+        </article>
+    </section>
+
+
 {% endblock %}

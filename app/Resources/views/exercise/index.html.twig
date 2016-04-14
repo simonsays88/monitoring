@@ -1,38 +1,29 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-    <h1>Exercices</h1>
+{% block pageTitle %}CostaFitness : Liste des exercices{% endblock %}
+{% block headingTitle %}Liste des exercices{% endblock %}
+{% block pageClass %}exerciseList{% endblock %}
 
-    <table>
-            <tr>
-                <th>Nom</th>
-                <th>Description</th>
-                <th>Actions</th>
-            </tr>
+{% block body %}
+
+    <aside>
+        <a href="{{ path('exercise_new') }}" class="btn">Créer un nouvel exercice</a>
+
+        <a href="{{ path('pack_index') }}" class="btn">Liste des utilisateurs</a>
+
+    </aside>
+
         {% for exercise in exercises %}
-            <tr>
-                <td>{{ exercise.name }}</td>
-                <td>{{ exercise.description }}</td>
-                <td>
-                    <ul>
-                        <li>
+            <article>
+                <header>{{ exercise.name }}</header>
+
+                <main>{{ exercise.description }}</main>
+                <footer>
                             <a href="{{ path('exercise_show', { 'id': exercise.id }) }}">voir</a>
-                        </li>
-                        <li>
                             <a href="{{ path('exercise_edit', { 'id': exercise.id }) }}">modifier</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
+                        </footer>
+            </article>
         {% endfor %}
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('exercise_new') }}">Créer un nouvel exercice</a>
-        </li>
-        <li>
-            <a href="{{ path('pack_index') }}">Liste des utilisateurs</a>
-        </li>
-    </ul>
 {% endblock %}

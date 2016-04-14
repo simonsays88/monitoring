@@ -1,32 +1,23 @@
 {% extends 'base.html.twig' %}
 
+{% block pageTitle %}CostaFitness : Liste des exercices{% endblock %}
+{% block headingTitle %}Exercice : {{ exercise.name }}{% endblock %}
+{% block pageClass %}exerciseList{% endblock %}
+
 {% block body %}
-    <h1>Exercice</h1>
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Nom</th>
-                <td>{{ exercise.name }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ exercise.description }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <aside>
+        <a href="{{ path('exercise_index') }}" class="btn">Retour à la liste</a>
+    </aside>
+    <article>
+            <header>{{ exercise.name }}</header>
+            <main>{{ exercise.description }}</main>
+            <footer>
+                <a href="{{ path('exercise_edit', { 'id': exercise.id }) }}">Modifier</a>
+                {{ form_start(delete_form) }}
+                    <input type="submit" value="Supprimer" class="delete btn">
+                {{ form_end(delete_form) }}
+            </footer>
+        </article>
 
-    <ul>
-        <li>
-            <a href="{{ path('exercise_index') }}">Retour à la liste</a>
-        </li>
-        <li>
-            <a href="{{ path('exercise_edit', { 'id': exercise.id }) }}">Modifier</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Supprimer">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
 {% endblock %}

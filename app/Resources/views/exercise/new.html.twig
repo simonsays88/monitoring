@@ -1,16 +1,31 @@
 {% extends 'base.html.twig' %}
 
+{% block pageTitle %}CostaFitness : création d'exercice {% endblock %}
+{% block headingTitle %}Création d'exercice{% endblock %}
+{% block pageClass %}exerciseList{% endblock %}
+
 {% block body %}
-    <h1>Nouvel exercice</h1>
 
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Créer" />
-    {{ form_end(form) }}
+    <aside>
+        <a href="{{ path('exercise_index') }}" class="btn">Retour à la liste</a>
 
-    <ul>
-        <li>
-            <a href="{{ path('exercise_index') }}">Retour à la liste</a>
-        </li>
-    </ul>
+    </aside>
+
+    <article class="exerciceModify">
+        <header>Nouvel Exercice</header>
+
+        <main>
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+
+        </main>
+        <footer>
+            <input type="submit" value="Créer" class="btn" />
+            {{ form_end(form) }}
+        </footer>
+    </article>
+
+
+
+
 {% endblock %}

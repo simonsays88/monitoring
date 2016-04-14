@@ -1,21 +1,34 @@
 {% extends 'base.html.twig' %}
 
+{% block pageTitle %}CostaFitness : Modification d'exercice {{ exercise.name }}{% endblock %}
+{% block headingTitle %}Modification exercice : {{ exercise.name }}{% endblock %}
+{% block pageClass %}exerciseList{% endblock %}
+
 {% block body %}
-    <h1>Modification exercice</h1>
 
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Modifier" />
-    {{ form_end(edit_form) }}
+    <aside>
+        <a href="{{ path('exercise_index') }}" class="btn">Retour à la liste</a>
 
-    <ul>
-        <li>
-            <a href="{{ path('exercise_index') }}">Retour à la liste</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Supprimer">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+    </aside>
+
+        <article class="exerciceModify">
+            <header>{{ exercise.name }}</header>
+
+            <main>{{ form_start(edit_form) }}
+                {{ form_widget(edit_form) }}
+            </main>
+            <footer>
+
+                <input type="submit" value="Modifier" class="btn"/>
+                {{ form_end(edit_form) }}
+
+                {{ form_start(delete_form) }}
+                <input type="submit" value="Supprimer" class="btn delete">
+                {{ form_end(delete_form) }}
+            </footer>
+        </article>
+
 {% endblock %}
+
+
+

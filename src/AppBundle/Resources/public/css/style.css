@@ -163,6 +163,10 @@ a {
     font-size: 17px;
 }
 
+.btn.delete {
+    background-color:red;
+    margin-top: 10px;
+}
 input:focus,
 select:focus,
 textarea:focus,
@@ -245,7 +249,7 @@ img {
 }
 
 #exercise select{
-    width : 10%;
+    width: 30%;
 }
 
 #pack_exercises input{
@@ -254,4 +258,91 @@ img {
 
 #category_exercises input{
     margin: 0px 0px 0px 20px;
+}
+
+.exerciseList article {
+    width:30%;
+    margin:20px 1.66666666666666%;
+    display: block;
+    float: left;
+}
+
+.exerciseList aside {
+    text-align:center;
+}
+
+article header {
+    color:white;
+    box-shadow:none;
+}
+
+article main {
+    margin:0;
+    border:none;
+    width:100%;
+    padding:10px 0;
+    height:100px;
+}
+
+article footer {
+    font-size:15px;
+    text-align:center;
+}
+
+article footer a {
+    margin:0 10px;
+}
+
+.exerciceModify main {
+    height:auto;
+}
+
+.calcBlock {
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    display: inline-block;
+    border: 2px solid #333;
+    vertical-align: middle;
+    box-sizing: border-box;
+}
+span.calcBlock{
+    background-color: #333;
+    color: white;
+    line-height: 50px;
+}
+.strenghtTable article {
+    text-align:center;
+}
+.strenghtTable article header {
+    margin-bottom:20px;
+}
+.strenghtTable article .btn {
+    display: block;
+    margin: 20px auto;
+}
+
+.strenghtTable select {
+    width:60%;
+    margin:0 auto;
+}
+
+.strenghtTable .halfElement {
+    width: calc(46% - 2px);
+    border: 1px solid #333;
+    padding-bottom: 20px;
+    margin-bottom:40px;
+}
+.strenghtTable table {
+    margin: 30px auto;
+    width:90%;
+}
+
+.strenghtTable table tr:first-child {
+    background:lightgrey;
+}
+
+.strenghtTable table tr:first-child td {
+    padding:10px;
+    border:1px solid white;
 }
