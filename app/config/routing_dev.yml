@@ -12,3 +12,7 @@ _errors:
 
 _main:
     resource: routing.yml
+    
+core_sphere_console:
+    resource: .
+    type: extra
