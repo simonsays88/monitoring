@@ -16,7 +16,6 @@ class UserController extends Controller
      */
     public function listAction(Request $request)
     {
-
         $users = $this->getDoctrine()
             ->getRepository('AppBundle:Initial')
             ->findAll();
@@ -40,7 +39,7 @@ class UserController extends Controller
             ->getAllResultExercisesByUser($user);
 
         $performances = array();
-        foreach($resultExercises as $re){
+        foreach ($resultExercises as $re) {
             $performances[$re->getExercise()->getName()][$re->getId()] = array( $re->getRepetition(), $re->getValue(), $re->getExercise()->getUnit(), $re->getResult()->getCreatedAt());
         }
 

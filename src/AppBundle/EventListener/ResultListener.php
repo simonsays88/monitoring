@@ -6,7 +6,6 @@ use Doctrine\ORM\Event\LifecycleEventArgs;
 use AppBundle\Entity\Result;
 use AppBundle\Entity\Pack;
 
-
 class ResultListener
 {
     public function postPersist(LifecycleEventArgs $args)

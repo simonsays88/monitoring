@@ -23,7 +23,6 @@ class InitialController extends Controller
             ->findOneBy(array('userId' => $userId));
 
         if ($initialEntity) {
-
             $initialPhotoFront = $initialEntity->getPhotoFront();
             $initialPhotoSide = $initialEntity->getPhotoSide();
             $initialPhotoBack = $initialEntity->getPhotoBack();
@@ -60,7 +59,6 @@ class InitialController extends Controller
                     $initial->setCompleted(true);
 
                     foreach ($initial->getPacks() as $pack) {
-
                         $email = ($pack->getPackType() == Pack::THEME) ? $this->container->getParameter('sender_themes') : $this->container->getParameter('sender_custom');
                         $sujet = 'Bilan pack complété';
                         $message = $this->renderView('AppBundle:Emails:packPreparation.html.twig', array('pack' => $pack));
@@ -81,7 +79,7 @@ class InitialController extends Controller
                             }
                             $pack->setStartedAt($startAt);
                         }
-                    }                    
+                    }
                 }
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($initial);

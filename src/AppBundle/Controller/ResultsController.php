@@ -95,7 +95,7 @@ class ResultsController extends Controller
                 }
                 return $this->render('AppBundle:Results:weekFoodBody.html.twig', array(
                             'form' => $form->createView()
-                ));                
+                ));
             } elseif ($result->getResultType() == Result::FOUR_WEEKS_FOOD_BODY) {
                 $form = $this->createForm(FourWeeksFoodBodyType::class, $result);
                 $handleForm = $this->container->get('app.handle_form')->process($request, $form);
@@ -104,7 +104,7 @@ class ResultsController extends Controller
                 }
                 return $this->render('AppBundle:Results:monthFoodBody.html.twig', array(
                             'form' => $form->createView()
-                ));                
+                ));
             }
         } else {
             return new Response('Bilan introuvable', 500);

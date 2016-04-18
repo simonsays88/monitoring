@@ -23,5 +23,4 @@ class ScaleController extends Controller
     {
         return $this->render('AppBundle:Scale:index.html.twig');
     }
-
 }

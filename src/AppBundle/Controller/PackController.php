@@ -57,5 +57,4 @@ class PackController extends Controller
             'edit_form' => $editForm->createView(),
         ));
     }
-
 }

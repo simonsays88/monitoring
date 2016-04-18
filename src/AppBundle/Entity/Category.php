@@ -12,7 +12,8 @@ use AppBundle\Entity\Pack;
  * @ORM\Entity(repositoryClass="AppBundle\Repository\CategoryRepository")
  * @ORM\Table(name="category")
  */
-class Category {
+class Category
+{
 
     /**
      * @ORM\Column(type="integer")
