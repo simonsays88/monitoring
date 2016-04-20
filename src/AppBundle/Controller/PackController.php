@@ -22,14 +22,19 @@ class PackController extends Controller
      * @Route("/", name="pack_index")
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
         $packs = $em->getRepository('AppBundle:Pack')->findAll();
 
-        return $this->render('pack/index.html.twig', array(
-            'packs' => $packs,
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $packs, $request->query->getInt('page', 1), 40
+        );
+        return $this->render('pack/index.html.twig',
+                array(
+                'packs' => $pagination,
         ));
     }
 

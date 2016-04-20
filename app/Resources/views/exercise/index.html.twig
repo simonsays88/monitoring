@@ -16,8 +16,6 @@
         {% for exercise in exercises %}
             <article>
                 <header>{{ exercise.name }}</header>
-
-                <main>{{ exercise.description }}</main>
                 <footer>
                             <a href="{{ path('exercise_show', { 'id': exercise.id }) }}">voir</a>
                             <a href="{{ path('exercise_edit', { 'id': exercise.id }) }}">modifier</a>

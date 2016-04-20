@@ -54,6 +54,9 @@
             </tr>
         {% endfor %}
     </table>
+    <div class="navigation">
+    {{ knp_pagination_render(packs) }}
+    </div>
     <div class="links"><a href="{{ path('exercise_index') }}" class="btn">Liste des exercices</a>&nbsp;<a href="{{ path('category_index') }}" class="btn">Liste des catégories de pack</a>&nbsp;<a href="{{ path('scale_index') }}" class="btn">Barème de performances</a></div>
 
 {% endblock %}
