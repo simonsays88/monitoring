@@ -212,6 +212,7 @@
                 {% if form.vars.value.photoFront is not null %}
                     <img width = "100px" src="{{ asset('uploads/photos/' ~ form.vars.value.photoFront) }}" />
                 {% endif %}
+                <img class="preview" src=""/>
             </div>
             <div class="thirdElement">
                 <h3>Photo bilan coté</h3>
@@ -219,13 +220,15 @@
                 {% if form.vars.value.photoSide is not null %}
                     <img width = "100px" src="{{ asset('uploads/photos/' ~ form.vars.value.photoSide) }}" />
                 {% endif %}
+                <img class="preview" src="" />
             </div>
             <div class="thirdElement">
                 <h3>Photo bilan dos</h3>
                 {{ form_widget(form.photoBack) }}
                 {% if form.vars.value.photoBack is not null %}
                     <img width = "100px" src="{{ asset('uploads/photos/' ~ form.vars.value.photoBack) }}" />
-                {% endif %}                
+                {% endif %}  
+                <img class="preview" src=""/>
             </div>
 
         </div>
@@ -234,4 +237,27 @@
     <div class="submitContainer"><input type="submit" value="Envoyez votre bilan initial" class="btn bigBtn"></div>
         {{ form_end(form) }}
 
+    <script>
+        function readURL(input, preview) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    preview.attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $("#initial_photoFront").change(function () {
+            readURL(this, $(this).next('img'));
+        });
+        $("#initial_photoSide").change(function () {
+            readURL(this, $(this).next('img'));
+        });
+        $("#initial_photoBack").change(function () {
+            readURL(this, $(this).next('img'));
+        });
+    </script>
 {% endblock %}
