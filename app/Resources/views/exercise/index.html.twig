@@ -15,7 +15,7 @@
 
         {% for exercise in exercises %}
             <article>
-                <header>{{ exercise.name }}</header>
+                <header {% if exercise.reference %}class = "exerciseReference"{% endif %}>{{ exercise.name }}</header>
                 <footer>
                             <a href="{{ path('exercise_show', { 'id': exercise.id }) }}">voir</a>
                             <a href="{{ path('exercise_edit', { 'id': exercise.id }) }}">modifier</a>

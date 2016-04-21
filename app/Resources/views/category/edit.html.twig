@@ -4,6 +4,11 @@
     <h1>Lier des exercices à {{ category.display }}</h1>
 
     {{ form_start(edit_form) }}
+        
+        {% for exercise in edit_form.exercises %}
+            <p {% if get_reference(exercise.vars.value) %}class = "exerciseReference"{% endif %}>{{ form_label(exercise) }} {{ form_widget(exercise) }}</p>
+        {% endfor %}
+
         {{ form_widget(edit_form) }}
         <input type="submit" value="Modifier" />
     {{ form_end(edit_form) }}

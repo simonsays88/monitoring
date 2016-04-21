@@ -210,7 +210,7 @@
                 <h3>Photo bilan face</h3>
                 {{ form_widget(form.photoFront) }}
                 {% if form.vars.value.photoFront is not null %}
-                    <img width = "100px" src="{{ asset('uploads/photos/' ~ form.vars.value.photoFront) }}" />
+                    <img src="{{ asset('uploads/photos/' ~ form.vars.value.photoFront) }}" />
                 {% endif %}
                 <img class="preview" src=""/>
             </div>
@@ -218,7 +218,7 @@
                 <h3>Photo bilan coté</h3>
                 {{ form_widget(form.photoSide) }}
                 {% if form.vars.value.photoSide is not null %}
-                    <img width = "100px" src="{{ asset('uploads/photos/' ~ form.vars.value.photoSide) }}" />
+                    <img src="{{ asset('uploads/photos/' ~ form.vars.value.photoSide) }}" />
                 {% endif %}
                 <img class="preview" src="" />
             </div>
@@ -226,7 +226,7 @@
                 <h3>Photo bilan dos</h3>
                 {{ form_widget(form.photoBack) }}
                 {% if form.vars.value.photoBack is not null %}
-                    <img width = "100px" src="{{ asset('uploads/photos/' ~ form.vars.value.photoBack) }}" />
+                    <img src="{{ asset('uploads/photos/' ~ form.vars.value.photoBack) }}" />
                 {% endif %}  
                 <img class="preview" src=""/>
             </div>

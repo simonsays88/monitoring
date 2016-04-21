@@ -12,6 +12,11 @@
         <service id="app.listener.result" class="AppBundle\EventListener\ResultListener">
             <tag name="doctrine.event_listener" event="postPersist" />
         </service>
+        
+        <service id="app.twig.app_extension" class="AppBundle\Twig\AppExtension">
+            <tag name="twig.extension" />
+            <argument type="service" id="doctrine.orm.default_entity_manager" />
+        </service>        
     </services>
 
 </container>
