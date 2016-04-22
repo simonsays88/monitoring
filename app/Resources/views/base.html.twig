@@ -16,6 +16,9 @@
             <img src="/bundles/app/images/logo.png">
             <h1>{% block headingTitle %}{% endblock %}</h1>
         </header>
+        {% if app.user.id  is defined %}
+            <nav>{{ knp_menu_render('AppBundle:Builder:mainMenu', {'depth': 2, 'currentAsLink': false}) }}</nav>
+        {% endif %}
         <main>
             
             {% block body %}{% endblock %}

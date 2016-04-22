@@ -29,7 +29,9 @@
         "incenteev/composer-parameter-handler": "^2.0",
         "coresphere/console-bundle": "^0.4.0",
         "knplabs/knp-paginator-bundle": "^2.5",
-        "friendsofsymfony/user-bundle" : "~2.0@dev"
+        "friendsofsymfony/user-bundle" : "~2.0@dev",
+        "knplabs/knp-menu": "^2.1",
+        "knplabs/knp-menu-bundle": "^2.0"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",

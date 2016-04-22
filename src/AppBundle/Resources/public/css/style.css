@@ -349,3 +349,28 @@ span.calcBlock{
 .exerciseReference {
     color: #c58408;
 }
+
+nav ul {
+    padding: 0px;
+    margin: 0px;
+    list-style-type: none;
+    background-color: #333;
+}
+
+nav li {
+   display: inline-block; 
+   width: 160px;
+   border-right: 1px solid #fff;
+   text-align: center;
+   line-height: 40px;
+}
+
+nav li:not(.current) :hover {
+    background-color: #c58408;
+}
+
+nav li a {
+    display: block;
+    text-decoration: none;
+    color: #fff;
+}
