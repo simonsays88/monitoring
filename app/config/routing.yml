@@ -8,3 +8,6 @@ root:
         _controller: FrameworkBundle:Redirect:redirect
         route: pack_index
         permanent: true
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"        
