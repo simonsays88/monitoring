@@ -210,7 +210,7 @@
                 <h3>Photo bilan face</h3>
                 {{ form_widget(form.photoFront) }}
                 {% if form.vars.value.photoFront is not null %}
-                    <img src="{{ asset('uploads/photos/' ~ form.vars.value.photoFront) }}" />
+                    <a class="fancybox" rel="group" href="{{ asset('uploads/photos/' ~ form.vars.value.photoFront) }}"><img src="{{ asset('uploads/photos/' ~ form.vars.value.photoFront) }}" /></a>
                 {% endif %}
                 <img class="preview" src=""/>
             </div>
@@ -218,7 +218,7 @@
                 <h3>Photo bilan coté</h3>
                 {{ form_widget(form.photoSide) }}
                 {% if form.vars.value.photoSide is not null %}
-                    <img src="{{ asset('uploads/photos/' ~ form.vars.value.photoSide) }}" />
+                    <a class="fancybox" rel="group" href="{{ asset('uploads/photos/' ~ form.vars.value.photoSide) }}"><img src="{{ asset('uploads/photos/' ~ form.vars.value.photoSide) }}" /></a>
                 {% endif %}
                 <img class="preview" src="" />
             </div>
@@ -226,7 +226,7 @@
                 <h3>Photo bilan dos</h3>
                 {{ form_widget(form.photoBack) }}
                 {% if form.vars.value.photoBack is not null %}
-                    <img src="{{ asset('uploads/photos/' ~ form.vars.value.photoBack) }}" />
+                    <a class="fancybox" rel="group" href="{{ asset('uploads/photos/' ~ form.vars.value.photoBack) }}"><img src="{{ asset('uploads/photos/' ~ form.vars.value.photoBack) }}" /></a>
                 {% endif %}  
                 <img class="preview" src=""/>
             </div>
@@ -235,29 +235,6 @@
     </div>
 
     <div class="submitContainer"><input type="submit" value="Envoyez votre bilan initial" class="btn bigBtn"></div>
-        {{ form_end(form) }}
+    {{ form_end(form) }}
 
-    <script>
-        function readURL(input, preview) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-
-                reader.onload = function (e) {
-                    preview.attr('src', e.target.result);
-                }
-
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-
-        $("#initial_photoFront").change(function () {
-            readURL(this, $(this).next('img'));
-        });
-        $("#initial_photoSide").change(function () {
-            readURL(this, $(this).next('img'));
-        });
-        $("#initial_photoBack").change(function () {
-            readURL(this, $(this).next('img'));
-        });
-    </script>
 {% endblock %}

@@ -7,9 +7,11 @@
         {% block head %}{% endblock %}
         <link rel="stylesheet" type="text/css" media="all" href="/bundles/app/css/normalize.css" />
         <link rel="stylesheet" type="text/css" media="all" href="/bundles/app/css/style.css" />
-        <link rel="stylesheet" type="text/css" media="all" href="/bundles/app/js/scripts.js" />
         <link href='https://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <script type="text/javascript" src="/bundles/app/js/jquery.fancybox.js"></script>
+        <link rel="stylesheet" type="text/css" media="all" href="/bundles/app/css/jquery.fancybox.css" />
+
     </head>
     <body class="{% block pageClass %}{% endblock %}">
         <header>
@@ -32,6 +34,8 @@
                 <div class="links"><a href="http://www.davidcosta.fr" target="_blank" class="btn">Voir le site</a></div>
             </footer>
         
-        {% block javascripts %}{% endblock %}
+        {% block javascripts %}
+        <script type="text/javascript" src="/bundles/app/js/scripts.js"></script>
+        {% endblock %}
     </body>
 </html>
