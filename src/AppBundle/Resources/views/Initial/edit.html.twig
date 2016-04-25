@@ -27,6 +27,9 @@
                     <label for="cp">Code postal</label>
                     {{ form_widget(form.zipCode) }}
 
+                    <label for="ville">Ville</label>
+                    {{ form_widget(form.city) }}
+
                 </div>
 
                 <div class="halfElement">
@@ -46,6 +49,7 @@
 
             <div class="formSection">
                 <h3>Le sport et vous</h3>
+                <aside>Rédigez clairement vos réponses avec des phrases courtes et précises.</aside>
                 <div class="questionContainer">
                     <label for="exercises">Quels types d'entraînement faites vous, combien de fois par semaine et depuis quand ?</label>
                     {{ form_widget(form.exercises) }}
@@ -205,7 +209,13 @@
     <div class="initFormSection halfElement">
         <h2>Vos photos</h2>
         <div class="content photoUpload">
-            <label for="photos"> Bras relâchés le long du corps, attitude naturelle, éclairage facilement reproductible.</label>
+            <label for="photos"> 
+                Prenez vos photos en format portrait.
+                Cadrez les photos de vos genoux jusqu'au dessus de la tête.
+                Les bras sont relâchés le long du corps et l'attitude naturelle.
+                L'éclairage doit être facilement reproductible.
+                Les photos ne respectant pas ces consignes ne pourront être traitées
+            </label>
             <div class="thirdElement">
                 <h3>Photo bilan face</h3>
                 {{ form_widget(form.photoFront) }}

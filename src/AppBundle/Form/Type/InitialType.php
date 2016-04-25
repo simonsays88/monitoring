@@ -10,7 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
-
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 
 class InitialType extends AbstractType {
 
@@ -21,9 +21,14 @@ class InitialType extends AbstractType {
                 ->add('lastname', null, array('required' => true))
                 ->add('address', null, array('required' => true))
                 ->add('zipCode', null, array('required' => true))
+                ->add('city', null, array('required' => true))
                 ->add('phoneMobile', null, array('required' => true))
                 ->add('email', null, array('required' => true))
-                ->add('birthday', null, array('required' => true,'years' => range(1893, date('Y')),))
+                ->add('birthday', DateType::class,
+                    array('widget' => 'choice',
+                    'format' => 'dMy',
+                    'view_timezone' => "Europe/Paris",
+                    ))
                 ->add('job', null, array('required' => true))
                 ->add('exercises', null, array('required' => true))
                 ->add('practiceLocation', null, array('required' => true))

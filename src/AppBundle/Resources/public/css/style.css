@@ -17,7 +17,7 @@ body {
 
 header {
     background-color: #333;
-    padding: 30px;
+    padding: 10px;
     text-align: center;
     box-shadow: 0 2px 30px rgba(0,0,0,0.5);
 }
@@ -39,9 +39,8 @@ header h1 {
 /* BODY */
 
 main {
-    margin: 60px auto;
+    margin: 20px auto;
     width: 80%;
-    padding: 50px 0;
     border-top: 1px solid lightgrey;
     border-bottom: 1px solid lightgrey;
     overflow: auto;
@@ -174,6 +173,10 @@ button:focus {
     outline: none;
 }
 
+input, textarea{
+    background-color: #F9F5F5;
+}
+
 .custom-input::-webkit-file-upload-button {
   visibility: hidden;
   width: 10px;
@@ -226,6 +229,12 @@ button:focus {
 .formSection {
     zoom: 1;
     overflow: auto;
+}
+
+.formSection aside{
+    font-size: 13px;
+    font-style: italic;
+    padding-left: 10px
 }
 
 select {width:100%;}
@@ -373,4 +382,16 @@ nav li a {
     display: block;
     text-decoration: none;
     color: #fff;
+}
+
+#initial_birthday select {
+    width: 33%;
+}
+
+.formSection label {
+    font-style: italic;
+}
+
+#initial_health, #initial_treatment {
+    height: 25px;
 }

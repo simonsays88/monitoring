@@ -74,6 +74,13 @@ class Initial {
     /**
      * @var string
      *
+     * @ORM\Column(name="city", type="string", length=255, nullable=true)
+     */
+    private $city;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="phone", type="string", length=255, nullable=true)
      */
     private $phone;
@@ -235,7 +242,7 @@ class Initial {
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="training_time", type="time", nullable=true)
+     * @ORM\Column(name="training_time", type="string", nullable=true)
      */
     private $trainingTime;
 
@@ -270,7 +277,7 @@ class Initial {
     /**
      * @var int
      *
-     * @ORM\Column(name="restaurant", type="integer", nullable=true)
+     * @ORM\Column(name="restaurant", type="string", nullable=true)
      */
     private $restaurant;
 
@@ -1245,5 +1252,29 @@ class Initial {
     public function getPracticeLocation()
     {
         return $this->practiceLocation;
+    }
+
+    /**
+     * Set city
+     *
+     * @param string $city
+     *
+     * @return Initial
+     */
+    public function setCity($city)
+    {
+        $this->city = $city;
+
+        return $this;
+    }
+
+    /**
+     * Get city
+     *
+     * @return string
+     */
+    public function getCity()
+    {
+        return $this->city;
     }
 }
