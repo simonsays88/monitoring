@@ -73,17 +73,6 @@ class PackStartCommand extends ContainerAwareCommand
                 $em->flush();
             } else {
                 $send = true;
-                if($pack_type == Pack::FOOD){
-                    $weekDay = date('w');
-                    $date = new \DateTime();
-                    if ($weekDay < 5) {
-                        $ndDaysUntilNextMonday = 8 - $weekDay;
-                        $startAt = $date->add(new \DateInterval('P' . $ndDaysUntilNextMonday . 'D'));
-                    } else {
-                        $ndDaysUntilNextNextMonday = 15 - $weekDay;
-                        $startAt = $date->add(new \DateInterval('P' . $ndDaysUntilNextNextMonday . 'D'));
-                    }
-                }
             }
         $pack = new Pack();
         $pack->setUserId($input->getOption('user_id'));

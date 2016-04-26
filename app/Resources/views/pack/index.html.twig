@@ -24,7 +24,7 @@
                 <td>
 
                     <p>{{ pack.packName }} (mois {{ ((pack.nbDays - pack.daysLeft) / 28)|round(0, 'ceil') }} / {{ (pack.nbDays / 28)|round(0, 'ceil') }})</p>
-                    {% if pack.packType != "food" and pack.startedAt is null %}
+                    {% if pack.startedAt is null %}
                         <p><a href="{{ path('start_pack', {'pack_id' : pack.id}) }}" >Démarrer : {{ pack.packName }} </a></p>
                     {% endif %}
 

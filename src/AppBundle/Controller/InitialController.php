@@ -67,18 +67,6 @@ class InitialController extends Controller
                         $headers .= "Reply-To: ".$this->container->getParameter('sender_app')."\n";
                         $headers .= "Content-Type: text/html; charset=\"iso-8859-1\"";
                         mail($destinataire, $sujet, $message, $headers);
-                        if ($pack->getPackType() == Pack::FOOD) {
-                            $weekDay = date('w');
-                            $date = new \DateTime();
-                            if ($weekDay < 5) {
-                                $ndDaysUntilNextMonday = 8 - $weekDay;
-                                $startAt = $date->add(new \DateInterval('P'.$ndDaysUntilNextMonday.'D'));
-                            } else {
-                                $ndDaysUntilNextNextMonday = 15 - $weekDay;
-                                $startAt = $date->add(new \DateInterval('P'.$ndDaysUntilNextNextMonday.'D'));
-                            }
-                            $pack->setStartedAt($startAt);
-                        }
                     }
                 }
                 $em = $this->getDoctrine()->getManager();

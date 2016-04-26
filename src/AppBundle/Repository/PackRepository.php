@@ -11,21 +11,21 @@ namespace AppBundle\Repository;
 class PackRepository extends \Doctrine\ORM\EntityRepository
 {
 
-//    public function getAllNewPacks()
-//    {
-//        return $this->createQueryBuilder('c')
-//            ->where('c.status = :ongoing')
-//            ->setParameter('status', 'ongoing')
-//            ->getQuery()
-//            ->getResult();
-//    }
-//
-//    public function getAllOngoingPacks()
-//    {
-//        return $this->createQueryBuilder('c')
-//            ->where('c.status = :ongoing')
-//            ->setParameter('status', 'new')
-//            ->getQuery()
-//            ->getResult();
-//    }
+    public function getAllPacksFoodAndFoodBody()
+    {
+        return $this->createQueryBuilder('p')
+            ->where('p.pack_type != :type')
+            ->setParameter('type', 'themes')
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function getAllPacksThemes()
+    {
+        return $this->createQueryBuilder('p')
+            ->where('p.pack_type = :type')
+            ->setParameter('type', 'themes')
+            ->getQuery()
+            ->getResult();
+    }
 }

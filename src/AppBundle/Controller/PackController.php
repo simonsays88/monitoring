@@ -26,7 +26,12 @@ class PackController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $packs = $em->getRepository('AppBundle:Pack')->findAll();
+        if($this->getUser()->getId() == 1) {
+            $packs = $em->getRepository('AppBundle:Pack')->getAllPacksFoodAndFoodBody();
+        } else {
+            $packs = $em->getRepository('AppBundle:Pack')->getAllPacksThemes();
+        }
+
 
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
