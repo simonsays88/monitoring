@@ -249,9 +249,93 @@ class Initial {
     /**
      * @var string
      *
-     * @ORM\Column(name="diet", type="text", nullable=true)
+     * @ORM\Column(name="allergy", type="text", nullable=true)
      */
-    private $diet;
+    private $allergy;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="time_food_one", type="string", nullable=true)
+     */
+    private $timeFoodOne;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="time_food_two", type="string", nullable=true)
+     */
+    private $timeFoodTwo;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="time_food_three", type="string", nullable=true)
+     */
+    private $timeFoodThree;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="time_food_four", type="string", nullable=true)
+     */
+    private $timeFoodFour;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="time_food_five", type="string", nullable=true)
+     */
+    private $timeFoodFive;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="time_food_six", type="string", nullable=true)
+     */
+    private $timeFoodSix;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="food_one", type="string", nullable=true)
+     */
+    private $foodOne;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="food_two", type="string", nullable=true)
+     */
+    private $foodTwo;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="food_three", type="string", nullable=true)
+     */
+    private $foodThree;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="food_four", type="string", nullable=true)
+     */
+    private $foodFour;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="food_five", type="string", nullable=true)
+     */
+    private $foodFive;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="food_six", type="string", nullable=true)
+     */
+    private $foodSix;
 
     /**
      * @var string
@@ -853,28 +937,6 @@ class Initial {
     }
 
     /**
-     * Set diet
-     *
-     * @param string $diet
-     *
-     * @return Initial
-     */
-    public function setDiet($diet) {
-        $this->diet = $diet;
-
-        return $this;
-    }
-
-    /**
-     * Get diet
-     *
-     * @return string
-     */
-    public function getDiet() {
-        return $this->diet;
-    }
-
-    /**
      * Set note
      *
      * @param string $note
@@ -1276,5 +1338,317 @@ class Initial {
     public function getCity()
     {
         return $this->city;
+    }
+
+    /**
+     * Set allergy
+     *
+     * @param string $allergy
+     *
+     * @return Initial
+     */
+    public function setAllergy($allergy)
+    {
+        $this->allergy = $allergy;
+
+        return $this;
+    }
+
+    /**
+     * Get allergy
+     *
+     * @return string
+     */
+    public function getAllergy()
+    {
+        return $this->allergy;
+    }
+
+    /**
+     * Set timeFoodOne
+     *
+     * @param string $timeFoodOne
+     *
+     * @return Initial
+     */
+    public function setTimeFoodOne($timeFoodOne)
+    {
+        $this->timeFoodOne = $timeFoodOne;
+
+        return $this;
+    }
+
+    /**
+     * Get timeFoodOne
+     *
+     * @return string
+     */
+    public function getTimeFoodOne()
+    {
+        return $this->timeFoodOne;
+    }
+
+    /**
+     * Set timeFoodTwo
+     *
+     * @param string $timeFoodTwo
+     *
+     * @return Initial
+     */
+    public function setTimeFoodTwo($timeFoodTwo)
+    {
+        $this->timeFoodTwo = $timeFoodTwo;
+
+        return $this;
+    }
+
+    /**
+     * Get timeFoodTwo
+     *
+     * @return string
+     */
+    public function getTimeFoodTwo()
+    {
+        return $this->timeFoodTwo;
+    }
+
+    /**
+     * Set timeFoodThree
+     *
+     * @param string $timeFoodThree
+     *
+     * @return Initial
+     */
+    public function setTimeFoodThree($timeFoodThree)
+    {
+        $this->timeFoodThree = $timeFoodThree;
+
+        return $this;
+    }
+
+    /**
+     * Get timeFoodThree
+     *
+     * @return string
+     */
+    public function getTimeFoodThree()
+    {
+        return $this->timeFoodThree;
+    }
+
+    /**
+     * Set timeFoodFour
+     *
+     * @param string $timeFoodFour
+     *
+     * @return Initial
+     */
+    public function setTimeFoodFour($timeFoodFour)
+    {
+        $this->timeFoodFour = $timeFoodFour;
+
+        return $this;
+    }
+
+    /**
+     * Get timeFoodFour
+     *
+     * @return string
+     */
+    public function getTimeFoodFour()
+    {
+        return $this->timeFoodFour;
+    }
+
+    /**
+     * Set timeFoodFive
+     *
+     * @param string $timeFoodFive
+     *
+     * @return Initial
+     */
+    public function setTimeFoodFive($timeFoodFive)
+    {
+        $this->timeFoodFive = $timeFoodFive;
+
+        return $this;
+    }
+
+    /**
+     * Get timeFoodFive
+     *
+     * @return string
+     */
+    public function getTimeFoodFive()
+    {
+        return $this->timeFoodFive;
+    }
+
+    /**
+     * Set timeFoodSix
+     *
+     * @param string $timeFoodSix
+     *
+     * @return Initial
+     */
+    public function setTimeFoodSix($timeFoodSix)
+    {
+        $this->timeFoodSix = $timeFoodSix;
+
+        return $this;
+    }
+
+    /**
+     * Get timeFoodSix
+     *
+     * @return string
+     */
+    public function getTimeFoodSix()
+    {
+        return $this->timeFoodSix;
+    }
+
+    /**
+     * Set foodOne
+     *
+     * @param string $foodOne
+     *
+     * @return Initial
+     */
+    public function setFoodOne($foodOne)
+    {
+        $this->foodOne = $foodOne;
+
+        return $this;
+    }
+
+    /**
+     * Get foodOne
+     *
+     * @return string
+     */
+    public function getFoodOne()
+    {
+        return $this->foodOne;
+    }
+
+    /**
+     * Set foodTwo
+     *
+     * @param string $foodTwo
+     *
+     * @return Initial
+     */
+    public function setFoodTwo($foodTwo)
+    {
+        $this->foodTwo = $foodTwo;
+
+        return $this;
+    }
+
+    /**
+     * Get foodTwo
+     *
+     * @return string
+     */
+    public function getFoodTwo()
+    {
+        return $this->foodTwo;
+    }
+
+    /**
+     * Set foodThree
+     *
+     * @param string $foodThree
+     *
+     * @return Initial
+     */
+    public function setFoodThree($foodThree)
+    {
+        $this->foodThree = $foodThree;
+
+        return $this;
+    }
+
+    /**
+     * Get foodThree
+     *
+     * @return string
+     */
+    public function getFoodThree()
+    {
+        return $this->foodThree;
+    }
+
+    /**
+     * Set foodFour
+     *
+     * @param string $foodFour
+     *
+     * @return Initial
+     */
+    public function setFoodFour($foodFour)
+    {
+        $this->foodFour = $foodFour;
+
+        return $this;
+    }
+
+    /**
+     * Get foodFour
+     *
+     * @return string
+     */
+    public function getFoodFour()
+    {
+        return $this->foodFour;
+    }
+
+    /**
+     * Set foodFive
+     *
+     * @param string $foodFive
+     *
+     * @return Initial
+     */
+    public function setFoodFive($foodFive)
+    {
+        $this->foodFive = $foodFive;
+
+        return $this;
+    }
+
+    /**
+     * Get foodFive
+     *
+     * @return string
+     */
+    public function getFoodFive()
+    {
+        return $this->foodFive;
+    }
+
+    /**
+     * Set foodSix
+     *
+     * @param string $foodSix
+     *
+     * @return Initial
+     */
+    public function setFoodSix($foodSix)
+    {
+        $this->foodSix = $foodSix;
+
+        return $this;
+    }
+
+    /**
+     * Get foodSix
+     *
+     * @return string
+     */
+    public function getFoodSix()
+    {
+        return $this->foodSix;
     }
 }

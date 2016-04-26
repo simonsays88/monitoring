@@ -395,3 +395,24 @@ nav li a {
 #initial_health, #initial_treatment {
     height: 25px;
 }
+
+.food_table {
+    margin-top: 10px;
+    width : 100%;
+}
+
+.food_table tr{
+    border-bottom : none;
+}
+
+.food_table td{
+    padding: 2px;
+}
+
+.food_table input{
+    margin-bottom: 0px;
+}
+
+.time_food {
+    width: 33%;
+}

@@ -51,12 +51,12 @@
                 <h3>Le sport et vous</h3>
                 <aside>Rédigez clairement vos réponses avec des phrases courtes et précises.</aside>
                 <div class="questionContainer">
-                    <label for="exercises">Quels types d'entraînement faites vous, combien de fois par semaine et depuis quand ?</label>
+                    <label for="exercises">Quels types d'entraînements faites vous, combien de fois par semaine et depuis quand ?</label>
                     {{ form_widget(form.exercises) }}
                 </div>    
 
                 <div class="questionContainer">
-                    <label for="practiceLocation">Vous effecturez votre entrainement en salle ou à domicile ? Si à domicile merci de préciser le matériel dont vous disposez.</label>
+                    <label for="practiceLocation">Vous effectuez votre entrainement en salle ou à domicile ? Si à domicile merci de préciser le matériel dont vous disposez.</label>
                     {{ form_widget(form.practiceLocation) }}
                 </div>    
 
@@ -80,7 +80,7 @@
             <div class="formSection">
                 <h3>Vos objectifs</h3>
                 <div class="questionContainer">
-                    <label for="objectives">Quels attentes avez-vous de ce coaching ?</label>
+                    <label for="objectives">Quelles attentes avez-vous de ce coaching ?</label>
                     {{ form_widget(form.objectives) }}
                 </div>    
 
@@ -170,25 +170,59 @@
                 </div>
 
                 <div class="questionContainer">
-                    <label for="dietarySupplement">Utilisez-vous déjà des complèments alimentaires? Si non, souhaitez-vous en utiliser ?</label>
+                    <label for="dietarySupplement">Utilisez-vous déjà des compléments alimentaires? Si non, souhaitez-vous en utiliser ?</label>
                     {{ form_widget(form.dietarySupplement) }}
                 </div>    
 
                 <div class="questionContainer">
-                    <label for="trainingTime">Indiquez moi l'heure de votre entrainement:</label>
+                    <label for="trainingTime">Indiquez moi l'heure de votre entraînement:</label>
                     {{ form_widget(form.trainingTime) }}
                 </div>
+
+                <div class="questionContainer">
+                    <label for="allergy">Avez vous des allergies et/ou des intolérances alimentaires?</label>
+                    {{ form_widget(form.allergy) }}
+                </div>    
             </div>
 
             <div class="formSection">
                 <h3>Votre alimentation actuelle</h3>
                 <div class="questionContainer">
-                    <label for="diet"> Indiquez moi les <b>horaires</b> de vos repas et collations sur une journée et <b>tout ce que vous mangez</b> sur un journée (Petit déjeuner - Collation matin - déjeuner - Collation soir - dîner)</label>
-                    {{ form_widget(form.diet) }}
+                    <label for="diet"> Indiquez moi les <b>horaires</b> de vos repas et collations sur une journée et <b>tout ce que vous mangez</b> sur une journée (Petit déjeuner - Collation matin - déjeuner - Collation soir - dîner)</label>
+                    <table class="food_table">
+                            <tr>
+                                <th class="time_food">Heure de repas</th>
+                                <th>Aliments et quantités</th>
+                            </tr>
+                            <tr>
+                                <td>{{ form_widget(form.timeFoodOne) }}</td>
+                                <td>{{ form_widget(form.foodOne) }}</td>
+                            </tr>
+                            <tr>
+                                <td>{{ form_widget(form.timeFoodTwo) }}</td>
+                                <td>{{ form_widget(form.foodTwo) }}</td>
+                            </tr>
+                            <tr>
+                                <td>{{ form_widget(form.timeFoodThree) }}</td>
+                                <td>{{ form_widget(form.foodThree) }}</td>
+                            </tr>
+                            <tr>
+                                <td>{{ form_widget(form.timeFoodFour) }}</td>
+                                <td>{{ form_widget(form.foodFour) }}</td>
+                            </tr>
+                            <tr>
+                                <td>{{ form_widget(form.timeFoodFive) }}</td>
+                                <td>{{ form_widget(form.foodFive) }}</td>
+                            </tr>
+                            <tr>
+                                <td>{{ form_widget(form.timeFoodSix) }}</td>
+                                <td>{{ form_widget(form.foodSix) }}</td>
+                            </tr>
+                    </table>
                 </div>    
 
                 <div class="questionContainer">
-                    <label for="note"> Précisez moi si besoin des remarques sur votre alimentation et votre rythme journalier.</label>
+                    <label for="note"> Précisez moi, si besoin, des remarques sur votre alimentation et votre rythme journalier.</label>
                     {{ form_widget(form.note) }}
                 </div>
 
