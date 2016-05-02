@@ -76,11 +76,3 @@ fos_user:
     firewall_name: main
     user_class: AppBundle\Entity\User
     
-knp_menu:
-    # use "twig: false" to disable the Twig extension and the TwigRenderer
-    twig:
-        template: knp_menu.html.twig
-    #  if true, enables the helper for PHP templates
-    templating: false
-    # the renderer to use, list is also available by default
-    default_renderer: twig

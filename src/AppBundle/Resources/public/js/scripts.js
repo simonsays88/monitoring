@@ -16,13 +16,13 @@ function readURL(input, preview) {
 }
 
 $("#initial_photoFront").change(function () {
-    readURL(this, $(this).next('img'));
+    readURL(this, $('#preview_photoFront'));
 });
 $("#initial_photoSide").change(function () {
-    readURL(this, $(this).next('img'));
+    readURL(this, $('#preview_photoSide'));
 });
 $("#initial_photoBack").change(function () {
-    readURL(this, $(this).next('img'));
+    readURL(this, $('#preview_photoBack'));
 });
 
 $("#result_photoFront").change(function () {
