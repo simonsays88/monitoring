@@ -17,3 +17,5 @@
 /web/uploads/
 /nbproject
 /web/.htaccess
+/.sass-cache/*
+/src/AppBundle/Resources/public/sass/.sass-cache/*
