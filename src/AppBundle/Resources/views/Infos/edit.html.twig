@@ -4,8 +4,13 @@
 {% block headingTitle %}Infos{% endblock %}
 
 {% block body %}
-    {{ form_start(form) }}
-        {{ form_widget(form.infos) }}
-            <div class="submitContainer"><input type="submit" value="Enregistrer" class="btn bigBtn"></div>
-        {{ form_end(form) }}
+    <div class="row">
+        <div class = "col s4">
+            <h4>Infos</h4>
+            {{ form_start(form) }}
+            {{ form_widget(form.infos) }}
+            <div class="submitContainer"><input type="submit" value="Enregistrer" class="btn"></div>
+            {{ form_end(form) }}
+        </div>
+    </div>
 {% endblock %}

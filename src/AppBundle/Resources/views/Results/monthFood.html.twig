@@ -8,47 +8,31 @@
 
     {{ include('AppBundle:Results:identity.html.twig', { 'pack': form.vars.value.pack }) }}
     {{ form_start(form) }}
-    <div class="initFormSection halfElement">
-        <h2>Bilan alimentaire</h2>
-        <div class="content">
-
-            <div class="formSection">
-                <div class="questionContainer">
-                    <label for="questions">Tes questions et tes sensations :
-                    </label>
-                    {{ form_widget(form.questions) }}
-                </div>                
-                <div class="questionContainer">
-                    <label for="evaluation">Sur une échelle de 1 à 10, à combien évalues tu le suivi du plan alimentaire en termes
-                        de quantités et de qualités des aliments ?</label>
-                        {{ form_widget(form.evaluation) }}
-                </div>    
-                <div class="questionContainer">
-                    <label for="physicalChange">Des éventuels changements physiques que tu as pu constater : 
-                    </label>
-                    {{ form_widget(form.physicalChange) }}
-                </div>
-            </div> 
-        </div>
-
-    </div>
-
-    <div class="initFormSection halfElement">
-        <h2>Vos mensurations</h2>
-        <div class="content">
-
-            <div class="halfElement">
-                <label for="weight">Poids en Kg (mesure initial {{form.vars.value.pack.initial.weight}}kg )</label>
-                {{ form_widget(form.weight) }}
-
-                <label for="hipSize">Tour de taille en cm (mesure initial {{form.vars.value.pack.initial.hipSize}}cm )</label>
-                {{ form_widget(form.hipSize) }}
-
+    <div class="row">
+        <div class="row col s6" style="padding: 2%;">
+            <div class="row z-depth-2">
+                <h4>Bilan alimentaire</h4>
+                <label for="questions">Tes questions et tes sensations :
+                </label>
+                {{ form_widget(form.questions) }}
+                <label for="evaluation">Sur une échelle de 1 à 10, à combien évalues tu le suivi du plan alimentaire en termes
+                    de quantités et de qualités des aliments ?</label>
+                    {{ form_widget(form.evaluation) }}
+                <label for="physicalChange">Des éventuels changements physiques que tu as pu constater : 
+                </label>
+                {{ form_widget(form.physicalChange) }}
             </div>
         </div> 
-    </div>
-
-    <div class="submitContainer"><input type="submit" value="Envoyez votre bilan alimentaire" class="btn bigBtn"></div>
+        <div class="row col s6" style="padding: 2%;">
+            <div class="row z-depth-2">
+                <h4>Vos mensurations</h4>
+                <label for="weight">Poids en Kg (mesure initial {{form.vars.value.pack.initial.weight}}kg )</label>
+                {{ form_widget(form.weight) }}
+                <label for="hipSize">Tour de taille en cm (mesure initial {{form.vars.value.pack.initial.hipSize}}cm )</label>
+                {{ form_widget(form.hipSize) }}
+            </div>
+            <p><button type="submit" class="btn">Envoyez votre bilan alimentaire <i class="material-icons right">send</i></button></p>
+        </div> 
         {{ form_end(form) }}
-
+    </div>
 {% endblock %}

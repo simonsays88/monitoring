@@ -8,32 +8,34 @@
 
 {% block body %}
 
-<div class="confirmationMessage">
-  <h2>Je te remercie d'avoir complété ton bilan initial.</h2>
-  {% if pack.packType == 'food' %}
-    <p>
-        Je reviendrai vers toi avec ton pack dans 15 jours maximum.
-        Mes packs étant réalisés manuellement j'accorde du temps pour traiter tes informations et le concevoir.
-        Merci d'avance pour ta compréhension et à très bientôt !
-        David 
-    </p>
-  {% elseif pack.packType == 'food_body' %}
-    <p>
-        Je reviendrai vers toi avec ton pack dans 8 jours maximum.
-        Mes packs étant réalisés manuellement j'accorde du temps pour traiter tes informations et le concevoir.
-        Merci d'avance pour ta compréhension et à très bientôt !
-        David 
-    </p>
-  {% else %}
-    <p>
-        Je te remercie d'avoir complété ton bilan initial.
-        Je reviendrai vers toi avec ton pack dans 8 jours maximum.
-        Merci d'avance pour ta compréhension et à très bientôt !
-        David 
-    </p>
-  {% endif %}
+    <div class="row valign-wrapper">
+        <div class="row col s6">
+            <h4>Je te remercie d'avoir complété ton bilan initial.</h4>
+            {% if pack.packType == 'food' %}
+                <p>
+                    Je reviendrai vers toi avec ton pack dans 15 jours maximum.
+                    Mes packs étant réalisés manuellement j'accorde du temps pour traiter tes informations et le concevoir.
+                    Merci d'avance pour ta compréhension et à très bientôt !
+                    David 
+                </p>
+            {% elseif pack.packType == 'food_body' %}
+                <p>
+                    Je reviendrai vers toi avec ton pack dans 8 jours maximum.
+                    Mes packs étant réalisés manuellement j'accorde du temps pour traiter tes informations et le concevoir.
+                    Merci d'avance pour ta compréhension et à très bientôt !
+                    David 
+                </p>
+            {% else %}
+                <p>
+                    Je te remercie d'avoir complété ton bilan initial.
+                    Je reviendrai vers toi avec ton pack dans 8 jours maximum.
+                    Merci d'avance pour ta compréhension et à très bientôt !
+                    David 
+                </p>
+            {% endif %}
 
-    <a href="http://www.davidcosta.fr/blog/" target="_blank" class="btn bigBtn">Lire les conseils de David sur son blog</a>
-</div>
+            <a href="http://www.davidcosta.fr/blog/" target="_blank" class="btn">Lire les conseils de David sur son blog</a>
+        </div>
+    </div>
 
 {% endblock %}

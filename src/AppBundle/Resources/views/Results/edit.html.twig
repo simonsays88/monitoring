@@ -6,24 +6,24 @@
 
 {% block body %}
     {{ form_start(form) }}
-        <div class="initFormSection halfElement">
-            <h2>Vos mensurations</h2>
-            <div class="content">
-
-                <div class="halfElement">
-                    <label for="weight">Poids en Kg</label>
+    <div class="row">
+        <div class="row col s6" style="padding: 2%;">
+            <div class="row z-depth-2">
+                <i class="small material-icons right">insert_chart</i>
+                <h5>Mensurations</h5>
+                <div class="col s6">
+                    <label for="weight">Poids (en Kg)</label>
                     {{ form_widget(form.weight) }}
 
-                    <label for="imc">Masse grasse en %</label>
+                    <label for="imc">Votre IMC est de :</label>
                     {{ form_widget(form.imc) }}
-                </div>
-
-                <div class="halfElement">
                     <label for="shoulders">Epaules en cm</label>
                     {{ form_widget(form.shoulders) }}
 
                     <label for="pectorals">Pectoraux en cm</label>
                     {{ form_widget(form.pectorals) }}
+                </div>
+                <div class="col s6">
 
                     <label for="hipSize">Tour de taille en cm</label>
                     {{ form_widget(form.hipSize) }}
@@ -33,45 +33,78 @@
 
                     <label for="thighs">Cuisse en cm</label>
                     {{ form_widget(form.thighs) }}
-
-
                 </div>
-                <div class="questionContainer">
-                    <img src="/bundles/app/images/mesureMensurations.jpg" alt=""/>
-                </div> 
-            </div> 
+
+                {#                    <img src="/bundles/app/images/mesureMensurations.jpg" alt=""/>
+                #}              
+
+            </div>
         </div>
-        <div class="initFormSection halfElement">
-            <h2>Vos photos</h2>
-            <div class="content photoUpload">
-                <div class="thirdElement">
-                    <h3>Photo bilan face</h3>
-                    {{ form_widget(form.photoFront) }}
+        <div class="row col s6" style="padding: 2%;">
+            <div class="row z-depth-2 photos">
+                <i class="small material-icons right">picture_in_picture</i>
+                <h5>Vos photos</h5>
+                <blockquote> 
+                    Prenez vos photos en format portrait.
+                    Cadrez les photos de vos genoux jusqu'au dessus de la tête.
+                    Les bras sont relâchés le long du corps et l'attitude naturelle.
+                    L'éclairage doit être facilement reproductible.
+                    Les photos ne respectant pas ces consignes ne pourront être traitées
+                </blockquote>
+                <div class="col s4">
+                    <label>Photo de face</label>
+                    <div class="file-field input-field">
+                        <div class="btn">
+                            <span>Image</span>
+                            {{ form_widget(form.photoFront) }}
+                        </div>
+                        <div class="file-path-wrapper">
+                            <input class="file-path validate" type="text">
+                        </div>
+                    </div>
                     {% if form.vars.value.photoFront is not null %}
-                        <img class="fancybox" src="{{ asset('uploads/photos/' ~ form.vars.value.photoFront) }}" />
-                    {% endif %}     
-                <img class="preview" src=""/>
-                </div>
-                <div class="thirdElement">
-                    <h3>Photo bilan coté</h3>
-                    {{ form_widget(form.photoSide) }}
-                    {% if form.vars.value.photoSide is not null %}
-                        <img class="fancybox" src="{{ asset('uploads/photos/' ~ form.vars.value.photoSide) }}" />
+                        <a class="fancybox" rel="group" href="{{ asset('uploads/photos/' ~ form.vars.value.photoFront) }}"><img id="preview_photoFront" src="{{ asset('uploads/photos/' ~ form.vars.value.photoFront) }}" /></a>
+                        {% else %}  
+                        <img id="preview_photoFront" src=""/>
                     {% endif %}
-                <img class="preview" src=""/>
                 </div>
-                <div class="thirdElement">
-                    <h3>Photo bilan dos</h3>
-                    {{ form_widget(form.photoBack) }}
+                <div class="col s4">
+                    <label>Photo de coté</label>
+                    <div class="file-field input-field">
+                        <div class="btn">
+                            <span>Image</span>
+                            {{ form_widget(form.photoSide) }}
+                        </div>
+                        <div class="file-path-wrapper">
+                            <input class="file-path validate" type="text">
+                        </div>
+                    </div>
+                    {% if form.vars.value.photoSide is not null %}
+                        <a class="fancybox" rel="group" href="{{ asset('uploads/photos/' ~ form.vars.value.photoSide) }}"><img id="preview_photoSide" src="{{ asset('uploads/photos/' ~ form.vars.value.photoSide) }}" /></a>
+                        {% else %}  
+                        <img id="preview_photoSide" src=""/>
+                    {% endif %}
+                </div>
+                <div class="col s4">
+                    <label>Photo de dos</label>
+                    <div class="file-field input-field">
+                        <div class="btn">
+                            <span>Image</span>
+                            {{ form_widget(form.photoBack) }}
+                        </div>
+                        <div class="file-path-wrapper">
+                            <input class="file-path validate" type="text">
+                        </div>
+                    </div>
                     {% if form.vars.value.photoBack is not null %}
-                        <img class="fancybox" src="{{ asset('uploads/photos/' ~ form.vars.value.photoBack) }}" />
-                    {% endif %} 
-                <img class="preview" src=""/>
+                        <a class="fancybox" rel="group" href="{{ asset('uploads/photos/' ~ form.vars.value.photoBack) }}"><img id="preview_photoBack" src="{{ asset('uploads/photos/' ~ form.vars.value.photoBack) }}" /></a>
+                        {% else %}  
+                        <img id="preview_photoBack" src=""/>
+                    {% endif %}
                 </div>
-
-            </div> 
+            </div>
         </div>
-        <div class="submitContainer"><input type="submit" value="Envoyez votre bilan trimestriel" class="btn bigBtn"></div>
-    {{ form_end(form) }}
-
+        <div class="center-align"><button type="submit" class="btn">Envoyez votre bilan trimestriel <i class="material-icons right">send</i></button></div>
+        {{ form_end(form) }}
+    </div>
 {% endblock %}

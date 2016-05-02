@@ -18,11 +18,11 @@
         {% endfor %}
     {% endfor %}
 
-    <div>
-            {% if error %}
-                <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-            {% endif %}
-
+    <div class="row valign-wrapper">
+        {% if error %}
+            <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
+        <div class="row col s3">
             <form action="{{ path("fos_user_security_check") }}" method="post">
                 <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
 
@@ -37,5 +37,6 @@
 
                 <input type="submit" id="_submit" name="_submit" value="Connexion" />
             </form>
+        </div>
     </div>
 {% endblock %}

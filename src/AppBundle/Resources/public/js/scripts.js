@@ -26,13 +26,13 @@ $("#initial_photoBack").change(function () {
 });
 
 $("#result_photoFront").change(function () {
-    readURL(this, $(this).next('img'));
+    readURL(this, $('#preview_photoFront'));
 });
 $("#result_photoSide").change(function () {
-    readURL(this, $(this).next('img'));
+    readURL(this, $('#preview_photoSide'));
 });
 $("#result_photoBack").change(function () {
-    readURL(this, $(this).next('img'));
+    readURL(this, $('#preview_photoBack'));
 });
 
 $(".fancybox").fancybox();

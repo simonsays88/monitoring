@@ -5,31 +5,35 @@
 {% block pageClass %}userEvolution{% endblock %}
 
 {% block head %}
-<script src="http://code.highcharts.com/highcharts.js"></script>
+    <script src="http://code.highcharts.com/highcharts.js"></script>
 {% endblock %}
 
 {% block body %}
-    <table border="1" style="width:100%">
-        <tr>
-            <td>Bilan</td>
-            <td>Poids</td>
-            <td>Masse grasse</td>
-            <td>Épaules</td>
-            <td>Pectoraux</td>
-            <td>Taille</td>
-            <td>Bras contracté</td>
-            <td>Cuisse</td>
-        </tr>
-        <tr>
-            <td><a href="{{ path('initial', {'userId':user.userId}) }}" class="link">Initial</a></td>
-            <td>{{ user.weight}}</td>
-            <td>{{ user.imc}}</td>
-            <td>{{ user.shoulders}}</td>
-            <td>{{ user.pectorals}}</td>
-            <td>{{ user.hipSize}}</td>
-            <td>{{ user.arms}}</td>
-            <td>{{ user.thighs}}</td>
-        </tr>
+    <h5>Mensurations</h5>
+    <table class="bordered striped highlight responsive-table centered">
+        <thead>
+            <tr>
+                <th>Bilans</th>
+                <th>Poids</th>
+                <th>Masse grasse</th>
+                <th>Épaules</th>
+                <th>Pectoraux</th>
+                <th>Taille</th>
+                <th>Bras contracté</th>
+                <th>Cuisse</th>
+            </tr>
+        <thead>
+        <tbody>
+            <tr>
+                <td><a href="{{ path('initial', {'userId':user.userId}) }}" class="link">Initial</a></td>
+                <td>{{ user.weight}}</td>
+                <td>{{ user.imc}}</td>
+                <td>{{ user.shoulders}}</td>
+                <td>{{ user.pectorals}}</td>
+                <td>{{ user.hipSize}}</td>
+                <td>{{ user.arms}}</td>
+                <td>{{ user.thighs}}</td>
+            </tr>
             {% for pack in user.packs %}
                 {% for result in pack.results %}
                     <tr>
@@ -42,35 +46,39 @@
                         <td>{{ result.arms}}</td>
                         <td>{{ result.thighs}}</td>
                     </tr>
+                {% endfor %}
             {% endfor %}
-        {% endfor %}
+        </tbody>
     </table>
-
-    <table border="1" style="width:100%">
-        <tr>
-            <td>Bilan</td>
-            <td>Photo Face</td>
-            <td>Photo Côté</td>
-            <td>Photo Dos</td>
-        </tr>
-        <tr>
-            <td><a href="{{ path('initial', {'userId':user.userId}) }}" class="link">Initial</a></td>
-            <td>
-                {% if user.photoFront is not null %}
-                    <img width = "100px" src="{{ asset('uploads/photos/' ~ user.photoFront) }}" />
-                {% endif %}            
-            </td>
-            <td>
-                {% if user.photoSide is not null %}
-                    <img width = "100px" src="{{ asset('uploads/photos/' ~ user.photoSide) }}" />
-                {% endif %}                
-            </td>
-            <td>
-                {% if user.photoBack is not null %}
-                    <img width = "100px" src="{{ asset('uploads/photos/' ~ user.photoBack) }}" />
-                {% endif %}                
-            </td>
-        </tr>
+    <h5>Photos</h5>
+    <table class="bordered striped highlight responsive-table centered">
+        <thead>
+            <tr>
+                <th>Bilans</th>
+                <th>Photo Face</th>
+                <th>Photo Côté</th>
+                <th>Photo Dos</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><a href="{{ path('initial', {'userId':user.userId}) }}" class="link">Initial</a></td>
+                <td>
+                    {% if user.photoFront is not null %}
+                        <img width = "100px" src="{{ asset('uploads/photos/' ~ user.photoFront) }}" />
+                    {% endif %}            
+                </td>
+                <td>
+                    {% if user.photoSide is not null %}
+                        <img width = "100px" src="{{ asset('uploads/photos/' ~ user.photoSide) }}" />
+                    {% endif %}                
+                </td>
+                <td>
+                    {% if user.photoBack is not null %}
+                        <img width = "100px" src="{{ asset('uploads/photos/' ~ user.photoBack) }}" />
+                    {% endif %}                
+                </td>
+            </tr>
             {% for pack in user.packs %}
                 {% for result in pack.results %}
                     {% if result.resultType == constant('AppBundle\\Entity\\Result::ESTHETIC') %}
@@ -93,34 +101,34 @@
                             </td>
                         </tr>
                     {% endif %}
+                {% endfor %}
             {% endfor %}
-        {% endfor %}
-
+        <tbody>
     </table>
-        {% if performances is not null %}
-            <h2>Performances :</h2>
-            <script>
-                var data_repeat;
-                var data_unit;
-                var unit;
-                var date;
-                {% for key,exercise in performances %}
+    {% if performances is not null %}
+        <h5>Performances</h5>
+        <script>
+            var data_repeat;
+            var data_unit;
+            var unit;
+            var date;
+            {% for key,exercise in performances %}
 
-                    </script>
-                    <div id="{{ key|replace(' ', '-') }}" class="higchart_line" style="width:50%; height:200px;"></div>
-                    <script>
-                        $(function () {
-                        data_repeat = new Array();
-                        data_unit = new Array();
-                        date = new Array();
-                        {% for result in exercise %}
-                            data_repeat.push({{ result[0] }});
-                            data_unit.push({{ result[1] }});
-                            date.push('{{ result[3]|date("d/m") }}');
-                            {% if loop.first %}
-                                unit = '{{ result[2] }}';
-                            {% endif %}
-                        {% endfor %}
+            </script>
+            <div id="{{ key|replace(' ', '-') }}" class="higchart_line" style="width:50%; height:200px;"></div>
+            <script>
+                $(function () {
+                    data_repeat = new Array();
+                    data_unit = new Array();
+                    date = new Array();
+                {% for result in exercise %}
+                        data_repeat.push({{ result[0] }});
+                        data_unit.push({{ result[1] }});
+                        date.push('{{ result[3]|date("d/m") }}');
+                    {% if loop.first %}
+                            unit = '{{ result[2] }}';
+                    {% endif %}
+                {% endfor %}
 
                         $('#{{ key|replace(' ', '-') }}').highcharts({
                             title: {
@@ -135,10 +143,10 @@
                                     text: 'Nb'
                                 },
                                 plotLines: [{
-                                    value: 0,
-                                    width: 1,
-                                    color: '#808080'
-                                }]
+                                        value: 0,
+                                        width: 1,
+                                        color: '#808080'
+                                    }]
                             },
                             legend: {
                                 layout: 'vertical',
@@ -147,17 +155,17 @@
                                 borderWidth: 0
                             },
                             series: [{
-                                name: 'Répétition',
-                                data: data_repeat
-                            }, {
-                                name: unit,
-                                data: data_unit
-                            },]
+                                    name: 'Répétition',
+                                    data: data_repeat
+                                }, {
+                                    name: unit,
+                                    data: data_unit
+                                }, ]
                         });
                     });
-                {% endfor %}
-            </script>
+            {% endfor %}
+        </script>
 
-        {% endif %}
-        
+    {% endif %}
+
 {% endblock %}

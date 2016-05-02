@@ -6,28 +6,20 @@
 
 {% block body %}
 
-    <aside>
-        <a href="{{ path('exercise_index') }}" class="btn">Retour à la liste</a>
-
-    </aside>
-
-        <article class="exerciceModify">
-            <header>{{ exercise.name }}</header>
-
-            <main>{{ form_start(edit_form) }}
-                {{ form_widget(edit_form) }}
-            </main>
-            <footer>
-
+    <div class="row">
+        <div class = "col s4">
+            {{ form_start(edit_form) }}
+            {{ form_widget(edit_form) }}
+            {{ form_end(edit_form) }}
+            {{ form_start(delete_form) }}
+            <p>
                 <input type="submit" value="Modifier" class="btn"/>
-                {{ form_end(edit_form) }}
-
-                {{ form_start(delete_form) }}
                 <input type="submit" value="Supprimer" class="btn delete">
-                {{ form_end(delete_form) }}
-            </footer>
-        </article>
-
+                <a href="{{ path('exercise_index') }}" class="btn">Retour à la liste</a>
+            </p>
+            {{ form_end(delete_form) }}
+        </div>
+    </div>
 {% endblock %}
 
 
