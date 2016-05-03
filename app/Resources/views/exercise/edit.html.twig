@@ -10,10 +10,10 @@
         <div class = "col s4">
             {{ form_start(edit_form) }}
             {{ form_widget(edit_form) }}
+            <input type="submit" value="Modifier" class="btn"/>
             {{ form_end(edit_form) }}
             {{ form_start(delete_form) }}
             <p>
-                <input type="submit" value="Modifier" class="btn"/>
                 <input type="submit" value="Supprimer" class="btn delete">
                 <a href="{{ path('exercise_index') }}" class="btn">Retour à la liste</a>
             </p>
