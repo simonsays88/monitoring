@@ -6,12 +6,14 @@
 
 {% block body %}
 
-<div class="confirmationMessage">
-  <h2>MERCI !</h2>
-    <p>Ton bilan m'a bien été transmis. Je regarde tes données de prêt et reviens vers toi rapidement.
-        A bientôt !</p>
+    <div class="row valign-wrapper">
+        <div class="row col s6">
+            <h4>MERCI !</h4>
+            <p>Ton bilan m'a bien été transmis. Je regarde tes données de prêt et reviens vers toi rapidement.
+                A bientôt !</p>
 
-    <a href="http://www.davidcosta.fr" target="_blank" class="btn bigBtn">Retourner sur COSTAFITNESS.FR</a>&nbsp;<a href="{{ path('scale_index') }}" target="_blank" class="btn bigBtn">Accéder au barème des performances</a>
-</div>
+            <a href="http://www.davidcosta.fr" target="_blank" class="btn">Retourner sur COSTAFITNESS.FR</a>&nbsp;<a href="{{ path('scale_index') }}" target="_blank" class="btn bigBtn">Accéder au barème des performances</a>
+        </div>
+    </div>
 
 {% endblock %}

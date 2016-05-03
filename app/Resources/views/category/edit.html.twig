@@ -1,21 +1,20 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Lier des exercices à {{ category.display }}</h1>
 
-    {{ form_start(edit_form) }}
-        
-        {% for exercise in edit_form.exercises %}
-            <p {% if get_reference(exercise.vars.value) %}class = "exerciseReference"{% endif %}>{{ form_label(exercise) }} {{ form_widget(exercise) }}</p>
-        {% endfor %}
-
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Modifier" />
-    {{ form_end(edit_form) }}
-
-    <ul>
-        <li>
-            <a href="{{ path('category_index') }}">Liste des catégories</a>
-        </li>
-    </ul>
+    <div class="row">
+        <div class = "col s4">
+            <h4>Lier des exercices à {{ category.display }}</h4>
+            {{ form_start(edit_form) }}
+            {% for exercise in edit_form.exercises %}
+                <p {% if get_reference(exercise.vars.value) %}class = "exerciseReference"{% endif %}>{{ form_widget(exercise) }}{{ form_label(exercise) }} </p>
+            {% endfor %}
+            {{ form_widget(edit_form) }}
+            <p>
+                <button type="submit" class="btn">Modifier</button>
+                <a href="{{ path('category_index') }}" class="btn" >Retour à la liste</a>
+            </p>
+            {{ form_end(edit_form) }}
+        </div>
+    </div>
 {% endblock %}

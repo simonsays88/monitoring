@@ -8,86 +8,61 @@
 
     {{ include('AppBundle:Results:identity.html.twig', { 'pack': form.vars.value.pack }) }}
     {{ form_start(form) }}
-    <div class="initFormSection halfElement">
-        <h2>Bilan alimentaire</h2>
-        <div class="content">
-
-            <div class="formSection">
-                <div class="questionContainer">
-                    <label for="questions">Tes questions et tes sensations :
-                    </label>
-                    {{ form_widget(form.questions) }}
-                </div>                
-                <div class="questionContainer">
-                    <label for="evaluation">Sur une échelle de 1 à 10, à combien évalues tu le suivi du plan alimentaire en termes
-                        de quantités et de qualités des aliments ?</label>
-                        {{ form_widget(form.evaluation) }}
-                </div>    
-                <div class="questionContainer">
-                    <label for="physicalChange">Des éventuels changements physiques que tu as pu constater : 
-                    </label>
-                    {{ form_widget(form.physicalChange) }}
-                </div>
-            </div> 
-        </div>
-
-    </div>
-
-    <div class="initFormSection halfElement">
-        <h2>Vos mensurations</h2>
-        <div class="content">
-
-            <div class="halfElement">
-                <label for="weight">Poids en Kg (mesure initial {{form.vars.value.pack.initial.weight}}kg )</label>
-                {{ form_widget(form.weight) }}
-
-                <label for="hipSize">Tour de taille en cm (mesure initial {{form.vars.value.pack.initial.hipSize}}cm )</label>
-                {{ form_widget(form.hipSize) }}
-
-            </div>
-        </div> 
-    </div>
-    <div class="initFormSection halfElement">
-        <h2>Bilan musculation</h2>
-        <div class="content">
-
-            <div class="formSection">
-                <div class="questionContainer">
-                    <label for="method">Méthode du programme (notée en 1ère page de ton programme) : par exemple, 5-7-9 
-RM ou drop set ou 3 RM :</label>
+    <div class="row">
+        <div class="row col s6" style="padding: 2%;">
+            <div class="row z-depth-2">
+                <h4>Bilan musculation</h4>
+                <label for="method">Méthode du programme (notée en 1ère page de ton programme) : par exemple, 5-7-9 
+                    RM ou drop set ou 3 RM :</label>
                     {{ form_widget(form.method) }}
-                </div>    
-            </div> 
-            <div class="formSection">
-                <div class="questionContainer">
-                    <label for="feedback">Déroulement et durée des séances :</label>
-                    {{ form_widget(form.feedback) }}
-                </div>    
-            </div> 
-            <div class="formSection">
+
+                <label for="feedback">Déroulement et durée des séances :</label>
+                {{ form_widget(form.feedback) }}
+
                 {% for exercise in form.resultExercise %}
                     <label for="resultExercise">{{ exercise.vars.data }}</label>
                     <div class="questionContainer">
                         {{ form_widget(exercise.repetition, { 'attr': {'class': 'small_input'} }) }} X {{ form_widget(exercise.value, { 'attr': {'class': 'small_input'} }) }} {{ exercise.vars.data.exercise.unit }}
                     </div>
                 {% endfor %}
-            </div>
-            <div class="formSection">
-                <div class="questionContainer">
-                    <label for="performance">Autre exercices</label>
-                        {{ form_widget(form.performance) }}
-                </div>    
-            </div> 
-            <div class="formSection">
-                <div class="questionContainer">
-                    <label for="recovery">Récupération et courbatures :</label>
-                    {{ form_widget(form.recovery) }}
-                </div>    
-            </div> 
-        </div> 
-    </div>
-    <div class="submitContainer"><input type="submit" value="Envoyez votre bilan alimentaire" class="btn bigBtn"></div>
 
-        {{ form_end(form) }}
+                <label for="performance">Autre exercices</label>
+                {{ form_widget(form.performance) }}
+
+                <label for="recovery">Récupération et courbatures :</label>
+                {{ form_widget(form.recovery) }}
+
+            </div>
+        </div>
+
+        <div class="row col s6" style="padding: 2%;">
+            <div class="row z-depth-2">
+                <h4>Bilan alimentaire</h4>
+                <label for="questions">Tes questions et tes sensations :
+                </label>
+                {{ form_widget(form.questions) }}
+
+                <label for="evaluation">Sur une échelle de 1 à 10, à combien évalues tu le suivi du plan alimentaire en termes
+                    de quantités et de qualités des aliments ?</label>
+                    {{ form_widget(form.evaluation) }}
+
+                <label for="physicalChange">Des éventuels changements physiques que tu as pu constater : 
+                </label>
+                {{ form_widget(form.physicalChange) }}
+            </div>
+            <div class="row z-depth-2">
+                <h4>Vos mensurations</h4>
+
+                <label for="weight">Poids en Kg (mesure initial {{form.vars.value.pack.initial.weight}}kg )</label>
+                {{ form_widget(form.weight) }}
+
+                <label for="hipSize">Tour de taille en cm (mesure initial {{form.vars.value.pack.initial.hipSize}}cm )</label>
+                {{ form_widget(form.hipSize) }}
+            </div>
+
+        </div>
+        <div class="submitContainer"><button type="submit" class="btn">Envoyez votre bilan alimentaire <i class="material-icons right">send</i></button></div>
+    </div>
+    {{ form_end(form) }}
 
 {% endblock %}

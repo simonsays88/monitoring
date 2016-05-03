@@ -8,13 +8,12 @@
 
 {% block body %}
     {{ form_start(form) }}
-    <div class="initFormSection halfElement">
-        <h2>Informations générales</h2>
-        <div class="content">
-
-            <div class="formSection">
-                <h3>Coordonnées</h3>
-                <div class="halfElement">
+    <div class="row">
+        <div class="col s6" style="padding: 2%;">
+            <div class="row z-depth-2">
+                <i class="small material-icons right">perm_identity</i>
+                <h5>Coordonnées</h5>
+                <div class="col s6">
                     <label for="prenom">Prénom</label>
                     {{ form_widget(form.firstname) }}
 
@@ -32,7 +31,7 @@
 
                 </div>
 
-                <div class="halfElement">
+                <div class="col s6">
                     <label for="tel">Téléphone</label>
                     {{ form_widget(form.phoneMobile) }}
 
@@ -47,79 +46,61 @@
                 </div>
             </div>
 
-            <div class="formSection">
-                <h3>Le sport et vous</h3>
-                <aside>Rédigez clairement vos réponses avec des phrases courtes et précises.</aside>
-                <div class="questionContainer">
-                    <label for="exercises">Quels types d'entraînements faites vous, combien de fois par semaine et depuis quand ?</label>
-                    {{ form_widget(form.exercises) }}
-                </div>    
+            <div class="row z-depth-2">
+                <i class="small material-icons right">play_for_work</i>
+                <h5>Le sport et vous</h5>
+                <blockquote>Rédigez clairement vos réponses avec des phrases courtes et précises.</blockquote>
+                <label for="exercises">Quels types d'entraînements faites vous, combien de fois par semaine et depuis quand ?</label>
+                {{ form_widget(form.exercises) }}
 
-                <div class="questionContainer">
-                    <label for="practiceLocation">Vous effectuez votre entrainement en salle ou à domicile ? Si à domicile merci de préciser le matériel dont vous disposez.</label>
-                    {{ form_widget(form.practiceLocation) }}
-                </div>    
+                <label for="practiceLocation">Vous effectuez votre entrainement en salle ou à domicile ? Si à domicile merci de préciser le matériel dont vous disposez.</label>
+                {{ form_widget(form.practiceLocation) }}
 
-                <div class="questionContainer">
-                    <label for="health">Avez-vous des problèmes de santé actuellement?
-                        Avez-vous des antécédents traumatologiques?
-                    </label>
-                    {{ form_widget(form.health) }}
-                </div>
+                <label for="health">Avez-vous des problèmes de santé actuellement?
+                    Avez-vous des antécédents traumatologiques?
+                </label>
+                {{ form_widget(form.health) }}
 
-                <div class="questionContainer">
-                    <label for="treatment">Suivez-vous un traitement médical actuellement?</label>
-                    {{ form_widget(form.treatment) }}
-                </div> 
-                <div class="questionContainer">
-                    <label for="smoker">Est-ce que vous fumez? Si oui, combien de cigarettes par jour?</label>
-                    {{ form_widget(form.smoker) }}
-                </div> 
+                <label for="treatment">Suivez-vous un traitement médical actuellement?</label>
+                {{ form_widget(form.treatment) }}
+                <label for="smoker">Est-ce que vous fumez? Si oui, combien de cigarettes par jour?</label>
+                {{ form_widget(form.smoker) }}
             </div>
 
-            <div class="formSection">
-                <h3>Vos objectifs</h3>
-                <div class="questionContainer">
-                    <label for="objectives">Quelles attentes avez-vous de ce coaching ?</label>
-                    {{ form_widget(form.objectives) }}
-                </div>    
+            <div class="row z-depth-2">
+                <i class="small material-icons right">trending_up</i>
+                <h5>Vos objectifs</h5>
+                <label for="objectives">Quelles attentes avez-vous de ce coaching ?</label>
+                {{ form_widget(form.objectives) }}
 
-                <div class="questionContainer">
-                    <label for="objectivesDetail">Précisez si vous le désirez :
-                    </label>
-                    {{ form_widget(form.objectivesDetail) }}
-                </div>
+                <label for="objectivesDetail">Précisez si vous le désirez :
+                </label>
+                {{ form_widget(form.objectivesDetail) }}
 
             </div>
 
-            <div class="formSection">
-                <h3>Mensurations</h3>
-                <div class="halfElement">
+            <div class="row z-depth-2">
+                <i class="small material-icons right">insert_chart</i>
+                <h5>Mensurations</h5>
+                <div class="col s6">
                     <label for="height">Taille (en cm)</label>
                     {{ form_widget(form.height) }}
-                </div>
 
-                <div class="halfElement">
                     <label for="weight">Poids (en Kg)</label>
                     {{ form_widget(form.weight) }}
-                </div>
 
-                <div class="questionContainer">
                     <label for="imc">Votre IMC est de :</label>
                     {{ form_widget(form.imc) }}
-                </div>
-                <div class="halfElement">
+
                     <label for="shoulders">Epaules (en cm)</label>
                     {{ form_widget(form.shoulders) }}
-
+                </div>
+                <div class="col s6">
                     <label for="pectorals">Pectoraux / poitrine (en cm)</label>
                     {{ form_widget(form.pectorals) }}
 
                     <label for="arms">Bras contracté (en cm)</label>
                     {{ form_widget(form.arms) }}
-                </div>
-
-                <div class="halfElement">
 
                     <label for="thighs">Cuisse (en cm)</label>
                     {{ form_widget(form.thighs) }}
@@ -128,157 +109,161 @@
                     {{ form_widget(form.hipSize) }}
                 </div>
 
-                <div class="questionContainer">
-                    <img src="/bundles/app/images/mesureMensurations.jpg" alt=""/>
-                </div> 
+                {#                    <img src="/bundles/app/images/mesureMensurations.jpg" alt=""/>
+                #}              
 
             </div>
 
-            <div class="formSection">
-                <h3>Divers</h3>
-                <div class="questionContainer">
-                    <label for="source">Comment avez-vous connu le site de David?</label>
-                    {{ form_widget(form.source) }}
-                </div>    
+            <div class="row z-depth-2">
+                <i class="small material-icons right">info_outline</i>
+                <h5>Divers</h5>
+                <label for="source">Comment avez-vous connu le site de David?</label>
+                {{ form_widget(form.source) }}
 
-                <div class="questionContainer">
-                    <label for="attention">Qu'est ce qui a retenu votre attention sur le site?</label>
-                    {{ form_widget(form.attention) }}
-                </div>
-            </div>
-
-
-
-        </div> 
-    </div>
-
-    <div class="initFormSection halfElement">
-        <h2>Votre alimentation actuelle</h2>
-        <div class="content">
-
-
-            <div class="formSection">
-                <h3>Connaitre votre comportement alimentaire</h3>
-                <div class="questionContainer">
-                    <label for="preferences">Précisez moi vos préférences, faiblesses et pulsions alimentaires.</label>
-                    {{ form_widget(form.preferences) }}
-                </div>    
-
-                <div class="questionContainer">
-                    <label for="drinking"> Indiquez moi tout ce que vous buvez tout au long de la journée.</label>
-                    {{ form_widget(form.drinking) }}
-                </div>
-
-                <div class="questionContainer">
-                    <label for="dietarySupplement">Utilisez-vous déjà des compléments alimentaires? Si non, souhaitez-vous en utiliser ?</label>
-                    {{ form_widget(form.dietarySupplement) }}
-                </div>    
-
-                <div class="questionContainer">
-                    <label for="trainingTime">Indiquez moi l'heure de votre entraînement:</label>
-                    {{ form_widget(form.trainingTime) }}
-                </div>
-
-                <div class="questionContainer">
-                    <label for="allergy">Avez vous des allergies et/ou des intolérances alimentaires?</label>
-                    {{ form_widget(form.allergy) }}
-                </div>    
-            </div>
-
-            <div class="formSection">
-                <h3>Votre alimentation actuelle</h3>
-                <div class="questionContainer">
-                    <label for="diet"> Indiquez moi les <b>horaires</b> de vos repas et collations sur une journée et <b>tout ce que vous mangez</b> sur une journée (Petit déjeuner - Collation matin - déjeuner - Collation soir - dîner)</label>
-                    <table class="food_table">
-                            <tr>
-                                <th class="time_food">Heure de repas</th>
-                                <th>Aliments et quantités</th>
-                            </tr>
-                            <tr>
-                                <td>{{ form_widget(form.timeFoodOne) }}</td>
-                                <td>{{ form_widget(form.foodOne) }}</td>
-                            </tr>
-                            <tr>
-                                <td>{{ form_widget(form.timeFoodTwo) }}</td>
-                                <td>{{ form_widget(form.foodTwo) }}</td>
-                            </tr>
-                            <tr>
-                                <td>{{ form_widget(form.timeFoodThree) }}</td>
-                                <td>{{ form_widget(form.foodThree) }}</td>
-                            </tr>
-                            <tr>
-                                <td>{{ form_widget(form.timeFoodFour) }}</td>
-                                <td>{{ form_widget(form.foodFour) }}</td>
-                            </tr>
-                            <tr>
-                                <td>{{ form_widget(form.timeFoodFive) }}</td>
-                                <td>{{ form_widget(form.foodFive) }}</td>
-                            </tr>
-                            <tr>
-                                <td>{{ form_widget(form.timeFoodSix) }}</td>
-                                <td>{{ form_widget(form.foodSix) }}</td>
-                            </tr>
-                    </table>
-                </div>    
-
-                <div class="questionContainer">
-                    <label for="note"> Précisez moi, si besoin, des remarques sur votre alimentation et votre rythme journalier.</label>
-                    {{ form_widget(form.note) }}
-                </div>
-
-                <div class="questionContainer">
-                    <label for="homemadeFood">Pouvez-vous transporter avec vous de la nourriture sur votre lieu de travail?</label>
-                    {{ form_widget(form.homemadeFood) }}
-                </div>    
-
-                <div class="questionContainer">
-                    <label for="restaurant">Combien de fois par semaine allez vous au restaurant?</label>
-                    {{ form_widget(form.restaurant) }}
-                </div>
-            </div>
-
-        </div> 
-    </div>
-
-    <div class="initFormSection halfElement">
-        <h2>Vos photos</h2>
-        <div class="content photoUpload">
-            <label for="photos"> 
-                Prenez vos photos en format portrait.
-                Cadrez les photos de vos genoux jusqu'au dessus de la tête.
-                Les bras sont relâchés le long du corps et l'attitude naturelle.
-                L'éclairage doit être facilement reproductible.
-                Les photos ne respectant pas ces consignes ne pourront être traitées
-            </label>
-            <div class="thirdElement">
-                <h3>Photo bilan face</h3>
-                {{ form_widget(form.photoFront) }}
-                {% if form.vars.value.photoFront is not null %}
-                    <a class="fancybox" rel="group" href="{{ asset('uploads/photos/' ~ form.vars.value.photoFront) }}"><img src="{{ asset('uploads/photos/' ~ form.vars.value.photoFront) }}" /></a>
-                {% endif %}
-                <img class="preview" src=""/>
-            </div>
-            <div class="thirdElement">
-                <h3>Photo bilan coté</h3>
-                {{ form_widget(form.photoSide) }}
-                {% if form.vars.value.photoSide is not null %}
-                    <a class="fancybox" rel="group" href="{{ asset('uploads/photos/' ~ form.vars.value.photoSide) }}"><img src="{{ asset('uploads/photos/' ~ form.vars.value.photoSide) }}" /></a>
-                {% endif %}
-                <img class="preview" src="" />
-            </div>
-            <div class="thirdElement">
-                <h3>Photo bilan dos</h3>
-                {{ form_widget(form.photoBack) }}
-                {% if form.vars.value.photoBack is not null %}
-                    <a class="fancybox" rel="group" href="{{ asset('uploads/photos/' ~ form.vars.value.photoBack) }}"><img src="{{ asset('uploads/photos/' ~ form.vars.value.photoBack) }}" /></a>
-                {% endif %}  
-                <img class="preview" src=""/>
+                <label for="attention">Qu'est ce qui a retenu votre attention sur le site?</label>
+                {{ form_widget(form.attention) }}
             </div>
 
         </div>
-    </div>
 
-    <div class="submitContainer"><input type="submit" value="Envoyez votre bilan initial" class="btn bigBtn"></div>
+        <div class="col s6" style="padding: 2%;">
+            <div class="row z-depth-2">
+                <i class="small material-icons right">shopping_cart</i>
+                <h5>Connaitre votre comportement alimentaire</h5>
+                <label for="preferences">Précisez moi vos préférences, faiblesses et pulsions alimentaires.</label>
+                {{ form_widget(form.preferences) }}
+
+                <label for="drinking"> Indiquez moi tout ce que vous buvez tout au long de la journée.</label>
+                {{ form_widget(form.drinking) }}
+
+                <label for="dietarySupplement">Utilisez-vous déjà des compléments alimentaires? Si non, souhaitez-vous en utiliser ?</label>
+                {{ form_widget(form.dietarySupplement) }}
+
+                <label for="trainingTime">Indiquez moi l'heure de votre entraînement:</label>
+                {{ form_widget(form.trainingTime) }}
+
+                <label for="allergy">Avez vous des allergies et/ou des intolérances alimentaires?</label>
+                {{ form_widget(form.allergy) }}
+            </div>
+
+            <div class="row z-depth-2">
+                <i class="small material-icons right">av_timer</i>
+                <h5>Votre alimentation actuelle</h5>
+                <blockquote> Indiquez moi les <b>horaires</b> de vos repas et collations sur une journée et <b>tout ce que vous mangez</b> sur une journée (Petit déjeuner - Collation matin - déjeuner - Collation soir - dîner)</blockquote>
+                <table class="">
+                    <thead>
+                        <tr>
+                            <th class="time_food" style="width : 25%;">Heure de repas</th>
+                            <th>Aliments et quantités</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{ form_widget(form.timeFoodOne) }}</td>
+                            <td>{{ form_widget(form.foodOne) }}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ form_widget(form.timeFoodTwo) }}</td>
+                            <td>{{ form_widget(form.foodTwo) }}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ form_widget(form.timeFoodThree) }}</td>
+                            <td>{{ form_widget(form.foodThree) }}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ form_widget(form.timeFoodFour) }}</td>
+                            <td>{{ form_widget(form.foodFour) }}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ form_widget(form.timeFoodFive) }}</td>
+                            <td>{{ form_widget(form.foodFive) }}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ form_widget(form.timeFoodSix) }}</td>
+                            <td>{{ form_widget(form.foodSix) }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <label for="note"> Précisez moi, si besoin, des remarques sur votre alimentation et votre rythme journalier.</label>
+                {{ form_widget(form.note) }}
+
+                <label for="homemadeFood">Pouvez-vous transporter avec vous de la nourriture sur votre lieu de travail?</label>
+                {{ form_widget(form.homemadeFood) }}
+
+                <label for="restaurant">Combien de fois par semaine allez vous au restaurant?</label>
+                {{ form_widget(form.restaurant) }}
+            </div>
+
+            <div class="row z-depth-2 photos">
+                <i class="small material-icons right">picture_in_picture</i>
+                <h5>Vos photos</h5>
+                <blockquote> 
+                    Prenez vos photos en format portrait.
+                    Cadrez les photos de vos genoux jusqu'au dessus de la tête.
+                    Les bras sont relâchés le long du corps et l'attitude naturelle.
+                    L'éclairage doit être facilement reproductible.
+                    Les photos ne respectant pas ces consignes ne pourront être traitées
+                </blockquote>
+                <div class="col s4">
+                    <label>Photo de face</label>
+                    <div class="file-field input-field">
+                        <div class="btn">
+                            <span>Image</span>
+                            {{ form_widget(form.photoFront) }}
+                        </div>
+                        <div class="file-path-wrapper">
+                            <input class="file-path validate" type="text">
+                        </div>
+                    </div>
+                    {% if form.vars.value.photoFront is not null %}
+                        <a class="fancybox" rel="group" href="{{ asset('uploads/photos/' ~ form.vars.value.photoFront) }}"><img id="preview_photoFront" src="{{ asset('uploads/photos/' ~ form.vars.value.photoFront) }}" /></a>
+                        {% else %}  
+                        <img id="preview_photoFront" src=""/>
+                    {% endif %}
+                </div>
+                <div class="col s4">
+                    <label>Photo de coté</label>
+                    <div class="file-field input-field">
+                        <div class="btn">
+                            <span>Image</span>
+                            {{ form_widget(form.photoSide) }}
+                        </div>
+                        <div class="file-path-wrapper">
+                            <input class="file-path validate" type="text">
+                        </div>
+                    </div>
+                    {% if form.vars.value.photoSide is not null %}
+                        <a class="fancybox" rel="group" href="{{ asset('uploads/photos/' ~ form.vars.value.photoSide) }}"><img id="preview_photoSide" src="{{ asset('uploads/photos/' ~ form.vars.value.photoSide) }}" /></a>
+                        {% else %}  
+                        <img id="preview_photoSide" src=""/>
+                    {% endif %}
+                </div>
+                <div class="col s4">
+                    <label>Photo de dos</label>
+                    <div class="file-field input-field">
+                        <div class="btn">
+                            <span>Image</span>
+                            {{ form_widget(form.photoBack) }}
+                        </div>
+                        <div class="file-path-wrapper">
+                            <input class="file-path validate" type="text">
+                        </div>
+                    </div>
+                    {% if form.vars.value.photoBack is not null %}
+                        <a class="fancybox" rel="group" href="{{ asset('uploads/photos/' ~ form.vars.value.photoBack) }}"><img id="preview_photoBack" src="{{ asset('uploads/photos/' ~ form.vars.value.photoBack) }}" /></a>
+                        {% else %}  
+                        <img id="preview_photoBack" src=""/>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+                <div class="center-align"><button type="submit" class="btn waves-effect waves-light">Envoyez votre bilan initial <i class="material-icons right">send</i></button></div>
+
     {{ form_end(form) }}
+
+
+
 
 {% endblock %}

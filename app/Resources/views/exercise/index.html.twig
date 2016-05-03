@@ -6,19 +6,13 @@
 
 {% block body %}
 
-    <aside>
-        <a href="{{ path('exercise_new') }}" class="btn">Créer un nouvel exercice</a>
-    </aside>
+    <ul class="collection with-header">
+        <li class="collection-header"><h4>Exercices</h4></li>
+            {% for exercise in exercises %}
+                <li class="collection-item"><div>{{ exercise.name }}<a href="{{ path('exercise_show', { 'id': exercise.id }) }}" class="secondary-content"><i class="material-icons">visibility</i></a><a href="{{ path('exercise_edit', { 'id': exercise.id }) }}" class="secondary-content"><i class="material-icons">mode_edit</i></a></div></li>
+            {% endfor %}
+    </ul>
 
-        {% for exercise in exercises %}
-            <article>
-                <header {% if exercise.reference %}class = "exerciseReference"{% endif %}>{{ exercise.name }}</header>
-                <footer>
-                            <a href="{{ path('exercise_show', { 'id': exercise.id }) }}">voir</a>
-                            <a href="{{ path('exercise_edit', { 'id': exercise.id }) }}">modifier</a>
-                        </footer>
-            </article>
-        {% endfor %}
-    </table>
+    <a href="{{ path('exercise_new') }}" class="btn">Créer un nouvel exercice</a>
 
 {% endblock %}

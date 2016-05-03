@@ -1,27 +1,12 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Liste des catégories</h1>
 
-    <table>
-            <tr>
-                <th>Nom</th>
-                <th>Actions</th>
-            </tr>
-
-        {% for category in categories %}
-            <tr>
-                <td>{{ category.display }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('category_edit', { 'id': category.id }) }}">Lier des exercices</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-    </table>
-
+    <ul class="collection with-header">
+        <li class="collection-header"><h4>Liste des catégories</h4></li>
+            {% for category in categories %}
+                <li class="collection-item"><div>{{ category.display }}<a href="{{ path('category_edit', { 'id': category.id }) }}" class="secondary-content">Lier des exercices</a></div></li>
+            {% endfor %}
+    </ul>
     
 {% endblock %}

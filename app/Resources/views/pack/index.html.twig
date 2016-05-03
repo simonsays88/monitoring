@@ -5,56 +5,60 @@
 
 {% block body %}
 
-    <table border="1" style="width:100%">
-        <tr>
-            <td>Nom & Prénom</td>
-            <td>Mail</td>
-            <td>Pack</td> 
-            <td>Date de début</td> 
-            <td>Options</td> 
-            <td>Bilans</td>
-            <td>Evolution</td>
-            <td>Exercices</td>
-            <td>Infos</td>
-        </tr>
-        {% for pack in packs %}
+    <table class="bordered striped highlight responsive-table centered">
+        <thead>
             <tr>
-                <td>{{ pack.initial.firstname }} {{ pack.initial.lastname }}</td>
-                <td><a href="mailto:{{ pack.initial.email }}">{{ pack.initial.email }}</a></td>
-                <td>
-
-                    <p>{{ pack.packName }} (mois {{ ((pack.nbDays - pack.daysLeft) / 28)|round(0, 'ceil') }} / {{ (pack.nbDays / 28)|round(0, 'ceil') }})</p>
-                    {% if pack.startedAt is null %}
-                        <p><a href="{{ path('start_pack', {'pack_id' : pack.id}) }}" >Démarrer : {{ pack.packName }} </a></p>
-                    {% endif %}
-
-                </td>
-                <td>{% if pack.startedAt %} {{pack.startedAt|date('d/m/Y') }} {% endif %}</td>
-                <td>
-                    {% for option in pack.options %}
-                        <p>{{option}}</p>
-                    {% endfor %}
-
-                </td>
-                <td>
-                    <p><a href="{{ path('initial', {'userId':pack.initial.userId}) }}" class="link">Bilan Initial</a><p>
-                        {% for result in pack.results %}
-                            {% if result.resultType == constant('AppBundle\\Entity\\Result::ESTHETIC') %}
-                            <p><a href="{{ path('results', {'resultId': result.id}) }}" class="link">Bilan {{ result.createdAt|date('d/m/Y') }}</a><p>
-                            {% endif %}
-                        {% endfor %}
-                </td>
-                <td><a href="{{ path('user', {'user_id' : pack.initial.userId}) }}" class="btn">Page évolution</a></td>
-                <td><a href="{{ path('pack_edit', { 'id': pack.id }) }}">Modifier</a></td>
-                <td>
-                    <p>{{ pack.infos }}</p>
-                    <p><a href="{{ path('infos', { 'id': pack.id }) }}">Editer</a></p>
-                </td>
-
+                <th>Nom & Prénom</th>
+                <th>Mail</th>
+                <th>Pack</th> 
+                <th>Date de début</th> 
+                <th>Options</th> 
+                <th>Bilans</th>
+                <th>Evolution</th>
+                <th>Exercices</th>
+                <th>Infos</th>
             </tr>
-        {% endfor %}
+        </thead>
+        <tbody>
+            {% for pack in packs %}
+                <tr>
+                    <td>{{ pack.initial.firstname }} {{ pack.initial.lastname }}</td>
+                    <td><a href="mailto:{{ pack.initial.email }}">{{ pack.initial.email }}</a></td>
+                    <td>
+
+                        <p>{{ pack.packName }} (mois {{ ((pack.nbDays - pack.daysLeft) / 28)|round(0, 'ceil') }} / {{ (pack.nbDays / 28)|round(0, 'ceil') }})</p>
+                        {% if pack.startedAt is null %}
+                            <p><a href="{{ path('start_pack', {'pack_id' : pack.id}) }}" >Démarrer : {{ pack.packName }} </a></p>
+                        {% endif %}
+
+                    </td>
+                    <td>{% if pack.startedAt %} {{pack.startedAt|date('d/m/Y') }} {% endif %}</td>
+                    <td>
+                        {% for option in pack.options %}
+                            <p>{{option}}</p>
+                        {% endfor %}
+
+                    </td>
+                    <td>
+                        <p><a href="{{ path('initial', {'userId':pack.initial.userId}) }}" class="link">Bilan Initial</a><p>
+                            {% for result in pack.results %}
+                                {% if result.resultType == constant('AppBundle\\Entity\\Result::ESTHETIC') %}
+                                <p><a href="{{ path('results', {'resultId': result.id}) }}" class="link">Bilan {{ result.createdAt|date('d/m/Y') }}</a><p>
+                                {% endif %}
+                            {% endfor %}
+                    </td>
+                    <td><a href="{{ path('user', {'user_id' : pack.initial.userId}) }}"><i class="small material-icons">insert_chart</i></a></td>
+                    <td><a href="{{ path('pack_edit', { 'id': pack.id }) }}"><i class="small material-icons">mode_edit</i></a></td>
+                    <td>
+                        <p>{{ pack.infos }}</p>
+                        <p><a href="{{ path('infos', { 'id': pack.id }) }}"><i class="small material-icons">mode_edit</i></a></p>
+                    </td>
+
+                </tr>
+            {% endfor %}
+        </tbody>
     </table>
     <div class="navigation">
-    {{ knp_pagination_render(packs) }}
+        {{ knp_pagination_render(packs) }}
     </div>
 {% endblock %}
