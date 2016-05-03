@@ -48,7 +48,7 @@
                     <h3>Photo bilan face</h3>
                     {{ form_widget(form.photoFront) }}
                     {% if form.vars.value.photoFront is not null %}
-                        <img src="{{ asset('uploads/photos/' ~ form.vars.value.photoFront) }}" />
+                        <img class="fancybox" src="{{ asset('uploads/photos/' ~ form.vars.value.photoFront) }}" />
                     {% endif %}     
                 <img class="preview" src=""/>
                 </div>
@@ -56,7 +56,7 @@
                     <h3>Photo bilan coté</h3>
                     {{ form_widget(form.photoSide) }}
                     {% if form.vars.value.photoSide is not null %}
-                        <img src="{{ asset('uploads/photos/' ~ form.vars.value.photoSide) }}" />
+                        <img class="fancybox" src="{{ asset('uploads/photos/' ~ form.vars.value.photoSide) }}" />
                     {% endif %}
                 <img class="preview" src=""/>
                 </div>
@@ -64,7 +64,7 @@
                     <h3>Photo bilan dos</h3>
                     {{ form_widget(form.photoBack) }}
                     {% if form.vars.value.photoBack is not null %}
-                        <img src="{{ asset('uploads/photos/' ~ form.vars.value.photoBack) }}" />
+                        <img class="fancybox" src="{{ asset('uploads/photos/' ~ form.vars.value.photoBack) }}" />
                     {% endif %} 
                 <img class="preview" src=""/>
                 </div>

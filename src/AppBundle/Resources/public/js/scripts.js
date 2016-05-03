@@ -25,6 +25,16 @@ $("#initial_photoBack").change(function () {
     readURL(this, $(this).next('img'));
 });
 
+$("#result_photoFront").change(function () {
+    readURL(this, $(this).next('img'));
+});
+$("#result_photoSide").change(function () {
+    readURL(this, $(this).next('img'));
+});
+$("#result_photoBack").change(function () {
+    readURL(this, $(this).next('img'));
+});
+
 $(".fancybox").fancybox();
 
 
