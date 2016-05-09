@@ -23,7 +23,6 @@ class InitialType extends AbstractType {
                 ->add('zipCode', null, array('required' => true))
                 ->add('city', null, array('required' => true))
                 ->add('phoneMobile', null, array('required' => true))
-                ->add('email', null, array('required' => true))
                 ->add('birthday', DateType::class,
                     array('widget' => 'choice',
                     'format' => 'dMy',

@@ -5,3 +5,7 @@
 .small_input {
     width: 8% !important;
 }
+
+#initial_birthday select{
+    width: 33% !important;
+}
