@@ -28,6 +28,7 @@ class InitialType extends AbstractType {
                     array('widget' => 'choice',
                     'format' => 'dMy',
                     'view_timezone' => "Europe/Paris",
+                    'years' => range(date('Y') - 90, date('Y') - 15)
                     ))
                 ->add('job', null, array('required' => true))
                 ->add('exercises', null, array('required' => true))

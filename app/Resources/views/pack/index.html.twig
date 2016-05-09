@@ -23,7 +23,11 @@
             {% for pack in packs %}
                 <tr>
                     <td>{{ pack.initial.firstname }} {{ pack.initial.lastname }}</td>
-                    <td><a href="mailto:{{ pack.initial.email }}">{{ pack.initial.email }}</a></td>
+                    <td>
+                        <p>
+                            <a href="mailto:{{ get_email_wordpress(pack.userId) }}">{{ get_email_wordpress(pack.userId) }}</a>
+                        </p>
+                    </td>
                     <td>
 
                         <p>{{ pack.packName }} (mois {{ ((pack.nbDays - pack.daysLeft) / 28)|round(0, 'ceil') }} / {{ (pack.nbDays / 28)|round(0, 'ceil') }})</p>
