@@ -34,6 +34,12 @@
                         {% if pack.startedAt is null %}
                             <p><a class="btn waves-effect waves-light" href="{{ path('start_pack', {'pack_id' : pack.id}) }}" >Démarrer</a></p>
                         {% endif %}
+                        {% if pack.status == constant('AppBundle\\Entity\\Pack::STATUS_ONGOING') %}
+                            <p><a class="btn waves-effect waves-light" href="{{ path('stop_pack', {'pack_id' : pack.id}) }}" >Mettre en pause</a></p>
+                        {% endif %}
+                        {% if pack.status == constant('AppBundle\\Entity\\Pack::STATUS_PAUSE') %}
+                            <p><a class="btn waves-effect waves-light" href="{{ path('resume_pack', {'pack_id' : pack.id}) }}" >Reprendre</a></p>
+                        {% endif %}
 
                     </td>
                     <td>{% if pack.startedAt %} {{pack.startedAt|date('d/m/Y') }} {% endif %}</td>

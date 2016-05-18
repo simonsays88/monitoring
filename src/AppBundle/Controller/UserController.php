@@ -79,4 +79,36 @@ class UserController extends Controller
 
         return $this->redirectToRoute('pack_index');
     }
+
+    /**
+     * @Route("/pause/{pack_id}", name="stop_pack", requirements={"pack_id"="\d+"})
+     */
+    public function stopPackAction(Request $request, $pack_id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $pack = $this->getDoctrine()
+            ->getRepository('AppBundle:Pack')
+            ->findOneById($pack_id);
+        
+        $pack->setStatus(Pack::STATUS_PAUSE);
+        $em->flush();
+        $referer = $request->headers->get('referer');
+        return $this->redirect($referer);
+    }
+
+    /**
+     * @Route("/reprendre/{pack_id}", name="resume_pack", requirements={"pack_id"="\d+"})
+     */
+    public function resumePackAction(Request $request, $pack_id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $pack = $this->getDoctrine()
+            ->getRepository('AppBundle:Pack')
+            ->findOneById($pack_id);
+        
+        $pack->setStatus(Pack::STATUS_ONGOING);
+        $em->flush();
+        $referer = $request->headers->get('referer');
+        return $this->redirect($referer);
+    }
 }
