@@ -202,6 +202,7 @@
                     Les photos ne respectant pas ces consignes ne pourront être traitées
                 </blockquote>
                 <div class="col s4">
+                    <span class="red-text text-darken-4">{{ form_errors(form.photoFront) }}</span>
                     <label>Photo de face</label>
                     <div class="file-field input-field">
                         <div class="btn">
@@ -219,6 +220,7 @@
                     {% endif %}
                 </div>
                 <div class="col s4">
+                    <span class="red-text text-darken-4">{{ form_errors(form.photoSide) }}</span>
                     <label>Photo de coté</label>
                     <div class="file-field input-field">
                         <div class="btn">
@@ -236,6 +238,7 @@
                     {% endif %}
                 </div>
                 <div class="col s4">
+                    <span class="red-text text-darken-4">{{ form_errors(form.photoSide) }}</span>
                     <label>Photo de dos</label>
                     <div class="file-field input-field">
                         <div class="btn">

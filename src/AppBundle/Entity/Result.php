@@ -4,6 +4,8 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use AppBundle\Entity\ResultExercise;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * Result
@@ -87,21 +89,27 @@ class Result
 
     /**
      * @var string
-     *
+     * @Assert\Image(
+     *     allowLandscape = false,
+     * )
      * @ORM\Column(name="photo_front", type="string", length=255, nullable=true)
      */
     private $photoFront;
 
     /**
      * @var string
-     *
+     * @Assert\Image(
+     *     allowLandscape = false,
+     * )
      * @ORM\Column(name="photo_side", type="string", length=255, nullable=true)
      */
     private $photoSide;
 
     /**
      * @var string
-     *
+     * @Assert\Image(
+     *     allowLandscape = false,
+     * )
      * @ORM\Column(name="photo_back", type="string", length=255, nullable=true)
      */
     private $photoBack;
