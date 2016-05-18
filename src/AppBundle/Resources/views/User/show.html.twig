@@ -9,6 +9,12 @@
 {% endblock %}
 
 {% block body %}
+    {% if user.packs.last.status == constant('AppBundle\\Entity\\Pack::STATUS_ONGOING') %}
+        <p><a class="btn waves-effect waves-light" href="{{ path('stop_pack', {'pack_id' : user.packs.last.id}) }}" >Mettre en pause</a></p>
+    {% endif %}
+    {% if user.packs.last.status == constant('AppBundle\\Entity\\Pack::STATUS_PAUSE') %}
+        <p><a class="btn waves-effect waves-light" href="{{ path('resume_pack', {'pack_id' : user.packs.last.id}) }}" >Reprendre</a></p>
+    {% endif %}
     <h5>Mensurations</h5>
     <table class="bordered striped highlight responsive-table centered">
         <thead>
