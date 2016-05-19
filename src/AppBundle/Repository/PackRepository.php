@@ -11,21 +11,37 @@ namespace AppBundle\Repository;
 class PackRepository extends \Doctrine\ORM\EntityRepository
 {
 
-    public function getAllPacksFoodAndFoodBody()
+    public function getAllPacksFoodAndFoodBody($completed)
     {
-        return $this->createQueryBuilder('p')
-            ->where('p.pack_type != :type')
+        $q = $this->createQueryBuilder('p')
+            ->where('p.pack_type != :type');
+        if ($completed !== null && $completed != 'all') {
+            $q->join('p.initial', 'i')
+                ->andWhere('i.completed = :completed')
+                ->setParameter('completed', $completed);
+        }
+        $q->orderBy('p.startedAt', 'DESC')
             ->setParameter('type', 'themes')
             ->getQuery()
             ->getResult();
+
+        return $q->getQuery()->getResult();
     }
 
-    public function getAllPacksThemes()
+    public function getAllPacksThemes($completed)
     {
-        return $this->createQueryBuilder('p')
-            ->where('p.pack_type = :type')
+        $q = $this->createQueryBuilder('p')
+            ->where('p.pack_type = :type');
+        if ($completed !== null && $completed != 'all') {
+            $q->join('p.initial', 'i')
+                ->andWhere('i.completed = :completed')
+                ->setParameter('completed', $completed);
+        }
+        $q->orderBy('p.startedAt', 'DESC')
             ->setParameter('type', 'themes')
             ->getQuery()
             ->getResult();
+
+        return $q->getQuery()->getResult();
     }
 }
