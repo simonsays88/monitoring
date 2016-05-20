@@ -14,6 +14,22 @@
                     <option value="0" {% if completed is same as('0') %}selected="selected"{% endif %}>Non</option>
                 </select>
             </div>
+            <div class="col s2">
+                <label>Type de pack</label>
+                <select name="completed" onChange="this.parentNode.parentNode.submit()">
+                    <option value="4278" {% if completed is same as('4278') %}selected="selected"{% endif %}>Tous</option>
+                    <option value="3839" {% if completed is same as('3839') %}selected="selected"{% endif %}>Oui</option>
+                    <option value="2624" {% if completed is same as('2624') %}selected="selected"{% endif %}>Non</option>
+                    <option value="2773" {% if completed is same as('2773') %}selected="selected"{% endif %}>Non</option>
+                    <option value="2610" {% if completed is same as('2610') %}selected="selected"{% endif %}>Non</option>
+                    <option value="2617" {% if completed is same as('2617') %}selected="selected"{% endif %}>Non</option>
+                    <option value="2665" {% if completed is same as('2665') %}selected="selected"{% endif %}>Non</option>
+                    <option value="3192" {% if completed is same as('3192') %}selected="selected"{% endif %}>Non</option>
+                    <option value="2641" {% if completed is same as('2641') %}selected="selected"{% endif %}>Non</option>
+                    <option value="2871" {% if completed is same as('2871') %}selected="selected"{% endif %}>Non</option>
+                    <option value="2647" {% if completed is same as('2647') %}selected="selected"{% endif %}>Non</option>
+                </select>
+            </div>
         </form> 
     </div>
 
