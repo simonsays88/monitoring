@@ -11,7 +11,7 @@ namespace AppBundle\Repository;
 class PackRepository extends \Doctrine\ORM\EntityRepository
 {
 
-    public function getAllPacksFoodAndFoodBody($completed)
+    public function getAllPacksFoodAndFoodBody($completed, $packTypeId)
     {
         $q = $this->createQueryBuilder('p')
             ->where('p.pack_type != :type');
@@ -19,6 +19,10 @@ class PackRepository extends \Doctrine\ORM\EntityRepository
             $q->join('p.initial', 'i')
                 ->andWhere('i.completed = :completed')
                 ->setParameter('completed', $completed);
+        }
+        if ($packTypeId !== null && $packTypeId != 'all') {
+            $q->andWhere('p.pack_type_id = :pack_type_id')
+                ->setParameter('pack_type_id', $packTypeId);
         }
         $q->orderBy('p.startedAt', 'DESC')
             ->setParameter('type', 'themes')
@@ -36,6 +40,10 @@ class PackRepository extends \Doctrine\ORM\EntityRepository
             $q->join('p.initial', 'i')
                 ->andWhere('i.completed = :completed')
                 ->setParameter('completed', $completed);
+        }
+        if ($packTypeId !== null && $packTypeId != 'all') {
+            $q->andWhere('p.pack_type_id = :pack_type_id')
+                ->setParameter('pack_type_id', $packTypeId);
         }
         $q->orderBy('p.startedAt', 'DESC')
             ->setParameter('type', 'themes')

@@ -16,18 +16,22 @@
             </div>
             <div class="col s2">
                 <label>Type de pack</label>
-                <select name="completed" onChange="this.parentNode.parentNode.submit()">
-                    <option value="4278" {% if completed is same as('4278') %}selected="selected"{% endif %}>Tous</option>
-                    <option value="3839" {% if completed is same as('3839') %}selected="selected"{% endif %}>Oui</option>
-                    <option value="2624" {% if completed is same as('2624') %}selected="selected"{% endif %}>Non</option>
-                    <option value="2773" {% if completed is same as('2773') %}selected="selected"{% endif %}>Non</option>
-                    <option value="2610" {% if completed is same as('2610') %}selected="selected"{% endif %}>Non</option>
-                    <option value="2617" {% if completed is same as('2617') %}selected="selected"{% endif %}>Non</option>
-                    <option value="2665" {% if completed is same as('2665') %}selected="selected"{% endif %}>Non</option>
-                    <option value="3192" {% if completed is same as('3192') %}selected="selected"{% endif %}>Non</option>
-                    <option value="2641" {% if completed is same as('2641') %}selected="selected"{% endif %}>Non</option>
-                    <option value="2871" {% if completed is same as('2871') %}selected="selected"{% endif %}>Non</option>
-                    <option value="2647" {% if completed is same as('2647') %}selected="selected"{% endif %}>Non</option>
+                <select name="packTypeId" onChange="this.parentNode.parentNode.submit()">
+                    {% if app.user.id == 1 %}
+                        <option value="all" {% if packTypeId is same as('all') %}selected="selected"{% endif %}>Tous</option>
+                        <option value="2641" {% if packTypeId is same as('2641') %}selected="selected"{% endif %}>Pack Suivi Alimentaire</option>
+                        <option value="2871" {% if packTypeId is same as('2871') %}selected="selected"{% endif %}>Pack Diet Spécial Sèche</option>
+                        <option value="2647" {% if packTypeId is same as('2647') %}selected="selected"{% endif %}>Pack Suivi 100% sur mesure</option>
+                    {% else %}
+                        <option value="4278" {% if packTypeId is same as('4278') %}selected="selected"{% endif %}>Pack Fitness Model</option>
+                        <option value="3839" {% if packTypeId is same as('3839') %}selected="selected"{% endif %}>Pack 40 plus</option>
+                        <option value="2624" {% if packTypeId is same as('2624') %}selected="selected"{% endif %}>Pack Summer Fit</option>
+                        <option value="2773" {% if packTypeId is same as('2773') %}selected="selected"{% endif %}>Mes Débuts en Musculation</option>
+                        <option value="2610" {% if packTypeId is same as('2610') %}selected="selected"{% endif %}>Pack Muscle Generator</option>
+                        <option value="2617" {% if packTypeId is same as('2617') %}selected="selected"{% endif %}>Pack Special Sculpt Abdos</option>
+                        <option value="2665" {% if packTypeId is same as('2665') %}selected="selected"{% endif %}>Bikini Pack</option>
+                        <option value="3192" {% if packTypeId is same as('3192') %}selected="selected"{% endif %}>Pack Running</option>
+                    {% endif %}
                 </select>
             </div>
         </form> 
