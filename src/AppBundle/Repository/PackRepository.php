@@ -25,9 +25,7 @@ class PackRepository extends \Doctrine\ORM\EntityRepository
                 ->setParameter('pack_type_id', $packTypeId);
         }
         $q->orderBy('p.startedAt', 'DESC')
-            ->setParameter('type', 'themes')
-            ->getQuery()
-            ->getResult();
+            ->setParameter('type', 'themes');
 
         return $q->getQuery()->getResult();
     }
@@ -46,10 +44,20 @@ class PackRepository extends \Doctrine\ORM\EntityRepository
                 ->setParameter('pack_type_id', $packTypeId);
         }
         $q->orderBy('p.startedAt', 'DESC')
-            ->setParameter('type', 'themes')
-            ->getQuery()
-            ->getResult();
+            ->setParameter('type', 'themes');
 
         return $q->getQuery()->getResult();
+    }
+
+    public function getPacksToResume(){
+
+        $q = $this->createQueryBuilder('p')
+            ->where('p.status = :status')
+            ->andWhere('p.resumeAt = :resumeAt')
+            ->setParameter('status', 'pause')
+            ->setParameter('resumeAt', date('Y-m-d'));
+
+        return $q->getQuery()->getResult();
+        
     }
 }

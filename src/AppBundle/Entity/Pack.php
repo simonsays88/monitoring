@@ -96,6 +96,13 @@ class Pack {
     private $startedAt;
 
     /**
+     * @var \Date
+     *
+     * @ORM\Column(name="resume_at", type="date", nullable=true)
+     */
+    private $resumeAt;
+
+    /**
      * @ORM\Column(type="string", columnDefinition="ENUM('new', 'ongoing', 'finished', 'pause')", nullable=false)
      */
     protected $status;
@@ -157,6 +164,13 @@ class Pack {
      * @ORM\Column(name="infos", type="text", nullable=true)
      */
     private $infos;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="pause_reason", type="text", nullable=true)
+     */
+    private $pauseReason;
 
     /**
      * Get id
@@ -670,5 +684,53 @@ class Pack {
     public function getCategory()
     {
         return $this->category;
+    }
+
+    /**
+     * Set resumeAt
+     *
+     * @param \DateTime $resumeAt
+     *
+     * @return Pack
+     */
+    public function setResumeAt($resumeAt)
+    {
+        $this->resumeAt = $resumeAt;
+
+        return $this;
+    }
+
+    /**
+     * Get resumeAt
+     *
+     * @return \DateTime
+     */
+    public function getResumeAt()
+    {
+        return $this->resumeAt;
+    }
+
+    /**
+     * Set pauseReason
+     *
+     * @param string $pauseReason
+     *
+     * @return Pack
+     */
+    public function setPauseReason($pauseReason)
+    {
+        $this->pauseReason = $pauseReason;
+
+        return $this;
+    }
+
+    /**
+     * Get pauseReason
+     *
+     * @return string
+     */
+    public function getPauseReason()
+    {
+        return $this->pauseReason;
     }
 }
