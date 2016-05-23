@@ -70,7 +70,7 @@ ul {
 }
 .z-depth-2{
   box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  padding: 6%;
+  padding: 3%;
 }
 .z-depth-3{
   box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
@@ -133,6 +133,9 @@ i {
   }
   &.large {
     font-size: 6rem;
+  }
+  &.sport-icon {
+    width:30px;
   }
 }
 
@@ -410,6 +413,9 @@ td, th{
   border-radius: 2px;
 }
 
+.userList td, .userList th {
+  padding: 0px 5px;
+}
 // Responsive Table
 @media #{$medium-and-down} {
 
@@ -769,4 +775,8 @@ nav ul a span.badge {
 
 .no-padding {
   padding: 0 !important;
+}
+
+.strenghtTable .col.s6 {
+  min-height:540px;
 }
