@@ -30,7 +30,7 @@ class PackRepository extends \Doctrine\ORM\EntityRepository
         return $q->getQuery()->getResult();
     }
 
-    public function getAllPacksThemes($completed)
+    public function getAllPacksThemes($completed, $packTypeId)
     {
         $q = $this->createQueryBuilder('p')
             ->where('p.pack_type = :type');
