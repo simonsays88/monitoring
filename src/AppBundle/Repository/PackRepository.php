@@ -24,7 +24,7 @@ class PackRepository extends \Doctrine\ORM\EntityRepository
             $q->andWhere('p.pack_type_id = :pack_type_id')
                 ->setParameter('pack_type_id', $packTypeId);
         }
-        $q->orderBy('p.startedAt', 'DESC')
+        $q->orderBy('p.createdAt', 'ASC')
             ->setParameter('type', 'themes');
 
         return $q->getQuery()->getResult();
@@ -43,7 +43,7 @@ class PackRepository extends \Doctrine\ORM\EntityRepository
             $q->andWhere('p.pack_type_id = :pack_type_id')
                 ->setParameter('pack_type_id', $packTypeId);
         }
-        $q->orderBy('p.startedAt', 'DESC')
+        $q->orderBy('p.createdAt', 'ASC')
             ->setParameter('type', 'themes');
 
         return $q->getQuery()->getResult();

@@ -19,7 +19,11 @@
                         <option value="1">1 semaine</option>
                         <option value="2">2 semaines</option>
                         <option value="3">3 semaines</option>
-                        <option value="0">4 semaines</option>
+                        <option value="4">4 semaines</option>
+                        <option value="5">5 semaines</option>
+                        <option value="6">6 semaines</option>
+                        <option value="7">7 semaines</option>
+                        <option value="8">8 semaines</option>
                     </select>
                 </div>
                 <button class="btn waves-effect waves-light" type="submit" name="action" style="height: 30px; font-size: 12px">Envoyer</button>
@@ -85,17 +89,17 @@
                 <td><a href="{{ path('initial', {'userId':user.userId}) }}" class="link">Initial</a></td>
                 <td>
                     {% if user.photoFront is not null %}
-                        <img width = "100px" src="{{ asset('uploads/photos/' ~ user.photoFront) }}" />
+                        <a class="fancybox" rel="group" href="{{ asset('uploads/photos/' ~ user.photoFront) }}"><img width = "100px" src="{{ asset('uploads/photos/' ~ user.photoFront) }}" /></a>
                     {% endif %}            
                 </td>
                 <td>
                     {% if user.photoSide is not null %}
-                        <img width = "100px" src="{{ asset('uploads/photos/' ~ user.photoSide) }}" />
+                        <a class="fancybox" rel="group" href="{{ asset('uploads/photos/' ~ user.photoSide) }}"><img width = "100px" src="{{ asset('uploads/photos/' ~ user.photoSide) }}" /></a>
                     {% endif %}                
                 </td>
                 <td>
                     {% if user.photoBack is not null %}
-                        <img width = "100px" src="{{ asset('uploads/photos/' ~ user.photoBack) }}" />
+                        <a class="fancybox" rel="group" href="{{ asset('uploads/photos/' ~ user.photoBack) }}"><img width = "100px" src="{{ asset('uploads/photos/' ~ user.photoBack) }}" /></a>
                     {% endif %}                
                 </td>
             </tr>
@@ -106,17 +110,17 @@
                             <td><a href="{{ path('results', {'resultId': result.id}) }}">{{ result.createdAt|date('d/m/Y') }}</a></td>
                             <td>
                                 {% if result.photoFront is not null %}
-                                    <img width = "100px" src="{{ asset('uploads/photos/' ~ result.photoFront) }}" />
+                                    <a class="fancybox" rel="group" href="{{ asset('uploads/photos/' ~ result.photoFront) }}"><img width = "100px" src="{{ asset('uploads/photos/' ~ result.photoFront) }}" /></a>
                                 {% endif %}            
                             </td>
                             <td>
                                 {% if result.photoSide is not null %}
-                                    <img width = "100px" src="{{ asset('uploads/photos/' ~ result.photoSide) }}" />
+                                    <a class="fancybox" rel="group" href="{{ asset('uploads/photos/' ~ result.photoSide) }}"><img width = "100px" src="{{ asset('uploads/photos/' ~ result.photoSide) }}" /></a>
                                 {% endif %}                
                             </td>
                             <td>
                                 {% if result.photoBack is not null %}
-                                    <img width = "100px" src="{{ asset('uploads/photos/' ~ result.photoBack) }}" />
+                                    <a class="fancybox" rel="group" href="{{ asset('uploads/photos/' ~ result.photoBack) }}"><img width = "100px" src="{{ asset('uploads/photos/' ~ result.photoBack) }}" /></a>
                                 {% endif %}                
                             </td>
                         </tr>
@@ -143,7 +147,7 @@
                     date = new Array();
                 {% for result in exercise %}
                         data_repeat.push({{ result[0] }});
-                        data_unit.push({{ result[1] }});
+                        data_unit.push({{ result[1]|replace(',', '.') }});
                         date.push('{{ result[3]|date("d/m") }}');
                     {% if loop.first %}
                             unit = '{{ result[2] }}';
