@@ -261,8 +261,21 @@
                 <div class="center-align"><button type="submit" class="btn waves-effect waves-light tooltipped" data-position="top" data-delay="50" data-tooltip="Enregistrer et envoyer">Envoyez votre bilan initial <i class="material-icons right">send</i></button></div>
 
     {{ form_end(form) }}
+    
+{#    <script>
+        var forms = document.getElementsByTagName('form');
+        for (var i = 0; i < forms.length; i++) {
+            forms[i].noValidate = true;
 
-
+            forms[i].addEventListener('submit', function(event) {
+                //Prevent submission if checkValidity on the form returns false.
+                if (!event.target.checkValidity()) {
+                    event.preventDefault();
+                    alert('Le formulaire est incomplet');
+                }
+            }, false);
+        }
+    </script>#}
 
 
 {% endblock %}
