@@ -107,7 +107,7 @@
                 {% for result in pack.results %}
                     {% if result.resultType == constant('AppBundle\\Entity\\Result::ESTHETIC') %}
                         <tr>
-                            <td><a href="{{ path('results', {'resultId': result.id}) }}">{{ result.createdAt|date('d/m/Y') }}</a></td>
+                            <td><a href="{{ path('results', {'resultId': result.id}) }}">{{ result.createdAt|date_modify("+7 day")|date('d/m/Y') }}</a></td>
                             <td>
                                 {% if result.photoFront is not null %}
                                     <a class="fancybox" rel="group" href="{{ asset('uploads/photos/' ~ result.photoFront) }}"><img width = "100px" src="{{ asset('uploads/photos/' ~ result.photoFront) }}" /></a>
