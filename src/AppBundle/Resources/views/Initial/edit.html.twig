@@ -44,7 +44,7 @@
             </div>
 
             <div class="row z-depth-2">
-                <i class="small material-icons right">play_for_work</i>
+                <i class="small material-icons sport-icon right"><img src="/bundles/app/images/althere.svg"></i>
                 <h5>Le sport et vous</h5>
                 <blockquote>Rédigez clairement vos réponses avec des phrases courtes et précises.</blockquote>
                 <label for="exercises">Quels types d'entraînements faites vous, combien de fois par semaine et depuis quand ?</label>
@@ -258,11 +258,24 @@
             </div>
         </div>
     </div>
-                <div class="center-align"><button type="submit" class="btn waves-effect waves-light">Envoyez votre bilan initial <i class="material-icons right">send</i></button></div>
+                <div class="center-align"><button type="submit" class="btn waves-effect waves-light tooltipped" data-position="top" data-delay="50" data-tooltip="Enregistrer et envoyer">Envoyez votre bilan initial <i class="material-icons right">send</i></button></div>
 
     {{ form_end(form) }}
+    
+{#    <script>
+        var forms = document.getElementsByTagName('form');
+        for (var i = 0; i < forms.length; i++) {
+            forms[i].noValidate = true;
 
-
+            forms[i].addEventListener('submit', function(event) {
+                //Prevent submission if checkValidity on the form returns false.
+                if (!event.target.checkValidity()) {
+                    event.preventDefault();
+                    alert('Le formulaire est incomplet');
+                }
+            }, false);
+        }
+    </script>#}
 
 
 {% endblock %}

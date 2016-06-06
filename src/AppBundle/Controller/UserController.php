@@ -75,34 +75,30 @@ class UserController extends Controller {
         return $this->redirectToRoute('pack_index');
     }
 
+
     /**
      * @Route("/pause/{pack_id}", name="stop_pack", requirements={"pack_id"="\d+"})
      */
-    public function stopPackAction(Request $request, $pack_id) {
+    public function stopPackAction(Request $request, $pack_id)
+    {
         $em = $this->getDoctrine()->getManager();
         $pack = $this->getDoctrine()
-                ->getRepository('AppBundle:Pack')
-                ->findOneById($pack_id);
-
+            ->getRepository('AppBundle:Pack')
+            ->findOneById($pack_id);
+        $date = new \DateTime();
+        $date->modify('+'.$request->query->get('nbWeek').' week');
+        $pack->setResumeAt($date);
+        $pack->setPauseReason($request->query->get('pauseReason'));
         $pack->setStatus(Pack::STATUS_PAUSE);
         $em->flush();
+        $destinataire = ($pack->getPackType() == Pack::THEME) ? $this->container->getParameter('sender_themes') : $this->container->getParameter('sender_custom');
+        $sujet = 'Pack en pause';
+        $message = $this->renderView('AppBundle:Emails:packPause.html.twig', array('date' => $date, 'pack' => $pack));
+        $headers = "From: \"".$this->container->getParameter('sender_app')."\"<".$this->container->getParameter('sender_app').">\n";
+        $headers .= "Reply-To: ".$this->container->getParameter('sender_app')."\n";
+        $headers .= "Content-Type: text/html; charset=\"iso-8859-1\"";
+        mail($destinataire, $sujet, $message, $headers);
         $referer = $request->headers->get('referer');
         return $this->redirect($referer);
     }
-
-    /**
-     * @Route("/reprendre/{pack_id}", name="resume_pack", requirements={"pack_id"="\d+"})
-     */
-    public function resumePackAction(Request $request, $pack_id) {
-        $em = $this->getDoctrine()->getManager();
-        $pack = $this->getDoctrine()
-                ->getRepository('AppBundle:Pack')
-                ->findOneById($pack_id);
-
-        $pack->setStatus(Pack::STATUS_ONGOING);
-        $em->flush();
-        $referer = $request->headers->get('referer');
-        return $this->redirect($referer);
-    }
-
 }

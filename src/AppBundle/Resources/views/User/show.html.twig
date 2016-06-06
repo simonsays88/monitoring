@@ -10,10 +10,28 @@
 
 {% block body %}
     {% if user.packs.last.status == constant('AppBundle\\Entity\\Pack::STATUS_ONGOING') %}
-        <p><a class="btn waves-effect waves-light" href="{{ path('stop_pack', {'pack_id' : user.packs.last.id}) }}" >Mettre en pause</a></p>
-    {% endif %}
-    {% if user.packs.last.status == constant('AppBundle\\Entity\\Pack::STATUS_PAUSE') %}
-        <p><a class="btn waves-effect waves-light" href="{{ path('resume_pack', {'pack_id' : user.packs.last.id}) }}" >Reprendre</a></p>
+        <h5>Mettre en pause son pack</h5>
+        <div class="row">
+            <form method="get" action="{{ path('stop_pack', {'pack_id':user.packs.last.id}) }}">
+                <div>    
+                    <input placeholder="Raison" type="text" name="PauseReason" class="col s3">
+                    <select name="nbWeek" class="col s2">
+                        <option value="1">1 semaine</option>
+                        <option value="2">2 semaines</option>
+                        <option value="3">3 semaines</option>
+                        <option value="4">4 semaines</option>
+                        <option value="5">5 semaines</option>
+                        <option value="6">6 semaines</option>
+                        <option value="7">7 semaines</option>
+                        <option value="8">8 semaines</option>
+                    </select>
+                </div>
+                <button class="btn waves-effect waves-light" type="submit" name="action" style="height: 30px; font-size: 12px">Envoyer</button>
+            </form> 
+        </div>
+    {% elseif user.packs.last.status == constant('AppBundle\\Entity\\Pack::STATUS_PAUSE') %}
+        <p> En pause jusqu'au {{ user.packs.last.resumeAt|date("d/m/Y") }}</p>
+        <p> Raison : {{ user.packs.last.pauseReason }}</p>
     {% endif %}
     <h5>Mensurations</h5>
     <table class="bordered striped highlight responsive-table centered">
@@ -43,7 +61,7 @@
             {% for pack in user.packs %}
                 {% for result in pack.results %}
                     <tr>
-                        <td><a href="{{ path('results', {'resultId': result.id}) }}">{{ result.createdAt|date('d/m/Y') }}</a></td>
+                        <td><a href="{{ path('results', {'resultId': result.id}) }}">{{ result.createdAt|date_modify("+7 day")|date('d/m/Y') }}</a></td>
                         <td>{{ result.weight}}</td>
                         <td>{{ result.imc}}</td>
                         <td>{{ result.shoulders}}</td>
@@ -71,17 +89,17 @@
                 <td><a href="{{ path('initial', {'userId':user.userId}) }}" class="link">Initial</a></td>
                 <td>
                     {% if user.photoFront is not null %}
-                        <img width = "100px" src="{{ asset('uploads/photos/' ~ user.photoFront) }}" />
+                        <a class="fancybox" rel="group" href="{{ asset('uploads/photos/' ~ user.photoFront) }}"><img width = "100px" src="{{ asset('uploads/photos/' ~ user.photoFront) }}" /></a>
                     {% endif %}            
                 </td>
                 <td>
                     {% if user.photoSide is not null %}
-                        <img width = "100px" src="{{ asset('uploads/photos/' ~ user.photoSide) }}" />
+                        <a class="fancybox" rel="group" href="{{ asset('uploads/photos/' ~ user.photoSide) }}"><img width = "100px" src="{{ asset('uploads/photos/' ~ user.photoSide) }}" /></a>
                     {% endif %}                
                 </td>
                 <td>
                     {% if user.photoBack is not null %}
-                        <img width = "100px" src="{{ asset('uploads/photos/' ~ user.photoBack) }}" />
+                        <a class="fancybox" rel="group" href="{{ asset('uploads/photos/' ~ user.photoBack) }}"><img width = "100px" src="{{ asset('uploads/photos/' ~ user.photoBack) }}" /></a>
                     {% endif %}                
                 </td>
             </tr>
@@ -89,20 +107,20 @@
                 {% for result in pack.results %}
                     {% if result.resultType == constant('AppBundle\\Entity\\Result::ESTHETIC') %}
                         <tr>
-                            <td><a href="{{ path('results', {'resultId': result.id}) }}">{{ result.createdAt|date('d/m/Y') }}</a></td>
+                            <td><a href="{{ path('results', {'resultId': result.id}) }}">{{ result.createdAt|date_modify("+7 day")|date('d/m/Y') }}</a></td>
                             <td>
                                 {% if result.photoFront is not null %}
-                                    <img width = "100px" src="{{ asset('uploads/photos/' ~ result.photoFront) }}" />
+                                    <a class="fancybox" rel="group" href="{{ asset('uploads/photos/' ~ result.photoFront) }}"><img width = "100px" src="{{ asset('uploads/photos/' ~ result.photoFront) }}" /></a>
                                 {% endif %}            
                             </td>
                             <td>
                                 {% if result.photoSide is not null %}
-                                    <img width = "100px" src="{{ asset('uploads/photos/' ~ result.photoSide) }}" />
+                                    <a class="fancybox" rel="group" href="{{ asset('uploads/photos/' ~ result.photoSide) }}"><img width = "100px" src="{{ asset('uploads/photos/' ~ result.photoSide) }}" /></a>
                                 {% endif %}                
                             </td>
                             <td>
                                 {% if result.photoBack is not null %}
-                                    <img width = "100px" src="{{ asset('uploads/photos/' ~ result.photoBack) }}" />
+                                    <a class="fancybox" rel="group" href="{{ asset('uploads/photos/' ~ result.photoBack) }}"><img width = "100px" src="{{ asset('uploads/photos/' ~ result.photoBack) }}" /></a>
                                 {% endif %}                
                             </td>
                         </tr>
@@ -129,7 +147,7 @@
                     date = new Array();
                 {% for result in exercise %}
                         data_repeat.push({{ result[0] }});
-                        data_unit.push({{ result[1] }});
+                        data_unit.push({{ result[1]|replace(',', '.') }});
                         date.push('{{ result[3]|date("d/m") }}');
                     {% if loop.first %}
                             unit = '{{ result[2] }}';

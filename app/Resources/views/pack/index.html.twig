@@ -4,38 +4,75 @@
 {% block pageClass %}userList{% endblock %}
 
 {% block body %}
+    <div class="row">
+        <form method="get" action="">
+            <div class="col s2">    
+                <label>Bilan complété</label>
+                <select name="completed" onChange="this.parentNode.parentNode.submit()">
+                    <option value="all" {% if completed is same as('all') %}selected="selected"{% endif %}>Tous</option>
+                    <option value="1" {% if completed is same as('1') %}selected="selected"{% endif %}>Oui</option>
+                    <option value="0" {% if completed is same as('0') %}selected="selected"{% endif %}>Non</option>
+                </select>
+            </div>
+            <div class="col s2">
+                <label>Type de pack</label>
+                <select name="packTypeId" onChange="this.parentNode.parentNode.submit()">
+                    {% if app.user.id == 1 %}
+                        <option value="all" {% if packTypeId is same as('all') %}selected="selected"{% endif %}>Tous</option>
+                        <option value="2641" {% if packTypeId is same as('2641') %}selected="selected"{% endif %}>Suivi Alimentaire</option>
+                        <option value="2871" {% if packTypeId is same as('2871') %}selected="selected"{% endif %}>Diet Spécial Sèche</option>
+                        <option value="2647" {% if packTypeId is same as('2647') %}selected="selected"{% endif %}>Suivi 100% sur mesure</option>
+                    {% else %}
+                        <option value="all" {% if packTypeId is same as('all') %}selected="selected"{% endif %}>Tous</option>
+                        <option value="4278" {% if packTypeId is same as('4278') %}selected="selected"{% endif %}>Fitness Model</option>
+                        <option value="3839" {% if packTypeId is same as('3839') %}selected="selected"{% endif %}>40 plus</option>
+                        <option value="2624" {% if packTypeId is same as('2624') %}selected="selected"{% endif %}>Summer Fit</option>
+                        <option value="2773" {% if packTypeId is same as('2773') %}selected="selected"{% endif %}>Mes Débuts en Musculation</option>
+                        <option value="2610" {% if packTypeId is same as('2610') %}selected="selected"{% endif %}>Muscle Generator</option>
+                        <option value="2617" {% if packTypeId is same as('2617') %}selected="selected"{% endif %}>Special Sculpt Abdos</option>
+                        <option value="2665" {% if packTypeId is same as('2665') %}selected="selected"{% endif %}>Bikini Pack</option>
+                        <option value="3192" {% if packTypeId is same as('3192') %}selected="selected"{% endif %}>Running</option>
+                    {% endif %}
+                </select>
+            </div>
+        </form> 
+    </div>
 
-    <table class="bordered striped highlight responsive-table centered">
+    <table class="bordered highlight responsive-table centered">
         <thead>
             <tr>
                 <th>Nom & Prénom</th>
-                <th>Mail</th>
                 <th>Pack</th> 
                 <th>Date de début</th> 
+                <th>Mail</th>
+                <th>Infos</th>
                 <th>Options</th> 
                 <th>Bilans</th>
                 <th>Evolution</th>
                 <th>Exercices</th>
-                <th>Infos</th>
             </tr>
         </thead>
         <tbody>
             {% for pack in packs %}
-                <tr>
+                <tr {% if pack.initial.completed %} class="green lighten-5" {% else %} class="red lighten-5"{% endif %}>
                     <td>{{ pack.initial.firstname }} {{ pack.initial.lastname }}</td>
                     <td>
-                        <p>
-                            <a href="mailto:{{ get_email_wordpress(pack.userId) }}">{{ get_email_wordpress(pack.userId) }}</a>
-                        </p>
-                    </td>
-                    <td>
 
-                        <p>{{ pack.packName }} (mois {{ ((pack.nbDays - pack.daysLeft) / 28)|round(0, 'ceil') }} / {{ (pack.nbDays / 28)|round(0, 'ceil') }})</p>
+                        <p>{{ pack.packName|trim('Pack') }} ({{ ((pack.nbDays - pack.daysLeft) / 28)|round(0, 'ceil') }} / {{ (pack.nbDays / 28)|round(0, 'ceil') }})</p>
                         {% if pack.startedAt is null %}
                             <p><a class="btn waves-effect waves-light" href="{{ path('start_pack', {'pack_id' : pack.id}) }}" >Démarrer</a></p>
                         {% endif %}
                     </td>
                     <td>{% if pack.startedAt %} {{pack.startedAt|date('d/m/Y') }} {% endif %}</td>
+                    <td>
+                        <p>
+                            <a href="mailto:{{ get_email_wordpress(pack.userId) }}">{{ get_email_wordpress(pack.userId) }}</a>
+                        </p>
+                    </td>   
+                    <td style="position: relative">
+                        <p>{{ pack.infos }}</p>
+                        <p style="position:absolute; top:0; right:0;"><a href="{{ path('infos', { 'id': pack.id }) }}"><i class="tiny material-icons">mode_edit</i></a></p>
+                    </td>
                     <td>
                         {% for option in pack.options %}
                             <p>{{option}}</p>
@@ -46,17 +83,12 @@
                         <p><a href="{{ path('initial', {'userId':pack.initial.userId}) }}" class="link">Bilan Initial</a><p>
                             {% for result in pack.results %}
                                 {% if result.resultType == constant('AppBundle\\Entity\\Result::ESTHETIC') %}
-                                <p><a href="{{ path('results', {'resultId': result.id}) }}" class="link">Bilan {{ result.createdAt|date('d/m/Y') }}</a><p>
+                                <p><a href="{{ path('results', {'resultId': result.id}) }}" class="link">Bilan {{ result.createdAt|date_modify("+7 day")|date('d/m/Y') }}</a><p>
                                 {% endif %}
                             {% endfor %}
                     </td>
                     <td><a href="{{ path('user', {'user_id' : pack.initial.userId}) }}"><i class="small material-icons">insert_chart</i></a></td>
                     <td><a href="{{ path('pack_edit', { 'id': pack.id }) }}"><i class="small material-icons">mode_edit</i></a></td>
-                    <td>
-                        <p>{{ pack.infos }}</p>
-                        <p><a href="{{ path('infos', { 'id': pack.id }) }}"><i class="small material-icons">mode_edit</i></a></p>
-                    </td>
-
                 </tr>
             {% endfor %}
         </tbody>

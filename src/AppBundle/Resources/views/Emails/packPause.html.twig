@@ -22,7 +22,7 @@
                                                     <h1 style="text-align: justify;"><br>
                                                         <span style="color:#333333"><span class="s1">Hello David !</span></span></h1>
 
-                                                    <p class="p1" style="text-align: justify;"><span style="color:#333333"><span class="s1"> Un nouveau poulain rentre dans ton écurie ;)
+                                                    <p class="p1" style="text-align: justify;"><span style="color:#333333"><span class="s1"> Un de tes poulains s'est mis en pause.
                                                                 &nbsp;	<br>
                                                                 <br>
                                                                 <br></span></span></p>
@@ -65,15 +65,11 @@
 
 
                                                     <p class="p1" style="text-align: justify;"><span style="color:#333333"><span class="s1">
+                                                                Raison : <span style="font-weight:bold">{{ pack.pauseReason }}</span><br>
                                                                 Nom :  <span style="font-weight:bold">{{ pack.initial.firstname}} {{ pack.initial.lastname}}</span><br>
-                                                                Email :  <span style="font-weight:bold">{{ pack.initial.email}}</span><br>
                                                                 Pack choisi : <span style="font-weight:bold">{{ pack.packName }}</span><br>
                                                                 Durée du pack : <span style="font-weight:bold">{{ pack.nbDays / 28 }} mois</span><br>
-                                                                {% if pack.ebookRecipes %}- Ebook de recette -{% endif %}
-                                                                {% if pack.ebookTips %}- Ebook d'astuces -{% endif %}
-                                                                {% if pack.ebookDouble %}- Ebook double -{% endif %}
-                                                                {% if pack.ebook %}- Ebook de recette -{% endif %}
-                                                                {% if pack.videos %}- Videos -{% endif %}
+                                                                En pause jusqu'au : <span style="font-weight:bold">{{ date|date("d/m/Y") }}</span><br>
 
                                                                 &nbsp;	</span></span></p>
 

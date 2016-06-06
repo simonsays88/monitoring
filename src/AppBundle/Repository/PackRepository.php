@@ -11,21 +11,53 @@ namespace AppBundle\Repository;
 class PackRepository extends \Doctrine\ORM\EntityRepository
 {
 
-    public function getAllPacksFoodAndFoodBody()
+    public function getAllPacksFoodAndFoodBody($completed, $packTypeId)
     {
-        return $this->createQueryBuilder('p')
-            ->where('p.pack_type != :type')
-            ->setParameter('type', 'themes')
-            ->getQuery()
-            ->getResult();
+        $q = $this->createQueryBuilder('p')
+            ->where('p.pack_type != :type');
+        if ($completed !== null && $completed != 'all') {
+            $q->join('p.initial', 'i')
+                ->andWhere('i.completed = :completed')
+                ->setParameter('completed', $completed);
+        }
+        if ($packTypeId !== null && $packTypeId != 'all') {
+            $q->andWhere('p.pack_type_id = :pack_type_id')
+                ->setParameter('pack_type_id', $packTypeId);
+        }
+        $q->orderBy('p.createdAt', 'ASC')
+            ->setParameter('type', 'themes');
+
+        return $q->getQuery()->getResult();
     }
 
-    public function getAllPacksThemes()
+    public function getAllPacksThemes($completed, $packTypeId)
     {
-        return $this->createQueryBuilder('p')
-            ->where('p.pack_type = :type')
-            ->setParameter('type', 'themes')
-            ->getQuery()
-            ->getResult();
+        $q = $this->createQueryBuilder('p')
+            ->where('p.pack_type = :type');
+        if ($completed !== null && $completed != 'all') {
+            $q->join('p.initial', 'i')
+                ->andWhere('i.completed = :completed')
+                ->setParameter('completed', $completed);
+        }
+        if ($packTypeId !== null && $packTypeId != 'all') {
+            $q->andWhere('p.pack_type_id = :pack_type_id')
+                ->setParameter('pack_type_id', $packTypeId);
+        }
+        $q->orderBy('p.createdAt', 'ASC')
+            ->setParameter('type', 'themes');
+
+        return $q->getQuery()->getResult();
+    }
+
+    public function getPacksToResume(){
+
+        $q = $this->createQueryBuilder('p')
+            ->where('p.status = :status')
+            ->andWhere('p.resumeAt = :resumeAt')
+            ->setParameter('status', 'pause')
+            ->setParameter('resumeAt', date('Y-m-d'));
+
+        return $q->getQuery()->getResult();
+        
     }
 }

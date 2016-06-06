@@ -42,7 +42,7 @@
                     {% for pack in user.packs %}
                         {% for result in pack.results %}
                             {% if result.resultType == constant('AppBundle\\Entity\\Result::ESTHETIC') %}
-                            <p><a href="{{ path('results', {'resultId': result.id}) }}" class="link">Bilan {{ result.createdAt|date('d/m/Y') }}</a><p>
+                            <p><a href="{{ path('results', {'resultId': result.id}) }}" class="link">Bilan {{ result.createdAt|date_modify("+7 day")|date('d/m/Y') }}</a><p>
                             {% endif %}
                         {% endfor %}
                     {% endfor %}

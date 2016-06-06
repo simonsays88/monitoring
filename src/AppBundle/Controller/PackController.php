@@ -24,12 +24,14 @@ class PackController extends Controller
      */
     public function indexAction(Request $request)
     {
+        $completed = $request->query->get('completed');
+        $packTypeId = $request->query->get('packTypeId');
         $em = $this->getDoctrine()->getManager();
 
         if($this->getUser()->getId() == 1) {
-            $packs = $em->getRepository('AppBundle:Pack')->getAllPacksFoodAndFoodBody();
+            $packs = $em->getRepository('AppBundle:Pack')->getAllPacksFoodAndFoodBody($completed, $packTypeId);
         } else {
-            $packs = $em->getRepository('AppBundle:Pack')->getAllPacksThemes();
+            $packs = $em->getRepository('AppBundle:Pack')->getAllPacksThemes($completed, $packTypeId);
         }
 
 
@@ -40,6 +42,8 @@ class PackController extends Controller
         return $this->render('pack/index.html.twig',
                 array(
                 'packs' => $pagination,
+                'completed' => $completed,
+                'packTypeId' => $packTypeId
         ));
     }
 
