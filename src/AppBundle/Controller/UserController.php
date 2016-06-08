@@ -75,7 +75,6 @@ class UserController extends Controller {
         return $this->redirectToRoute('pack_index');
     }
 
-
     /**
      * @Route("/pause/{pack_id}", name="stop_pack", requirements={"pack_id"="\d+"})
      */
@@ -98,6 +97,31 @@ class UserController extends Controller {
         $headers .= "Reply-To: ".$this->container->getParameter('sender_app')."\n";
         $headers .= "Content-Type: text/html; charset=\"iso-8859-1\"";
         mail($destinataire, $sujet, $message, $headers);
+        $referer = $request->headers->get('referer');
+        return $this->redirect($referer);
+    }
+
+    /**
+     * @Route("/add-week/{pack_id}", name="add_week", requirements={"pack_id"="\d+"})
+     */
+    public function addWeekAction(Request $request, $pack_id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $pack = $this->getDoctrine()
+                ->getRepository('AppBundle:Pack')
+                ->findOneById($pack_id);
+        $newDaysLeft = $pack->getDaysLeft() + ($request->query->get('nbWeek') * 7);
+        if ($newDaysLeft > $pack->getNbDays()) {
+            $this->addFlash(
+                    'notice', 'Tu ne peux pas ajouter autant de semaines à ce pack'
+            );
+        } else {
+            $this->addFlash(
+                    'notice', 'Le pack a été étendu de ' . $request->query->get('nbWeek') . ' semaine(s)'
+            );
+            $pack->setDaysLeft($newDaysLeft);
+        }
+        $em->flush();
         $referer = $request->headers->get('referer');
         return $this->redirect($referer);
     }

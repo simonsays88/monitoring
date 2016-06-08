@@ -9,6 +9,12 @@
 {% endblock %}
 
 {% block body %}
+    {% for flash_message in app.session.flashBag.get('notice') %}
+        <div class="flash-notice card-panel orange darken-1">
+            {{ flash_message }}
+        </div>
+    {% endfor %}
+
     {% if user.packs.last.status == constant('AppBundle\\Entity\\Pack::STATUS_ONGOING') %}
         <h5>Mettre en pause son pack</h5>
         <div class="row">
@@ -32,6 +38,27 @@
     {% elseif user.packs.last.status == constant('AppBundle\\Entity\\Pack::STATUS_PAUSE') %}
         <p> En pause jusqu'au {{ user.packs.last.resumeAt|date("d/m/Y") }}</p>
         <p> Raison : {{ user.packs.last.pauseReason }}</p>
+    {% endif %}
+    
+    {% if app.user.id  is defined %}
+        <h5>Ajouter des semaines</h5>
+        <div class="row">
+            <form method="get" action="{{ path('add_week', {'pack_id':user.packs.last.id}) }}">
+                <div>    
+                    <select name="nbWeek" class="col s2">
+                        <option value="1">1 semaine</option>
+                        <option value="2">2 semaines</option>
+                        <option value="3">3 semaines</option>
+                        <option value="4">4 semaines</option>
+                        <option value="5">5 semaines</option>
+                        <option value="6">6 semaines</option>
+                        <option value="7">7 semaines</option>
+                        <option value="8">8 semaines</option>
+                    </select>
+                </div>
+                <button class="btn waves-effect waves-light" type="submit" name="action" style="height: 30px; font-size: 12px">Ajouter</button>
+            </form> 
+        </div>
     {% endif %}
     <h5>Mensurations</h5>
     <table class="bordered striped highlight responsive-table centered">
