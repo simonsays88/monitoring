@@ -37,7 +37,7 @@ class PackController extends Controller
 
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
-            $packs, $request->query->getInt('page', 1), 40
+            $packs, $request->query->getInt('page', 1), 100
         );
         return $this->render('pack/index.html.twig',
                 array(
