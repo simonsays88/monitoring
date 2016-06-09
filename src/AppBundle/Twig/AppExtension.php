@@ -15,7 +15,8 @@ class AppExtension extends \Twig_Extension
     {
         return array(
             'get_reference' => new \Twig_Function_Method($this, 'getReference'),
-            'get_email_wordpress' => new \Twig_Function_Method($this, 'getEmailWordpress')
+            'get_email_wordpress' => new \Twig_Function_Method($this, 'getEmailWordpress'),
+            'fmod' => new \Twig_Function_Method($this, 'fmod')
         );
     }
 
@@ -34,6 +35,10 @@ class AppExtension extends \Twig_Extension
             return $result['user_email'];
         }
         return false;
+    }
+    
+    public function fmod($x, $y) {
+        return fmod($x, $y);
     }
 
     public function getName()

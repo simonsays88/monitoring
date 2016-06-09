@@ -8,63 +8,58 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use AppBundle\Entity\Pack;
 
-class UserController extends Controller
-{
+class UserController extends Controller {
 
     /**
      * @Route("/utilisateurs", name="user_list")
      */
-    public function listAction(Request $request)
-    {
+    public function listAction(Request $request) {
         $users = $this->getDoctrine()
-            ->getRepository('AppBundle:Initial')
-            ->findAll();
+                ->getRepository('AppBundle:Initial')
+                ->findAll();
 
-        return $this->render('AppBundle:User:list.html.twig',
-                [
-                'users' => $users,
+        return $this->render('AppBundle:User:list.html.twig', [
+                    'users' => $users,
         ]);
     }
 
     /**
      * @Route("/utilisateurs/{user_id}", name="user", requirements={"user_id"="\d+"})
      */
-    public function showAction(Request $request, $user_id)
-    {
+    public function showAction(Request $request, $user_id) {
         $user = $this->getDoctrine()
-            ->getRepository('AppBundle:Initial')
-            ->findOneBy(array('userId' => $user_id));
-        $resultExercises = $this->getDoctrine()
-            ->getRepository('AppBundle:ResultExercise')
-            ->getAllResultExercisesByUser($user);
-
-        $performances = array();
-        foreach ($resultExercises as $re) {
-            $performances[$re->getExercise()->getName()][$re->getId()] = array( $re->getRepetition(), $re->getValue(), $re->getExercise()->getUnit(), $re->getResult()->getCreatedAt());
-        }
+                ->getRepository('AppBundle:Initial')
+                ->findOneBy(array('userId' => $user_id));
 
         if ($user) {
+            $resultExercises = $this->getDoctrine()
+                    ->getRepository('AppBundle:ResultExercise')
+                    ->getAllResultExercisesByUser($user);
+
+            $performances = array();
+            foreach ($resultExercises as $re) {
+                $performances[$re->getExercise()->getName()][$re->getId()] = array($re->getRepetition(), $re->getValue(), $re->getExercise()->getUnit(), $re->getResult()->getCreatedAt());
+            }
             // replace this example code with whatever you need
-            return $this->render('AppBundle:User:show.html.twig',
-                    [
-                    'user' => $user,
-                    'performances' => $performances
+            return $this->render('AppBundle:User:show.html.twig', [
+                        'user' => $user,
+                        'performances' => $performances
             ]);
         } else {
-            return new Response('Utilisateur introuvable', 500);
+            $referer = $request->headers->get('referer');
+            return $this->redirect($referer);
         }
     }
 
     /**
      * @Route("/start-pack/{pack_id}", name="start_pack", requirements={"pack_id"="\d+"})
      */
-    public function startPackAction(Request $request, $pack_id)
-    {
+    public function startPackAction(Request $request, $pack_id) {
         $em = $this->getDoctrine()->getManager();
         $pack = $this->getDoctrine()
-            ->getRepository('AppBundle:Pack')
-            ->findOneById($pack_id);
-        
+                ->getRepository('AppBundle:Pack')
+                ->findOneById($pack_id);
+
         $weekDay = date('w');
         $date = new \DateTime();
         if ($weekDay == 1) {
@@ -72,7 +67,7 @@ class UserController extends Controller
             $pack->setStatus(Pack::STATUS_ONGOING);
         } else {
             $ndDaysUntilNextMonday = 8 - $weekDay;
-            $startAt = $date->add(new \DateInterval('P'.$ndDaysUntilNextMonday.'D'));
+            $startAt = $date->add(new \DateInterval('P' . $ndDaysUntilNextMonday . 'D'));
         }
         $pack->setStartedAt($startAt);
         $em->flush();
@@ -95,7 +90,6 @@ class UserController extends Controller
         $pack->setPauseReason($request->query->get('pauseReason'));
         $pack->setStatus(Pack::STATUS_PAUSE);
         $em->flush();
-
         $destinataire = ($pack->getPackType() == Pack::THEME) ? $this->container->getParameter('sender_themes') : $this->container->getParameter('sender_custom');
         $sujet = 'Pack en pause';
         $message = $this->renderView('AppBundle:Emails:packPause.html.twig', array('date' => $date, 'pack' => $pack));
@@ -103,7 +97,31 @@ class UserController extends Controller
         $headers .= "Reply-To: ".$this->container->getParameter('sender_app')."\n";
         $headers .= "Content-Type: text/html; charset=\"iso-8859-1\"";
         mail($destinataire, $sujet, $message, $headers);
+        $referer = $request->headers->get('referer');
+        return $this->redirect($referer);
+    }
 
+    /**
+     * @Route("/add-week/{pack_id}", name="add_week", requirements={"pack_id"="\d+"})
+     */
+    public function addWeekAction(Request $request, $pack_id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $pack = $this->getDoctrine()
+                ->getRepository('AppBundle:Pack')
+                ->findOneById($pack_id);
+        $newDaysLeft = $pack->getDaysLeft() + ($request->query->get('nbWeek') * 7);
+        if ($newDaysLeft > $pack->getNbDays()) {
+            $this->addFlash(
+                    'notice', 'Tu ne peux pas ajouter autant de semaines à ce pack'
+            );
+        } else {
+            $this->addFlash(
+                    'notice', 'Le pack a été étendu de ' . $request->query->get('nbWeek') . ' semaine(s)'
+            );
+            $pack->setDaysLeft($newDaysLeft);
+        }
+        $em->flush();
         $referer = $request->headers->get('referer');
         return $this->redirect($referer);
     }
