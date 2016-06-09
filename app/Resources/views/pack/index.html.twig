@@ -68,7 +68,9 @@
                     <td>
 
                         <p>{{ pack.packName|trim('Pack') }} ({{ ((pack.nbDays - pack.daysLeft) / 28)|round(0, 'ceil') }} / {{ (pack.nbDays / 28)|round(0, 'ceil') }})</p>
+                        {% if pack.initial.completed and pack.status == constant('AppBundle\\Entity\\Pack::STATUS_ONGOING')%}
                         <p>{{ "now"|date_modify("+" ~ fmod(pack.daysLeft, 28) ~ " day")|date("d/m/Y") }}</p>
+                        {% endif %}
                         {% if pack.startedAt is null %}
                             <p><a class="btn waves-effect waves-light" href="{{ path('start_pack', {'pack_id' : pack.id}) }}" >Démarrer</a></p>
                         {% endif %}
