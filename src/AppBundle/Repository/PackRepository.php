@@ -23,8 +23,10 @@ class PackRepository extends \Doctrine\ORM\EntityRepository
         if ($packTypeId !== null && $packTypeId != 'all') {
             $q->andWhere('p.pack_type_id = :pack_type_id')
                 ->setParameter('pack_type_id', $packTypeId);
+            $q->andWhere('p.status != :status')
+                ->setParameter('status', 'finished');
         }
-        $q->orderBy('p.createdAt', 'ASC')
+        $q->orderBy('p.startedAt', 'DESC')
             ->setParameter('type', 'themes');
 
         return $q->getQuery()->getResult();
@@ -42,8 +44,10 @@ class PackRepository extends \Doctrine\ORM\EntityRepository
         if ($packTypeId !== null && $packTypeId != 'all') {
             $q->andWhere('p.pack_type_id = :pack_type_id')
                 ->setParameter('pack_type_id', $packTypeId);
+            $q->andWhere('p.status != :status')
+                ->setParameter('status', 'finished');
         }
-        $q->orderBy('p.createdAt', 'ASC')
+        $q->orderBy('p.startedAt', 'DESC')
             ->setParameter('type', 'themes');
 
         return $q->getQuery()->getResult();
