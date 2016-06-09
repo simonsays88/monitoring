@@ -88,4 +88,23 @@ class InitialController extends Controller
             return new Response('Bilan introuvable', 500);
         }
     }
+
+    /**
+     * @Route("/completed/{id}", name="initial_completed", requirements={"id"="\d+"})
+     */
+    public function completedAction(Request $request, $id)
+    {
+        $initial = $this->getDoctrine()
+            ->getRepository('AppBundle:Initial')
+            ->findOneById($id);
+        if($initial->getCompleted()){
+            $initial->setCompleted(0);
+        } else{
+            $initial->setCompleted(1);
+        }
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($initial);
+        $em->flush();
+        return new Response();
+    }
 }

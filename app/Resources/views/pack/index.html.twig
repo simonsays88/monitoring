@@ -41,6 +41,7 @@
     <table class="bordered highlight responsive-table centered">
         <thead>
             <tr>
+                <th></th>
                 <th>Nom & Prénom</th>
                 <th>Pack</th> 
                 <th>Date de début</th> 
@@ -54,7 +55,15 @@
         </thead>
         <tbody>
             {% for pack in packs %}
-                <tr {% if pack.initial.completed %} class="green lighten-5" {% else %} class="red lighten-5"{% endif %}>
+                <tr>
+                    <td><div class='switch'>
+                        <label>
+                            <input name='completed' type='hidden' value='0'>
+                            <input name='completed' type='checkbox' onclick="switchCompleted('{{ path('initial_completed', {'id':pack.initial.id}) }}')" {% if pack.initial.completed %}checked{% endif %} >
+                            <span class='lever'></span>
+                        </label>
+                        </div>
+                    </td>
                     <td>{{ pack.initial.firstname }} {{ pack.initial.lastname }}</td>
                     <td>
 
@@ -96,4 +105,11 @@
     <div class="navigation">
         {{ knp_pagination_render(packs) }}
     </div>
+        
+    <script>
+            function switchCompleted(path){
+                $.get( path, function() {
+                  });
+            }
+    </script>
 {% endblock %}
