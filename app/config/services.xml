@@ -7,6 +7,7 @@
         <service id="app.handle_form" class="AppBundle\Service\HandleResultForm">
             <argument type="service" id="doctrine.orm.default_entity_manager" />
             <argument type="service" id="templating"/>
+            <argument type="service" id="service_container" />
         </service>
         
         <service id="app.listener.result" class="AppBundle\EventListener\ResultListener">

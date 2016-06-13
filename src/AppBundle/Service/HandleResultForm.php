@@ -14,14 +14,17 @@ class HandleResultForm
 
     protected $templating;
 
+    protected $container;
+
 
     /**
      * @param EntityManager $em
      */
-    public function __construct(EntityManager $em, EngineInterface $templating)
+    public function __construct(EntityManager $em, EngineInterface $templating, ContainerInterface $container)
     {
         $this->em = $em;
         $this->templating = $templating;
+        $this->container = $container;
     }
 
     public function process($request, $form)
