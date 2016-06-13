@@ -38,7 +38,7 @@ class HandleResultForm
 
             $destinataire = ($result->getPack()->getPackType() == Pack::THEME) ? $this->container->getParameter('sender_themes') : $this->container->getParameter('sender_custom');
             $sujet = 'Pack en pause';
-            $message = $this->renderView('AppBundle:Emails:resultsCompleted.html.twig', array('result' => $result));
+            $message = $this->templating->render('AppBundle:Emails:resultsCompleted.html.twig', array('result' => $result));
             $headers = "From: \"".$this->container->getParameter('sender_app')."\"<".$this->container->getParameter('sender_app').">\n";
             $headers .= "Reply-To: ".$this->container->getParameter('sender_app')."\n";
             $headers .= "Content-Type: text/html; charset=\"iso-8859-1\"";
