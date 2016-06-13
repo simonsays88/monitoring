@@ -4,6 +4,7 @@ namespace AppBundle\Service;
 
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\Templating\EngineInterface;
+use AppBundle\Entity\Pack;
 
 
 class HandleResultForm
