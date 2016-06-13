@@ -44,7 +44,7 @@
         <div class="row col s6" style="padding: 2%;">
             <div class="row z-depth-2">
                 <h4>Bilan alimentaire à 2 semaines</h4>
-                <label for="evaluation">Sur une échelle de 1 à 10, à combien évalues tu le suivi du plan alimentaire en termes
+                <label for="evaluation">Sur une échelle de 1 à 10, à combien évalues tu ton suivi du plan alimentaire en termes
                     de quantités et de qualités des aliments ?</label>
                     {{ form_widget(form.evaluation) }}
             </div>
@@ -60,5 +60,6 @@
             <p><button type="submit" class="btn">Envoyez votre bilan alimentaire <i class="material-icons right">send</i></button></p>
         </div>
         {{ form_end(form) }}
+        {{ include('AppBundle:Results:reply.html.twig', { 'pack_id': form.vars.value.pack.id }) }}
     </div>
 {% endblock %}

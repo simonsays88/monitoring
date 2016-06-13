@@ -12,6 +12,7 @@ use AppBundle\Form\Type\FourWeeksFoodType;
 use AppBundle\Form\Type\TwoWeeksFoodBodyType;
 use AppBundle\Form\Type\FourWeeksFoodBodyType;
 use Symfony\Component\HttpFoundation\Response;
+use AppBundle\Entity\Pack;
 
 class ResultsController extends Controller
 {
@@ -102,12 +103,32 @@ class ResultsController extends Controller
                 if ($handleForm) {
                     return $this->render('AppBundle:Results:success.html.twig');
                 }
-                return $this->render('AppBundle:Results:monthFoodBody.html.twig', array(
-                            'form' => $form->createView()
-                ));
             }
         } else {
             return new Response('Bilan introuvable', 500);
         }
+    }
+
+    /**
+     * @Route("/reply/{pack_id}", name="reply", requirements={"pack_id"="\d+"})
+     */
+    public function replyAction(Request $request, $pack_id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $pack = $this->getDoctrine()->getRepository('AppBundle:Pack')->findOneById($pack_id);
+
+        $email = ($pack->getPackType() == Pack::THEME) ? $this->container->getParameter('sender_themes') : $this->container->getParameter('sender_custom');
+        $sujet = 'Coaching : David costa';
+        $message = $this->container->get('templating')->render('AppBundle:Emails:reply.html.twig', array('text_reply' => $request->query->get('text_reply')));
+        $destinataire = $pack->getInitial()->getEmail();
+        $headers = "From: \"".$email."\"<".$email.">\n";
+        $headers .= "Reply-To: ".$email."\n";
+        $headers .= "Content-Type: text/html; charset=\"iso-8859-1\"";
+        mail($destinataire,$sujet,$message,$headers);
+        $this->addFlash(
+            'notice', 'Un message a été envoyé au client'
+        );
+        $referer = $request->headers->get('referer');
+        return $this->redirect($referer);
     }
 }

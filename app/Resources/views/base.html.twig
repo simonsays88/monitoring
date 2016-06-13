@@ -32,7 +32,11 @@
                 </div>
             </nav>
         <main>
-
+        {% for flash_message in app.session.flashBag.get('notice') %}
+            <div class="flash-notice card-panel orange darken-1">
+                {{ flash_message }}
+            </div>
+        {% endfor %}
         {% block body %}{% endblock %}
 
     </main>

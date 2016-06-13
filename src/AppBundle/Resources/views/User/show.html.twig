@@ -9,12 +9,6 @@
 {% endblock %}
 
 {% block body %}
-    {% for flash_message in app.session.flashBag.get('notice') %}
-        <div class="flash-notice card-panel orange darken-1">
-            {{ flash_message }}
-        </div>
-    {% endfor %}
-
     {% if user.packs.last.status == constant('AppBundle\\Entity\\Pack::STATUS_ONGOING') %}
         <h5>Mettre en pause son pack</h5>
         <div class="row">
