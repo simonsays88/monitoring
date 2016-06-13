@@ -20,7 +20,7 @@ class HandleResultForm
     /**
      * @param EntityManager $em
      */
-    public function __construct(EntityManager $em, EngineInterface $templating, ContainerInterface $container)
+    public function __construct(EntityManager $em, EngineInterface $templating, $container)
     {
         $this->em = $em;
         $this->templating = $templating;
