@@ -368,7 +368,7 @@ class Initial {
     /**
      * @var string
      * @Assert\Image(
-     *     allowLandscape = false,
+     *     allowLandscape = false, allowLandscapeMessage = "L'image doit être au format portrait."
      * )
      * @ORM\Column(name="photo_front", type="string", length=255, nullable=true)
      */
@@ -377,7 +377,7 @@ class Initial {
     /**
      * @var string
      * @Assert\Image(
-     *     allowLandscape = false,
+     *     allowLandscape = false, allowLandscapeMessage = "L'image doit être au format portrait."
      * )
      * @ORM\Column(name="photo_side", type="string", length=255, nullable=true)
      */
@@ -386,7 +386,7 @@ class Initial {
     /**
      * @var string
      * @Assert\Image(
-     *     allowLandscape = false,
+     *     allowLandscape = false, allowLandscapeMessage = "L'image doit être au format portrait."
      * )
      * @ORM\Column(name="photo_back", type="string", length=255, nullable=true)
      */
