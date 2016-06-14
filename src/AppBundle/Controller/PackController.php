@@ -28,6 +28,7 @@ class PackController extends Controller
         $pack_standby = $request->query->get('pack_standby');
         $packTypeId = $request->query->get('packTypeId');
         $em = $this->getDoctrine()->getManager();
+        $date = new \DateTime('now');
 
         if($this->getUser()->getId() == 1) {
             $packs = $em->getRepository('AppBundle:Pack')->getAllPacksFoodAndFoodBody($completed, $packTypeId);
@@ -39,8 +40,11 @@ class PackController extends Controller
             
             foreach ($packs as $key => $pack){
                 $results  = $pack->getResults();
-                $result = $results[(count($results) - 2)];
+                $result = $results->last();
                 if($result){
+                    if($result->getCreatedAt()->modify('+1 week') > $date){
+                        $result = $results[(count($results) - 2)];
+                    }
                     if($result->getDone() || !$result->getCompleted()){
                         unset($packs[$key]);
                     }
