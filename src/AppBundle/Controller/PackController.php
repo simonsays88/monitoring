@@ -34,10 +34,12 @@ class PackController extends Controller
         } else {
             $packs = $em->getRepository('AppBundle:Pack')->getAllPacksThemes($completed, $packTypeId);
         }
-
+        
         if($pack_standby == 1){
+            
             foreach ($packs as $key => $pack){
-                $result = $pack->getResults()->last();
+                $results  = $pack->getResults();
+                $result = $results[(count($results) - 2)];
                 if($result){
                     if($result->getDone() || !$result->getCompleted()){
                         unset($packs[$key]);
