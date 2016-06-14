@@ -58,6 +58,7 @@
     <table class="bordered striped highlight responsive-table centered">
         <thead>
             <tr>
+                <th>Fait</th>
                 <th>Bilans</th>
                 <th>Poids</th>
                 <th>Masse grasse</th>
@@ -70,6 +71,8 @@
         <thead>
         <tbody>
             <tr>
+                <td>
+                </td>
                 <td><a href="{{ path('initial', {'userId':user.userId}) }}" class="link">Initial</a></td>
                 <td>{{ user.weight}}</td>
                 <td>{{ user.imc}}</td>
@@ -82,6 +85,14 @@
             {% for pack in user.packs %}
                 {% for result in pack.results %}
                     <tr>
+                        <td><div class='switch'>
+                                <label>
+                                    <input name='done' type='hidden' value='0'>
+                                    <input name='done' type='checkbox' onclick="switchButton('{{ path('result_done', {'id':result.id}) }}')" {% if result.done %}checked{% endif %} >
+                                    <span class='lever'></span>
+                                </label>
+                            </div>
+                        </td>
                         <td><a href="{{ path('results', {'resultId': result.id}) }}">{{ result.createdAt|date_modify("+7 day")|date('d/m/Y') }}</a></td>
                         <td>{{ result.weight}}</td>
                         <td>{{ result.imc}}</td>

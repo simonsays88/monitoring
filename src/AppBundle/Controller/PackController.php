@@ -25,6 +25,7 @@ class PackController extends Controller
     public function indexAction(Request $request)
     {
         $completed = $request->query->get('completed');
+        $pack_standby = $request->query->get('pack_standby');
         $packTypeId = $request->query->get('packTypeId');
         $em = $this->getDoctrine()->getManager();
 
@@ -34,6 +35,18 @@ class PackController extends Controller
             $packs = $em->getRepository('AppBundle:Pack')->getAllPacksThemes($completed, $packTypeId);
         }
 
+        if($pack_standby == 1){
+            foreach ($packs as $key => $pack){
+                $result = $pack->getResults()->last();
+                if($result){
+                    if($result->getDone() || !$result->getCompleted()){
+                        unset($packs[$key]);
+                    }
+                } else {
+                    unset($packs[$key]);
+                }
+            }
+        }
 
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
@@ -43,6 +56,7 @@ class PackController extends Controller
                 array(
                 'packs' => $pagination,
                 'completed' => $completed,
+                'pack_standby' => $pack_standby,
                 'packTypeId' => $packTypeId
         ));
     }

@@ -32,6 +32,6 @@
     </div>
 
     {{ form_end(form) }}
-    {{ include('AppBundle:Results:reply.html.twig', { 'pack_id': form.vars.value.pack.id }) }}
+    {{ include('AppBundle:Results:reply.html.twig', { 'result_id': form.vars.value.id }) }}
 
 {% endblock %}

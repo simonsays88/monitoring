@@ -7,7 +7,14 @@
     <div class="row">
         <form method="get" action="">
             <div class="col s2">    
-                <label>Bilan complété</label>
+                <label>Dernier bilan en attente</label>
+                <select name="pack_standby" onChange="this.parentNode.parentNode.submit()">
+                    <option value="all" {% if pack_standby is same as('all') %}selected="selected"{% endif %}>Tous</option>
+                    <option value="1" {% if pack_standby is same as('1') %}selected="selected"{% endif %}>Oui</option>
+                </select>
+            </div>
+            <div class="col s2">    
+                <label>Bilan initial complété</label>
                 <select name="completed" onChange="this.parentNode.parentNode.submit()">
                     <option value="all" {% if completed is same as('all') %}selected="selected"{% endif %}>Tous</option>
                     <option value="1" {% if completed is same as('1') %}selected="selected"{% endif %}>Oui</option>
@@ -59,7 +66,7 @@
                     <td><div class='switch'>
                         <label>
                             <input name='completed' type='hidden' value='0'>
-                            <input name='completed' type='checkbox' onclick="switchCompleted('{{ path('initial_completed', {'id':pack.initial.id}) }}')" {% if pack.initial.completed %}checked{% endif %} >
+                            <input name='completed' type='checkbox' onclick="switchButton('{{ path('initial_completed', {'id':pack.initial.id}) }}')" {% if pack.initial.completed %}checked{% endif %} >
                             <span class='lever'></span>
                         </label>
                         </div>
@@ -111,11 +118,4 @@
     <div class="navigation">
         {{ knp_pagination_render(packs) }}
     </div>
-        
-    <script>
-            function switchCompleted(path){
-                $.get( path, function() {
-                  });
-            }
-    </script>
 {% endblock %}

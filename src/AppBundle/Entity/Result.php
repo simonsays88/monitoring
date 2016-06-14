@@ -122,6 +122,13 @@ class Result
     private $completed = 0;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="done", type="boolean")
+     */
+    private $done = 0;
+
+    /**
      * @ORM\Column(name="created_at", type="date", nullable=true)
      */
     protected $createdAt;
@@ -865,5 +872,29 @@ class Result
     public function getResultExercise()
     {
         return $this->resultExercise;
+    }
+
+    /**
+     * Set done
+     *
+     * @param boolean $done
+     *
+     * @return Result
+     */
+    public function setDone($done)
+    {
+        $this->done = $done;
+
+        return $this;
+    }
+
+    /**
+     * Get done
+     *
+     * @return boolean
+     */
+    public function getDone()
+    {
+        return $this->done;
     }
 }

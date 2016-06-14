@@ -50,6 +50,12 @@
     </footer>
     {% block javascripts %}
         <script type="text/javascript" src="/bundles/app/js/scripts.js"></script>
+        <script>
+                function switchButton(path){
+                    $.get( path, function() {
+                      });
+                }
+        </script>
     {% endblock %}
 </body>
 </html>

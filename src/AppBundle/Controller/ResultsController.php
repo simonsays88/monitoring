@@ -110,12 +110,17 @@ class ResultsController extends Controller
     }
 
     /**
-     * @Route("/reply/{pack_id}", name="reply", requirements={"pack_id"="\d+"})
+     * @Route("/reply/{result_id}", name="reply", requirements={"result_id"="\d+"})
      */
-    public function replyAction(Request $request, $pack_id)
+    public function replyAction(Request $request, $result_id)
     {
         $em = $this->getDoctrine()->getManager();
-        $pack = $this->getDoctrine()->getRepository('AppBundle:Pack')->findOneById($pack_id);
+        $result = $this->getDoctrine()->getRepository('AppBundle:Result')->findOneById($result_id);
+        $result->setDone(1);
+        $em->persist($result);
+        $em->flush();
+        
+        $pack = $result->getPack();
 
         $email = ($pack->getPackType() == Pack::THEME) ? $this->container->getParameter('sender_themes') : $this->container->getParameter('sender_custom');
         $sujet = 'Coaching : David costa';
@@ -131,4 +136,24 @@ class ResultsController extends Controller
         $referer = $request->headers->get('referer');
         return $this->redirect($referer);
     }
+
+    /**
+     * @Route("/done/{id}", name="result_done", requirements={"id"="\d+"})
+     */
+    public function doneAction(Request $request, $id)
+    {
+        $result = $this->getDoctrine()
+            ->getRepository('AppBundle:Result')
+            ->findOneById($id);
+        if($result->getDone()){
+            $result->setDone(0);
+        } else{
+            $result->setDone(1);
+        }
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($result);
+        $em->flush();
+        return new Response();
+    }
+
 }
