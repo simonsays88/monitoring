@@ -11,13 +11,14 @@ namespace AppBundle\Repository;
 class PackRepository extends \Doctrine\ORM\EntityRepository
 {
 
-    public function getAllPacksFoodAndFoodBody($completed, $packTypeId)
+    public function getAllPacksFoodAndFoodBody($completed, $packTypeId, $name)
     {
         $q = $this->createQueryBuilder('p')
             ->where('p.pack_type != :type');
+        $q->join('p.initial', 'i');
+
         if ($completed !== null && $completed != 'all') {
-            $q->join('p.initial', 'i')
-                ->andWhere('i.completed = :completed')
+            $q->andWhere('i.completed = :completed')
                 ->setParameter('completed', $completed);
         }
         if ($packTypeId !== null && $packTypeId != 'all') {
@@ -25,6 +26,10 @@ class PackRepository extends \Doctrine\ORM\EntityRepository
                 ->setParameter('pack_type_id', $packTypeId);
             $q->andWhere('p.status != :status')
                 ->setParameter('status', 'finished');
+        }
+        if ($name) {
+            $q->andWhere('i.lastname LIKE :lastname OR i.firstname LIKE :lastname')
+                ->setParameter('lastname', '%'.$name.'%');
         }
         $q->orderBy('p.startedAt', 'DESC')
             ->setParameter('type', 'themes');
@@ -32,13 +37,14 @@ class PackRepository extends \Doctrine\ORM\EntityRepository
         return $q->getQuery()->getResult();
     }
 
-    public function getAllPacksThemes($completed, $packTypeId)
+    public function getAllPacksThemes($completed, $packTypeId, $name)
     {
         $q = $this->createQueryBuilder('p')
             ->where('p.pack_type = :type');
+        $q->join('p.initial', 'i');
+
         if ($completed !== null && $completed != 'all') {
-            $q->join('p.initial', 'i')
-                ->andWhere('i.completed = :completed')
+            $q->andWhere('i.completed = :completed')
                 ->setParameter('completed', $completed);
         }
         if ($packTypeId !== null && $packTypeId != 'all') {
@@ -46,6 +52,10 @@ class PackRepository extends \Doctrine\ORM\EntityRepository
                 ->setParameter('pack_type_id', $packTypeId);
             $q->andWhere('p.status != :status')
                 ->setParameter('status', 'finished');
+        }
+        if ($name) {
+            $q->andWhere('i.lastname LIKE :lastname OR i.firstname LIKE :lastname')
+                ->setParameter('lastname', '%'.$name.'%');
         }
         $q->orderBy('p.startedAt', 'DESC')
             ->setParameter('type', 'themes');

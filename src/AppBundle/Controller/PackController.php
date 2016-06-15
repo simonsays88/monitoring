@@ -27,13 +27,14 @@ class PackController extends Controller
         $completed = $request->query->get('completed');
         $pack_standby = $request->query->get('pack_standby');
         $packTypeId = $request->query->get('packTypeId');
+        $name = $request->query->get('name');
         $em = $this->getDoctrine()->getManager();
         $date = new \DateTime('now');
 
         if($this->getUser()->getId() == 1) {
-            $packs = $em->getRepository('AppBundle:Pack')->getAllPacksFoodAndFoodBody($completed, $packTypeId);
+            $packs = $em->getRepository('AppBundle:Pack')->getAllPacksFoodAndFoodBody($completed, $packTypeId, $name);
         } else {
-            $packs = $em->getRepository('AppBundle:Pack')->getAllPacksThemes($completed, $packTypeId);
+            $packs = $em->getRepository('AppBundle:Pack')->getAllPacksThemes($completed, $packTypeId, $name);
         }
         
         if($pack_standby == 1){
