@@ -103,6 +103,9 @@ class ResultsController extends Controller
                 if ($handleForm) {
                     return $this->render('AppBundle:Results:success.html.twig');
                 }
+                return $this->render('AppBundle:Results:weekFoodBody.html.twig', array(
+                            'form' => $form->createView()
+                ));
             }
         } else {
             return new Response('Bilan introuvable', 500);
