@@ -87,7 +87,7 @@
                     <td>
                         <p> ({{ ((pack.nbDays - pack.daysLeft) / 28)|round(0, 'ceil') }} / {{ (pack.nbDays / 28)|round(0, 'ceil') }}) 
                             {% if pack.initial.completed and pack.status == constant('AppBundle\\Entity\\Pack::STATUS_ONGOING')%}
-                                {{ "now"|date_modify("+" ~ fmod(pack.daysLeft, 28) ~ " day")|date("d/m/Y") }}
+                                {{ "now"|date_modify("+" ~ (fmod(pack.daysLeft, 28)-1) ~ " day")|date("d/m/Y") }}
                             {% endif %}
                         </p>
                     </td>
