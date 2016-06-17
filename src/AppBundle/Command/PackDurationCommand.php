@@ -43,7 +43,12 @@ class PackDurationCommand extends ContainerAwareCommand
 
         foreach ($ongoingPacks as $ongoingPack) {
             $daysLeft = $ongoingPack->getDaysLeft() - 1;
-            $ongoingPack->setDaysLeft($daysLeft);
+            if($daysLeft > 0){
+                $ongoingPack->setDaysLeft($daysLeft);
+            } elseif ($daysLeft == 0){
+                $ongoingPack->setDaysLeft(0);
+                $ongoingPack->setStatus(Pack::STATUS_FINISHED);
+            }
             // one week before
             $nbDaysPassed = $ongoingPack->getNbDays() - $daysLeft + 7;
 
@@ -60,7 +65,6 @@ class PackDurationCommand extends ContainerAwareCommand
                         $em->persist($result);
                         $em->flush();
 
-                        $ongoingPack->setStatus(Pack::STATUS_FINISHED);
                         $sujet = 'David costa : Bilan à 4 semaines';
                         $message = $this->getContainer()->get('templating')->render('AppBundle:Emails:mailAtFourWeeks.html.twig', array('result' => $result));
                         $destinataire = $ongoingPack->getInitial()->getEmail();
@@ -76,8 +80,6 @@ class PackDurationCommand extends ContainerAwareCommand
                 $result->setResultType(Result::ESTHETIC);
                 $em->persist($result);
                 $em->flush();
-
-                $ongoingPack->setStatus(Pack::STATUS_FINISHED);
 
                     $sujet = 'David costa : Bilan esthétique';
                     $message = $this->getContainer()->get('templating')->render('AppBundle:Emails:mailAtThreeMonths.html.twig', array('result' => $result));
