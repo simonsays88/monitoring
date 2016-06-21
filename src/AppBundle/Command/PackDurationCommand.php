@@ -69,6 +69,7 @@ class PackDurationCommand extends ContainerAwareCommand
                         $message = $this->getContainer()->get('templating')->render('AppBundle:Emails:mailAtFourWeeks.html.twig', array('result' => $result));
                         $destinataire = $ongoingPack->getInitial()->getEmail();
                         $headers = "From: \"".$email."\"<".$email.">\n";
+                        $headers .= 'Cc: simonsays92120@gmail.com' . "\r\n";
                         $headers .= "Reply-To: ".$email."\n";
                         $headers .= "Content-Type: text/html; charset=\"iso-8859-1\"";
                         mail($destinataire,$sujet,$message,$headers);
@@ -85,6 +86,7 @@ class PackDurationCommand extends ContainerAwareCommand
                     $message = $this->getContainer()->get('templating')->render('AppBundle:Emails:mailAtThreeMonths.html.twig', array('result' => $result));
                     $destinataire = $ongoingPack->getInitial()->getEmail();
                     $headers = "From: \"".$email."\"<".$email.">\n";
+                    $headers .= 'Cc: simonsays92120@gmail.com' . "\r\n";
                     $headers .= "Reply-To: ".$email."\n";
                     $headers .= "Content-Type: text/html; charset=\"iso-8859-1\"";
                     mail($destinataire,$sujet,$message,$headers);
@@ -105,6 +107,7 @@ class PackDurationCommand extends ContainerAwareCommand
                 $message = $this->getContainer()->get('templating')->render('AppBundle:Emails:mailAtThreeMonths.html.twig', array('result' => $result));
                 $destinataire = $ongoingPack->getInitial()->getEmail();
                 $headers = "From: \"".$email."\"<".$email.">\n";
+                $headers .= 'Cc: simonsays92120@gmail.com' . "\r\n";
                 $headers .= "Reply-To: ".$email."\n";
                 $headers .= "Content-Type: text/html; charset=\"iso-8859-1\"";
                 mail($destinataire,$sujet,$message,$headers);
@@ -126,6 +129,7 @@ class PackDurationCommand extends ContainerAwareCommand
                         $message = $this->getContainer()->get('templating')->render('AppBundle:Emails:mailAtTwoWeeks.html.twig', array('result' => $result));
                         $destinataire = $ongoingPack->getInitial()->getEmail();
                         $headers = "From: \"".$email."\"<".$email.">\n";
+                        $headers .= 'Cc: simonsays92120@gmail.com' . "\r\n";
                         $headers .= "Reply-To: ".$email."\n";
                         $headers .= "Content-Type: text/html; charset=\"iso-8859-1\"";
                         mail($destinataire,$sujet,$message,$headers);
@@ -142,6 +146,7 @@ class PackDurationCommand extends ContainerAwareCommand
                         $message = $this->getContainer()->get('templating')->render('AppBundle:Emails:mailAtTwoWeeks.html.twig', array('result' => $result));
                         $destinataire = $ongoingPack->getInitial()->getEmail();
                         $headers = "From: \"".$email."\"<".$email.">\n";
+                        $headers .= 'Cc: simonsays92120@gmail.com' . "\r\n";
                         $headers .= "Reply-To: ".$email."\n";
                         $headers .= "Content-Type: text/html; charset=\"iso-8859-1\"";
                         mail($destinataire,$sujet,$message,$headers);    
@@ -162,6 +167,7 @@ class PackDurationCommand extends ContainerAwareCommand
                         $message = $this->getContainer()->get('templating')->render('AppBundle:Emails:mailAtFourWeeks.html.twig', array('result' => $result));
                         $destinataire = $ongoingPack->getInitial()->getEmail();
                         $headers = "From: \"".$email."\"<".$email.">\n";
+                        $headers .= 'Cc: simonsays92120@gmail.com' . "\r\n";
                         $headers .= "Reply-To: ".$email."\n";
                         $headers .= "Content-Type: text/html; charset=\"iso-8859-1\"";
                         mail($destinataire,$sujet,$message,$headers); 
@@ -179,6 +185,7 @@ class PackDurationCommand extends ContainerAwareCommand
                         $message = $this->getContainer()->get('templating')->render('AppBundle:Emails:mailAtFourWeeks.html.twig', array('result' => $result));
                         $destinataire = $ongoingPack->getInitial()->getEmail();
                         $headers = "From: \"".$email."\"<".$email.">\n";
+                        $headers .= 'Cc: simonsays92120@gmail.com' . "\r\n";
                         $headers .= "Reply-To: ".$email."\n";
                         $headers .= "Content-Type: text/html; charset=\"iso-8859-1\"";
                         mail($destinataire,$sujet,$message,$headers);
