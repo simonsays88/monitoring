@@ -93,7 +93,7 @@
                     </td>
                     <td>
                         <p>
-                            <a href="mailto:{{ get_email_wordpress(pack.userId) }}">{{ get_email_wordpress(pack.userId) }}</a>
+                            <a href="mailto:{{ (get_email_wordpress(pack.userId)) ? get_email_wordpress(pack.userId) : pack.initial.email }}">{{ (get_email_wordpress(pack.userId)) ? get_email_wordpress(pack.userId) : pack.initial.email }}</a>
                         </p>
                     </td>   
                     <td style="position: relative">
