@@ -2,3 +2,4 @@ Nom : {{ pack.initial.firstname }} {{ pack.initial.lastname }}<br>
 Nom du pack : {{ pack.packName }}<br>
 Objectif : {{ pack.initial.objectives }}<br>
 Mois : {{ ((pack.nbDays - pack.daysLeft) / 28)|round(0, 'ceil') }} / {{ (pack.nbDays / 28)|round(0, 'ceil') }}<br>
+Date de fin : {{ "now"|date_modify("+" ~ pack.daysLeft ~ " day")|date("d/m/Y") }}

@@ -37,7 +37,7 @@ class PackController extends Controller
             $packs = $em->getRepository('AppBundle:Pack')->getAllPacksThemes($completed, $packTypeId, $name);
         }
         
-        if($pack_standby == 1){
+        if($pack_standby != 'all'){
             
             foreach ($packs as $key => $pack){
                 $results  = $pack->getResults();

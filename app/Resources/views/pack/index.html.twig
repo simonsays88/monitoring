@@ -9,8 +9,8 @@
             <div class="col s2">    
                 <label>Dernier bilan en attente</label>
                 <select name="pack_standby" onChange="this.parentNode.parentNode.submit()">
-                    <option value="all" {% if pack_standby is same as('all') %}selected="selected"{% endif %}>Tous</option>
                     <option value="1" {% if pack_standby is same as('1') %}selected="selected"{% endif %}>Oui</option>
+                    <option value="all" {% if pack_standby is same as('all') %}selected="selected"{% endif %}>Tous</option>
                 </select>
             </div>
             <div class="col s2">    
@@ -57,12 +57,12 @@
                 <th>Nom & Prénom</th>
                 <th>Pack</th> 
                 <th>Date de fin</th> 
-                <th>Mail</th>
                 <th>Infos</th>
-                <th>Options</th> 
+                <th>Mail</th>
                 <th>Bilans</th>
                 <th>Evolution</th>
                 <th>Exercices</th>
+                <th>Options</th> 
             </tr>
         </thead>
         <tbody>
@@ -91,21 +91,15 @@
                             {% endif %}
                         </p>
                     </td>
-                    <td>
-                        <p>
-                            <a href="mailto:{{ (get_email_wordpress(pack.userId)) ? get_email_wordpress(pack.userId) : pack.initial.email }}">{{ (get_email_wordpress(pack.userId)) ? get_email_wordpress(pack.userId) : pack.initial.email }}</a>
-                        </p>
-                    </td>   
                     <td style="position: relative">
                         <p>{{ pack.infos }}</p>
                         <p style="position:absolute; top:0; right:0;"><a href="{{ path('infos', { 'id': pack.id }) }}"><i class="tiny material-icons">mode_edit</i></a></p>
                     </td>
                     <td>
-                        {% for option in pack.options %}
-                            <p>{{option}}</p>
-                        {% endfor %}
-
-                    </td>
+                        <p>
+                            <a href="mailto:{{ (get_email_wordpress(pack.userId)) ? get_email_wordpress(pack.userId) : pack.initial.email }}">{{ (get_email_wordpress(pack.userId)) ? get_email_wordpress(pack.userId) : pack.initial.email }}</a>
+                        </p>
+                    </td>   
                     <td>
                         <p><a href="{{ path('initial', {'userId':pack.initial.userId}) }}" class="link">Bilan Initial</a><p>
                             {% for result in pack.results %}
@@ -116,6 +110,12 @@
                     </td>
                     <td><a href="{{ path('user', {'user_id' : pack.initial.userId}) }}"><i class="small material-icons">insert_chart</i></a></td>
                     <td><a href="{{ path('pack_edit', { 'id': pack.id }) }}"><i class="small material-icons">mode_edit</i></a></td>
+                    <td>
+                        {% for option in pack.options %}
+                            <p>{{option}}</p>
+                        {% endfor %}
+
+                    </td>
                 </tr>
             {% endfor %}
         </tbody>
