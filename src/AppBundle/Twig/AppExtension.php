@@ -32,8 +32,13 @@ class AppExtension extends \Twig_Extension
         $stmt->bindValue(1, $id);
         if ($stmt->execute()) {
             $result = $stmt->fetch();
-            return $result['user_email'];
-        }
+            if ($result['user_email']) {
+                return $result['user_email'];
+            } else {
+                $initial = $this->em->getRepository('AppBundle:Initial')->findOneByUserId($id);
+                return $initial->getEmail();
+            }
+        } 
         return false;
     }
     

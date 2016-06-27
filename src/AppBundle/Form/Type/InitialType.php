@@ -19,6 +19,7 @@ class InitialType extends AbstractType {
         $builder
                 ->add('firstname', null, array('required' => true))
                 ->add('lastname', null, array('required' => true))
+                ->add('email', null, array('required' => true))
                 ->add('address', null, array('required' => true))
                 ->add('zipCode', null, array('required' => true))
                 ->add('city', null, array('required' => true))
