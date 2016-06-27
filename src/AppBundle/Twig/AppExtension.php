@@ -36,7 +36,7 @@ class AppExtension extends \Twig_Extension
                 return $result['user_email'];
             } else {
                 $initial = $this->em->getRepository('AppBundle:Initial')->findOneByUserId($id);
-                if (isset($initial->getEmail())){
+                if ($initial){
                     return $initial->getEmail();
                 } else {
                     return false;
