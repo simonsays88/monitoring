@@ -69,6 +69,13 @@ class PackStartCommand extends ContainerAwareCommand
                 $initial = new Initial();
                 $initial->setUserId($input->getOption('user_id'));
                 $initial->setCreatedAt(new \DateTime());
+                $sql  = "SELECT user_email FROM wp_users WHERE id = ?";
+                $stmt = $em->getConnection()->prepare($sql);
+                $stmt->bindValue(1, $input->getOption('user_id'));
+                if ($stmt->execute()) {
+                    $result = $stmt->fetch();
+                    $initial->setEmail($result['user_email']);
+                }
                 $em->persist($initial);
                 $em->flush();
             } else {
