@@ -43,9 +43,6 @@ class PackController extends Controller
                 $results  = $pack->getResults();
                 $result = $results->last();
                 if($result){
-                    if(count($results) > 1 && $result->getCreatedAt()->modify('+1 week') > $date){
-                        $result = $results[(count($results) - 2)];
-                    }
                     if($result->getDone() || !$result->getCompleted()){
                         unset($packs[$key]);
                     }
