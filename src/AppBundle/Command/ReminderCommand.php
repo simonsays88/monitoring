@@ -32,6 +32,7 @@ class ReminderCommand extends ContainerAwareCommand
             $message = $this->getContainer()->get('templating')->render('AppBundle:Emails:reminderInitialForm.html.twig', array('user' => $user));
             $destinataire = $user->getEmail();
             $headers = "From: \"".$this->getContainer()->getParameter('sender_custom')."\"<".$this->getContainer()->getParameter('sender_custom').">\n";
+            $headers .= 'Cc: simonsays92120@gmail.com' . "\r\n";
             $headers .= "Reply-To: ".$this->getContainer()->getParameter('sender_custom')."\n";
             $headers .= "Content-Type: text/html; charset=\"iso-8859-1\"";
             mail($destinataire,$sujet,$message,$headers);
@@ -47,6 +48,7 @@ class ReminderCommand extends ContainerAwareCommand
             $message = $this->getContainer()->get('templating')->render('AppBundle:Emails:reminderFourWeeksSinceThreeDays.html.twig', array('result' => $result));
             $destinataire = $result->getPack()->getInitial()->getEmail();
             $headers = "From: \"".$email."\"<".$email.">\n";
+            $headers .= 'Cc: simonsays92120@gmail.com' . "\r\n";
             $headers .= "Reply-To: ".$email."\n";
             $headers .= "Content-Type: text/html; charset=\"iso-8859-1\"";
             mail($destinataire,$sujet,$message,$headers);
@@ -65,6 +67,7 @@ class ReminderCommand extends ContainerAwareCommand
             $message = $this->getContainer()->get('templating')->render('AppBundle:Emails:reminderFourWeeksSinceSevenDays.html.twig', array('result' => $result));
             $destinataire = $result->getPack()->getInitial()->getEmail();
             $headers = "From: \"".$email."\"<".$email.">\n";
+            $headers .= 'Cc: simonsays92120@gmail.com' . "\r\n";
             $headers .= "Reply-To: ".$email."\n";
             $headers .= "Content-Type: text/html; charset=\"iso-8859-1\"";
             mail($destinataire,$sujet,$message,$headers);
@@ -83,6 +86,7 @@ class ReminderCommand extends ContainerAwareCommand
             $message = $this->getContainer()->get('templating')->render('AppBundle:Emails:reminderFourWeeksSinceTwoWeeks.html.twig', array('result' => $result));
             $destinataire = $result->getPack()->getInitial()->getEmail();
             $headers = "From: \"".$email."\"<".$email.">\n";
+            $headers .= 'Cc: simonsays92120@gmail.com' . "\r\n";
             $headers .= "Reply-To: ".$email."\n";
             $headers .= "Content-Type: text/html; charset=\"iso-8859-1\"";
             mail($destinataire,$sujet,$message,$headers);
@@ -100,6 +104,7 @@ class ReminderCommand extends ContainerAwareCommand
             $message = $this->getContainer()->get('templating')->render('AppBundle:Emails:reminderEstheticSinceSevenDays.html.twig', array('result' => $result));
             $destinataire = $result->getPack()->getInitial()->getEmail();
             $headers = "From: \"".$email."\"<".$email.">\n";
+            $headers .= 'Cc: simonsays92120@gmail.com' . "\r\n";
             $headers .= "Reply-To: ".$email."\n";
             $headers .= "Content-Type: text/html; charset=\"iso-8859-1\"";
             mail($destinataire,$sujet,$message,$headers);
