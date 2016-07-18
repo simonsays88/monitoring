@@ -5,6 +5,8 @@
 {% block pageClass %}resultsPage{% endblock %}
 
 {% block body %}
+    
+    {{ include('AppBundle:Results:identity.html.twig', { 'pack': form.vars.value.pack }) }}
     {{ form_start(form) }}
     <div class="row">
         <div class="row col s6" style="padding: 2%;">
@@ -106,5 +108,6 @@
         </div>
         <div class="center-align"><button type="submit" class="btn">Envoyez votre bilan trimestriel <i class="material-icons right">send</i></button></div>
         {{ form_end(form) }}
+        {{ include('AppBundle:Results:reply.html.twig', { 'result_id': form.vars.value.id }) }}
     </div>
 {% endblock %}

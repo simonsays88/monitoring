@@ -29,15 +29,15 @@
                                                         <p class="p1" style="text-align: justify;"><span style="color:#333333"><span class="s1">j’espère que tu vas bien. Il est temps de faire le point sur ces 4 semaines de coaching. Pour cela, je t’invite à remplir ton bilan via le lien ci-dessous avant <strong>jeudi 18h</strong> s'il te plait.</span></span>
  <br>
                                                             &nbsp;</p>
-
-                                                        <p class="p1" style="text-align: justify;"><span style="color:#333333"><span class="s1">
-                                                                    En effet, Afin de pouvoir réaliser ton programme de coaching, j’ai besoin que tu complètes toutes tes informations. Je compte sur toi pour respecter la date ci-dessus.
-                                                            <br>
-                                                            <br>
-                                                            <br>
-                                                                    </span></span>
-                                                        </p>
-
+                                                        {% if result.pack.packType != 'food' %} 
+                                                            <p class="p1" style="text-align: justify;"><span style="color:#333333"><span class="s1">
+                                                                        En effet, Afin de pouvoir réaliser ton programme de coaching, j’ai besoin que tu complètes toutes tes informations. Je compte sur toi pour respecter la date ci-dessus.
+                                                                <br>
+                                                                <br>
+                                                                <br>
+                                                                        </span></span>
+                                                            </p>
+                                                        {% endif %}
                                                     </td>
                                                 </tr>
                                             </tbody>

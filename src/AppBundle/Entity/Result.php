@@ -89,27 +89,18 @@ class Result
 
     /**
      * @var string
-     * @Assert\Image(
-     *     allowLandscape = false, allowLandscapeMessage = "L'image doit être au format portrait."
-     * )
      * @ORM\Column(name="photo_front", type="string", length=255, nullable=true)
      */
     private $photoFront;
 
     /**
      * @var string
-     * @Assert\Image(
-     *     allowLandscape = false, allowLandscapeMessage = "L'image doit être au format portrait."
-     * )
      * @ORM\Column(name="photo_side", type="string", length=255, nullable=true)
      */
     private $photoSide;
 
     /**
      * @var string
-     * @Assert\Image(
-     *     allowLandscape = false, allowLandscapeMessage = "L'image doit être au format portrait."
-     * )
      * @ORM\Column(name="photo_back", type="string", length=255, nullable=true)
      */
     private $photoBack;

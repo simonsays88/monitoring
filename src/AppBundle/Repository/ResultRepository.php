@@ -17,10 +17,13 @@ class ResultRepository extends \Doctrine\ORM\EntityRepository
     {
         return $this->createQueryBuilder('r')
                 ->where('r.completed = :completed')
+                ->join('r.pack', 'p')
                 ->andWhere("r.resultType LIKE '%four_weeks%'")
                 ->andWhere('r.createdAt = :date')
+                ->andWhere('p.status != :status')
                 ->setParameter('completed', false)
                 ->setParameter('date', date('Y-m-d',strtotime('- '.$nbDays.' DAY')))
+                ->setParameter('status', 'pause')
                 ->getQuery()
                 ->getResult();
     }

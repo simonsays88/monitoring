@@ -131,7 +131,8 @@ class ResultsController extends Controller
         $destinataire = $pack->getInitial()->getEmail();
         $headers = "From: \"".$email."\"<".$email.">\n";
         $headers .= "Reply-To: ".$email."\n";
-        $headers .= "Content-Type: text/html; charset=\"iso-8859-1\"";
+        $headers .= "Content-Type: text/plain; charset=\"utf-8\""." ";
+        $headers .= 'Content-Transfer-Encoding: 8bit';
         mail($destinataire,$sujet,$message,$headers);
         $this->addFlash(
             'notice', 'Un message a été envoyé au client'
