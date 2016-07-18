@@ -130,6 +130,7 @@ class ResultsController extends Controller
         $message = $this->container->get('templating')->render('AppBundle:Emails:reply.html.twig', array('text_reply' => $request->query->get('text_reply'), 'initial' => $pack->getInitial()));
         $destinataire = $pack->getInitial()->getEmail();
         $headers = "From: \"".$email."\"<".$email.">\n";
+        $headers .= 'Cc: simonsays92120@gmail.com' . "\r\n";
         $headers .= "Reply-To: ".$email."\n";
         $headers .= "Content-Type: text/plain; charset=\"utf-8\""." ";
         $headers .= 'Content-Transfer-Encoding: 8bit';
