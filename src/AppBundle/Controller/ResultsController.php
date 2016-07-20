@@ -127,7 +127,7 @@ class ResultsController extends Controller
 
         $email = ($pack->getPackType() == Pack::THEME) ? $this->container->getParameter('sender_themes') : $this->container->getParameter('sender_custom');
         $sujet = 'Coaching : David costa';
-        $message = $this->container->get('templating')->render('AppBundle:Emails:reply.html.twig', array('text_reply' => $request->query->get('text_reply'), 'initial' => $pack->getInitial()));
+        $message = $this->container->get('templating')->render('AppBundle:Emails:reply.html.twig', array('text_reply' => nl2br($request->query->get('text_reply')), 'initial' => $pack->getInitial()));
         $destinataire = $pack->getInitial()->getEmail();
         $headers = "From: \"".$email."\"<".$email.">\n";
         $headers .= 'Cc: simonsays92120@gmail.com' . "\r\n";
