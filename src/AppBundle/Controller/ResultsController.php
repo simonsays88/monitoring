@@ -132,7 +132,7 @@ class ResultsController extends Controller
         $headers = "From: \"".$email."\"<".$email.">\n";
         $headers .= 'Cc: simonsays92120@gmail.com' . "\r\n";
         $headers .= "Reply-To: ".$email."\n";
-        $headers .= "Content-Type: text/html; charset=\"iso-8859-1\"";
+        $headers .= "Content-Type: text/html; charset=\"utf-8\"";
         mail($destinataire,$sujet,$message,$headers);
         $this->addFlash(
             'notice', 'Un message a été envoyé au client'

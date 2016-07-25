@@ -127,7 +127,7 @@ class PackStartCommand extends ContainerAwareCommand
             $destinataire = $email;
             $headers = "From: \"" . $this->getContainer()->getParameter('sender_app') . "\"<" . $this->getContainer()->getParameter('sender_app') . ">\n";
             $headers .= "Reply-To: " . $this->getContainer()->getParameter('sender_app') . "\n";
-            $headers .= "Content-Type: text/html; charset=\"iso-8859-1\"";
+            $headers .= "Content-Type: text/html; charset=\"utf-8\"";
             mail($destinataire, $sujet, $message, $headers);
         }
     }

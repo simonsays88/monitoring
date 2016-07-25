@@ -95,7 +95,7 @@ class UserController extends Controller {
         $message = $this->renderView('AppBundle:Emails:packPause.html.twig', array('date' => $date, 'pack' => $pack));
         $headers = "From: \"".$this->container->getParameter('sender_app')."\"<".$this->container->getParameter('sender_app').">\n";
         $headers .= "Reply-To: ".$this->container->getParameter('sender_app')."\n";
-        $headers .= "Content-Type: text/html; charset=\"iso-8859-1\"";
+        $headers .= "Content-Type: text/html; charset=\"utf-8\"";
         mail($destinataire, $sujet, $message, $headers);
         $referer = $request->headers->get('referer');
         return $this->redirect($referer);

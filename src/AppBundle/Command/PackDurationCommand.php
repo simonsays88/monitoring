@@ -71,7 +71,7 @@ class PackDurationCommand extends ContainerAwareCommand
                         $headers = "From: \"".$email."\"<".$email.">\n";
                         $headers .= 'Cc: simonsays92120@gmail.com' . "\r\n";
                         $headers .= "Reply-To: ".$email."\n";
-                        $headers .= "Content-Type: text/html; charset=\"iso-8859-1\"";
+                        $headers .= "Content-Type: text/html; charset=\"utf-8\"";
                         mail($destinataire,$sujet,$message,$headers);
                         
                 } else {
@@ -88,7 +88,7 @@ class PackDurationCommand extends ContainerAwareCommand
                     $headers = "From: \"".$email."\"<".$email.">\n";
                     $headers .= 'Cc: simonsays92120@gmail.com' . "\r\n";
                     $headers .= "Reply-To: ".$email."\n";
-                    $headers .= "Content-Type: text/html; charset=\"iso-8859-1\"";
+                    $headers .= "Content-Type: text/html; charset=\"utf-8\"";
                     mail($destinataire,$sujet,$message,$headers);
                     
                 }
@@ -109,7 +109,7 @@ class PackDurationCommand extends ContainerAwareCommand
                 $headers = "From: \"".$email."\"<".$email.">\n";
                 $headers .= 'Cc: simonsays92120@gmail.com' . "\r\n";
                 $headers .= "Reply-To: ".$email."\n";
-                $headers .= "Content-Type: text/html; charset=\"iso-8859-1\"";
+                $headers .= "Content-Type: text/html; charset=\"utf-8\"";
                 mail($destinataire,$sujet,$message,$headers);
             }
 
@@ -131,7 +131,7 @@ class PackDurationCommand extends ContainerAwareCommand
                         $headers = "From: \"".$email."\"<".$email.">\n";
                         $headers .= 'Cc: simonsays92120@gmail.com' . "\r\n";
                         $headers .= "Reply-To: ".$email."\n";
-                        $headers .= "Content-Type: text/html; charset=\"iso-8859-1\"";
+                        $headers .= "Content-Type: text/html; charset=\"utf-8\"";
                         mail($destinataire,$sujet,$message,$headers);
                         
                     } else if($ongoingPack->getPackType() == Pack::FOOD_BODY){
@@ -148,7 +148,7 @@ class PackDurationCommand extends ContainerAwareCommand
                         $headers = "From: \"".$email."\"<".$email.">\n";
                         $headers .= 'Cc: simonsays92120@gmail.com' . "\r\n";
                         $headers .= "Reply-To: ".$email."\n";
-                        $headers .= "Content-Type: text/html; charset=\"iso-8859-1\"";
+                        $headers .= "Content-Type: text/html; charset=\"utf-8\"";
                         mail($destinataire,$sujet,$message,$headers);    
                     }
                 }
@@ -169,7 +169,7 @@ class PackDurationCommand extends ContainerAwareCommand
                         $headers = "From: \"".$email."\"<".$email.">\n";
                         $headers .= 'Cc: simonsays92120@gmail.com' . "\r\n";
                         $headers .= "Reply-To: ".$email."\n";
-                        $headers .= "Content-Type: text/html; charset=\"iso-8859-1\"";
+                        $headers .= "Content-Type: text/html; charset=\"utf-8\"";
                         mail($destinataire,$sujet,$message,$headers); 
 
                     } else if($ongoingPack->getPackType() == Pack::FOOD_BODY || $ongoingPack->getPackType() == Pack::THEME){
@@ -187,7 +187,7 @@ class PackDurationCommand extends ContainerAwareCommand
                         $headers = "From: \"".$email."\"<".$email.">\n";
                         $headers .= 'Cc: simonsays92120@gmail.com' . "\r\n";
                         $headers .= "Reply-To: ".$email."\n";
-                        $headers .= "Content-Type: text/html; charset=\"iso-8859-1\"";
+                        $headers .= "Content-Type: text/html; charset=\"utf-8\"";
                         mail($destinataire,$sujet,$message,$headers);
                     }
                 }

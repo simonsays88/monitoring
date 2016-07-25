@@ -41,7 +41,7 @@ class HandleResultForm
             $message = $this->templating->render('AppBundle:Emails:resultsCompleted.html.twig', array('result' => $result));
             $headers = "From: \"".$this->container->getParameter('sender_app')."\"<".$this->container->getParameter('sender_app').">\n";
             $headers .= "Reply-To: ".$this->container->getParameter('sender_app')."\n";
-            $headers .= "Content-Type: text/html; charset=\"iso-8859-1\"";
+            $headers .= "Content-Type: text/html; charset=\"utf-8\"";
             mail($destinataire, $sujet, $message, $headers);
             return true;
         } else {
