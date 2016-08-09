@@ -35,10 +35,9 @@ class PackController extends Controller
             $packs = $em->getRepository('AppBundle:Pack')->getAllPacksFoodAndFoodBody($completed, $packTypeId, $name);
         } else {
             $packs = $em->getRepository('AppBundle:Pack')->getAllPacksThemes($completed, $packTypeId, $name);
-            $pack_standby = is_null($pack_standby) ? 'all' : null;
         }
         
-        if($pack_standby != 'all'){
+        if($pack_standby == 1){
             
             foreach ($packs as $key => $pack){
                 $results  = $pack->getResults();

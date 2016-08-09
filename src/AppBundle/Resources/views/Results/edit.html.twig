@@ -10,6 +10,58 @@
     {{ form_start(form) }}
     <div class="row">
         <div class="row col s6" style="padding: 2%;">
+            {% if form.vars.value.pack.packType != "food" %}
+            <div class="row z-depth-2">
+                <h4>Bilan musculation</h4>
+                <label for="method">Méthode du programme (notée en 1ère page de ton programme) : par exemple, 5-7-9 
+                    RM ou drop set ou 3 RM :</label>
+                    {{ form_widget(form.method) }}
+
+                <label for="feedback">Déroulement et durée des séances :</label>
+                {{ form_widget(form.feedback) }}
+
+                {% for exercise in form.resultExercise %}
+                    <label for="resultExercise">{{ exercise.vars.data }}</label>
+                    <div class="questionContainer">
+                        {{ form_widget(exercise.repetition, { 'attr': {'class': 'small_input'} }) }} X {{ form_widget(exercise.value, { 'attr': {'class': 'small_input'} }) }} {{ exercise.vars.data.exercise.unit }}
+                    </div>
+                {% endfor %}
+
+                <label for="performance">Autre exercices</label>
+                {{ form_widget(form.performance) }}
+
+                <label for="recovery">Récupération et courbatures :</label>
+                {{ form_widget(form.recovery) }}
+
+            </div>
+            <div class="row z-depth-2">
+                <h4>Bilan alimentaire</h4>
+                <label for="questions">Tes questions et tes sensations :
+                </label>
+                {{ form_widget(form.questions) }}
+                <br><br/>
+                <label for="evaluation">Sur une échelle de 1 à 10, à combien évalues tu ton suivi du plan alimentaire en termes
+                    de quantités et de qualités des aliments ?</label>
+                    {{ form_widget(form.evaluation) }}
+                <label for="physicalChange">Des éventuels changements physiques que tu as pu constater : 
+                </label>
+                {{ form_widget(form.physicalChange) }}
+            </div>
+            {% else %}
+            <div class="row z-depth-2">
+                <h4>Bilan alimentaire</h4>
+                <label for="questions">Tes questions et tes sensations :
+                </label>
+                {{ form_widget(form.questions) }}
+                <br><br/>
+                <label for="evaluation">Sur une échelle de 1 à 10, à combien évalues tu ton suivi du plan alimentaire en termes
+                    de quantités et de qualités des aliments ?</label>
+                    {{ form_widget(form.evaluation) }}
+                <label for="physicalChange">Des éventuels changements physiques que tu as pu constater : 
+                </label>
+                {{ form_widget(form.physicalChange) }}
+            </div>
+            {% endif %}
             <div class="row z-depth-2">
                 <i class="small material-icons right">insert_chart</i>
                 <h5>Mensurations</h5>
@@ -107,6 +159,7 @@
             </div>
         </div>
         <div class="center-align"><button type="submit" class="btn">Envoyez votre bilan trimestriel <i class="material-icons right">send</i></button></div>
+        <div style="display : none">{{ form_rest(form) }}</div>
         {{ form_end(form) }}
         {{ include('AppBundle:Results:reply.html.twig', { 'result_id': form.vars.value.id }) }}
     </div>

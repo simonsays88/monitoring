@@ -103,7 +103,7 @@ class ResultsController extends Controller
                 if ($handleForm) {
                     return $this->render('AppBundle:Results:success.html.twig');
                 }
-                return $this->render('AppBundle:Results:weekFoodBody.html.twig', array(
+                return $this->render('AppBundle:Results:monthFoodBody.html.twig', array(
                             'form' => $form->createView()
                 ));
             }

@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 class ResultType extends AbstractType {
 
@@ -26,6 +27,15 @@ class ResultType extends AbstractType {
                 ->add('photoFront', FileType::class, array('data_class' => null, 'required' => is_null($builder->getData()->getPhotoFront())))
                 ->add('photoSide', FileType::class, array('data_class' => null, 'required' => is_null($builder->getData()->getPhotoSide())))
                 ->add('photoBack', FileType::class, array('data_class' => null, 'required' => is_null($builder->getData()->getPhotoBack())))
+                ->add('questions', null, array('required' => false))
+                ->add('evaluation', null, array('required' => false))
+                ->add('physicalChange', null, array('required' => false))
+                ->add('method', null, array('required' => false))
+                ->add('feedback', null, array('required' => false))
+                ->add('performance', null, array('required' => false))
+                ->add('recovery', null, array('required' => false))
+                ->add('resultExercise', CollectionType::class, array('entry_type' => ResultExerciseType::class))
+
         ;
     }
 

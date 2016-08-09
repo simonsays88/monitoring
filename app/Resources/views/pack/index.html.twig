@@ -10,7 +10,7 @@
                 <label>Dernier bilan en attente</label>
                 <select name="pack_standby" onChange="this.parentNode.parentNode.submit()">
                     <option value="1" {% if pack_standby is same as('1') %}selected="selected"{% endif %}>Oui</option>
-                    <option value="all" {% if pack_standby is same as('all') %}selected="selected"{% endif %}>Tous</option>
+                    <option value="all" {% if pack_standby is same as('all') or  pack_standby is null%}selected="selected"{% endif %}>Tous</option>
                 </select>
             </div>
             <div class="col s2">    

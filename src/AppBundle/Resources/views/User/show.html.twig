@@ -112,54 +112,74 @@
         <thead>
             <tr>
                 <th>Bilans</th>
-                <th>Photo Face</th>
-                <th>Photo Côté</th>
-                <th>Photo Dos</th>
+                <th><a href="{{ path('initial', {'userId':user.userId}) }}" class="link">Initial</a></th>
+                {% for pack in user.packs %}
+                    {% for result in pack.results %}
+                        {% if result.resultType == constant('AppBundle\\Entity\\Result::ESTHETIC') %}
+                                <th><a href="{{ path('results', {'resultId': result.id}) }}">{{ result.createdAt|date_modify("+7 day")|date('d/m/Y') }}</a></th>
+                        {% endif %}
+                    {% endfor %}
+                {% endfor %}
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td><a href="{{ path('initial', {'userId':user.userId}) }}" class="link">Initial</a></td>
+                <td>Photo Face</td>
                 <td>
                     {% if user.photoFront is not null %}
-                        <a class="fancybox" rel="group" href="{{ asset('uploads/photos/' ~ user.photoFront) }}"><img width = "100px" src="{{ asset('uploads/photos/' ~ user.photoFront) }}" /></a>
+                        <a class="fancybox" rel="group" href="{{ asset('uploads/photos/' ~ user.photoFront) }}"><img width = "250px" src="{{ asset('uploads/photos/' ~ user.photoFront) }}" /></a>
                     {% endif %}            
                 </td>
-                <td>
-                    {% if user.photoSide is not null %}
-                        <a class="fancybox" rel="group" href="{{ asset('uploads/photos/' ~ user.photoSide) }}"><img width = "100px" src="{{ asset('uploads/photos/' ~ user.photoSide) }}" /></a>
-                    {% endif %}                
-                </td>
-                <td>
-                    {% if user.photoBack is not null %}
-                        <a class="fancybox" rel="group" href="{{ asset('uploads/photos/' ~ user.photoBack) }}"><img width = "100px" src="{{ asset('uploads/photos/' ~ user.photoBack) }}" /></a>
-                    {% endif %}                
-                </td>
-            </tr>
-            {% for pack in user.packs %}
-                {% for result in pack.results %}
-                    {% if result.resultType == constant('AppBundle\\Entity\\Result::ESTHETIC') %}
-                        <tr>
-                            <td><a href="{{ path('results', {'resultId': result.id}) }}">{{ result.createdAt|date_modify("+7 day")|date('d/m/Y') }}</a></td>
+                {% for pack in user.packs %}
+                    {% for result in pack.results %}
+                        {% if result.resultType == constant('AppBundle\\Entity\\Result::ESTHETIC') %}
                             <td>
                                 {% if result.photoFront is not null %}
-                                    <a class="fancybox" rel="group" href="{{ asset('uploads/photos/' ~ result.photoFront) }}"><img width = "100px" src="{{ asset('uploads/photos/' ~ result.photoFront) }}" /></a>
+                                    <a class="fancybox" rel="group" href="{{ asset('uploads/photos/' ~ result.photoFront) }}"><img width = "250px" src="{{ asset('uploads/photos/' ~ result.photoFront) }}" /></a>
                                 {% endif %}            
                             </td>
+                        {% endif %}
+                    {% endfor %}
+                {% endfor %}
+            </tr>
+            <tr>
+                <td>Photo Côté</td>
+                <td>
+                    {% if user.photoSide is not null %}
+                        <a class="fancybox" rel="group" href="{{ asset('uploads/photos/' ~ user.photoSide) }}"><img width = "250px" src="{{ asset('uploads/photos/' ~ user.photoSide) }}" /></a>
+                    {% endif %}                
+                </td>
+                {% for pack in user.packs %}
+                    {% for result in pack.results %}
+                        {% if result.resultType == constant('AppBundle\\Entity\\Result::ESTHETIC') %}
                             <td>
                                 {% if result.photoSide is not null %}
-                                    <a class="fancybox" rel="group" href="{{ asset('uploads/photos/' ~ result.photoSide) }}"><img width = "100px" src="{{ asset('uploads/photos/' ~ result.photoSide) }}" /></a>
-                                {% endif %}                
+                                    <a class="fancybox" rel="group" href="{{ asset('uploads/photos/' ~ result.photoSide) }}"><img width = "250px" src="{{ asset('uploads/photos/' ~ result.photoSide) }}" /></a>
+                                {% endif %}            
                             </td>
+                        {% endif %}
+                    {% endfor %}
+                {% endfor %}
+            </tr>
+            <tr>
+                <td>Photo Dos</td>
+                <td>
+                    {% if user.photoBack is not null %}
+                        <a class="fancybox" rel="group" href="{{ asset('uploads/photos/' ~ user.photoBack) }}"><img width = "250px" src="{{ asset('uploads/photos/' ~ user.photoBack) }}" /></a>
+                    {% endif %}                
+                </td>
+                {% for pack in user.packs %}
+                    {% for result in pack.results %}
+                        {% if result.resultType == constant('AppBundle\\Entity\\Result::ESTHETIC') %}
                             <td>
                                 {% if result.photoBack is not null %}
-                                    <a class="fancybox" rel="group" href="{{ asset('uploads/photos/' ~ result.photoBack) }}"><img width = "100px" src="{{ asset('uploads/photos/' ~ result.photoBack) }}" /></a>
-                                {% endif %}                
+                                    <a class="fancybox" rel="group" href="{{ asset('uploads/photos/' ~ result.photoBack) }}"><img width = "250px" src="{{ asset('uploads/photos/' ~ result.photoBack) }}" /></a>
+                                {% endif %}            
                             </td>
-                        </tr>
-                    {% endif %}
+                        {% endif %}
+                    {% endfor %}
                 {% endfor %}
-            {% endfor %}
+            </tr>
         <tbody>
     </table>
     {% if performances is not null %}
