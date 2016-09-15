@@ -19,15 +19,14 @@
 
                                                     <td valign="top" class="mcnTextContent" style="padding-top:9px; padding-right: 18px; padding-bottom: 9px; padding-left: 18px;">
 
-                                                        <h2 style="text-align: justify;"><br>
-                                                            <span style="color:#333333"><span class="s1">Hello {{ result.pack.initial.firstname }} !</span></span></h2>
+                                                        <br>
+                                                            <span style="color:#333333"><span class="s1">Hello {{ result.pack.initial.firstname }} !</span></span>
 
                                                         <p class="p1" style="text-align: justify;"><span style="color:#333333"><span class="s1">Comment ça va ?<br><br>Je compte sur toi pour répondre au formulaire de bilan de ton programme stp avant aujourd’hui midi.
                                                                     {% if result.pack.nbDays == 30 %}
                                                                     Même si tu ne souhaites pas prolonger ton suivi, je tiens à réaliser ton suivi jusqu’au bout avec ce dernier bilan.
                                                                     {% endif %}
                                                                         Le lien est juste en dessous : &nbsp;	<br>
-                                                                        <br>
                                                                         <br></span></span></p>
 
                                                         </td>
@@ -66,34 +65,14 @@
                                                         <table border="0" cellpadding="0" cellspacing="0" class="mcnButtonContentContainer" style="border-collapse: separate !important;border-radius: 2px;background-color: #D2B48C;">
                                                             <tbody>
                                                                 <tr>
-                                                                    <td align="center" valign="middle" class="mcnButtonContent" style="font-family: Arial; font-size: 12px; padding: 18px;">
+                                                                    <td align="center" valign="middle" class="mcnButtonContent" style="font-family: Arial; font-size: 12px; padding: 18px 40px;">
 
 
-                                                                        <a class="mcnButton" href="{{ url('results', {'resultId':result.id}) }}" target="_blank" style="font-weight: normal;letter-spacing: normal;line-height: 100%;text-align: center;text-decoration: none;color: #FFFFFF;">Bilan 4 semaines</a>
+                                                                        <a class="mcnButton" href="{{ url('results', {'resultId':result.id}) }}" target="_blank" style="font-weight: normal;letter-spacing: normal;line-height: 100%;text-align: center;text-decoration: none;color: #FFFFFF;">Compléter mon bilan 4 semaines</a>
                                                                     </td>
                                                                 </tr>
                                                             </tbody>
                                                         </table>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table><table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnTextBlock">
-                                            <tbody class="mcnTextBlockOuter">
-                                                <tr>
-                                                    <td valign="top" class="mcnTextBlockInner">
-
-                                                        <table align="left" border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnTextContentContainer">
-                                                            <tbody><tr>
-
-                                                                    <td valign="top" class="mcnTextContent" style="padding-top:9px; padding-right: 18px; padding-bottom: 9px; padding-left: 18px;">
-
-                                                                        <br>
-                                                                        <br>
-                                                                        &nbsp;
-                                                                    </td>
-                                                                </tr>
-                                                            </tbody></table>
-
                                                     </td>
                                                 </tr>
                                             </tbody>
