@@ -165,6 +165,13 @@ class Initial {
     /**
      * @var string
      *
+     * @ORM\Column(name="haunch", type="string", length=255, nullable=true)
+     */
+    private $haunch;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="weight", type="string", length=255, nullable=true)
      */
     private $weight;
@@ -1189,6 +1196,28 @@ class Initial {
      */
     public function getImc() {
         return $this->imc;
+    }
+
+    /**
+     * Set haunch
+     *
+     * @param string $haunch
+     *
+     * @return Initial
+     */
+    public function setHaunch($haunch) {
+        $this->haunch = $haunch;
+
+        return $this;
+    }
+
+    /**
+     * Get haunch
+     *
+     * @return string
+     */
+    public function getHaunch() {
+        return $this->haunch;
     }
 
 

@@ -111,15 +111,12 @@ class UserController extends Controller {
                 ->getRepository('AppBundle:Pack')
                 ->findOneById($pack_id);
         $newDaysLeft = $pack->getDaysLeft() + ($request->query->get('nbWeek') * 7);
+        $this->addFlash(
+                'notice', 'Le pack a été étendu de ' . $request->query->get('nbWeek') . ' semaine(s)'
+        );
+        $pack->setDaysLeft($newDaysLeft);
         if ($newDaysLeft > $pack->getNbDays()) {
-            $this->addFlash(
-                    'notice', 'Tu ne peux pas ajouter autant de semaines à ce pack'
-            );
-        } else {
-            $this->addFlash(
-                    'notice', 'Le pack a été étendu de ' . $request->query->get('nbWeek') . ' semaine(s)'
-            );
-            $pack->setDaysLeft($newDaysLeft);
+            $pack->setNbDays($newDaysLeft);
         }
         $em->flush();
         $referer = $request->headers->get('referer');

@@ -55,6 +55,13 @@ class Result
     /**
      * @var string
      *
+     * @ORM\Column(name="haunch", type="string", length=255, nullable=true)
+     */
+    private $haunch;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="shoulders", type="string", length=255, nullable=true)
      */
     private $shoulders;
@@ -509,6 +516,27 @@ class Result
         return $this->imc;
     }
 
+    /**
+     * Set haunch
+     *
+     * @param string $haunch
+     *
+     * @return Initial
+     */
+    public function setHaunch($haunch) {
+        $this->haunch = $haunch;
+
+        return $this;
+    }
+
+    /**
+     * Get haunch
+     *
+     * @return string
+     */
+    public function getHaunch() {
+        return $this->haunch;
+    }
 
     /**
      * Set createdAt

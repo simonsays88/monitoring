@@ -69,8 +69,9 @@
                     <label for="weight">Poids (en Kg)</label>
                     {{ form_widget(form.weight) }}
 
-                    <label for="imc">Votre IMC est de :</label>
+                    <label for="imc">Taux de masse graisseuse :</label>
                     {{ form_widget(form.imc) }}
+                    
                     <label for="shoulders">Epaules en cm</label>
                     {{ form_widget(form.shoulders) }}
 
@@ -79,6 +80,9 @@
                 </div>
                 <div class="col s6">
 
+                    <label for="haunch">Hanches :</label>
+                    {{ form_widget(form.haunch) }}
+                    
                     <label for="hipSize">Tour de taille en cm</label>
                     {{ form_widget(form.hipSize) }}
 

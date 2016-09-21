@@ -47,6 +47,7 @@ class InitialType extends AbstractType {
                 ->add('height', null, array('required' => true))
                 ->add('weight', null, array('required' => true))
                 ->add('imc', null, array('required' => true))
+                ->add('haunch', null, array('required' => true))
                 ->add('shoulders', null, array('required' => true))
                 ->add('pectorals', null, array('required' => true))
                 ->add('arms', null, array('required' => true))
