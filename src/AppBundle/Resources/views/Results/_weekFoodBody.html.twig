@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block pageTitle %}CostaFitness : Bilan {% endblock %}
+{% block headingTitle %}Bilan à 2 semaines{% endblock %}
+{% block pageClass %}initForm{% endblock %}
+
+{% block body %}
+
+    {{ include('AppBundle:Results:identity.html.twig', { 'pack': form.vars.value.pack }) }}
+
+    {{ form_start(form) }}
+    <div class="row">
+        <div class="row col s6" style="padding: 2%;">
+            <div class="row z-depth-2">
+                <h4>Bilan musculation</h4>
+
+                <label for="method">Méthode du programme (notée en 1ère page de ton programme) : par exemple, 5-7-9 
+                    RM ou drop set ou 3 RM :</label>
+                    {{ form_widget(form.method) }}
+
+                <label for="feedback">Déroulement et durée des séances :</label>
+                {{ form_widget(form.feedback) }}
+
+                {% for exercise in form.resultExercise %}
+                    <div class=""col s12>                    
+                        <label for="resultExercise">{{ exercise.vars.value.exercise.type }} : {{ exercise.vars.data }}</label>
+                        <p>
+                            {{ form_widget(exercise.repetition, { 'attr': {'class': 'small_input'} }) }} X {{ form_widget(exercise.value, { 'attr': {'class': 'small_input'} }) }} {{ exercise.vars.data.exercise.unit }}
+                        </p>
+                    </div>
+                {% endfor %}
+
+                <label for="performance">Autres exercices : </label>
+                {{ form_widget(form.performance) }}
+
+                <label for="recovery">Récupération et courbatures :</label>
+                {{ form_widget(form.recovery) }}
+
+                <label for="questions">Questions :</label>
+                {{ form_widget(form.questions) }}
+            </div>              
+        </div> 
+
+        <div class="row col s6" style="padding: 2%;">
+            <div class="row z-depth-2">
+                <h4>Bilan alimentaire à 2 semaines</h4>
+                <label for="evaluation">Sur une échelle de 1 à 10, à combien évalues tu ton suivi du plan alimentaire en termes
+                    de quantités et de qualités des aliments ?</label>
+                    {{ form_widget(form.evaluation) }}
+            </div>
+
+            <div class="row z-depth-2">
+                <h4>Vos mensurations</h4>
+                <label for="weight">Poids en Kg (mesure initial {{form.vars.value.pack.initial.weight}}kg )</label>
+                {{ form_widget(form.weight) }}
+
+                <label for="hipSize">Tour de taille en cm (mesure initial {{form.vars.value.pack.initial.hipSize}}cm )</label>
+                {{ form_widget(form.hipSize) }}
+            </div>
+            <p><button type="submit" class="btn">Envoyez votre bilan alimentaire <i class="material-icons right">send</i></button></p>
+        </div>
+        {{ form_end(form) }}
+        {{ include('AppBundle:Results:reply.html.twig', { 'result_id': form.vars.value.id }) }}
+    </div>
+{% endblock %}

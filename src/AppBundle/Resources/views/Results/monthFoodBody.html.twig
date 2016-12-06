@@ -12,18 +12,21 @@
         <div class="row col s6" style="padding: 2%;">
             <div class="row z-depth-2">
                 <h4>Bilan musculation</h4>
-                <label for="method">Méthode du programme (notée en 1ère page de ton programme) : par exemple, 5-7-9 
+                <label for="method">Méthode du programme (notée en 1ère page de ton programme) : par exemple, 5-7-9
                     RM ou drop set ou 3 RM :</label>
                     {{ form_widget(form.method) }}
 
                 <label for="feedback">Déroulement et durée des séances :</label>
                 {{ form_widget(form.feedback) }}
 
+                <p>Notez ci dessous le nombre de répétitions réalisées et la charge totale utilisée (poids total de la barre ou poids des 2 haltères).</p>
                 {% for exercise in form.resultExercise %}
+                  <div class="col s12">
                     <label for="resultExercise">{{ exercise.vars.data }}</label>
                     <div class="questionContainer">
                         {{ form_widget(exercise.repetition, { 'attr': {'class': 'small_input'} }) }} X {{ form_widget(exercise.value, { 'attr': {'class': 'small_input'} }) }} {{ exercise.vars.data.exercise.unit }}
                     </div>
+                  </div>
                 {% endfor %}
 
                 <label for="performance">Autre exercices</label>
