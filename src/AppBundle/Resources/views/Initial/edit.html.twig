@@ -51,7 +51,7 @@
                 <i class="small material-icons sport-icon right"><img src="/bundles/app/images/althere.svg"></i>
                 <h5>Le sport et vous</h5>
                 <blockquote>Rédigez clairement vos réponses avec des phrases courtes et précises.</blockquote>
-                <label for="exercises">Quels types d'entraînements faites vous, combien de fois par semaine et depuis quand ?</label>
+                <label for="exercises">Combien de fois vous entrainez-vous actuellement par semaine ? Pour ce coaching, souhaitez-vous garder le même rythme ? Si non, précisez svp.</label>
                 {{ form_widget(form.exercises) }}
 
                 <label for="practiceLocation">Vous effectuez votre entrainement en salle ou à domicile ? Si à domicile merci de préciser le matériel dont vous disposez.</label>
@@ -83,6 +83,7 @@
             <div class="row z-depth-2">
                 <i class="small material-icons right">insert_chart</i>
                 <h5>Mensurations</h5>
+                 <blockquote>Prenez toujours vos mesures dans les même conditions.</blockquote>
                 <div class="col s6">
                     <label for="height">Taille (en cm)</label>
                     {{ form_widget(form.height) }}
@@ -93,15 +94,15 @@
                     <label for="imc">Taux de masse graisseuse (%) :</label>
                     {{ form_widget(form.imc) }}
 
-                    <label for="haunch">Hanches :</label>
-                    {{ form_widget(form.haunch) }}
-
                     <label for="shoulders">Epaules (en cm)</label>
                     {{ form_widget(form.shoulders) }}
-                </div>
-                <div class="col s6">
+
                     <label for="pectorals">Pectoraux / poitrine (en cm)</label>
                     {{ form_widget(form.pectorals) }}
+                </div>
+                <div class="col s6">
+                    <label for="hipSize">Tour de taille (en cm)</label>
+                    {{ form_widget(form.hipSize) }}
 
                     <label for="arms">Bras contracté (en cm)</label>
                     {{ form_widget(form.arms) }}
@@ -109,11 +110,11 @@
                     <label for="thighs">Cuisse (en cm)</label>
                     {{ form_widget(form.thighs) }}
 
-                    <label for="hipSize">Tour de taille (en cm)</label>
-                    {{ form_widget(form.hipSize) }}
+                    <label for="haunch">Hanches (en cm) :</label>
+                    {{ form_widget(form.haunch) }}
                 </div>
 
-                <img src="/bundles/app/images/mesureMensurations.jpg" alt="" style="width:100%"/>              
+                <img src="/bundles/app/images/MensurationsHomme.jpg" alt="" style="width:100%"/>              
 
             </div>
 
@@ -142,11 +143,11 @@
                 <label for="dietarySupplement">Utilisez-vous déjà des compléments alimentaires? Si non, souhaitez-vous en utiliser ?</label>
                 {{ form_widget(form.dietarySupplement) }}
 
-                <label for="trainingTime">Indiquez moi l'heure de votre entraînement:</label>
-                {{ form_widget(form.trainingTime) }}
-
                 <label for="allergy">Avez vous des allergies et/ou des intolérances alimentaires?</label>
                 {{ form_widget(form.allergy) }}
+
+                 <label for="trainingTime">Indiquez moi l'heure de votre entraînement:</label>
+                {{ form_widget(form.trainingTime) }}
             </div>
 
             <div class="row z-depth-2">
@@ -202,7 +203,7 @@
                 <i class="small material-icons right">picture_in_picture</i>
                 <h5>Vos photos</h5>
                 <blockquote> 
-                    Prenez vos photos en format portrait.
+                    Prenez vos photos en format <strong>portrait</strong>.
                     Cadrez les photos de vos genoux jusqu'au dessus de la tête.
                     Les bras sont relâchés le long du corps et l'attitude naturelle.
                     L'éclairage doit être facilement reproductible.
