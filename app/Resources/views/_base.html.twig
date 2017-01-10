@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block pageTitle %}{% endblock %}</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+        {% block head %}{% endblock %}
+        <link rel="stylesheet" type="text/css" media="all" href="/bundles/app/css/normalize.css" />
+        <link rel="stylesheet" type="text/css" media="all" href="/bundles/app/css/style.css" />
+        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link type="text/css" rel="stylesheet" href="/bundles/app/css/materialize.css"  media="screen,projection"/>
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <script type="text/javascript" src="/bundles/app/js/jquery.fancybox.js"></script>
+        <link rel="stylesheet" type="text/css" media="all" href="/bundles/app/css/jquery.fancybox.css" />
+        <script type="text/javascript" src="/bundles/app/js/materialize.js"></script>
+        <script type="text/javascript" src="/bundles/app/js/scripts.js"></script>
+    </head>
+    <body class="{% block pageClass %}{% endblock %}">
+            <nav>
+                <div class="nav-wrapper">
+                    <a href="#" class="brand-logo right"><img src="/bundles/app/images/logo.png"></a>
+                    {% if app.user.id  is defined %}
+                        <ul id="nav-mobile" class="left hide-on-med-and-down">
+                            <li><a href="{{ path('pack_index') }}">Utilisateurs</a></li>
+                            <li><a href="{{ path('exercise_index') }}">Exercices</a></li>
+                            <li><a href="{{ path('category_index') }}">Catégorie de packs</a></li>
+                            <li><a href="{{ path('scale_index') }}">Barème des performances</a></li>
+                            <li><a href="{{ path('fos_user_security_logout') }}">Déconnexion</a></li>
+                        </ul>
+                    {% endif %}
+
+                </div>
+            </nav>
+        <main>
+        {% for flash_message in app.session.flashBag.get('notice') %}
+            <div class="flash-notice card-panel orange darken-1">
+                {{ flash_message }}
+            </div>
+        {% endfor %}
+        {% block body %}{% endblock %}
+
+    </main>
+    <footer class="page-footer">
+        <div class="footer-copyright">
+            <div class="container">
+                Copyright © CostaFitness 2016
+                <a class="grey-text text-lighten-4 right" href="#!">Voir le site</a>
+            </div>
+        </div>
+    </footer>
+    {% block javascripts %}
+        <script type="text/javascript" src="/bundles/app/js/scripts.js"></script>
+        <script>
+                function switchButton(path){
+                    $.get( path, function() {
+                      });
+                }
+        </script>
+    {% endblock %}
+</body>
+</html>
