@@ -160,6 +160,13 @@ class Result
     /**
      * @var string
      *
+     * @ORM\Column(name="pace", type="text", nullable=true)
+     */
+    private $pace;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="performance", type="text", nullable=true)
      */
     private $performance;
@@ -656,6 +663,30 @@ class Result
     public function getRecovery()
     {
         return $this->recovery;
+    }
+
+    /**
+     * Set pace
+     *
+     * @param string $pace
+     *
+     * @return Result
+     */
+    public function setPace($pace)
+    {
+        $this->pace = $pace;
+
+        return $this;
+    }
+
+    /**
+     * Get pace
+     *
+     * @return string
+     */
+    public function getPace()
+    {
+        return $this->pace;
     }
 
     /**

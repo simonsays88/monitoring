@@ -19,6 +19,7 @@ class FourWeeksFoodBodyType extends AbstractType {
                 ->add('feedback', null, array('required' => true))
                 ->add('performance', null, array('required' => true))
                 ->add('recovery', null, array('required' => true))
+                ->add('pace', null, array('required' => true))
                 ->add('questions', null, array('required' => true))
                 ->add('evaluation', null, array('required' => true))
                 ->add('physicalChange', null, array('required' => true))
